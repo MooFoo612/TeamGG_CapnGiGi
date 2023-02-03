@@ -1,17 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class ProceduralAI : MonoBehaviour
+public class PlatformGenerator : MonoBehaviour
 {
-    
-
     // Start is called before the first frame update
-    void Awake()
-    {
-    }
-
     void Start()
     {
         
