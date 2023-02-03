@@ -8,6 +8,7 @@ public class GroundGenerator : MonoBehaviour
 
     // Player object
     PlayerMovement player;
+    Vector2 velocity;
 
     // General
     public float groundHeight;
@@ -30,11 +31,12 @@ public class GroundGenerator : MonoBehaviour
 
     void Awake()
     {
-        // Fetch values for variables
+        // Fetch player attributes
         player = GameObject.Find("CapnGigi").GetComponent<PlayerMovement>();
         velocity = GameObject.Find("CapnGigi").GetComponent<Rigidbody2D>().velocity;
-
         groundCollider = GetComponent<BoxCollider2D>();
+
+        // Assign calculations to world variables
         groundHeight = transform.position.y + (groundCollider.size.y / 2);
         screenRight = Camera.main.transform.position.x * 2;
         screenLeft = Camera.main.transform.position.x * -2;
@@ -56,7 +58,7 @@ public class GroundGenerator : MonoBehaviour
     {
         // Get the current direction from the ground
         Vector2 currentPosition = transform.position;
-        currentPosition.x -= player.velocity.x * Time.fixedDeltaTime;
+        currentPosition.x -= player.rb.velocity.x * Time.fixedDeltaTime;
 
 
         // Fetch the position of the furthest point to the right of the ground section every frame

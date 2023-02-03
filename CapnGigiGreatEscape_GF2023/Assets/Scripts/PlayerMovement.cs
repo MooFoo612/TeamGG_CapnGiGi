@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour{
 
 [SerializeField] private float speed = 5;
 public bool IsMoving { get; private set;}
-private Rigidbody2D rb;
+public Rigidbody2D rb;
 private Vector2 moveInput;
 
     // It's called when the script is loaded (when the game start)
