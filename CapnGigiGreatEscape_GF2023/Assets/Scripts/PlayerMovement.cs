@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour{
 public bool IsMoving { get; private set;}
 public Rigidbody2D rb;
 private Vector2 moveInput;
+public float jumpImpulse = 10f;
 
     // It's called when the script is loaded (when the game start)
     private void Awake(){
@@ -28,7 +29,7 @@ private Vector2 moveInput;
     private void FixedUpdate(){
         // Move the player using Unity Input System
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-        
+
     }    
 
     // It's called while the player is moving 
@@ -37,5 +38,11 @@ private Vector2 moveInput;
         moveInput = context.ReadValue<Vector2>();
         // Set isMoving to true when player is moving
         IsMoving = moveInput != Vector2.zero;
+    }
+
+    public void OnJump(InputAction.CallbackContext context){
+        if(context.started){
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+        }
     }
 }
