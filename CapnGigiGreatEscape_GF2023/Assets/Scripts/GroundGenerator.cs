@@ -5,6 +5,10 @@ using UnityEngine;
 public class GroundGenerator : MonoBehaviour
 {
     #region Variables
+
+    // Player object
+    PlayerMovement player;
+
     // General
     public float groundHeight;
     
@@ -27,6 +31,9 @@ public class GroundGenerator : MonoBehaviour
     void Awake()
     {
         // Fetch values for variables
+        player = GameObject.Find("CapnGigi").GetComponent<PlayerMovement>();
+        velocity = GameObject.Find("CapnGigi").GetComponent<Rigidbody2D>().velocity;
+
         groundCollider = GetComponent<BoxCollider2D>();
         groundHeight = transform.position.y + (groundCollider.size.y / 2);
         screenRight = Camera.main.transform.position.x * 2;
@@ -47,6 +54,11 @@ public class GroundGenerator : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Get the current direction from the ground
+        Vector2 currentPosition = transform.position;
+        currentPosition.x -= player.velocity.x * Time.fixedDeltaTime;
+
+
         // Fetch the position of the furthest point to the right of the ground section every frame
         groundRight = transform.position.x + (groundCollider.size.x / 2);
         
@@ -69,5 +81,8 @@ public class GroundGenerator : MonoBehaviour
         GameObject obj = Instantiate(gameObject);
         BoxCollider2D objCollider = obj.GetComponent<BoxCollider2D>();
         Vector2 position;
+        position.x = screenRight + 30;
+        position.y = transform.position.y;
+        obj.transform.position = position;
     }
 }
