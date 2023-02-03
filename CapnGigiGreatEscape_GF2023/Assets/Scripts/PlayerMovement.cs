@@ -28,8 +28,7 @@ private Vector2 moveInput;
     private void FixedUpdate(){
         // Move the player using Unity Input System
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-
-
+        
     }    
 
     // It's called while the player is moving 
