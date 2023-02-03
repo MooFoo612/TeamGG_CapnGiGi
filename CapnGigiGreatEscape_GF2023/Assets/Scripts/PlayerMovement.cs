@@ -41,6 +41,7 @@ public float jumpImpulse = 10f;
     }
 
     public void OnJump(InputAction.CallbackContext context){
+        // If this function is called with the right parameter add jumpInpulse on the x axis  
         if(context.started){
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
