@@ -8,14 +8,31 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour{
 
 [SerializeField] private float speed = 5;
-public bool IsMoving { get; private set;}
-public Rigidbody2D rb;
 private Vector2 moveInput;
+[SerializeField]private bool _isMoving = false;
+
+public bool IsMoving { 
+    get{
+        // Return the value inside the isMoving variable just created
+        return _isMoving;
+    } private set {
+        // Set isMoving to the value is gonna be passed into the set
+        _isMoving = value;
+        // Set the boolean in the animator with the same value
+        animator.SetBool("isMoving", value);
+    }
+}
+public Rigidbody2D rb;
+Animator anim;
+
+
+
 public float jumpImpulse = 10f;
 
     // It's called when the script is loaded (when the game start)
     private void Awake(){
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start(){
@@ -32,17 +49,18 @@ public float jumpImpulse = 10f;
 
     }    
 
-    // It's called while the player is moving 
+    // It's called while the player is moving(takes the parametheres setted on the Input System controller)
     public void OnMove(InputAction.CallbackContext context){
         // Get the player position
         moveInput = context.ReadValue<Vector2>();
-        // Set isMoving to true when player is moving
+        // IsMoving setter = it pass true if the vector is actually moving and vice versa
         IsMoving = moveInput != Vector2.zero;
     }
 
     public void OnJump(InputAction.CallbackContext context){
-        // If this function is called with the right parameter add jumpInpulse on the x axis  
+        // Check if the key is pressed
         if(context.started){
+            // Add jump inpulse on the x axis 
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
