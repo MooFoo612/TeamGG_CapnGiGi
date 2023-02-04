@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GroundGenerator : MonoBehaviour
 {
@@ -35,11 +34,12 @@ public class GroundGenerator : MonoBehaviour
         player = GameObject.Find("CapnGigi").GetComponent<PlayerController>();
         velocity = GameObject.Find("CapnGigi").GetComponent<Rigidbody2D>().velocity;
         groundCollider = GetComponent<BoxCollider2D>();
+        CinemachineVirtualCamera playerCam = GetComponent<CinemachineVirtualCamera>();
 
         // Assign calculations to world variables
         groundHeight = transform.position.y + (groundCollider.size.y / 2);
-        screenRight = Camera.main.transform.position.x * 2;
-        screenLeft = Camera.main.transform.position.x * -2;
+        screenRight = playerCam.transform.position.x * 2;
+        //screenLeft = playerCam.transform.position.x * -2;
     }
 
     // Start is called before the first frame update

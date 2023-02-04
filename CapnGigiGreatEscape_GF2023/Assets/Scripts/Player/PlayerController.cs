@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour{
     
     [SerializeField] private float speed = 5;
     private Vector2 moveInput;
-    TouchingDirections touchingDirections;
+    TouchingDirections touchingDirections; 
     public Rigidbody2D rb;
     Animator anim;
     public float jumpImpulse = 10f;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour{
     // IsFacingRight function
     public bool IsFacingRight{
         get{
-            // Return the value inside the  variable that is updated inside the code
+            // Return the value inside the variable that is updated inside the code
             return _isFacingRight;
         } private set {
             // If get false as a paramether
@@ -91,7 +91,8 @@ public class PlayerController : MonoBehaviour{
 
     public void OnJump(InputAction.CallbackContext context){
         // Check if the key is pressed and if player is on the ground
-        if(context.started ){ // && touchingDirections.IsGrounded
+        if(context.started && touchingDirections.IsGrounded)
+        { // 
             // update animator paramether using static strings  
             anim.SetTrigger(AnimationStrings.jump);
             // Add jump inpulse on the y axis 
