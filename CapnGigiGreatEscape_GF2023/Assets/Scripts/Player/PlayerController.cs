@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 
 public class PlayerController : MonoBehaviour{
     
     [SerializeField] private float speed = 5;
     private Vector2 moveInput;
+    TouchingDirections touchingDirections;
     public Rigidbody2D rb;
     Animator anim;
     public float jumpImpulse = 10f;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour{
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        touchingDirections = GetComponent<TouchingDirections>();
     }
     // Start is called before the first frame update
     void Start(){
@@ -59,7 +61,8 @@ public class PlayerController : MonoBehaviour{
     private void FixedUpdate(){
         // Move the player using Unity Input System
         rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
-
+        // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
+        anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }    
 
     // It's called while the player is moving(takes the parametheres setted on the Input System controller)
@@ -87,9 +90,11 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnJump(InputAction.CallbackContext context){
-        // Check if the key is pressed
-        if(context.started){
-            // Add jump inpulse on the x axis 
+        // Check if the key is pressed and if player is on the ground
+        if(context.started ){ // && touchingDirections.IsGrounded
+            // update animator paramether using static strings  
+            anim.SetTrigger(AnimationStrings.jump);
+            // Add jump inpulse on the y axis 
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
