@@ -222,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394655335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.83, y: -0.294, z: -10}
+  m_LocalPosition: {x: -11.45, y: -0.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -744,7 +744,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.83, y: -0.294, z: -10}
+  m_LocalPosition: {x: -11.45, y: -0.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1965,6 +1965,8 @@ GameObject:
   - component: {fileID: 1041214415}
   - component: {fileID: 1041214414}
   - component: {fileID: 1041214416}
+  - component: {fileID: 1041214418}
+  - component: {fileID: 1041214417}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -2442,10 +2444,82 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!66 &1041214417
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041214412}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1041214416}
+    m_ColliderPaths:
+    - - X: -70000000
+        Y: -20000000
+      - X: -130000000
+        Y: -20000000
+      - X: -130000000
+        Y: -40000000
+      - X: -30625000
+        Y: -40000000
+      - X: -30000000
+        Y: -39062500
+      - X: -30000000
+        Y: -20000000
+      - X: 30000000
+        Y: -20000000
+      - X: 30000000
+        Y: -10000000
+      - X: -70000000
+        Y: -10000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: -3.0625145, y: -4}
+      - {x: -3, y: -3.9062424}
+      - {x: -2.9999707, y: -2}
+      - {x: 3, y: -1.9999708}
+      - {x: 2.999971, y: -1}
+      - {x: -7, y: -1.0000293}
+      - {x: -7.0000296, y: -2}
+      - {x: -13, y: -2.0000293}
+      - {x: -12.99997, y: -4}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &1041214418
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041214412}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1089666882
 GameObject:
   m_ObjectHideFlags: 0
@@ -11229,7 +11303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529710404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.83, y: -0.294, z: 0}
+  m_LocalPosition: {x: -11.45, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11264,7 +11338,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1529710411}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -11328,7 +11402,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1529710411}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -11358,8 +11432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575aacba306beea4d861aaad69985be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  rb: {fileID: 0}
+  speed: 5
+  rb: {fileID: 1529710405}
+  _isMoving: 0
+  _isFacingRight: 1
   jumpImpulse: 10
 --- !u!1 &1632690171
 GameObject:

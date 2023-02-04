@@ -7,7 +7,7 @@ public class GroundGenerator : MonoBehaviour
     #region Variables
 
     // Player object
-    PlayerMovement player;
+    PlayerController player;
     Vector2 velocity;
 
     // General
@@ -32,7 +32,7 @@ public class GroundGenerator : MonoBehaviour
     void Awake()
     {
         // Fetch player attributes
-        player = GameObject.Find("CapnGigi").GetComponent<PlayerMovement>();
+        player = GameObject.Find("CapnGigi").GetComponent<PlayerController>();
         velocity = GameObject.Find("CapnGigi").GetComponent<Rigidbody2D>().velocity;
         groundCollider = GetComponent<BoxCollider2D>();
 

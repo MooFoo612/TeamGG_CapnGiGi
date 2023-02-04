@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class PlayerMovement : MonoBehaviour{
+public class PlayerController : MonoBehaviour{
 
 [SerializeField] private float speed = 5;
 private Vector2 moveInput;
+public Rigidbody2D rb;
+Animator anim;
 [SerializeField]private bool _isMoving = false;
-
+// IsMoving function 
 public bool IsMoving { 
     get{
         // Return the value inside the isMoving variable just created
@@ -19,11 +21,25 @@ public bool IsMoving {
         // Set isMoving to the value is gonna be passed into the set
         _isMoving = value;
         // Set the boolean in the animator with the same value
-        animator.SetBool("isMoving", value);
+        anim.SetBool(AnimationStrings.isMoving, value);
     }
 }
-public Rigidbody2D rb;
-Animator anim;
+[SerializeField]private bool _isFacingRight = true;
+// IsFacingRight function
+public bool IsFacingRight{
+    get{
+        // Return the value inside the  variable that is updated inside the code
+        return _isFacingRight;
+    } private set {
+        // If get false as a paramether
+        if(_isFacingRight != value){
+            // Flip the local scale to make the player face the opposite direction
+            transform.localScale *= new Vector2(-1, 1);
+        }
+        // Set the variable with the value passet in the set 
+        _isFacingRight = value;
+    }
+}
 
 
 
@@ -55,6 +71,22 @@ public float jumpImpulse = 10f;
         moveInput = context.ReadValue<Vector2>();
         // IsMoving setter = it pass true if the vector is actually moving and vice versa
         IsMoving = moveInput != Vector2.zero;
+        // Change sprite direction
+        SetFacingDirection(moveInput);
+
+    }
+
+    private void SetFacingDirection(Vector2 moveInput){
+        // If the player is moving right and is not facing right
+        if(moveInput.x > 0 && !IsFacingRight){
+            // Face the right
+            IsFacingRight = true;
+
+        // If the player is moving left and is facing right    
+        } else if(moveInput.x < 0 && IsFacingRight){
+            // Face the left
+            IsFacingRight = false;
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context){
