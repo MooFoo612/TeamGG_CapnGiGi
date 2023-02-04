@@ -37,7 +37,7 @@ public class TouchingDirections : MonoBehaviour{
             // Return the value inside the _isOnWall variable just created
             return _isOnWall;
         } private set {
-            // Set _isGrounded to the value is gonna be passed into the set
+            // Set _isOnWall to the value is gonna be passed into the set
             _isOnWall = value;
             // Set the boolean in the animator with the same value using static strings
             anim.SetBool(AnimationStrings.isOnWall, value);
