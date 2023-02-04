@@ -6,44 +6,41 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class PlayerController : MonoBehaviour{
-
-[SerializeField] private float speed = 5;
-private Vector2 moveInput;
-public Rigidbody2D rb;
-Animator anim;
-[SerializeField]private bool _isMoving = false;
-// IsMoving function 
-public bool IsMoving { 
-    get{
-        // Return the value inside the isMoving variable just created
-        return _isMoving;
-    } private set {
-        // Set isMoving to the value is gonna be passed into the set
-        _isMoving = value;
-        // Set the boolean in the animator with the same value
-        anim.SetBool(AnimationStrings.isMoving, value);
-    }
-}
-[SerializeField]private bool _isFacingRight = true;
-// IsFacingRight function
-public bool IsFacingRight{
-    get{
-        // Return the value inside the  variable that is updated inside the code
-        return _isFacingRight;
-    } private set {
-        // If get false as a paramether
-        if(_isFacingRight != value){
-            // Flip the local scale to make the player face the opposite direction
-            transform.localScale *= new Vector2(-1, 1);
+    
+    [SerializeField] private float speed = 5;
+    private Vector2 moveInput;
+    public Rigidbody2D rb;
+    Animator anim;
+    public float jumpImpulse = 10f;
+    [SerializeField]private bool _isMoving = false;
+    // IsMoving function 
+    public bool IsMoving { 
+        get{
+            // Return the value inside the isMoving variable just created
+            return _isMoving;
+        } private set {
+            // Set isMoving to the value is gonna be passed into the set
+            _isMoving = value;
+            // Set the boolean in the animator with the same value static strings
+            anim.SetBool(AnimationStrings.isMoving, value);
         }
-        // Set the variable with the value passet in the set 
-        _isFacingRight = value;
     }
-}
-
-
-
-public float jumpImpulse = 10f;
+    [SerializeField]private bool _isFacingRight = true;
+    // IsFacingRight function
+    public bool IsFacingRight{
+        get{
+            // Return the value inside the  variable that is updated inside the code
+            return _isFacingRight;
+        } private set {
+            // If get false as a paramether
+            if(_isFacingRight != value){
+                // Flip the local scale to make the player face the opposite direction
+                transform.localScale *= new Vector2(-1, 1);
+            }
+            // Set the variable with the value passet in the set 
+            _isFacingRight = value;
+        }
+    }
 
     // It's called when the script is loaded (when the game start)
     private void Awake(){
