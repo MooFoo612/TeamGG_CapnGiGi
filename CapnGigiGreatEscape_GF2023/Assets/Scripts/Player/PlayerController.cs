@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour{
     private Vector2 moveInput;
     TouchingDirections touchingDirections; 
     public Rigidbody2D rb;
-    Animator anim;
+    Animator anim; 
     
     public float CurrentSpeed{
         get{
