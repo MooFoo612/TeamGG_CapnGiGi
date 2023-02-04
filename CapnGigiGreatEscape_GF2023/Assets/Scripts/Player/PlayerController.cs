@@ -8,11 +8,27 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour{
     
     [SerializeField] private float speed = 5;
+    public float airWalkSpeed = 5f;
+    public float jumpImpulse = 7f;  
     private Vector2 moveInput;
     TouchingDirections touchingDirections;
     public Rigidbody2D rb;
     Animator anim;
-    public float jumpImpulse = 10f;
+    
+    public float CurrentSpeed{
+        get{
+            if(IsMoving && !touchingDirections.IsOnWall ){
+                if(touchingDirections.IsGrounded){                   
+                    return speed;
+                } else {
+                return airWalkSpeed;
+                }
+            // Air state checks
+        } else {
+            return 0;
+        }    
+        }
+    }
     [SerializeField]private bool _isMoving = false;
     // IsMoving function 
     public bool IsMoving { 
@@ -60,7 +76,7 @@ public class PlayerController : MonoBehaviour{
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
         // Move the player using Unity Input System
-        rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+        rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
         // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
         anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }    
@@ -73,6 +89,9 @@ public class PlayerController : MonoBehaviour{
         IsMoving = moveInput != Vector2.zero;
         // Change sprite direction
         SetFacingDirection(moveInput);
+        if(context.started && touchingDirections.IsOnWall){
+            IsMoving = false;
+        }
 
     }
 
@@ -91,7 +110,7 @@ public class PlayerController : MonoBehaviour{
 
     public void OnJump(InputAction.CallbackContext context){
         // Check if the key is pressed and if player is on the ground
-        if(context.started ){ // && touchingDirections.IsGrounded
+        if(context.started && touchingDirections.IsGrounded ){ // 
             // update animator paramether using static strings  
             anim.SetTrigger(AnimationStrings.jump);
             // Add jump inpulse on the y axis 

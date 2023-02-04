@@ -11434,8 +11434,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rb: {fileID: 1529710405}
+  airWalkSpeed: 5
   jumpImpulse: 10
+  rb: {fileID: 1529710405}
   _isMoving: 0
   _isFacingRight: 1
 --- !u!114 &1529710412
@@ -11466,6 +11467,10 @@ MonoBehaviour:
     maxNormalAngle: 0
   groundDistance: 0.05
   _isGrounded: 0
+  wallDistance: 0.2
+  _isOnWall: 0
+  ceilingDistance: 0.05
+  _isOnCeiling: 0
 --- !u!1 &1632690171
 GameObject:
   m_ObjectHideFlags: 0
