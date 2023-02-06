@@ -11681,7 +11681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3266131370187467968, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnFire
+      value: OnAttack
       objectReference: {fileID: 0}
     - target: {fileID: 3266131370187467968, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
