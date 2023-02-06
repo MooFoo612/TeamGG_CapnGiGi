@@ -3,45 +3,28 @@ using UnityEngine;
 public class GroundGenerator : MonoBehaviour
 {
     #region Variables
-    private const float DISTANCE_TO_SPAWN_SECTION = 100f;
+    [SerializeField] private Transform lvlSection1;
+    [SerializeField] private Transform lvlSection2;
 
-    [SerializeField] private Transform lvlSection;
-    [SerializeField] private Transform lvlStart;
-    [SerializeField] private GameObject player;
-
-    private Vector3 lastEndPosition;
     #endregion
 
     void Awake() 
     {
-        // Access the player
-        player = GameObject.Find("CapnGigi");
-
-        // Find the child EndPosition object in the GameStart parent
-        lastEndPosition = lvlStart.Find("EndPosition").position;
-    }
-
-    private void Update()
-    {
-        // If the player is close enough to the next reference spawn point
-        if (Vector3.Distance(player.transform.position, lastEndPosition) < DISTANCE_TO_SPAWN_SECTION)
-        {
-            // Spawn another section
-            SpawnSection();
-        }
+        //Vector3 newSection = lvlSection.Find("EndPosition").position;
+        SpawnSection1(new Vector3(18,3));
+        SpawnSection2(new Vector3(18,3) + new Vector3(24,3));
+        SpawnSection1(new Vector3(18,3) + new Vector3(48,3));
     }
 
     #region Spawner
-    private void SpawnSection()
+    private void SpawnSection1(Vector3 newSection)
     {
-        //Get the transform to refrence the next End Position
-        Transform lastSectionTransform = SpawnSection(lastEndPosition);
-        lastEndPosition = lastSectionTransform.Find("EndPosition").position;
+        Instantiate(lvlSection1, newSection, Quaternion.identity);
     }
-    private Transform SpawnSection(Vector3 newSection)
+
+    private void SpawnSection2(Vector3 newSection)
     {
-        Transform lastSectionTransform = Instantiate(lvlSection, newSection, Quaternion.identity);
-        return lastSectionTransform;
+        Instantiate(lvlSection2, newSection, Quaternion.identity);
     }
     #endregion
 }
