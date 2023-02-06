@@ -3,7 +3,8 @@ using UnityEngine;
 public class GroundGenerator : MonoBehaviour
 {
     #region Variables
-    private const float DISTANCE_TO_SPAWN_SECTION = 100f;
+    private const float DISTANCE_TO_SPAWN_SECTION = 25f;
+    //private const float DISTANCE_TO_DESTROY_SECTION = 50f;
 
     [SerializeField] private Transform lvlSection;
     [SerializeField] private Transform lvlStart;
@@ -16,6 +17,8 @@ public class GroundGenerator : MonoBehaviour
     {
         // Access the player
         player = GameObject.Find("CapnGigi");
+        //clones = GameObject.Find("LvlBlock_2(Clone)").transform.position;
+        //lastClone = GameObject.Find("LvlBlock_2(Clone)");
 
         // Find the child EndPosition object in the GameStart parent
         lastEndPosition = lvlStart.Find("EndPosition").position;
@@ -28,7 +31,8 @@ public class GroundGenerator : MonoBehaviour
         {
             // Spawn another section
             SpawnSection();
-        }
+        } 
+
     }
 
     #region Spawner
@@ -43,5 +47,6 @@ public class GroundGenerator : MonoBehaviour
         Transform lastSectionTransform = Instantiate(lvlSection, newSection, Quaternion.identity);
         return lastSectionTransform;
     }
+
     #endregion
 }
