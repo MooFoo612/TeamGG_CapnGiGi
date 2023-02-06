@@ -21,7 +21,7 @@ public class GroundGenerator : MonoBehaviour
     {
         Instantiate(lvlSection1, newSection, Quaternion.identity);
     }
-    
+
     private void SpawnSection2(Vector3 newSection)
     {
         Instantiate(lvlSection2, newSection, Quaternion.identity);
