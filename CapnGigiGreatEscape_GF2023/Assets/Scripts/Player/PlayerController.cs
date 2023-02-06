@@ -15,30 +15,19 @@ public class PlayerController : MonoBehaviour{
     public Rigidbody2D rb;
     Animator anim; 
     
-    // CurrentSpeed function 
     public float CurrentSpeed{
         get{
-            // If the player canMove(is not attacking)
-            if(CanMove){
-                // If is moving and is not colliding with a wall
-                if(IsMoving && !touchingDirections.IsOnWall ){
-                    // If is on the ground
-                    if(touchingDirections.IsGrounded){       
-                        // Get the player speed on ground         
-                        return speed;
-                    } else {
-                        // If is not on the ground get the player speed on air that is a different var (we'll use it to manage the difficulty increment ofthe   game)
-                        return airWalkSpeed;
-                    }
+            if(IsMoving && !touchingDirections.IsOnWall ){
+                if(touchingDirections.IsGrounded){                   
+                    return speed;
                 } else {
-                    // Idle speed is 0
-                    return 0;
-                }    
-            } else {
-                // Movement locked 
-                return 0;
-            }
-        }  
+                return airWalkSpeed;
+                }
+            // Air state checks
+        } else {
+            return 0;
+        }    
+        }
     }
     [SerializeField]private bool _isMoving = false;
     // IsMoving function 
@@ -67,13 +56,6 @@ public class PlayerController : MonoBehaviour{
             }
             // Set the variable with the value passet in the set 
             _isFacingRight = value;
-        }
-    }
-
-    public bool CanMove{
-        // Still the same logic as above
-        get{
-            return anim.GetBool(AnimationStrings.canMove);
         }
     }
 
@@ -127,8 +109,8 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnJump(InputAction.CallbackContext context){
-        // Check if the key is pressed and if player is on the ground and if player can move 
-        if(context.started && touchingDirections.IsGrounded && CanMove ){ // 
+        // Check if the key is pressed and if player is on the ground
+        if(context.started && touchingDirections.IsGrounded ){ // 
             // update animator paramether using static strings  
             anim.SetTrigger(AnimationStrings.jump);
             // Add jump inpulse on the y axis 
