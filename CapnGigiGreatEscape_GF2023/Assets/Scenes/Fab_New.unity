@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 139167847}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PalmPlatforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2539,7 +2539,7 @@ GameObject:
   - component: {fileID: 1089666886}
   - component: {fileID: 1089666885}
   - component: {fileID: 1089666884}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PalmPlatform_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11459,7 +11459,7 @@ GameObject:
   - component: {fileID: 1955323202}
   - component: {fileID: 1955323201}
   - component: {fileID: 1955323200}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PalmPlatform_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11733,7 +11733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098759861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
