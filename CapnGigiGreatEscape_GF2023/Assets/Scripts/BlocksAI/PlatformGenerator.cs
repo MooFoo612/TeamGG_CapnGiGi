@@ -18,7 +18,6 @@ public class PlatformGenerator : MonoBehaviour
     #endregion
     void Awake()
     {
-       
         // Access the player
         player = GameObject.Find("CapnGigi");
 
