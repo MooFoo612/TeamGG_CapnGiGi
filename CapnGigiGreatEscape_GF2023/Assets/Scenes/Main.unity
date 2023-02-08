@@ -11963,6 +11963,10 @@ PrefabInstance:
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnHit
       objectReference: {fileID: 0}
+    - target: {fileID: 4989303022815391839, guid: e891b4d7337326d47880c6e1468b69bd, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6293410592297463452, guid: e891b4d7337326d47880c6e1468b69bd, type: 3}
       propertyPath: m_Name
       value: Krabby

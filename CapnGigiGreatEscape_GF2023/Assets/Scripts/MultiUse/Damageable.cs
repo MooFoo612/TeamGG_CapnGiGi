@@ -82,7 +82,7 @@ public class Damageable : MonoBehaviour
             anim.SetTrigger(AnimationStrings.hitTrigger);
             // Lock velocity to have a little freeze effect
             LockVelocity = true;
-            // Notify other subscribed components that the damagable was hit to handle the knockback, checking fist if is not null
+            // Notify other subscribed components that the damagable was hit to handle the knockback, checking first if is not null
             damageableHit?.Invoke(damage, knockback);
             // Able to be hit 
             return true;

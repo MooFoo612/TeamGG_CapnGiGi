@@ -14,7 +14,7 @@ public class Krabby : MonoBehaviour{
     Damageable damageable;
     public enum WalkableDirection {Right, Left}
     private WalkableDirection _walkDirection;
-    private Vector2 walkDirectionVector = Vector2.left;  
+    private Vector2 walkDirectionVector = Vector2.right;  
     public WalkableDirection WalkDirection{
         get{
             // The get works with the same logic of the player 
@@ -22,7 +22,7 @@ public class Krabby : MonoBehaviour{
         } set {
             // If the value does't correspond 
             if(_walkDirection != value){
-                // Flip direction
+                // Flip sprite direction using localScale 
                 gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
                 // If direction is right
                 if(value == WalkableDirection.Right){
@@ -62,7 +62,6 @@ public class Krabby : MonoBehaviour{
         touchingDirections = GetComponent<TouchingDirections>();
         anim = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
-
     }
 
     private void Update(){
@@ -85,7 +84,7 @@ public class Krabby : MonoBehaviour{
             } else {
                 // Enda you'll love this one, I'm using interpolation xD 
                 // Making this so that the enemy slides a bit before to stop and perform the attack
-                // Each time it goes through walkStopRate it's going to move it towards of zero at a certain    percentage between 0 and 1 (1 being 100%) on each call for the MathFunction for the interpolation ,so  in this case it's like per each fixed frame. The function actually returns the interpolated float    result between the two float values.
+                // Each time it goes through walkStopRate it's going to move it towards of zero at a certain percentage between 0 and 1 (1 being 100%) on each call for the MathFunction for the interpolation ,so  in this case it's like per each fixed frame. The function actually returns the interpolated float    result between the two float values.
                 // Be proud of me pls 
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
             }
@@ -99,10 +98,12 @@ public class Krabby : MonoBehaviour{
         if(WalkDirection == WalkableDirection.Right){
             // Flip the vector (So the direction)
             WalkDirection = WalkableDirection.Left;
+            Debug.Log("krabby is going " + WalkDirection);
         // Else if direction is left
-        } else if (WalkDirection ==  WalkableDirection.Left){
+        } else if (WalkDirection == WalkableDirection.Left){
             // Go right 
             WalkDirection = WalkableDirection.Right;
+            Debug.Log("krabby is going " + WalkDirection);
         // Check for bugs 
         } else {
             Debug.LogError("Current Walkable direction not setted to a legal value (left or right) ");
