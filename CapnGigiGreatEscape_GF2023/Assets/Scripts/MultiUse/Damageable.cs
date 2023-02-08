@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+    public UnityEvent<int, Vector2> damageableHit;
     Animator anim;
     [SerializeField] private bool isInvincible = false;
     public float invincibilityTime = 0.25f;
@@ -23,7 +25,7 @@ public class Damageable : MonoBehaviour
         } set {
             _health = value;
             // If health is less than 0 
-            if(_health < 0){
+            if(_health <= 0){
                 // Kill the character 
                 IsAlive = false;
             }
@@ -58,18 +60,23 @@ public class Damageable : MonoBehaviour
             // Update the timeSinceHit timer 
             timeSinceHit += Time.deltaTime;
         }
-        // Testing shit 
-        Hit(10);
     }
 
-    public void Hit(int damage){
+    public bool Hit(int damage, Vector2 knockback){
         // If player is alive and is not during the invincibilty timer  
         if(IsAlive && !isInvincible){
             // Take damage 
             Health -= damage;
             // Start the invincibility timer to not be able to be hitted again
             isInvincible = true;
-
+            // Update animator parameter 
+            anim.SetTrigger(AnimationStrings.hitTrigger);
+            // Notify other subscribed components that the damagable was hit to handle the knockback, checking fist if is not null
+            damageableHit?.Invoke(damage, knockback);
+            // Able to be hit 
+            return true;
         }
+        // Unable to be hit
+        return false;
     }
 }

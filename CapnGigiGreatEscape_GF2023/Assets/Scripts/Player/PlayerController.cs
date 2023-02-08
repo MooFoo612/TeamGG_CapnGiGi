@@ -83,6 +83,14 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
+    public bool LockVelocity{
+        get{
+            return anim.GetBool(AnimationStrings.lockVelocity);
+        } set {
+            anim.SetBool(AnimationStrings.lockVelocity, value);
+        }
+    }
+
     // It's called when the script is loaded (when the game start)
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
@@ -99,8 +107,11 @@ public class PlayerController : MonoBehaviour{
     }
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
-        // Move the player using Unity Input System
-        rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
+        // If player is not being hit right now 
+        if(!LockVelocity){
+            // Move the player
+            rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
+        }
         // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
         anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }    
@@ -123,10 +134,8 @@ public class PlayerController : MonoBehaviour{
         } else {
             // Block movement
             IsMoving = false;
-
         }
         
-
     }
 
     private void SetFacingDirection(Vector2 moveInput){
@@ -155,5 +164,10 @@ public class PlayerController : MonoBehaviour{
         if(context.started){
             anim.SetTrigger(AnimationStrings.attack);
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback){
+        LockVelocity = true;
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }

@@ -9,7 +9,6 @@ public class DetectionZone : MonoBehaviour
     Collider2D col;
     void Awake(){
         col = GetComponent<Collider2D>();
-
     }
     void OnTriggerEnter2D(Collider2D collision){
         // If a collider enter into the detection zone add it to the List (it can only be triggered by the player because I disabled the collision for all the layers except the player's one for the enemyHitbox layer)
