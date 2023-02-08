@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class Krabby : MonoBehaviour{
     public float walkSpeed = 3f;
@@ -11,9 +11,10 @@ public class Krabby : MonoBehaviour{
     Rigidbody2D rb;
     Animator anim;
     TouchingDirections touchingDirections;
+    Damageable damageable;
     public enum WalkableDirection {Right, Left}
     private WalkableDirection _walkDirection;
-    private Vector2 walkDirectionVector = Vector2.right;  
+    private Vector2 walkDirectionVector = Vector2.left;  
     public WalkableDirection WalkDirection{
         get{
             // The get works with the same logic of the player 
@@ -60,6 +61,8 @@ public class Krabby : MonoBehaviour{
         rb =  GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         anim = GetComponent<Animator>();
+        damageable = GetComponent<Damageable>();
+
     }
 
     private void Update(){
@@ -73,18 +76,22 @@ public class Krabby : MonoBehaviour{
             // Flip direction
             FlipDirection();
         }
-
-        // If canMove is true (enemy is not attacking)
-        if(CanMove){
-            // Move the enemy
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-        } else {
-            // Enda you'll love this one, I'm using interpolation xD 
-            // Making this so that the enemy slides a bit before to stop and perform the attack
-            // Each time it goes through walkStopRate it's going to move it towards of zero at a certain percentage between 0 and 1 (1 being 100%) on each call for the MathFunction for the interpolation ,so in this case it's like per each fixed frame. The function actually returns the interpolated float result between the two float values.
-            // Be proud of me pls 
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+        // If not just being hit 
+        if(!damageable.LockVelocity){
+            // If canMove is true (enemy is not attacking)
+            if(CanMove){
+                // Move the enemy
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            } else {
+                // Enda you'll love this one, I'm using interpolation xD 
+                // Making this so that the enemy slides a bit before to stop and perform the attack
+                // Each time it goes through walkStopRate it's going to move it towards of zero at a certain    percentage between 0 and 1 (1 being 100%) on each call for the MathFunction for the interpolation ,so  in this case it's like per each fixed frame. The function actually returns the interpolated float    result between the two float values.
+                // Be proud of me pls 
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            }
         }
+
+        
     }
     
     private void FlipDirection(){
@@ -100,5 +107,10 @@ public class Krabby : MonoBehaviour{
         } else {
             Debug.LogError("Current Walkable direction not setted to a legal value (left or right) ");
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback){
+        // Apply knockback inpulse 
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }

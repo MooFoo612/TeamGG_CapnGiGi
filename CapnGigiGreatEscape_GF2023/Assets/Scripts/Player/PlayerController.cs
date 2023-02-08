@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class PlayerController : MonoBehaviour{
     
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour{
     public float jumpImpulse = 7f;  
     private Vector2 moveInput;
     TouchingDirections touchingDirections; 
+    Damageable damageable;
     public Rigidbody2D rb;
     Animator anim; 
     
@@ -83,19 +84,13 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
-    public bool LockVelocity{
-        get{
-            return anim.GetBool(AnimationStrings.lockVelocity);
-        } set {
-            anim.SetBool(AnimationStrings.lockVelocity, value);
-        }
-    }
 
     // It's called when the script is loaded (when the game start)
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
+        damageable = GetComponent<Damageable>();
     }
     // Start is called before the first frame update
     void Start(){
@@ -108,7 +103,7 @@ public class PlayerController : MonoBehaviour{
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
         // If player is not being hit right now 
-        if(!LockVelocity){
+        if(!damageable.LockVelocity){
             // Move the player
             rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
         }
@@ -167,7 +162,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnHit(int damage, Vector2 knockback){
-        LockVelocity = true;
+        // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }

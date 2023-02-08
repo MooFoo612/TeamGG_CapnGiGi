@@ -33,7 +33,6 @@ public class Damageable : MonoBehaviour
         }
     }
 
-
     [SerializeField] private bool _isAlive = true;
     public bool IsAlive{
         get{
@@ -41,6 +40,16 @@ public class Damageable : MonoBehaviour
         } set {
             _isAlive = value;
             anim.SetBool(AnimationStrings.isAlive, value);
+        }
+    }
+
+    // Also here the velocity should not be changed while this is true but needs to be respected by other physics components (like player controller)
+    // Just getting and setting the paramether on the animator
+    public bool LockVelocity{
+        get{
+            return anim.GetBool(AnimationStrings.lockVelocity);
+        } set {
+            anim.SetBool(AnimationStrings.lockVelocity, value);
         }
     }
 
@@ -71,6 +80,8 @@ public class Damageable : MonoBehaviour
             isInvincible = true;
             // Update animator parameter 
             anim.SetTrigger(AnimationStrings.hitTrigger);
+            // Lock velocity to have a little freeze effect
+            LockVelocity = true;
             // Notify other subscribed components that the damagable was hit to handle the knockback, checking fist if is not null
             damageableHit?.Invoke(damage, knockback);
             // Able to be hit 
