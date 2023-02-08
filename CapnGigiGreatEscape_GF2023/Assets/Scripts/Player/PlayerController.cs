@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class PlayerController : MonoBehaviour{
     
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour{
     public float jumpImpulse = 7f;  
     private Vector2 moveInput;
     TouchingDirections touchingDirections; 
+    Damageable damageable;
     public Rigidbody2D rb;
     Animator anim; 
     
@@ -77,11 +78,19 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
+    public bool isAlive{
+        get{
+            return anim.GetBool(AnimationStrings.isAlive);
+        }
+    }
+
+
     // It's called when the script is loaded (when the game start)
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
+        damageable = GetComponent<Damageable>();
     }
     // Start is called before the first frame update
     void Start(){
@@ -93,8 +102,11 @@ public class PlayerController : MonoBehaviour{
     }
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
-        // Move the player using Unity Input System
-        rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
+        // If player is not being hit right now 
+        if(!damageable.LockVelocity){
+            // Move the player
+            rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
+        }
         // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
         anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }    
@@ -103,14 +115,22 @@ public class PlayerController : MonoBehaviour{
     public void OnMove(InputAction.CallbackContext context){
         // Get the player position
         moveInput = context.ReadValue<Vector2>();
-        // IsMoving setter = it pass true if the vector is actually moving and vice versa
-        IsMoving = moveInput != Vector2.zero;
-        // Change sprite direction
-        SetFacingDirection(moveInput);
-        if(context.started && touchingDirections.IsOnWall){
+        // If player is alive
+        if(isAlive){
+            // IsMoving setter = it pass true if the vector is actually moving and vice versa
+            IsMoving = moveInput != Vector2.zero;
+            // Change sprite direction
+            SetFacingDirection(moveInput);
+            // Check to prevent the player from kepp walking into the wall and don't fall 
+            if(context.started && touchingDirections.IsOnWall){
+                IsMoving = false;
+            }
+        // If is not alive
+        } else {
+            // Block movement
             IsMoving = false;
         }
-
+        
     }
 
     private void SetFacingDirection(Vector2 moveInput){
@@ -139,5 +159,10 @@ public class PlayerController : MonoBehaviour{
         if(context.started){
             anim.SetTrigger(AnimationStrings.attack);
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback){
+        // Apply knockback inpulse 
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 internal class AnimationStrings{
-    // To keep the names conistent manage the animator 
+    // To keep the names conistent, manage the animator 
     internal static string isMoving = "isMoving";
     internal static string isGrounded = "isGrounded";
     internal static string yVelocity = "yVelocity";
@@ -14,4 +14,8 @@ internal class AnimationStrings{
     internal static string isOnCeiling = "isOnCeiling";
     internal static string attack = "attack";
     internal static string canMove = "canMove";
+    internal static string hasTarget = "hasTarget";
+    internal static string isAlive = "isAlive";
+    internal static string hitTrigger = "hit";
+    internal static string lockVelocity = "lockVelocity";
 }
