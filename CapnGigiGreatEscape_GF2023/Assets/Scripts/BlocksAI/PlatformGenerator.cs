@@ -46,6 +46,8 @@ public class PlatformGenerator : MonoBehaviour
     private Transform SpawnSection(Vector3 newSection)
     {
         Transform lastSectionTransform = Instantiate(platformSection, newSection, Quaternion.identity);
+        ProceduralAI.platformSpawned += 1;
+
         return lastSectionTransform;
     }
     #endregion

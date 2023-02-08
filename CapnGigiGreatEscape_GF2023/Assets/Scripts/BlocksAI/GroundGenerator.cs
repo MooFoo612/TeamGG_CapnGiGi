@@ -30,25 +30,39 @@ public class GroundGenerator : MonoBehaviour
     }
     private void Update()
     {
-        clones = GameObject.Find("[DO_NOT_EDIT]GroundSections(Clone)");
+        try
+        {
+            clones = GameObject.Find("[DO_NOT_EDIT]GroundSections(Clone)");
+
+        }
+        catch (NullReferenceException nre)
+        {
+            Debug.LogError(nre.Message);
+        }
+        finally
+        {
+            clones = null;
+        }
 
         // If the player is close enough to the next reference spawn point
         if (Vector3.Distance(player.transform.position, lastEndPosition) < DISTANCE_TO_SPAWN_SECTION)
         {
             // Spawn another section
             SpawnSection();
-            Debug.Log("Ground section generated");
         }
     }
     #region Spawner/Despawner
-    private void SpawnSection()
+    public void SpawnSection()
     {
         //Get the transform to refrence the next End Position
         Transform lastSectionTransform = SpawnSection(lastEndPosition);
         lastEndPosition = lastSectionTransform.Find("EndPosition").position;
     }
-    private Transform SpawnSection(Vector3 nextSection)
+    public Transform SpawnSection(Vector3 nextSection)
     {
+        Debug.Log("Ground section generated");
+        ProceduralAI.groundSpawned += 1;
+
         Transform lastSectionTransform = Instantiate(groundSection, nextSection, Quaternion.identity);
         return lastSectionTransform;
     }
