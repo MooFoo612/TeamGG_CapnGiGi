@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -135,10 +136,18 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GenerateGroundList()
     {
         // Create Object Array from Resources folder
-        Object[] subListOfGroundObjects = Resources.LoadAll("GroundSections", typeof(GameObject));
+        UnityEngine.Object[] subListOfGroundPrefabs = Resources.LoadAll("GroundSections", typeof(GameObject));
 
-        //Optional Debug:
-        DebugGeneratedList(subListOfGroundObjects);
+        //Optional Array Debug:
+        //DebugGeneratedList(subListOfGroundObjects);
+
+        // Fill list with Array objects
+        foreach (GameObject value in subListOfGroundPrefabs)
+        {
+            groundPrefabs.Add(value);
+        }
+        // Optional List Debug:
+        DebugGeneratedList(groundPrefabs);
 
         // Return new Ground List
         return new List<GameObject>(groundPrefabs);
@@ -148,10 +157,18 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GeneratePlatformList()
     {
         // Create Object Array from Resources folder
-        Object[] subListOfPlatformPrefabs = Resources.LoadAll("PlatformSections", typeof(GameObject));
+        UnityEngine.Object[] subListOfPlatformPrefabs = Resources.LoadAll("PlatformSections", typeof(GameObject));
 
-        // Optional Debug:
-        DebugGeneratedList(subListOfPlatformPrefabs);
+        // Optional Array Debug:
+        //DebugGeneratedObjectArray(subListOfPlatformPrefabs);
+
+        // Fill list with Array objects
+        foreach (GameObject value in subListOfPlatformPrefabs)
+        {
+            platformPrefabs.Add(value);
+        }
+        // Optional List Debug:
+        DebugGeneratedList(platformPrefabs);
 
         // Return new Platform List
         return new List<GameObject>(platformPrefabs);
@@ -162,10 +179,18 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GenerateEnemyList()
     {
         // Create Object Array from Resources folder
-        Object[] subListOfEnemyPrefabs = Resources.LoadAll("Enemies", typeof(GameObject));
+        UnityEngine.Object[] subListOfEnemyPrefabs = Resources.LoadAll("Enemies", typeof(GameObject));
 
         // Optional Debug:
-        DebugGeneratedList(subListOfEnemyPrefabs);
+        //DebugGeneratedObjectArray(subListOfEnemyPrefabs);
+
+        // Fill list with Array objects
+        foreach (GameObject value in subListOfEnemyPrefabs)
+        {
+            enemyPrefabs.Add(value);
+        }
+        // Optional List Debug:
+        DebugGeneratedList(enemyPrefabs);
 
         // Return new Enemy List
         return new List<GameObject>(enemyPrefabs);
@@ -174,19 +199,34 @@ public class ProceduralAI : MonoBehaviour
 
     #region Debug Functions
 
+    // For Debugging any generated Object Array | Length + Names
+    private void DebugGeneratedObjectArray(UnityEngine.Object[] prefabArray)
+    {
+        // Display the Length of the Array
+        Debug.Log("Array Size: " + prefabArray.Length);
+
+        // Print the name of each object in the Array
+        foreach (GameObject value in prefabArray)
+        {
+            Debug.Log("Prefab in Array: " + value.name);
+        }
+    }
     // For Debugging any generated List | Length + Names
-    private void DebugGeneratedList(Object[] prefabList)
+    private void DebugGeneratedList(List<GameObject> prefabList)
     {
         // Display the Length of the List
-        Debug.Log(prefabList.Length);
+        Debug.Log("List Size: " + prefabList.Count );
 
         // Print the name of each object in the List
         foreach (GameObject value in prefabList)
         {
-            Debug.Log(value.name);
+            Debug.Log("Prefab in List: " + value.name);
         }
     }
+
     #endregion
 }
+
+
 
 
