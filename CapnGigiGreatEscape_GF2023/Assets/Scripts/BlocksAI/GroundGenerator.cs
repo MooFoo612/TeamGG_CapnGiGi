@@ -8,10 +8,13 @@ public class GroundGenerator : MonoBehaviour
     [SerializeField] private Transform groundSection;
     [SerializeField] private Transform groundStart;
     [SerializeField] private GameObject player;
+    private Vector3 lastEndPosition;
+    private GameObject clones;
 
     private const float DISTANCE_TO_SPAWN_SECTION = 25f;
     private const float DISTANCE_TO_DESTROY_SECTION = 25f;
-    private Vector3 lastEndPosition;
+
+
     //private Vector3 delPosition;
     //private GameObject deleteMarker;
     //private Vector3 groundDelPosition;
@@ -24,16 +27,11 @@ public class GroundGenerator : MonoBehaviour
         // Find the child EndPosition object in the GameStart parent
         lastEndPosition = groundStart.Find("EndPosition").position;
 
-        //deleteMarker = GameObject.Find("DeletePosition");
-        // Find the child DeletePosition object in GameStart parent
-        //delPosition = groundStart.Find("DeletePosition").position;
-
-        //groundToDelete = groundToDelete.Find("[DO_NOT_EDIT] PlatformSection_1(Clone)");
-        //groundDelPosition = groundToDelete.Find("DeletePosition").position;
-
     }
     private void Update()
     {
+        clones = GameObject.Find("[DO_NOT_EDIT]GroundSections(Clone)");
+
         // If the player is close enough to the next reference spawn point
         if (Vector3.Distance(player.transform.position, lastEndPosition) < DISTANCE_TO_SPAWN_SECTION)
         {
@@ -49,10 +47,14 @@ public class GroundGenerator : MonoBehaviour
         Transform lastSectionTransform = SpawnSection(lastEndPosition);
         lastEndPosition = lastSectionTransform.Find("EndPosition").position;
     }
-    private Transform SpawnSection(Vector3 firstSection)
+    private Transform SpawnSection(Vector3 nextSection)
     {
-        Transform lastSectionTransform = Instantiate(groundSection, firstSection, Quaternion.identity);
+        Transform lastSectionTransform = Instantiate(groundSection, nextSection, Quaternion.identity);
         return lastSectionTransform;
+    }
+    private void Delete()
+    {
+        
     }
     
     private void KillSection()
