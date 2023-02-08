@@ -80,7 +80,7 @@ public class Krabby : MonoBehaviour{
             rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
         } else {
             // Enda you'll love this one, I'm using interpolation xD 
-            // Making this so that the enemy slides a bit befor to stop and perform the attack
+            // Making this so that the enemy slides a bit before to stop and perform the attack
             // Each time it goes through walkStopRate it's going to move it towards of zero at a certain percentage between 0 and 1 (1 being 100%) on each call for the MathFunction for the interpolation ,so in this case it's like per each fixed frame. The function actually returns the interpolated float result between the two float values.
             // Be proud of me pls 
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);

@@ -77,6 +77,12 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
+    public bool isAlive{
+        get{
+            return anim.GetBool(AnimationStrings.isAlive);
+        }
+    }
+
     // It's called when the script is loaded (when the game start)
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
@@ -103,13 +109,23 @@ public class PlayerController : MonoBehaviour{
     public void OnMove(InputAction.CallbackContext context){
         // Get the player position
         moveInput = context.ReadValue<Vector2>();
-        // IsMoving setter = it pass true if the vector is actually moving and vice versa
-        IsMoving = moveInput != Vector2.zero;
-        // Change sprite direction
-        SetFacingDirection(moveInput);
-        if(context.started && touchingDirections.IsOnWall){
+        // If player is alive
+        if(isAlive){
+            // IsMoving setter = it pass true if the vector is actually moving and vice versa
+            IsMoving = moveInput != Vector2.zero;
+            // Change sprite direction
+            SetFacingDirection(moveInput);
+            // Check to prevent the player from kepp walking into the wall and don't fall 
+            if(context.started && touchingDirections.IsOnWall){
+                IsMoving = false;
+            }
+        // If is not alive
+        } else {
+            // Block movement
             IsMoving = false;
+
         }
+        
 
     }
 

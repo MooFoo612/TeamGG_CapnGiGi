@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6610841387333820914}
   - component: {fileID: 1792985505767837512}
   - component: {fileID: 1872795665589142175}
+  - component: {fileID: 2572080938910772883}
   m_Layer: 0
   m_Name: Krabby
   m_TagString: Untagged
@@ -142,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   attackZone: {fileID: 4221523318436740205}
+  walkStopRate: 0.05
   _hasTarget: 0
 --- !u!114 &1792985505767837512
 MonoBehaviour:
@@ -195,6 +197,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2572080938910772883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293410592297463452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvincible: 0
+  invincibilityTime: 0.25
+  _health: 100
+  _isAlive: 1
 --- !u!1 &6458935843762524666
 GameObject:
   m_ObjectHideFlags: 0
