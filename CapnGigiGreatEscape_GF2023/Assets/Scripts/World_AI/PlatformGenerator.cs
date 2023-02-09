@@ -37,13 +37,13 @@ public class PlatformGenerator : MonoBehaviour
 
     }
     #region Spawner
-    private void SpawnSection()
+    public void SpawnSection()
     {
         //Get the transform to refrence the next End Position
         Transform lastSectionTransform = SpawnSection(lastEndPosition);
         lastEndPosition = lastSectionTransform.Find("EndPosition").position;
     }
-    private Transform SpawnSection(Vector3 newSection)
+    public Transform SpawnSection(Vector3 newSection)
     {
         Transform lastSectionTransform = Instantiate(platformSection, newSection, Quaternion.identity);
         ProceduralAI.platformSpawned += 1;

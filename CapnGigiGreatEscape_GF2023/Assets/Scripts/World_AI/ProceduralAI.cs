@@ -17,21 +17,24 @@ public class ProceduralAI : MonoBehaviour
     // Enemy Scripts
     Krabby krabby;
 
+    // Debugger
+    Debugging db;
+
     #endregion
 
     #region Marker Object Declarations
 
     // Section Spawn will take the players currentSpeed+jumpAbilities into account to increase distance between sections
-    [SerializeField] Transform sectionSpawn;
+    //[SerializeField] Transform sectionSpawn;
 
     // EnemySpawnLocation will take the position of enemy spawnPoints
-    [SerializeField] Transform enemySpawnLocation;
+    //[SerializeField] Transform enemySpawnLocation;
 
     // Platform section will take x distance from previous platform section + y distance from currently instantiated ground
-    [SerializeField] Transform platformSpawnLocation;
+    //[SerializeField] Transform platformSpawnLocation;
 
     // Ground section will take lastEndPosition location
-    [SerializeField] Transform groundSpawnLocation;
+    //[SerializeField] Transform groundSpawnLocation;
 
     #endregion
 
@@ -42,7 +45,7 @@ public class ProceduralAI : MonoBehaviour
 
     #endregion
 
-    #region List Declarations
+    #region List & Array Declarations
 
     // List for Ground Section prefabs
     public static List<GameObject> groundPrefabs = new List<GameObject>();
@@ -52,6 +55,21 @@ public class ProceduralAI : MonoBehaviour
 
     // List for Enemy prefabs
     public static List<GameObject> enemyPrefabs = new List<GameObject>();
+
+    // List for World Generation
+    public static List<GameObject> worldList = new List<GameObject>();
+
+    // Create Ground Object array for Ground List dependency 
+    private UnityEngine.Object[] initArrayOfGroundPrefabs;
+
+    // Create Platform Object array for Platform List dependency
+    private UnityEngine.Object[] initArrayOfPlatformPrefabs;
+
+    // Create Enemy Object Array for Enemy List dependency
+    private UnityEngine.Object[] initArrayOfEnemyPrefabs;
+
+    // Create Object array to store generated World objects
+    public UnityEngine.Object[] worldArray;
 
     #endregion
 
@@ -73,7 +91,7 @@ public class ProceduralAI : MonoBehaviour
     #endregion
 
     #region Flow Control
-    // Start is called before the first frame update
+    // Most of the High-Priority Setup occurs in Awake()
     private void Awake()
     {
         // Fetch Player object
@@ -88,11 +106,23 @@ public class ProceduralAI : MonoBehaviour
         // Load all Enemy prefabs into the list, display list in console
         enemyPrefabs = GenerateEnemyList();
 
+        // Create World array
+        worldArray = new UnityEngine.Object[5];
+
     }
     
-    // Called after Awake()
+    // Anything that doesn't need to be loaded *immediately* on application start
     private void Start()
     {
+        // Generate random selection of :
+        // Platforms
+        // Ground Sections
+        // Enemies
+        // Collectables
+        // Generate World objects to populate 3/5 initial worldArray;
+        // Copy 2 Game objects from Left Hand Side of player to Right Hand Side to save on resources
+
+        // ------------------------------
         // For any tidy-up after Awake()
     }
 
@@ -130,19 +160,32 @@ public class ProceduralAI : MonoBehaviour
     }
     #endregion
 
-    #region List Generation
+    #region List & Array Generation
+
+    // Array for holding generated live Game World | Places player in middle Array block 
+    public UnityEngine.Object[] GenerateGameWorld()
+    {
+        UnityEngine.Object[] liveGameWorld = new UnityEngine.Object[5];
+        return liveGameWorld;
+    }
+    // Array for custom-built initial game-world | Places player in left-most Array block
+    public UnityEngine.Object[] GenerateInitialGameWorld()
+    {
+        UnityEngine.Object[] initGameWorld = new UnityEngine.Object[5];
+        return initGameWorld;
+    }
 
     // List for holding Ground Section Prefabs
     public List<GameObject> GenerateGroundList()
     {
         // Create Object Array from Resources folder
-        UnityEngine.Object[] subListOfGroundPrefabs = Resources.LoadAll("GroundSections", typeof(GameObject));
+        initArrayOfGroundPrefabs = Resources.LoadAll("GroundSections", typeof(GameObject));
 
         //Optional Array Debug:
         //DebugGeneratedList(subListOfGroundObjects);
 
         // Fill list with Array objects
-        foreach (GameObject value in subListOfGroundPrefabs)
+        foreach (GameObject value in initArrayOfGroundPrefabs)
         {
             groundPrefabs.Add(value);
         }
@@ -157,13 +200,12 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GeneratePlatformList()
     {
         // Create Object Array from Resources folder
-        UnityEngine.Object[] subListOfPlatformPrefabs = Resources.LoadAll("PlatformSections", typeof(GameObject));
-
+        initArrayOfPlatformPrefabs = Resources.LoadAll("PlatformSections", typeof(GameObject));
         // Optional Array Debug:
         //DebugGeneratedObjectArray(subListOfPlatformPrefabs);
 
         // Fill list with Array objects
-        foreach (GameObject value in subListOfPlatformPrefabs)
+        foreach (GameObject value in initArrayOfPlatformPrefabs)
         {
             platformPrefabs.Add(value);
         }
@@ -179,13 +221,13 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GenerateEnemyList()
     {
         // Create Object Array from Resources folder
-        UnityEngine.Object[] subListOfEnemyPrefabs = Resources.LoadAll("Enemies", typeof(GameObject));
+        initArrayOfEnemyPrefabs = Resources.LoadAll("Enemies", typeof(GameObject));
 
         // Optional Debug:
         //DebugGeneratedObjectArray(subListOfEnemyPrefabs);
 
         // Fill list with Array objects
-        foreach (GameObject value in subListOfEnemyPrefabs)
+        foreach (GameObject value in initArrayOfEnemyPrefabs)
         {
             enemyPrefabs.Add(value);
         }
