@@ -10,7 +10,7 @@ public class Damageable : MonoBehaviour
     [SerializeField] private bool isInvincible = false;
     public float invincibilityTime = 0.25f;
     private float timeSinceHit = 0;
-    private int _maxHealth;
+    [SerializeField] private int _maxHealth = 100;
     public int MaxHealth{
         get{
             return _maxHealth;
@@ -84,10 +84,25 @@ public class Damageable : MonoBehaviour
             LockVelocity = true;
             // Notify other subscribed components that the damagable was hit to handle the knockback, checking first if is not null
             damageableHit?.Invoke(damage, knockback);
+            // Call the unity action and pass the paramethers 
+            CharacterEvents.characterDamaged.Invoke(gameObject, damage);
             // Able to be hit 
             return true;
         }
         // Unable to be hit
         return false;
+    }
+
+    public void Heal(int healthRestore){
+        if(IsAlive){
+            // Set the maximum heal capacity to not overflow the max health
+            int maxHeal = Mathf.Max(MaxHealth - Health, 0);
+            // Update the healing value choosing the smaller value between the heal capacity just calculated and the value of the collectable
+            int actualHeal =  Mathf.Min(maxHeal, healthRestore);
+            // Update the character health 
+            Health += actualHeal;
+            // Invoke the unity action and pass the paramethers
+            CharacterEvents.characterHealed(gameObject, actualHeal);
+        }
     }
 }
