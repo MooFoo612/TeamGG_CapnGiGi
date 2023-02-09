@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 3266131370187467974}
   - component: {fileID: 843875530390014417}
   - component: {fileID: 4173475143661816013}
+  - component: {fileID: 4880828066994162344}
   m_Layer: 7
   m_Name: CapnGigi
   m_TagString: Untagged
@@ -491,3 +492,15 @@ MonoBehaviour:
   enemySpawnLocation: {fileID: 0}
   platformSpawnLocation: {fileID: 0}
   groundSpawnLocation: {fileID: 0}
+--- !u!114 &4880828066994162344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266131370187467982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38773f5d200ffd648b73fbcfc10aa251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
