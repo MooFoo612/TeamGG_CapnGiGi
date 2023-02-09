@@ -7,6 +7,7 @@ using UnityEngine;
 public class Krabby : MonoBehaviour{
     public float walkSpeed = 3f;
     public DetectionZone attackZone;
+    public DetectionZone cliffDetectionZone;
     public float walkStopRate = 0.05f;
     Rigidbody2D rb;
     Animator anim;
@@ -57,6 +58,15 @@ public class Krabby : MonoBehaviour{
         }
     }
 
+    public float AttackCooldown{
+        get{
+            return anim.GetFloat(AnimationStrings.attackCooldown);
+        } private set {
+            // The mathf.max is there to be sure that the value doesn't go under 0
+            anim.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
+        }
+    }
+
     private void Awake(){
         rb =  GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
@@ -67,7 +77,12 @@ public class Krabby : MonoBehaviour{
     private void Update(){
         // look in the other script list for a target
         HasTarget = attackZone.detectedColliders.Count > 0;
+        // Update the timer by reducing it if it is going on 
+        if(AttackCooldown > 0){
+            AttackCooldown -= Time.deltaTime;
+        }
     }
+        
 
     private void FixedUpdate(){
         // If enemy is colliding with a wall while he is walking on ground
@@ -113,5 +128,12 @@ public class Krabby : MonoBehaviour{
     public void OnHit(int damage, Vector2 knockback){
         // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    // Flip direction if cliff detected
+    public void OnCliffDetected(){
+        if(touchingDirections.IsGrounded){
+            FlipDirection();
+        }
     }
 }

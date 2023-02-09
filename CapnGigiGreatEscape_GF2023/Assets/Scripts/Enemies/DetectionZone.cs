@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DetectionZone : MonoBehaviour
 {
+    public UnityEvent noCollidersLeft;
     // Create a List of collider to store the player's one once detected
     public List<Collider2D> detectedColliders = new List<Collider2D>();
     Collider2D col;
@@ -18,6 +20,9 @@ public class DetectionZone : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision){
         // If a collider exit from the detection zone delete it from the List (it can only be triggered by the player because I disabled the collision for all the layers except the player's one for the enemyHitbox layer)
         detectedColliders.Remove(collision);
-
+        if(detectedColliders.Count <= 0){
+            // Invoke the function inside the UnityEvent 
+            noCollidersLeft.Invoke();
+        }
     }
 }
