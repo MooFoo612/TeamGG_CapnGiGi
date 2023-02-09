@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -146,7 +146,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.067017436, y: 0}
   serializedVersion: 2
-  m_Radius: 0.16088799
+  m_Radius: 0.20851815
 --- !u!61 &6400685535547675871
 BoxCollider2D:
   m_ObjectHideFlags: 0

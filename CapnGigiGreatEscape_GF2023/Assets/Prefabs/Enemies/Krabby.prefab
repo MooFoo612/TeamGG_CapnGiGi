@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDrop: {fileID: 0}
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -315,6 +316,7 @@ MonoBehaviour:
         m_CallState: 2
   isInvincible: 0
   invincibilityTime: 0.25
+  _maxHealth: 100
   _health: 100
   _isAlive: 1
 --- !u!1 &6458935843762524666

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+    public GameObject enemyDrop;
     public UnityEvent<int, Vector2> damageableHit;
     Animator anim;
     [SerializeField] private bool isInvincible = false;
@@ -28,6 +29,9 @@ public class Damageable : MonoBehaviour
             if(_health <= 0){
                 // Kill the character 
                 IsAlive = false;
+
+                GameObject g = Instantiate(enemyDrop, this.transform.position, Quaternion.identity);
+                g.transform.position = this.transform.position;
             }
             // the charact
         }
