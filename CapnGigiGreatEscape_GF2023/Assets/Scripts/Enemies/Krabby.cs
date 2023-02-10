@@ -92,8 +92,8 @@ public class Krabby : MonoBehaviour{
         }
         // If not just being hit 
         if(!damageable.LockVelocity){
-            // If canMove is true (enemy is not attacking)
-            if(CanMove){
+            // If canMove is true (enemy is not attacking) and is not in the air
+            if(CanMove &&  touchingDirections.IsGrounded){
                 // Move the enemy
                 rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
             } else {
