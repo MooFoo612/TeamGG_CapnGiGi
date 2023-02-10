@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectables
   - LvlSections
+  - WeakPoint
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - EnemyHitbox
   - GroundDetection
   - Pickup
-  - 
-  - 
+  - EnemyHead
+  - PlayerFeet
   - 
   - 
   - 

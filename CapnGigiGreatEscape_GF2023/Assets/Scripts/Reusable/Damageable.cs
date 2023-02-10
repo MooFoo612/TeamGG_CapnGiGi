@@ -7,6 +7,8 @@ public class Damageable : MonoBehaviour
 {
     public GameObject enemyDrop;
     public UnityEvent<int, Vector2> damageableHit;
+    public UnityEvent<Vector2> stompEvent;
+
     Animator anim;
     [SerializeField] private bool isInvincible = false;
     public float invincibilityTime = 0.25f;
@@ -30,9 +32,11 @@ public class Damageable : MonoBehaviour
                 // Kill the character 
                 IsAlive = false;
 
-                
+                /*
+                Victor just commented out because was not assigned the object and i was having a compiler error
                 GameObject g = Instantiate(enemyDrop, this.transform.position, Quaternion.identity);
                 g.transform.position = this.transform.position;
+                */
             }
             
         }
