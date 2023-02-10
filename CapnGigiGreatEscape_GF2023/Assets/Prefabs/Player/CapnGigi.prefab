@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c20200c035bff43bfa50f919890b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sectionSpawn: {fileID: 0}
-  enemySpawnLocation: {fileID: 0}
-  platformSpawnLocation: {fileID: 0}
-  groundSpawnLocation: {fileID: 0}
+  worldArray: []
 --- !u!1 &801279588018681510
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +137,7 @@ GameObject:
   - component: {fileID: 843875530390014417}
   - component: {fileID: 4173475143661816013}
   - component: {fileID: 4880828066994162344}
+  - component: {fileID: 8858859916391010064}
   m_Layer: 7
   m_Name: CapnGigi
   m_TagString: Untagged
@@ -161,6 +159,7 @@ Transform:
   m_Children:
   - {fileID: 3225198238451203072}
   - {fileID: 7946163111112267488}
+  - {fileID: 8448933925842914214}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,6 +352,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2adb1d32-8049-4e66-930a-0dcfe5b078b9
     m_ActionName: Player/Jump[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ec2c238d-382b-4f30-8b57-6ea0f88d374f
+    m_ActionName: Player/RangedAttack[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -457,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDrop: {fileID: 0}
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -474,6 +478,7 @@ MonoBehaviour:
         m_CallState: 2
   isInvincible: 0
   invincibilityTime: 0.5
+  _maxHealth: 100
   _health: 100
   _isAlive: 1
 --- !u!114 &4173475143661816013
@@ -488,10 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c20200c035bff43bfa50f919890b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sectionSpawn: {fileID: 0}
-  enemySpawnLocation: {fileID: 0}
-  platformSpawnLocation: {fileID: 0}
-  groundSpawnLocation: {fileID: 0}
+  worldArray: []
 --- !u!114 &4880828066994162344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,3 +506,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38773f5d200ffd648b73fbcfc10aa251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCoins: 0
+--- !u!114 &8858859916391010064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266131370187467982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a395cb68aaa4b5a46a686910ca24ba9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 7627454236336135307, guid: 12e2dd1e1951826458555d02c287549d, type: 3}
+  launchPoint: {fileID: 8448933925842914214}
+--- !u!1 &6536258934578448208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8448933925842914214}
+  m_Layer: 7
+  m_Name: ThrowSword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8448933925842914214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536258934578448208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.358, y: 0.195, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3266131370187467971}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -30,10 +30,11 @@ public class Damageable : MonoBehaviour
                 // Kill the character 
                 IsAlive = false;
 
+                
                 GameObject g = Instantiate(enemyDrop, this.transform.position, Quaternion.identity);
                 g.transform.position = this.transform.position;
             }
-            // the charact
+            
         }
     }
 
