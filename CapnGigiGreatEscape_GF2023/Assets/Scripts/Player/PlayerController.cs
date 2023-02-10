@@ -161,6 +161,12 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
+    public void OnRangedAttack(InputAction.CallbackContext context){
+        if(context.started){
+            anim.SetTrigger(AnimationStrings.rangedAttack);
+        }
+    }
+
     public void OnHit(int damage, Vector2 knockback){
         // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
