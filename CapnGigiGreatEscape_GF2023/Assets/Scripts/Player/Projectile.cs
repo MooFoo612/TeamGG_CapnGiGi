@@ -8,19 +8,37 @@ public class Projectile : MonoBehaviour
     public Vector2 knockback = new Vector2(0, 0);
     public int damage = 10;
     Rigidbody2D rb;
-
+    Collider2D touchingCol;
+    public ContactFilter2D castFilter;
+    // If sword is going  right set the vector 2 to the right direction, otherwise set it to the left direction
+    private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+    RaycastHit2D[] wallHits = new RaycastHit2D[5];
+    public float wallDistance = 0.2f;
+    [SerializeField] private bool _isOnWall;
+    // IsOnWall function
+    public bool IsOnWall {
+        get{
+            // Return the value inside the _isOnWall variable just created
+            return _isOnWall;
+        } private set {
+            // Set _isOnWall to the value is gonna be passed into the set
+            _isOnWall = value;
+        }
+    }
+    
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
+        touchingCol = GetComponent<Collider2D>();
     }
     // Start is called before the first frame update
     void Start()
     {
         // Give horizontal speed to the projectile (to add gravity to the shot just make the rb dynamic)
-        rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
+        rb.velocity = new Vector2 (moveSpeed.x * transform.localScale.x, moveSpeed.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        // get the script from the collision gameObject
+        // Get the script from the collision gameObject
         Damageable damageable = collision.GetComponent<Damageable>();
         // Check if can be hit 
         if(damageable != null){
@@ -36,10 +54,17 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
+    private void OnCollisionEnter2D(Collision2D other) {
         
+    }
+    
+    void Update(){
+        // Check if collide with wall
+        IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
+        // If is colliding
+        if(IsOnWall){
+            // Destroy the projectile
+            Destroy(gameObject); 
+        }
     }
 }

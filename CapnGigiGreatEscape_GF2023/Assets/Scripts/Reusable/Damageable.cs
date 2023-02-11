@@ -7,8 +7,6 @@ public class Damageable : MonoBehaviour
 {
     public GameObject enemyDrop;
     public UnityEvent<int, Vector2> damageableHit;
-    public UnityEvent<Vector2> stompEvent;
-
     Animator anim;
     [SerializeField] private bool isInvincible = false;
     public float invincibilityTime = 0.25f;
