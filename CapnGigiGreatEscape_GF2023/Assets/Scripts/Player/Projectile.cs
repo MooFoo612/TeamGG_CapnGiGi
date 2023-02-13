@@ -54,9 +54,6 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D other) {
-        
-    }
     
     void Update(){
         // Check if collide with wall

@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac4b004430d69b4ca6c60d187935c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: {x: 5, y: 0}
+  moveSpeed: {x: 7, y: 0}
   knockback: {x: 3, y: 0}
   damage: 10
   castFilter:
@@ -174,5 +174,5 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  wallDistance: 0.2
+  wallDistance: 0.1
   _isOnWall: 0

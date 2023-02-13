@@ -29,7 +29,6 @@ public class Damageable : MonoBehaviour
             if(_health <= 0){
                 // Kill the character 
                 IsAlive = false;
-
                 /*
                 Victor just commented out because was not assigned the object and i was having a compiler error
                 GameObject g = Instantiate(enemyDrop, this.transform.position, Quaternion.identity);
@@ -63,6 +62,7 @@ public class Damageable : MonoBehaviour
     void Awake(){
         anim = GetComponent<Animator>();
     }
+    
     private void Update(){
         // If is in invincibilty timer 
         if(isInvincible){
