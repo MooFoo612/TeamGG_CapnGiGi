@@ -35,16 +35,6 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
-
-
-
     public float playerCoins;
 
     public void Start()
