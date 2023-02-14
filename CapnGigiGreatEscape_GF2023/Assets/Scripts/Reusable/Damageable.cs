@@ -7,6 +7,7 @@ public class Damageable : MonoBehaviour
 {
     public GameObject enemyDrop;
     public UnityEvent<int, Vector2> damageableHit;
+    public UnityEvent<int, int> healthChanged;
     Animator anim;
     [SerializeField] private bool isInvincible = false;
     public float invincibilityTime = 0.25f;
@@ -25,6 +26,8 @@ public class Damageable : MonoBehaviour
             return _health;
         } set {
             _health = value;
+            // Update unity event for the health bar
+            healthChanged?.Invoke(_health, MaxHealth);
             // If health is less than 0 
             if(_health <= 0){
                 // Kill the character 

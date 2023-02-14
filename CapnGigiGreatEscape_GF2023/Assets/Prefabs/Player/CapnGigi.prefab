@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8858859916391010064}
   m_Layer: 7
   m_Name: CapnGigi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  stompEvent:
+  healthChanged:
     m_PersistentCalls:
       m_Calls: []
   isInvincible: 0
@@ -627,6 +627,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1212ec722529e40ba4f532d7e3e302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerKnockback: {x: 0, y: 0}
-  playerController: {fileID: 0}
-  rb: {fileID: 3266131370187467983}
