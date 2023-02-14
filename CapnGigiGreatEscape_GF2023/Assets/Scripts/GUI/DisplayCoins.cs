@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplaySwords : MonoBehaviour
+public class DisplayCoins : MonoBehaviour
 {
-    public TMP_Text swordsAmountText;
+    public TMP_Text coinsAmountText;
     PlayerInventory playerInv;
 
     private void Awake(){
@@ -22,20 +22,20 @@ public class DisplaySwords : MonoBehaviour
     void Start()
     {
         // Update the swords amount 
-        swordsAmountText.text = "x " + playerInv.ThrowingSwords;
+        coinsAmountText.text = "x " + playerInv.Coins;
     }
 
     private void OnEnable(){
-        playerInv.swordsAmountChanged.AddListener(OnSwordsAmountChanged);
+        playerInv.coinsAmountChanged.AddListener(OnCoinsAmountChanged);
     }
 
     private void OnDisable(){
-        playerInv.swordsAmountChanged.RemoveListener(OnSwordsAmountChanged);
+        playerInv.coinsAmountChanged.RemoveListener(OnCoinsAmountChanged);
     }
     
 
-    private void OnSwordsAmountChanged(int amount){
+    private void OnCoinsAmountChanged(int amount){
         // Update the swords amount 
-        swordsAmountText.text = "x " + amount;
+        coinsAmountText.text = "x " + amount;
     }
 }
