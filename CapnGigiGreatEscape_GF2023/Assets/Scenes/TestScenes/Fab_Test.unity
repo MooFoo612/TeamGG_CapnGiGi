@@ -12632,6 +12632,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6610841387333820914, guid: e891b4d7337326d47880c6e1468b69bd, type: 3}
+      propertyPath: walkAcceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610841387333820914, guid: e891b4d7337326d47880c6e1468b69bd, type: 3}
       propertyPath: cliffDetectionZone
       value: 
       objectReference: {fileID: 1836637344}
