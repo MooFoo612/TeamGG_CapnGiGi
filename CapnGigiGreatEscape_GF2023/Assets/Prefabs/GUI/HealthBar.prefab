@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 4003539071157403800}
   - component: {fileID: 4003539071157403803}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 2922373085961003580}
   - component: {fileID: 4606252309799289474}
   m_Layer: 5
-  m_Name: TextBackground
+  m_Name: BannerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 7065450876723002685}
   - component: {fileID: 3741614162980952187}
   m_Layer: 5
-  m_Name: LifeBar
+  m_Name: LifeBarSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
