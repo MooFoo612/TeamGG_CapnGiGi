@@ -15,7 +15,7 @@ public class Krabby : MonoBehaviour{
     TouchingDirections touchingDirections;
     Damageable damageable;
     public enum WalkableDirection {Right, Left}
-    private WalkableDirection _walkDirection;
+    private WalkableDirection _walkDirection;   
     private Vector2 walkDirectionVector = Vector2.right;  
     public WalkableDirection WalkDirection{
         get{

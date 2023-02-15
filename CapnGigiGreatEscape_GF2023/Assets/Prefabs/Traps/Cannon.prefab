@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2129538591020265730}
   - component: {fileID: 6832593913790029752}
   - component: {fileID: 7314431675936570979}
+  - component: {fileID: 3659528583929369066}
   m_Layer: 8
   m_Name: Cannon
   m_TagString: Enemy
@@ -209,7 +210,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253520983312449132}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
   m_Name: 
@@ -238,6 +239,24 @@ MonoBehaviour:
   _maxHealth: 100
   _health: 100
   _isAlive: 1
+--- !u!114 &3659528583929369066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253520983312449132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b611bebcc3bce2d4b895c6f34766e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
+  shooterRb: {fileID: 4463024515583884547}
+  enemy: {fileID: 1253520983312449132}
+  spawn: {fileID: 5058607978272346995}
+  projectile: {fileID: 3286326179606499219, guid: 4d0f90ff67168b04ba3769538be34c7e, type: 3}
+  recoilInpulse: 7
 --- !u!1 &2274729897991913738
 GameObject:
   m_ObjectHideFlags: 0

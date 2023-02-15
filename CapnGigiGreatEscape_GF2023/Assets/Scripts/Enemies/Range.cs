@@ -6,26 +6,35 @@ public class Range : MonoBehaviour
 {
     #region Variables
     public GameObject target;
-    public Rigidbody2D shooterRb;
-   public GameObject enemy;
+    public GameObject enemy;
     public GameObject spawn;
     public  GameObject projectile;
     private Animator animatorEN;
     private SpriteRenderer enemySR;
-    public float recoilInpulse = 7;
+    
     bool targetDetected = false;
-    #endregion
-    #region initalisation
-    // Start is called before the first frame update
-    void Start()
-    {
-        shooterRb = enemy.GetComponent<Rigidbody2D>();
-        animatorEN = enemy.GetComponent<Animator>();
-        enemySR = enemy.GetComponent<SpriteRenderer>();
+    /*
+    public float recoilInpulse = 0.5f;
+    public Rigidbody2D shooterRb;
+    public enum FacingDirection {Right, Left}
+    private FacingDirection _facingDirection;
+    public FacingDirection Direction{
+        get{
+            // The get works with the same logic of the player 
+            return _facingDirection;
+        } set {
+            // If the value does't correspond 
+            if(_facingDirection != value){
+                // Flip sprite direction using localScale 
+                enemy.transform.localScale = new Vector2(enemy.transform.localScale.x * -1, enemy.transform.localScale.y);
+            }
+            // Update the value
+            _facingDirection = value;
+        }
     }
-    #endregion
+    */
 
- public float ShootTimer{
+    public float ShootTimer{
         get{
             return animatorEN.GetFloat(AnimationStrings.shootTimer);
         } private set {
@@ -33,40 +42,59 @@ public class Range : MonoBehaviour
             animatorEN.SetFloat(AnimationStrings.shootTimer, Mathf.Max(value, 0));
         }
     }
+    
+    #endregion
+    #region initalisation
+    // Start is called before the first frame update
+    void Start()
+    {
+        //shooterRb = enemy.GetComponent<Rigidbody2D>();
+        animatorEN = enemy.GetComponent<Animator>();
+        enemySR = enemy.GetComponent<SpriteRenderer>();
+    }
+    #endregion
+
+    
 
     #region shoot
-    void FixedUpdate(){
+    private void FixedUpdate(){
+
+        /*
+        if (shooterRb){
+                Debug.Log("Heeeyyyyy i'm detetcted");
+            }
+        */
+
         //If statement ensures player is in range and peals spawn one at a time
         if (targetDetected && GameObject.Find("Pearl(Clone)")== null || GameObject.Find("Cannonball(Clone)")== null){
-            if(ShootTimer > 0){
-            ShootTimer -= Time.fixedDeltaTime;
-        }
-        if(ShootTimer > 1f){
             //animates shooting
             animatorEN.SetTrigger("Shoot");
+
+            /*
+            if(Direction == FacingDirection.Right){
+                shooterRb.velocity = new Vector2(recoilInpulse, shooterRb.velocity.y);
+            } else {
+                shooterRb.velocity = new Vector2(-recoilInpulse, shooterRb.velocity.y);
+            }
+            */
+
             // Spawns pearls
             Vector2 velocity= new Vector2(-5,0);
             GameObject spawnedProjectile = Instantiate(projectile,
                                         spawn.transform.position,
                                         Quaternion.identity);
-             if (shooterRb){Debug.Log("Heeeyyyyy i'm detetcted");}
-            shooterRb.velocity = new Vector2(shooterRb.velocity.x * - recoilInpulse, shooterRb.velocity.y);
-
+            
+            
+            //shooterRb.velocity = new Vector2(shooterRb.velocity.x * - recoilInpulse, shooterRb.velocity.y);
             Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
-
             rb.position = spawn.transform.position;
             rb.velocity = velocity;
         }
-         
+    }
 
-
-        
-            
-
-
-
-           
-           
+    private void Update(){
+        if(ShootTimer > 0){
+            ShootTimer -= Time.deltaTime;
         }
     }
 
@@ -82,7 +110,7 @@ public class Range : MonoBehaviour
     {
         if (collision.name.Equals(target.name)){
             //Detects player left
-        targetDetected = false;
+            targetDetected = false;
     }
     }
     #endregion
