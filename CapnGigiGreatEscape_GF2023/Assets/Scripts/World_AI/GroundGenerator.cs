@@ -48,17 +48,17 @@ public class GroundGenerator : MonoBehaviour
         if (Vector3.Distance(player.transform.position, lastEndPosition) < DISTANCE_TO_SPAWN_SECTION)
         {
             // Spawn another section
-            SpawnSection();
+            SpawnGround();
         }
     }
     #region Spawner/Despawner
-    public void SpawnSection()
+    public void SpawnGround()
     {
         //Get the transform to refrence the next End Position
-        Transform lastSectionTransform = SpawnSection(lastEndPosition);
+        Transform lastSectionTransform = SpawnGround(lastEndPosition);
         lastEndPosition = lastSectionTransform.Find("EndPosition").position;
     }
-    public Transform SpawnSection(Vector3 nextSection)
+    public Transform SpawnGround(Vector3 nextSection)
     {
         Debug.Log("Ground section generated");
         ProceduralAI.groundSpawned += 1;
