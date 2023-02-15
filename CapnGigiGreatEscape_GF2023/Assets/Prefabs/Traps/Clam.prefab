@@ -152,13 +152,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 200786476196906998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1af5aaa62769d40bb0a779c1325997, type: 3}
+  m_Script: {fileID: 11500000, guid: b611bebcc3bce2d4b895c6f34766e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  shooterRb: {fileID: 0}
   enemy: {fileID: 6169924526386425972}
   spawn: {fileID: 200786474965982571}
-  projectile: {fileID: 3286326179606499219, guid: 4ba34d6a6a072bd46b1d61fce8467edb, type: 3}
+  projectile: {fileID: 3286326179606499219, guid: 4d0f90ff67168b04ba3769538be34c7e, type: 3}
+  recoilInpulse: 7
 --- !u!1 &2270189927348106661
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a12a62cd79d344d948096d6665931c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 0
+  maxSpeed: 3
+  walkAcceleration: 3
   attackZone: {fileID: 4061273982188036741}
   cliffDetectionZone: {fileID: 5660814157027996533}
   walkStopRate: 0.05
@@ -475,7 +478,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  stompEvent:
+  healthChanged:
     m_PersistentCalls:
       m_Calls: []
   isInvincible: 0

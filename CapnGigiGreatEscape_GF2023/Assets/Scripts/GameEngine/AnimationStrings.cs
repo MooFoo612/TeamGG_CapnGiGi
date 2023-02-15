@@ -20,5 +20,6 @@ internal class AnimationStrings{
     internal static string lockVelocity = "lockVelocity";
     internal static string attackCooldown = "attackCooldown";
     internal static string rangedAttack = "rangedAttack";
+    internal static string shootTimer = "shootTimer";
 }
 
