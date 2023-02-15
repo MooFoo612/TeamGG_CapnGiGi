@@ -35,11 +35,11 @@ public class Clam_range : MonoBehaviour
                                         spawn.transform.position,
                                         Quaternion.identity);
 
-         Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
 
             rb.position = spawn.transform.position;
             rb.velocity = velocity;
-         }
+        }
     }
 
         private void OnTriggerEnter2D(Collider2D collision)

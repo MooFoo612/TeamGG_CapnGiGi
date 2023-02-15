@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class Krabby : MonoBehaviour{
-    public float walkSpeed = 3f;
+    public float maxSpeed = 3f;
+    public float walkAcceleration = 3f;
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
     public float walkStopRate = 0.05f;
@@ -94,8 +95,9 @@ public class Krabby : MonoBehaviour{
         if(!damageable.LockVelocity){
             // If canMove is true (enemy is not attacking) and is not in the air
             if(CanMove &&  touchingDirections.IsGrounded){
-                // Move the enemy
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                // Accelerate towards max speed and move the enemy
+                //(Start with the velocity, than increase it in the right direction and limit it with the clamp to the two limits of the maxSpeed var)
+                rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed), rb.velocity.y);
             } else {
                 // Enda you'll love this one, I'm using interpolation xD 
                 // Making this so that the enemy slides a bit before to stop and perform the attack

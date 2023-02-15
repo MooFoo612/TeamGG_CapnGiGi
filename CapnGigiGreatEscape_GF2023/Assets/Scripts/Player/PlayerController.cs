@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour{
     Damageable damageable;
     public Rigidbody2D rb;
     Animator anim; 
+    PlayerInventory playerInv;
     
     // CurrentSpeed function 
     public float CurrentSpeed{
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour{
         anim = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        playerInv = GetComponent<PlayerInventory>();
     }
     // Start is called before the first frame update
     void Start(){
@@ -162,8 +164,9 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnRangedAttack(InputAction.CallbackContext context){
-        if(context.started){
+        if(context.started && playerInv.ThrowingSwords > 0){
             anim.SetTrigger(AnimationStrings.rangedAttack);
+            playerInv.ThrowingSwords --;
         }
     }
 
