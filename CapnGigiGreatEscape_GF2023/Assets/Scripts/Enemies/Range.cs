@@ -13,6 +13,7 @@ public class Range : MonoBehaviour
     private SpriteRenderer enemySR;
     
     bool targetDetected = false;
+    
     /*
     public float recoilInpulse = 0.5f;
     public Rigidbody2D shooterRb;
@@ -72,9 +73,9 @@ public class Range : MonoBehaviour
 
             /*
             if(Direction == FacingDirection.Right){
-                shooterRb.velocity = new Vector2(recoilInpulse, shooterRb.velocity.y);
-            } else {
                 shooterRb.velocity = new Vector2(-recoilInpulse, shooterRb.velocity.y);
+            } else {
+                shooterRb.velocity = new Vector2(recoilInpulse, shooterRb.velocity.y);
             }
             */
 
@@ -83,9 +84,9 @@ public class Range : MonoBehaviour
             GameObject spawnedProjectile = Instantiate(projectile,
                                         spawn.transform.position,
                                         Quaternion.identity);
-            
-            
+
             //shooterRb.velocity = new Vector2(shooterRb.velocity.x * - recoilInpulse, shooterRb.velocity.y);
+
             Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
             rb.position = spawn.transform.position;
             rb.velocity = velocity;
@@ -98,12 +99,12 @@ public class Range : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name.Equals(target.name)){
             //Detects player
             targetDetected = true;
-    }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -111,7 +112,7 @@ public class Range : MonoBehaviour
         if (collision.name.Equals(target.name)){
             //Detects player left
             targetDetected = false;
-    }
+        }
     }
     #endregion
 }
