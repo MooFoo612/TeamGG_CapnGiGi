@@ -10,6 +10,6 @@ public class MainMenu : MonoBehaviour
     }
     
     public void ShopButton(){
-        //SceneManager.LoadScene("Shop", LoadSceneMode.Single);
+        SceneManager.LoadScene("Shop", LoadSceneMode.Single);
     }
 }
