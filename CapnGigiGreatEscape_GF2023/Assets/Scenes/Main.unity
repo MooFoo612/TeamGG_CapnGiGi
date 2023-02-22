@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616819158119362357, guid: 107e71e77d526ab4c957e10040de22e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.73
+      value: -1.94
       objectReference: {fileID: 0}
     - target: {fileID: 616819158119362357, guid: 107e71e77d526ab4c957e10040de22e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17322,6 +17322,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 1253520983312449132, guid: 052f1c534aa2dc94388b65aa0b088928, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659528583929369066, guid: 052f1c534aa2dc94388b65aa0b088928, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659528583929369066, guid: 052f1c534aa2dc94388b65aa0b088928, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 3286326179606499219, guid: 21eb96ed0e1c00747ad5a76399d71c08, type: 3}
     - target: {fileID: 3659528583929369066, guid: 052f1c534aa2dc94388b65aa0b088928, type: 3}
       propertyPath: recoilInpulse
       value: 0.5
@@ -17346,6 +17358,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 170353147}
+    - target: {fileID: 5058607979491150315, guid: 052f1c534aa2dc94388b65aa0b088928, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5058607979491150315, guid: 052f1c534aa2dc94388b65aa0b088928, type: 3}
       propertyPath: shooterRb
       value: 

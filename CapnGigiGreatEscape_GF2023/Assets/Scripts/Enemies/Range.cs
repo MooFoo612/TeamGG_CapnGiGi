@@ -59,17 +59,15 @@ public class Range : MonoBehaviour
 
     #region shoot
     private void FixedUpdate(){
-
+        
         /*
         if (shooterRb){
                 Debug.Log("Heeeyyyyy i'm detetcted");
             }
         */
 
-        //If statement ensures player is in range and peals spawn one at a time
-        if (targetDetected && GameObject.Find("Pearl(Clone)")== null || GameObject.Find("Cannonball(Clone)")== null){
             //animates shooting
-            animatorEN.SetTrigger("Shoot");
+
 
             /*
             if(Direction == FacingDirection.Right){
@@ -78,19 +76,10 @@ public class Range : MonoBehaviour
                 shooterRb.velocity = new Vector2(recoilInpulse, shooterRb.velocity.y);
             }
             */
-
-            // Spawns pearls
-            Vector2 velocity= new Vector2(-5,0);
-            GameObject spawnedProjectile = Instantiate(projectile,
-                                        spawn.transform.position,
-                                        Quaternion.identity);
-
             //shooterRb.velocity = new Vector2(shooterRb.velocity.x * - recoilInpulse, shooterRb.velocity.y);
 
-            Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
-            rb.position = spawn.transform.position;
-            rb.velocity = velocity;
-        }
+                
+
     }
 
     private void Update(){
@@ -104,6 +93,7 @@ public class Range : MonoBehaviour
         if (collision.name.Equals(target.name)){
             //Detects player
             targetDetected = true;
+            StartCoroutine("ShotTimer");
         }
     }
 
@@ -114,5 +104,25 @@ public class Range : MonoBehaviour
             targetDetected = false;
         }
     }
+
+    private IEnumerator ShotTimer() {
+        yield return new WaitForSeconds(1.5f);
+                //If statement ensures player is in range and peals spawn one at a time
+
+            animatorEN.SetTrigger("Shoot");
+            // Spawns pearls
+            Vector2 velocity= new Vector2(-5,0);
+            GameObject spawnedProjectile = Instantiate(projectile,
+                                        spawn.transform.position,
+                                        Quaternion.identity);
+
+             Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
+            rb.position = spawn.transform.position;
+            rb.velocity = velocity;                            
+            
+
+        }
+
+    }
     #endregion
-}
+
