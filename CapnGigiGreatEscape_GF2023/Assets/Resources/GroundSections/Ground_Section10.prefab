@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 3660769243039425074}
   - component: {fileID: 3660769243039425076}
   - component: {fileID: 3660769243039425075}
+  - component: {fileID: 6169240991707214692}
   m_Layer: 0
   m_Name: Ground_Section10
   m_TagString: Untagged
@@ -928,3 +929,15 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!156049354 &6169240991707214692
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660769243039425073}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0

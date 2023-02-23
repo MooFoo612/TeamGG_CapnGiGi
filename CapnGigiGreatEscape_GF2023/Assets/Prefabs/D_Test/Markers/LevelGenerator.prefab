@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148277902660785934}
-  - component: {fileID: 4148277902660785935}
+  - component: {fileID: 512207791324316302}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4148277902660785935
+--- !u!114 &512207791324316302
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4148277902660785928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ddec12a0893f64ca55efdea8ac70c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 41da5f68fda63ea4baf85078d52f9e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundSection: {fileID: 0}
-  groundStart: {fileID: 0}
+  platformSection: {fileID: 375210572489318432, guid: 36cb39f342c09d6488b94e31919a420b, type: 3}
+  platformStart: {fileID: 0}
   player: {fileID: 0}

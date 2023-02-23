@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8973035879084592185}
   - component: {fileID: 6817037496373161977}
   - component: {fileID: 566741336832018895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ForeGroundTrees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 177923293992251002}
   - component: {fileID: 48081146261649124}
   - component: {fileID: 2286794221152024215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BackGroundTrees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,8 @@ GameObject:
   - component: {fileID: 5958677522408768484}
   - component: {fileID: 5958677522408768486}
   - component: {fileID: 5958677522408768487}
-  m_Layer: 0
+  - component: {fileID: 6075832115247460853}
+  m_Layer: 6
   m_Name: Ground_Section3
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -390,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958677522408768485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0, z: 0}
+  m_LocalPosition: {x: -11, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1211,7 +1212,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1220,3 +1221,15 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!156049354 &6075832115247460853
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5958677522408768485}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0

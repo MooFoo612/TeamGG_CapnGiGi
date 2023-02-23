@@ -29,4 +29,12 @@ public class Debugging : MonoBehaviour
         }
     }
 
+    public void DebugChunkDestruction(int chunksDestroyed)
+    {
+        if (chunksDestroyed > 0 && chunksDestroyed % 2 != 0)
+        {
+            Debug.Log("Inconsistent Chunk Destruction!");
+        }
+    }
+
 }

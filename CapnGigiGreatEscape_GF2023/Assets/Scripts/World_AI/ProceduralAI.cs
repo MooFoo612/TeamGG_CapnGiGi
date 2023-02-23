@@ -22,21 +22,6 @@ public class ProceduralAI : MonoBehaviour
 
     #endregion
 
-    #region Marker Object Declarations
-
-    // Section Spawn will take the players currentSpeed+jumpAbilities into account to increase distance between sections
-    //[SerializeField] Transform sectionSpawn;
-
-    // EnemySpawnLocation will take the position of enemy spawnPoints
-    //[SerializeField] Transform enemySpawnLocation;
-
-    // Platform section will take x distance from previous platform section + y distance from currently instantiated ground
-    //[SerializeField] Transform platformSpawnLocation;
-
-    // Ground section will take lastEndPosition location
-    //[SerializeField] Transform groundSpawnLocation;
-
-    #endregion
 
     #region GameObject Declarations
 
@@ -44,6 +29,7 @@ public class ProceduralAI : MonoBehaviour
     private GameObject player;
 
     #endregion
+
 
     #region List & Array Declarations
 
@@ -55,6 +41,9 @@ public class ProceduralAI : MonoBehaviour
 
     // List for Enemy prefabs
     public static List<GameObject> enemyPrefabs = new List<GameObject>();
+
+    // List for Collectable prefabs
+    public static List<GameObject> collectablePrefabs = new List<GameObject>();
 
     // List for World Generation
     public static List<GameObject> worldList = new List<GameObject>();
@@ -68,6 +57,9 @@ public class ProceduralAI : MonoBehaviour
     // Create Enemy Object Array for Enemy List dependency
     private UnityEngine.Object[] initArrayOfEnemyPrefabs;
 
+    // Create Collectable Object Array for Collectable list dependency
+    private UnityEngine.Object[] initArrayOfCollectablePrefabs;
+
     // Create Object array to store generated World objects
     public UnityEngine.Object[] worldArray;
 
@@ -76,12 +68,9 @@ public class ProceduralAI : MonoBehaviour
     #region Counters
 
     // Counts for Ground Sections Instantiated/Destroyed
-    public static int groundSpawned = 0;
-    public static int groundDestroyed = 0;
-
-    //Counts for Platforms Instantiated/Destroyed
-    public static int platformSpawned = 0;
-    public static int platformDestroyed = 0;
+    public static int groundChunkSpawned = 0;
+    public static int platformChunkSpawned = 0;
+    public static int chunksDestroyed = 0;
 
     // Counts for Enemies Instantiated/Destroyed/Killed
     public static int enemySpawned = 0;
@@ -106,6 +95,9 @@ public class ProceduralAI : MonoBehaviour
         // Load all Enemy prefabs into the list, display list in console
         enemyPrefabs = GenerateEnemyList();
 
+        // Load all Collectable prefabs into the list, display list in console
+        collectablePrefabs = GenerateCollectablesList();
+       
         // Create World array
         worldArray = new UnityEngine.Object[5];
 
@@ -129,7 +121,9 @@ public class ProceduralAI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // Feed information to Generator Scripts
+        db.DebugChunkDestruction(chunksDestroyed);
+
+
     }
 
     // Fixed Update for stability
@@ -179,7 +173,7 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GenerateGroundList()
     {
         // Create Object Array from Resources folder
-        initArrayOfGroundPrefabs = Resources.LoadAll("GroundSections", typeof(GameObject));
+        initArrayOfGroundPrefabs = Resources.LoadAll("GroundChunks", typeof(GameObject));
 
         //Optional Array Debug:
         //DebugGeneratedList(subListOfGroundObjects);
@@ -200,7 +194,7 @@ public class ProceduralAI : MonoBehaviour
     public List<GameObject> GeneratePlatformList()
     {
         // Create Object Array from Resources folder
-        initArrayOfPlatformPrefabs = Resources.LoadAll("PlatformSections", typeof(GameObject));
+        initArrayOfPlatformPrefabs = Resources.LoadAll("PlatformChunks", typeof(GameObject));
         // Optional Array Debug:
         //DebugGeneratedObjectArray(subListOfPlatformPrefabs);
 
@@ -236,6 +230,26 @@ public class ProceduralAI : MonoBehaviour
 
         // Return new Enemy List
         return new List<GameObject>(enemyPrefabs);
+    }
+    
+    public List<GameObject> GenerateCollectablesList()
+    {
+        // Create Object Array from Resources folder
+        initArrayOfCollectablePrefabs = Resources.LoadAll("Collectables", typeof(GameObject));
+
+        // Optional Debug:
+        //DebugGeneratedObjectArray(subListOfEnemyPrefabs);
+
+        // Fill list with Array objects
+        foreach (GameObject value in initArrayOfCollectablePrefabs)
+        {
+            collectablePrefabs.Add(value);
+        }
+        // Optional List Debug:
+        DebugGeneratedList(collectablePrefabs);
+
+        // Return new Enemy List
+        return new List<GameObject>(collectablePrefabs);
     }
     #endregion
 
