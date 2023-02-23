@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5121822b44bd752429ea81c1f67b1a68
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - GiGi
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 02dc5b1d787fcc54dbb861862681e3d8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
