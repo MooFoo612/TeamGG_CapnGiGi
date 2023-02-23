@@ -16,8 +16,8 @@ public class GroundGenerator : MonoBehaviour
     private Transform groundChunk;
 
     // Positions for Spawning Chunks
-    private Vector3 groundEnd_Right;
-    private Vector3 groundEnd_Left;
+    public Vector3 groundEnd_Right;
+    public Vector3 groundEnd_Left;
 
     private static List<GameObject> groundList = new List<GameObject>();
 
@@ -31,7 +31,6 @@ public class GroundGenerator : MonoBehaviour
 
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").position;
-        groundEnd_Left = groundStart.Find("GroundEnd_Left").position;
     }
 
     private void Start()
@@ -47,6 +46,9 @@ public class GroundGenerator : MonoBehaviour
         //Get the transform to refrence the next End Position
         Transform lastGroundEnd_Right = SpawnGroundChunk_Right(groundEnd_Right);
         groundEnd_Right = lastGroundEnd_Right.Find("GroundEnd_Right").position;
+
+        Debug.Log("Ground Spawned: " + ProceduralAI.groundChunkSpawned);
+
     }
     public Transform SpawnGroundChunk_Right(Vector3 nextChunk)
     {

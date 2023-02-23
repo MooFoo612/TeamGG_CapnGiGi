@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4148277902660785934}
   - component: {fileID: 512207791324316302}
+  - component: {fileID: 7940867697363975218}
+  - component: {fileID: 3994416776670299095}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -44,6 +46,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41da5f68fda63ea4baf85078d52f9e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSection: {fileID: 375210572489318432, guid: 36cb39f342c09d6488b94e31919a420b, type: 3}
+  groundChunk: {fileID: 0}
+  platformChunk: {fileID: 0}
+  worldStart: {fileID: 0}
+  groundStart: {fileID: 0}
+  platformStart: {fileID: 0}
+  player: {fileID: 0}
+--- !u!114 &7940867697363975218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148277902660785928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ddec12a0893f64ca55efdea8ac70c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundStart: {fileID: 0}
+  player: {fileID: 0}
+--- !u!114 &3994416776670299095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148277902660785928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8363bb28ce6eb64459119c9506231af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   platformStart: {fileID: 0}
   player: {fileID: 0}

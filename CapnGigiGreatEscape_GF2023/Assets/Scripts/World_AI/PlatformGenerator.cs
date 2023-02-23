@@ -16,8 +16,8 @@ public class PlatformGenerator : MonoBehaviour
     private Transform platformChunk;
 
     // Positions for Spawning Chunks
-    private Vector3 platformEnd_Right;
-    private Vector3 platformEnd_Left;
+    public Vector3 platformEnd_Right;
+    public Vector3 platformEnd_Left;
 
     private static List<GameObject> platformList = new List<GameObject>();
 
@@ -31,7 +31,6 @@ public class PlatformGenerator : MonoBehaviour
 
         // Find the child EndPosition object in the GameStart parent
         platformEnd_Right = platformStart.Find("PlatformEnd_Right").position;
-        platformEnd_Left = platformStart.Find("PlatformEnd_Left").position;
     }
 
     private void Start()
@@ -47,6 +46,9 @@ public class PlatformGenerator : MonoBehaviour
         //Get the transform to refrence the next End Position
         Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformEnd_Right);
         platformEnd_Right = lastPlatformEnd_Right.Find("PlatformEnd_Right").position;
+
+        Debug.Log("Platform Spawned: " + ProceduralAI.platformChunkSpawned);
+
     }
     public Transform SpawnPlatformChunk_Right(Vector3 nextChunk)
     {
@@ -68,6 +70,8 @@ public class PlatformGenerator : MonoBehaviour
         //Get the transform to refrence the end of previous chunk
         Transform lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformEnd_Left);
         platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
+        Debug.Log("Platform Spawned: " + ProceduralAI.platformChunkSpawned);
+
     }
     public Transform SpawnPlatformChunk_Left(Vector3 nextChunk)
     {

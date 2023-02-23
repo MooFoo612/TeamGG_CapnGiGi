@@ -121,7 +121,7 @@ public class ProceduralAI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        db.DebugChunkDestruction(chunksDestroyed);
+        //db.DebugChunkDestruction(chunksDestroyed);
 
 
     }
