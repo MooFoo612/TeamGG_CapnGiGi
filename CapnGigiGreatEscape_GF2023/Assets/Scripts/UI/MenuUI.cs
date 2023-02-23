@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MenuUI : MonoBehaviour
 {
+
+    [SerializeField] GameObject shopUI;
+    [SerializeField] GameObject menuUI;
+    public void ShopButton(){
+        menuUI.SetActive(false);
+        shopUI.SetActive(true);
+    }
     public void PlayButton(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
-    public void ShopButton(){
-        SceneManager.LoadScene("Shop", LoadSceneMode.Single);
-    }
+    
+    
 }
