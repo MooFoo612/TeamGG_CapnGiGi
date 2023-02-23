@@ -12,7 +12,7 @@ public class Range : MonoBehaviour
     private Animator animatorEN;
     private SpriteRenderer enemySR;
     
-    bool targetDetected = false;
+
     
     /*
     public float recoilInpulse = 0.5f;
@@ -92,7 +92,6 @@ public class Range : MonoBehaviour
     {
         if (collision.name.Equals(target.name)){
             //Detects player
-            targetDetected = true;
             StartCoroutine("ShotTimer");
         }
     }
@@ -101,13 +100,12 @@ public class Range : MonoBehaviour
     {
         if (collision.name.Equals(target.name)){
             //Detects player left
-            targetDetected = false;
         }
     }
 
     private IEnumerator ShotTimer() {
         yield return new WaitForSeconds(1.5f);
-                //If statement ensures player is in range and peals spawn one at a time
+                
 
             animatorEN.SetTrigger("Shoot");
             // Spawns pearls
