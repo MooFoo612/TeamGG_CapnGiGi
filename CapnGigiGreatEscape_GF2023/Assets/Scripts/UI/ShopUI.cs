@@ -15,17 +15,21 @@ public class ShopUI : MonoBehaviour
 
     public int[,] shopItems = new int[7, 7];
     public float coins;
-    public float diamond;
+    public float diamonds;
     public TMP_Text coinsText;
     public TMP_Text diamondsText;
+    public PlayerInventory playerInv;
 
-
+    private void Awake(){
+        playerInv = GetComponent<PlayerInventory>();
+    }
 
     void Start(){
         // Open and close the shop
         AddShopEvents();
-        // Update the cost of the items
+        // Update the coins and diamond text
         coinsText.text = "X " + coins.ToString();
+        diamondsText.text = "X " + diamonds.ToString();
         // ID's of the item
         shopItems[1, 1] = 1;
         shopItems[1, 2] = 2;
@@ -41,32 +45,37 @@ public class ShopUI : MonoBehaviour
         shopItems[2, 5] = 50;
         shopItems[2, 6] = 60;
         // Prices in diamonds of the items
-        shopItems[3, 1] = 10;
-        shopItems[3, 2] = 20;
-        shopItems[3, 3] = 30;
-        shopItems[3, 4] = 40;
-        shopItems[3, 5] = 50;
-        shopItems[3, 6] = 60;
+        shopItems[3, 1] = 0;
+        shopItems[3, 2] = 10;
+        shopItems[3, 3] = 20;
+        shopItems[3, 4] = 0;
+        shopItems[3, 5] = 0;
+        shopItems[3, 6] = 0;
         // Quantity of items
-        shopItems[4, 1] = 1;
-        shopItems[4, 2] = 1;
-        shopItems[4, 3] = 1;
-        shopItems[4, 4] = 1;
-        shopItems[4, 5] = 1;
-        shopItems[4, 6] = 1;
-
+        shopItems[4, 1] = 0;
+        shopItems[4, 2] = 0;
+        shopItems[4, 3] = 0;
+        shopItems[4, 4] = 0; // playerInv.ThrowingSwords 
+        shopItems[4, 5] = 0;
+        shopItems[4, 6] = 0;
     }
     
     public void Buy(){
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
-        // Check if have enought coins
-        if(coins >= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID]){
-            // Update the player coins
+        // Check if have enought coins and diamonds
+        if(coins >= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID] && diamonds >= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID]){
+            // Update the player coins and diamonds
             coins -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID];
+            diamonds -= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID];
             // Increase quantity
-            // shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]++;
-            // Update coins text 
+            if (shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID] > 0){
+                //shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]++;
+                playerInv.ThrowingSwords ++; // replace with playerpref  
+            }
+            
+            // Update coins and diamond text 
             coinsText.text = "X " + coins.ToString();
+            diamondsText.text = "X " + diamonds.ToString();
             // Update quantity text 
             //ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
         }
