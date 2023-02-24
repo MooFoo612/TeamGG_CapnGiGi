@@ -7,6 +7,8 @@ TagManager:
   - Collectables
   - LvlSections
   - Wall
+  - Enemy
+  - Event
   layers:
   - Default
   - TransparentFX
