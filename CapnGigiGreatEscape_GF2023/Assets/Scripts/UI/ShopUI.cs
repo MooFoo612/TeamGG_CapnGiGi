@@ -47,20 +47,31 @@ public class ShopUI : MonoBehaviour
         shopItems[3, 4] = 40;
         shopItems[3, 5] = 50;
         shopItems[3, 6] = 60;
+        // Quantity of items
+        shopItems[4, 1] = 1;
+        shopItems[4, 2] = 1;
+        shopItems[4, 3] = 1;
+        shopItems[4, 4] = 1;
+        shopItems[4, 5] = 1;
+        shopItems[4, 6] = 1;
+
     }
-    /*
+    
     public void Buy(){
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
-        // Check if player have enought coins
+        // Check if have enought coins
         if(coins >= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID]){
             // Update the player coins
             coins -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID];
+            // Increase quantity
+            // shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]++;
+            // Update coins text 
             coinsText.text = "X " + coins.ToString();
-            //ButtonRef.GetComponent<ButtonInfo>().QuantityText.text
+            // Update quantity text 
+            //ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
         }
-   
     }
-     */
+
 
     void AddShopEvents(){
         // Open the shop
