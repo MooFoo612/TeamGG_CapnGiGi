@@ -52,12 +52,11 @@ public class PlayerInventory : MonoBehaviour
 
             if (collectable.name == "Gold Coin")
             {
-                Debug.Log("collectable.name: " + collectable);
-
                 playerCoins += 1;
+                Debug.Log("Collectable " + collectable + " || New Coins: " + playerCoins);
             }
             // do something
-            // increace score based off the collectable
+            // increase score based off the collectable
             // give bost based off collectable
 
             Destroy(collectable);

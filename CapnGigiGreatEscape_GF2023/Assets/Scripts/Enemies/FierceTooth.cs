@@ -115,12 +115,13 @@ public class FierceTooth : MonoBehaviour{
         if(WalkDirection == WalkableDirection.Right){
             // Flip the vector (So the direction)
             WalkDirection = WalkableDirection.Left;
-            //Debug.Log("krabby is going " + WalkDirection);
-        // Else if direction is left
-        } else if (WalkDirection == WalkableDirection.Left){
+            //Debug.Log("FierceTooth is going " + WalkDirection);
+            // Else if direction is left
+        }
+        else if (WalkDirection == WalkableDirection.Left){
             // Go right 
             WalkDirection = WalkableDirection.Right;
-            //Debug.Log("krabby is going " + WalkDirection);
+            //Debug.Log("FierceTooth is going " + WalkDirection);
         // Check for bugs 
         } else {
             Debug.LogError("Current Walkable direction not setted to a legal value (left or right) ");

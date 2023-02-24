@@ -108,7 +108,7 @@ public class ProceduralAI : MonoBehaviour
     // Anything that doesn't need to be loaded *immediately* on application start
     private void Start()
     {
-        // Generate random selection of :
+        // Using Singleton Design Pattern << Generate random selection of :
         // Platforms
         // Ground Sections
         // Enemies

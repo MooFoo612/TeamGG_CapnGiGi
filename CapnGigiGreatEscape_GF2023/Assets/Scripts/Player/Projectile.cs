@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
             bool gotHit = damageable.Hit(damage, deliveredKnockback);
             // Testing: if hit successfully debug the hit 
             if(gotHit){
-                Debug.Log(collision.name + " hit for " + damage);
+                //Debug.Log(collision.name + " hit for " + damage);
                 // Destroy the projectile
                 Destroy(gameObject);
             }
