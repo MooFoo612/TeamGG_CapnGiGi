@@ -6,12 +6,7 @@ using System.Collections;
 public class WorldGenerator : MonoBehaviour
 {
     #region Variables
-    //[SerializeField] 
     private Transform groundChunk;
-    //[SerializeField]
-    //private Transform platformChunk;
-    //[SerializeField]
-    //private Transform worldStart;
     [SerializeField] private Transform groundStart;
     [SerializeField] private Transform platformStart;
     [SerializeField] private GameObject player;
@@ -20,9 +15,13 @@ public class WorldGenerator : MonoBehaviour
     private EnemyGenerator enemyGenerator;
     private bool reversedWorld;
 
+    // Distance management
+    private float totalDistance;
+    private GameObject distanceMarkerObj;
+    private Vector3 distanceMarker;
+
     private const float DISTANCE_TO_SPAWN_SECTION_RIGHT = 20f;
-    private const float DISTANCE_TO_SPAWN_SECTION_LEFT = 25f;
-    //private const float DISTANCE_TO_DESTROY_SECTION = 25f;
+    private const float DISTANCE_TO_SPAWN_SECTION_LEFT = 20f;
 
     // Marker Positions---------------
     private Vector3 worldEndRight;
@@ -41,13 +40,12 @@ public class WorldGenerator : MonoBehaviour
         // Access the player
         player = GameObject.Find("CapnGigi");
 
+        // Distance Marker
+        distanceMarkerObj = GameObject.Find("DistanceMarker");
+        distanceMarker = distanceMarkerObj.transform.position;
+
         // Ensure world isn't reversed
         reversedWorld = false;
-
-        // Find the child EndPosition object in the GameStart parent
-        //groundEndRight = groundStart.Find("GroundEnd_Right").position;
-        //platformEndRight = platformStart.Find("PlatformEnd_Right").position;
-        // worldEndRight = (platformStart - groundStart) / 2; 
 
         // Access Ground Generator Script
         groundGenerator = GameObject.FindObjectOfType(typeof(GroundGenerator)) as GroundGenerator;
@@ -58,15 +56,17 @@ public class WorldGenerator : MonoBehaviour
         // Acess Enemy Generator Script
         enemyGenerator = GameObject.FindObjectOfType(typeof(EnemyGenerator)) as EnemyGenerator;
 
-        StartCoroutine(ChunkSpawnTimer());
+        StartCoroutine(ChunkSpawnTimer_Right());
 
     }
-    private void Start()
+    #region World Spawner
+    private void SpawnGameWorld_Right()
     {
+        SpawnGroundChunk_Right();
+        SpawnPlatformChunk_Right();
     }
-    private void Update()
-    {
-    }
+
+    #endregion
 
     #region Ground Spawner
     public void SpawnGroundChunk_Right()
@@ -93,21 +93,27 @@ public class WorldGenerator : MonoBehaviour
     }
 
     #endregion
-    private IEnumerator ChunkSpawnTimer()
+    private IEnumerator ChunkSpawnTimer_Right()
     {
         
         while (!reversedWorld)
         {
+            // Limit to 1sec
             yield return new WaitForSeconds(1f);
 
+            // Set groundEndRight to last spawned section for check
             groundEndRight = groundGenerator.groundEnd_Right;
 
+            // If the player is close enough
             if (Vector3.Distance(player.transform.position, groundEndRight) < DISTANCE_TO_SPAWN_SECTION_RIGHT)
             {
                 // Spawn another section
-                SpawnGroundChunk_Right();
-                SpawnPlatformChunk_Right();
-                //Debug.Log("World Chunk generated");
+                SpawnGameWorld_Right();
+            }
+
+            if (reversedWorld == true)
+            {
+                break;
             }
         }
  

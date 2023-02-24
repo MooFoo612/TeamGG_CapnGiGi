@@ -8,9 +8,6 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private Transform platformStart;
     [SerializeField] private GameObject player;
 
-    private const float DISTANCE_TO_SPAWN_SECTION = 25f;
-    //private const float DISTANCE_TO_DESTROY_SECTION = 25f;
-
     // Variables for the objects
     private GameObject platformObj;
     private Transform platformChunk;
@@ -19,6 +16,7 @@ public class PlatformGenerator : MonoBehaviour
     public Vector3 platformEnd_Right;
     public Vector3 platformEnd_Left;
 
+    // Private list of Platforms
     private static List<GameObject> platformList = new List<GameObject>();
 
     #endregion

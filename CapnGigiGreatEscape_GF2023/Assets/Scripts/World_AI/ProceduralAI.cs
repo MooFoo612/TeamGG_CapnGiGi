@@ -27,6 +27,8 @@ public class ProceduralAI : MonoBehaviour
 
     // Player 
     private GameObject player;
+    private float totalDistance;
+    private bool reversedWorld;
 
     #endregion
 
@@ -68,8 +70,8 @@ public class ProceduralAI : MonoBehaviour
     #region Counters
 
     // Counts for Ground Sections Instantiated/Destroyed
-    public static int groundChunkSpawned = 0;
-    public static int platformChunkSpawned = 0;
+    public static int platformChunkSpawned;
+    public static int groundChunkSpawned;
     public static int chunksDestroyed = 0;
 
     // Counts for Enemies Instantiated/Destroyed/Killed
@@ -121,21 +123,10 @@ public class ProceduralAI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //db.DebugChunkDestruction(chunksDestroyed);
-
-
-    }
-
-    // Fixed Update for stability
-    private void FixedUpdate()
-    {
-        // Manage any Physics-based decision-making
-    }
-
-    // Cleanup
-    private void OnApplicationQuit()
-    {
-        // Display any information gathered for testing purposes or do any cleanup here
+        if (chunksDestroyed > 0 && chunksDestroyed % 2 != 0)
+        {
+            Debug.Log("Inconsistent Chunk Destruction!");
+        }
     }
     #endregion
 
@@ -184,7 +175,7 @@ public class ProceduralAI : MonoBehaviour
             groundPrefabs.Add(value);
         }
         // Optional List Debug:
-        DebugGeneratedList(groundPrefabs);
+        //DebugGeneratedList(groundPrefabs);
 
         // Return new Ground List
         return new List<GameObject>(groundPrefabs);
@@ -204,7 +195,7 @@ public class ProceduralAI : MonoBehaviour
             platformPrefabs.Add(value);
         }
         // Optional List Debug:
-        DebugGeneratedList(platformPrefabs);
+        //DebugGeneratedList(platformPrefabs);
 
         // Return new Platform List
         return new List<GameObject>(platformPrefabs);
@@ -226,7 +217,7 @@ public class ProceduralAI : MonoBehaviour
             enemyPrefabs.Add(value);
         }
         // Optional List Debug:
-        DebugGeneratedList(enemyPrefabs);
+        //DebugGeneratedList(enemyPrefabs);
 
         // Return new Enemy List
         return new List<GameObject>(enemyPrefabs);
@@ -246,12 +237,27 @@ public class ProceduralAI : MonoBehaviour
             collectablePrefabs.Add(value);
         }
         // Optional List Debug:
-        DebugGeneratedList(collectablePrefabs);
+        //DebugGeneratedList(collectablePrefabs);
 
         // Return new Enemy List
         return new List<GameObject>(collectablePrefabs);
     }
     #endregion
+
+    private float DistanceCalculation(Vector3 distanceMarker, Vector3 playerPosition)
+    {
+        if (!reversedWorld)
+        {
+            totalDistance += Vector3.Distance(playerPosition, distanceMarker);
+            Debug.Log("Distance: " + totalDistance);
+            return totalDistance;
+        }
+        else
+        {
+            totalDistance += Vector3.Distance(distanceMarker, playerPosition);
+            return totalDistance;
+        }
+    }
 
     #region Debug Functions
 
