@@ -244,7 +244,7 @@ public class ProceduralAI : MonoBehaviour
     }
     #endregion
 
-    private float DistanceCalculation(Vector3 distanceMarker, Vector3 playerPosition)
+    private float TotalDistanceCalculation(Vector3 distanceMarker, Vector3 playerPosition)
     {
         if (!reversedWorld)
         {

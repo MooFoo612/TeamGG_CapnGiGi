@@ -13,8 +13,8 @@ public class PlatformGenerator : MonoBehaviour
     private Transform platformChunk;
 
     // Positions for Spawning Chunks
-    public Vector3 platformEnd_Right;
-    public Vector3 platformEnd_Left;
+    [HideInInspector] public Vector3 platformEnd_Right;
+    [HideInInspector] public Vector3 platformEnd_Left;
 
     // Private list of Platforms
     private static List<GameObject> platformList = new List<GameObject>();
