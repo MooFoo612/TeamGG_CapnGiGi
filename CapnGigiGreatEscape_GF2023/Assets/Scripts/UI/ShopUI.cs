@@ -23,13 +23,17 @@ public class ShopUI : MonoBehaviour
     private void Awake(){
         playerInv = GetComponent<PlayerInventory>();
     }
+    
+    private void OnEnable() {
+        // Update the coins and diamond text
+        coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString();
+        diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
 
-    void Start(){
         // Open and close the shop
         AddShopEvents();
         // Update the coins and diamond text
-        coinsText.text = "X " + coins.ToString();
-        diamondsText.text = "X " + diamonds.ToString();
+        coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString();
+        diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
         // ID's of the item
         shopItems[1, 1] = 1;
         shopItems[1, 2] = 2;
@@ -55,27 +59,29 @@ public class ShopUI : MonoBehaviour
         shopItems[4, 1] = 0;
         shopItems[4, 2] = 0;
         shopItems[4, 3] = 0;
-        shopItems[4, 4] = 0; // playerInv.ThrowingSwords 
+        shopItems[4, 4] = 1; // playerInv.ThrowingSwords 
         shopItems[4, 5] = 0;
         shopItems[4, 6] = 0;
+
     }
-    
     public void Buy(){
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         // Check if have enought coins and diamonds
-        if(coins >= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID] && diamonds >= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID]){
+        if(PlayerPrefs.GetInt("coins") >= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID] && PlayerPrefs.GetInt("diamonds") >= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID]){
             // Update the player coins and diamonds
-            coins -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID];
-            diamonds -= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID];
-            // Increase quantity
+            PlayerPrefs.SetInt("coins", (PlayerPrefs.GetInt("coins") - shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID]));
+            PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") - shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID]));
+            //coins -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID];
+            //diamonds -= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID];
+            // Increase quantity 
             if (shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID] > 0){
                 //shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]++;
-                playerInv.ThrowingSwords ++; // replace with playerpref  
+                PlayerPrefs.SetInt("swords", (PlayerPrefs.GetInt("swords") + shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]));
             }
             
             // Update coins and diamond text 
-            coinsText.text = "X " + coins.ToString();
-            diamondsText.text = "X " + diamonds.ToString();
+            coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString(); //coinsText.text = "X " + coins.ToString();
+            diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
             // Update quantity text 
             //ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
         }
@@ -100,4 +106,5 @@ public class ShopUI : MonoBehaviour
         shopUI.SetActive(false);
         menuUI.SetActive(true);
     }
+    
 }

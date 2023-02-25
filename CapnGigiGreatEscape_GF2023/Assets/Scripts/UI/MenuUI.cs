@@ -16,6 +16,9 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
+    void Start(){
+        //PlayerPrefs.SetInt("swords", 10);
+    }
     
     
 }

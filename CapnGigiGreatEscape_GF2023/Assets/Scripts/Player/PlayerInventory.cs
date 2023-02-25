@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
 {   
     public UnityEvent<int> swordsAmountChanged;
     public UnityEvent<int> coinsAmountChanged;
+    //public UnityEvent<int> diamondsAmountChanged;
 
     [SerializeField] private int _throwingSwords = 10;
     public int ThrowingSwords{
@@ -35,13 +36,24 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    [SerializeField] private int _diamonds = 0;
+    public int Diamonds{
+        get {
+            return _diamonds;
+        } set {
+            _diamonds = value;
+            // Update unity event for the  GUI
+            //diamondsAmountChanged?.Invoke(_diamonds);
+        }
+    }
+    /*
     public float playerCoins;
 
     public void Start()
     {
         playerCoins = 0f;
     }
-
+    
     private void OnTriggerEnter2D(Collider2D trigger)
     {
         GameObject collectable = trigger.gameObject;
@@ -63,5 +75,6 @@ public class PlayerInventory : MonoBehaviour
 
         }
     }
+    */
 
 }

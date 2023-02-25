@@ -22,7 +22,8 @@ public class DisplaySwords : MonoBehaviour
     void Start()
     {
         // Update the swords amount 
-        swordsAmountText.text = "x " + playerInv.ThrowingSwords;
+        swordsAmountText.text = "x " + PlayerPrefs.GetInt("swords");
+        playerInv.ThrowingSwords = PlayerPrefs.GetInt("swords");
     }
 
     private void OnEnable(){

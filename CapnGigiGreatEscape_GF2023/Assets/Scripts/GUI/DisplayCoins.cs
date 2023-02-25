@@ -27,6 +27,7 @@ public class DisplayCoins : MonoBehaviour
 
     private void OnEnable(){
         playerInv.coinsAmountChanged.AddListener(OnCoinsAmountChanged);
+        
     }
 
     private void OnDisable(){

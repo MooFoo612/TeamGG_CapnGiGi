@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 4173475143661816013}
   - component: {fileID: 4880828066994162344}
   - component: {fileID: 8858859916391010064}
+  - component: {fileID: 4879116488156750840}
   m_Layer: 7
   m_Name: CapnGigi
   m_TagString: Player
@@ -512,7 +513,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38773f5d200ffd648b73fbcfc10aa251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCoins: 0
+  swordsAmountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  coinsAmountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _throwingSwords: 10
+  _coins: 0
 --- !u!114 &8858859916391010064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +535,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7627454236336135307, guid: 12e2dd1e1951826458555d02c287549d, type: 3}
   launchPoint: {fileID: 8448933925842914214}
+--- !u!114 &4879116488156750840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266131370187467982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d72b66eb06be1c4ba3a15fbb6646eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GUIPanel: {fileID: 0}
+  GameOverPanel: {fileID: 0}
+  coinsText: {fileID: 0}
 --- !u!1 &3787875393222390509
 GameObject:
   m_ObjectHideFlags: 0
