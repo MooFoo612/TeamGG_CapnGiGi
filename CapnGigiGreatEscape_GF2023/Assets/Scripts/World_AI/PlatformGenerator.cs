@@ -45,7 +45,7 @@ public class PlatformGenerator : MonoBehaviour
         Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformEnd_Right);
         platformEnd_Right = lastPlatformEnd_Right.Find("PlatformEnd_Right").position;
 
-        Debug.Log("Platform Spawned: " + ProceduralAI.platformChunkSpawned);
+        Debug.Log("Platform Spawned: " + ProceduralAI.platformChunkActivated);
 
     }
     public Transform SpawnPlatformChunk_Right(Vector3 nextChunk)
@@ -55,7 +55,7 @@ public class PlatformGenerator : MonoBehaviour
 
         // Spawn the Platform Chunk and log to AI count
         Transform nextPlatformChunk_Right = Instantiate(platformChunk, nextChunk, Quaternion.identity);
-        ProceduralAI.platformChunkSpawned += 1;
+        ProceduralAI.platformChunkActivated += 1;
 
         // Return the transform for sister method
         return nextPlatformChunk_Right;
@@ -68,7 +68,7 @@ public class PlatformGenerator : MonoBehaviour
         //Get the transform to refrence the end of previous chunk
         Transform lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformEnd_Left);
         platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
-        Debug.Log("Platform Spawned: " + ProceduralAI.platformChunkSpawned);
+        Debug.Log("Platform Spawned: " + ProceduralAI.platformChunkActivated);
 
     }
     public Transform SpawnPlatformChunk_Left(Vector3 nextChunk)
@@ -78,7 +78,7 @@ public class PlatformGenerator : MonoBehaviour
 
         // Spawn the Platform chunk and log to AI count
         Transform nextPlatformChunk_Left = Instantiate(platformChunk, nextChunk, Quaternion.identity);
-        ProceduralAI.platformChunkSpawned += 1;
+        ProceduralAI.platformChunkActivated += 1;
 
         // Return the transform for sister method
         return nextPlatformChunk_Left;

@@ -6,13 +6,14 @@ using System.Collections;
 public class WorldGenerator : MonoBehaviour
 {
     #region Variables
-    private Transform groundChunk;
     [SerializeField] private Transform groundStart;
     [SerializeField] private Transform platformStart;
     [SerializeField] private GameObject player;
     private GroundGenerator groundGenerator;
     private PlatformGenerator platformGenerator;
     private EnemyGenerator enemyGenerator;
+    private CollectableGenerator collectableGenerator;
+    private TrapGenerator trapGenerator;
     private bool reversedWorld;
 
     // Distance management
@@ -56,9 +57,16 @@ public class WorldGenerator : MonoBehaviour
         // Acess Enemy Generator Script
         enemyGenerator = GameObject.FindObjectOfType(typeof(EnemyGenerator)) as EnemyGenerator;
 
-        StartCoroutine(ChunkSpawnTimer_Right());
+        // Access Collectable Generator Script
+        collectableGenerator = GameObject.FindObjectOfType(typeof(CollectableGenerator)) as CollectableGenerator;
+
+        // Access Trap Generator Script
+        trapGenerator = GameObject.FindObjectOfType(typeof(TrapGenerator)) as TrapGenerator;
+
+        StartCoroutine(GenerateWorld_Right());
 
     }
+
     #region World Spawner
     private void SpawnGameWorld_Right()
     {
@@ -93,7 +101,7 @@ public class WorldGenerator : MonoBehaviour
     }
 
     #endregion
-    private IEnumerator ChunkSpawnTimer_Right()
+    private IEnumerator GenerateWorld_Right()
     {
         
         while (!reversedWorld)

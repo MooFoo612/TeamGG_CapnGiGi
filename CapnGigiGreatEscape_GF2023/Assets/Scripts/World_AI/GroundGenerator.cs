@@ -8,7 +8,7 @@ public class GroundGenerator : MonoBehaviour
     [SerializeField] private Transform groundStart;
     [SerializeField] private GameObject player;
 
-    private const float DISTANCE_TO_SPAWN_SECTION = 25f;
+    //private const float DISTANCE_TO_SPAWN_SECTION = 25f;
     //private const float DISTANCE_TO_DESTROY_SECTION = 25f;
 
     // Variables for the objects
@@ -47,7 +47,7 @@ public class GroundGenerator : MonoBehaviour
         Transform lastGroundEnd_Right = SpawnGroundChunk_Right(groundEnd_Right);
         groundEnd_Right = lastGroundEnd_Right.Find("GroundEnd_Right").position;
 
-        Debug.Log("Ground Spawned: " + ProceduralAI.groundChunkSpawned);
+        Debug.Log("Ground Spawned: " + ProceduralAI.groundChunkActivated);
 
     }
     public Transform SpawnGroundChunk_Right(Vector3 nextChunk)
@@ -57,7 +57,7 @@ public class GroundGenerator : MonoBehaviour
 
         // Spawn the Platform Chunk and log to AI count
         Transform nextGroundChunk_Right = Instantiate(groundChunk, nextChunk, Quaternion.identity);
-        ProceduralAI.groundChunkSpawned += 1;
+        ProceduralAI.groundChunkActivated += 1;
 
         // Return the transform for sister method
         return nextGroundChunk_Right;
@@ -78,7 +78,7 @@ public class GroundGenerator : MonoBehaviour
 
         // Spawn the Platform chunk and log to AI count
         Transform nextGroundChunk_Left = Instantiate(groundChunk, nextChunk, Quaternion.identity);
-        ProceduralAI.groundChunkSpawned += 1;
+        ProceduralAI.groundChunkActivated += 1;
 
         // Return the transform for sister method
         return nextGroundChunk_Left;

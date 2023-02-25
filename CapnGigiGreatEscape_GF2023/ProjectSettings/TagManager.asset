@@ -9,6 +9,9 @@ TagManager:
   - Wall
   - Enemy
   - Event
+  - EnemySpawn
+  - CollectableSpawn
+  - TrapSpawn
   layers:
   - Default
   - TransparentFX

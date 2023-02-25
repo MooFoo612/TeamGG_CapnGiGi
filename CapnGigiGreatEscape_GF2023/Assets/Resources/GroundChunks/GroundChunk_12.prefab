@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2295765099706634053}
   - component: {fileID: 3658959466080480880}
   - component: {fileID: 7672189755800143183}
-  m_Layer: 0
+  - component: {fileID: -669040976976456872}
+  m_Layer: 6
   m_Name: GroundChunk_12
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -100,6 +101,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-669040976976456872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334467716178931826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133a14d2a10877c4199afb35268d5515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6194724043879506994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,6 +167,10 @@ PrefabInstance:
     - target: {fileID: 6556402946728977151, guid: c83a434ee137de7408b0452f220761ca, type: 3}
       propertyPath: m_Name
       value: GroundEnd_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: c83a434ee137de7408b0452f220761ca, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83a434ee137de7408b0452f220761ca, type: 3}
@@ -217,6 +234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundEnd_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: b8a6b5177b6c15946a036ebafa101790, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a6b5177b6c15946a036ebafa101790, type: 3}
 --- !u!4 &417977339185427466 stripped
@@ -231,9 +252,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2295765099706634053}
     m_Modifications:
+    - target: {fileID: 1473618509997891436, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258361998272685442, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8196167215065477005, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
       propertyPath: m_Name
       value: Ground_Section13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196167215065477005, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8196167215065477006, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
       propertyPath: m_RootOrder
@@ -277,6 +310,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8196167215065477006, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196167215065477007, guid: e93c199eb11dc1a45a2e610dfa28a3c2, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
