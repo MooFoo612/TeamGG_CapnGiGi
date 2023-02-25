@@ -2694,6 +2694,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea3a7aa5d9178245bf954e24648f511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2134367007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1271249523574484850, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+  m_PrefabInstance: {fileID: 1271249522699787323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1271249522699787323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2720,6 +2731,10 @@ PrefabInstance:
     - target: {fileID: 1271249522560740451, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 5.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271249523014505802, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1271249523014505807, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2756,6 +2771,10 @@ PrefabInstance:
     - target: {fileID: 1271249523471446705, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271249523574484850, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1271249523574484850, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2793,6 +2812,10 @@ PrefabInstance:
       propertyPath: playerInv
       value: 
       objectReference: {fileID: 1533897917}
+    - target: {fileID: 1271249523968289057, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: item1button
+      value: 
+      objectReference: {fileID: 2134367007}
     - target: {fileID: 1271249523968289057, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: openShopButton
       value: 

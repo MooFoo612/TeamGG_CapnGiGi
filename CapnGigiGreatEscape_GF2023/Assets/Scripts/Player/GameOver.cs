@@ -30,16 +30,16 @@ public class GameOver : MonoBehaviour
         playerInv = GetComponent<PlayerInventory>();
     }
     
-    void PauseGame ()
+    void PauseGame()
     {
         Time.timeScale = 0;
     }
-    /*
-    void ResumeGame ()
+    
+    void ResumeGame()
     {
         Time.timeScale = 1;
     }
-    */
+    
     public void Update(){
         // When player dies pause the game and open the Game Over panel
         if(!isAlive){
@@ -58,7 +58,6 @@ public class GameOver : MonoBehaviour
         PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") + playerInv.Diamonds));
         // Change scene
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-
     }
 
     public void ShopButton(){
@@ -67,6 +66,5 @@ public class GameOver : MonoBehaviour
         PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") + playerInv.Diamonds));
         // Open the shop
         shopUI.SetActive(true);
-
     }
 }

@@ -16151,6 +16151,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1722225775}
     - target: {fileID: 4879116488156750840, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
+      propertyPath: diamondsText
+      value: 
+      objectReference: {fileID: 1901474998}
+    - target: {fileID: 4879116488156750840, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: GameOverPanel
       value: 
       objectReference: {fileID: 1167730538}
@@ -16736,6 +16740,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2759d9b67166c89439e5babd87ab8719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1901474998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 203985150761132008, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+  m_PrefabInstance: {fileID: 342316395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1929450850 stripped

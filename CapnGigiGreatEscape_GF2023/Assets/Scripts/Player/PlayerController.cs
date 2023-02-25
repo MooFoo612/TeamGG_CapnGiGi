@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour{
     public Rigidbody2D rb;
     Animator anim; 
     PlayerInventory playerInv;
+    public ShopUI shopUI;
+    public bool doubleJump;
+    public bool dash;
+    public bool airDash;
+    private bool jumping;
     
     // CurrentSpeed function 
     public float CurrentSpeed{
@@ -93,15 +98,9 @@ public class PlayerController : MonoBehaviour{
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
-    }
-    // Start is called before the first frame update
-    void Start(){
+        shopUI = GetComponent<ShopUI>();
     }
 
-    // Update is called once per frame
-    void Update(){
-        
-    }
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
         // If player is not being hit right now 
@@ -111,6 +110,11 @@ public class PlayerController : MonoBehaviour{
         }
         // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
         anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+
+        // Check if is on the ground and is not jymping to reset the double jump bool and be able to double jump again
+        if(touchingDirections.IsGrounded && !jumping){
+            doubleJump = false;  
+        } 
     }    
 
     // It's called while the player is moving(takes the parametheres setted on the Input System controller)
@@ -131,8 +135,7 @@ public class PlayerController : MonoBehaviour{
         } else {
             // Block movement
             IsMoving = false;
-        }
-        
+        }   
     }
 
     private void SetFacingDirection(Vector2 moveInput){
@@ -149,23 +152,50 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnJump(InputAction.CallbackContext context){
-        // Check if the key is pressed and if player is on the ground and if player can move 
-        if(context.started && touchingDirections.IsGrounded && CanMove ){ // 
-            // update animator paramether using static strings  
-            anim.SetTrigger(AnimationStrings.jump);
-            // Add jump inpulse on the y axis 
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-        }
+        // If can't double jump yet 
+        if(PlayerPrefs.GetInt("purchasedDoubleJump") == 0){
+            // Check if the key is pressed  and if player can move and   if player is on the ground or can doubleJump
+            if(context.started && CanMove  && touchingDirections.IsGrounded){ // 
+                // Update animator paramether using static strings  
+                anim.SetTrigger(AnimationStrings.jump);
+                // Add jump inpulse on the y axis 
+                rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            }
+        // If purchased double jump
+        } else if (PlayerPrefs.GetInt("purchasedDoubleJump") == 1){
+            // If jump key and can move
+            if(context.started && CanMove ){ 
+                if(touchingDirections.IsGrounded || doubleJump){
+                    // Setting this for the check in the update
+                    jumping = true;
+                    // Update animator paramether using static strings  
+                    anim.SetTrigger(AnimationStrings.jump);
+                    // Add jump inpulse on the y axis 
+                    rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+                    // Update double jump bool
+                    doubleJump = !doubleJump;
+                }
+            }
+            if(context.canceled){
+                // Finish jump for the update 
+                jumping = false;
+            }
+        }  
     }
+    
     public void OnAttack(InputAction.CallbackContext context){
         if(context.started){
+            // Attack updating animator paramether
             anim.SetTrigger(AnimationStrings.attack);
         }
     }
 
     public void OnRangedAttack(InputAction.CallbackContext context){
+        // If can shoot
         if(context.started && playerInv.ThrowingSwords > 0){
+            // Shoot
             anim.SetTrigger(AnimationStrings.rangedAttack);
+            // Update the remaining swords
             playerInv.ThrowingSwords --;
         }
     }

@@ -19,6 +19,11 @@ public class ShopUI : MonoBehaviour
     public TMP_Text coinsText;
     public TMP_Text diamondsText;
     public PlayerInventory playerInv;
+    public Button item1button;
+    public Button item2button;
+    public Button item3button;
+    public Button item4button;
+
 
     private void Awake(){
         playerInv = GetComponent<PlayerInventory>();
@@ -59,7 +64,7 @@ public class ShopUI : MonoBehaviour
         shopItems[4, 1] = 0;
         shopItems[4, 2] = 0;
         shopItems[4, 3] = 0;
-        shopItems[4, 4] = 1; // playerInv.ThrowingSwords 
+        shopItems[4, 4] = 1; 
         shopItems[4, 5] = 0;
         shopItems[4, 6] = 0;
 
@@ -71,12 +76,22 @@ public class ShopUI : MonoBehaviour
             // Update the player coins and diamonds
             PlayerPrefs.SetInt("coins", (PlayerPrefs.GetInt("coins") - shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID]));
             PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") - shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID]));
-            //coins -= shopItems[2, ButtonRef.GetComponent<ButtonInfo>().itemID];
-            //diamonds -= shopItems[3, ButtonRef.GetComponent<ButtonInfo>().itemID];
             // Increase quantity 
             if (shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID] > 0){
                 //shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]++;
                 PlayerPrefs.SetInt("swords", (PlayerPrefs.GetInt("swords") + shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID]));
+            }
+            // If is buying Double jump
+            if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 1){
+                // Make the player double jump for ever
+                PlayerPrefs.SetInt("purchasedDoubleJump", 1);
+                item1button.interactable = false;
+            }
+            if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 2){
+                PlayerPrefs.SetInt("purchasedDash", 1);
+            }
+            if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 3){
+                PlayerPrefs.SetInt("purchasedAirDash", 1);
             }
             
             // Update coins and diamond text 
