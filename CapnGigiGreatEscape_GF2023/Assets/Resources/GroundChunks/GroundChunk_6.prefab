@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8875468871777030077}
   - component: {fileID: 1575420503149698855}
   - component: {fileID: -5169781722824376257}
+  - component: {fileID: 1208594714023749729}
+  - component: {fileID: -7257028300296995930}
   m_Layer: 6
   m_Name: GroundChunk_6
   m_TagString: Untagged
@@ -111,6 +113,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 133a14d2a10877c4199afb35268d5515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1208594714023749729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6446865727323508934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2991a9715661ee44aa7272cd11584a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7257028300296995930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6446865727323508934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6123af5dcd8fa948946d4cf6eebe969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2578936270250804897

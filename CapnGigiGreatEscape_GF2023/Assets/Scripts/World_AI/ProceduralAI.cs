@@ -128,7 +128,7 @@ public class ProceduralAI : MonoBehaviour
         platformPrefabs = GeneratePlatformList();
 
         // Load all Enemy prefabs into the list, display list in console
-        enemyPrefabs = GenerateEnemyList();
+        trapPrefabs = GenerateEnemyList();
 
         // Load all Collectable prefabs into the list, display list in console
         collectablePrefabs = GenerateCollectableList();

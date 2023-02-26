@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class CloneController : MonoBehaviour
 {
-    //private float distanceFromPlayer = 0f;
     private GameObject player;
     private Vector3 playerPosition;
+    private Vector3 deleteMarker;
+    private float distanceFromPlayer;
+    private float deactivationDistance;
     private EnemyGenerator enemyGenerator;
     private ProceduralAI ai;
     private List<GameObject> enemySpawnMarkerList;
+    private static List<Vector3> enemySpawnPositions = new List<Vector3>();
 
     void Awake()
     {
@@ -18,51 +21,54 @@ public class CloneController : MonoBehaviour
         ai = GetComponent<ProceduralAI>();
         player = GameObject.Find("CapnGigi");
 
+        // If this has been deactivated
         if (gameObject.activeSelf == false)
         {
+            // Reactivate it!
             gameObject.SetActive(true);
+
             try
             {
-                enemySpawnMarkerList = ai.GenerateEnemySpawnMarkerList();
-                foreach (GameObject marker in enemySpawnMarkerList)
+                // Grab list of spawn positions
+                enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
+
+                // For each spawn position, spawn an enemy
+                foreach (Vector3 spawnPosition in enemySpawnPositions)
                 {
                     enemyGenerator.SpawnEnemies();
 
                 }
-                player = GameObject.Find("CapnGigi");
+                // Initialise Deactivation Sequence, Cap'n!
                 StartCoroutine(DeactivateClone());
             }
+            // Computer says no?
             catch (NullReferenceException nre)
             {
+                // Make computer say more.
                 Debug.LogError(nre.Message);
-            }
-
-            
+            }     
+            // Make sure this runs lol
+            StartCoroutine(DeactivateClone());
         }
         else
         {
             try
             {
-                foreach (GameObject marker in enemySpawnMarkerList)
+                enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
+
+                foreach (Vector3 spawnPosition in enemySpawnPositions)
                 {
                     enemyGenerator.SpawnEnemies();
-
                 }
+                StartCoroutine(DeactivateClone());
 
             }
             catch (NullReferenceException nre)
             {
                 Debug.Log(nre.Message);
             }
-
-            
-
             StartCoroutine(DeactivateClone());
         }
-
-
-        //enemyGenerator.SpawnEnemies();
-        //StartCoroutine(DeactivateClone());
     }
 
     private IEnumerator DeactivateClone()
