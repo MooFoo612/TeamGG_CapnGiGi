@@ -252,11 +252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-  shooterRb: {fileID: 4463024515583884547}
   enemy: {fileID: 1253520983312449132}
   spawn: {fileID: 5058607978272346995}
   projectile: {fileID: 3286326179606499219, guid: 4d0f90ff67168b04ba3769538be34c7e, type: 3}
-  recoilInpulse: 7
 --- !u!1 &2274729897991913738
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,12 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b611bebcc3bce2d4b895c6f34766e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  shooterRb: {fileID: 0}
+  target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
   enemy: {fileID: 1253520983312449132}
   spawn: {fileID: 5058607978272346995}
-  projectile: {fileID: 0}
-  recoilInpulse: 7
+  projectile: {fileID: 3286326179606499219, guid: 21eb96ed0e1c00747ad5a76399d71c08, type: 3}
 --- !u!1 &6592085326761393085
 GameObject:
   m_ObjectHideFlags: 0
