@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour{
     public Rigidbody2D rb;
     Animator anim; 
     PlayerInventory playerInv;
-    public ShopUI shopUI;
     public bool doubleJump;
-    public bool dash;
-    public bool airDash;
-    private bool jumping;
+    private bool jumpPressed;
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer tr;
     
     // CurrentSpeed function 
     public float CurrentSpeed{
@@ -98,11 +101,14 @@ public class PlayerController : MonoBehaviour{
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
-        shopUI = GetComponent<ShopUI>();
     }
 
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
+        // prevent the player to do things while dashing
+        if(isDashing){
+            return;
+        }
         // If player is not being hit right now 
         if(!damageable.LockVelocity){
             // Move the player
@@ -112,7 +118,7 @@ public class PlayerController : MonoBehaviour{
         anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
         // Check if is on the ground and is not jymping to reset the double jump bool and be able to double jump again
-        if(touchingDirections.IsGrounded && !jumping){
+        if(touchingDirections.IsGrounded && !jumpPressed){
             doubleJump = false;  
         } 
     }    
@@ -167,7 +173,7 @@ public class PlayerController : MonoBehaviour{
             if(context.started && CanMove ){ 
                 if(touchingDirections.IsGrounded || doubleJump){
                     // Setting this for the check in the update
-                    jumping = true;
+                    jumpPressed = true;
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
@@ -178,7 +184,7 @@ public class PlayerController : MonoBehaviour{
             }
             if(context.canceled){
                 // Finish jump for the update 
-                jumping = false;
+                jumpPressed = false;
             }
         }  
     }
@@ -203,5 +209,35 @@ public class PlayerController : MonoBehaviour{
     public void OnHit(int damage, Vector2 knockback){
         // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    public void OnDash(InputAction.CallbackContext context){
+        if(PlayerPrefs.GetInt("purchasedDash") == 1){
+            if(context.started && canDash){
+                StartCoroutine(Dash());
+            }
+        }
+        
+    }
+    private IEnumerator Dash(){
+        canDash = false;
+        isDashing = true;
+        // Store the current gravity value
+        float originalGravity = rb.gravityScale;
+        // Disable gravity during the dash 
+        rb.gravityScale = 0f;
+        // Create the dash inpulse 
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        // Displat the trail
+        tr.emitting = true;
+        // Stop dashing after a certain amount of time 
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        // Give the player a cooldown to not let him abuse of the dash power
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+
     }
 }

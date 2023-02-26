@@ -724,7 +724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 033db17530324f34ba154c729012142c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6de4afe6b195d634a875a07babcea140, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3460,7 +3460,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1271249523471446704}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1271249523968289057}
+        m_TargetAssemblyTypeName: ShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5621722742613802324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3475,7 +3487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 4
   coinsPriceText: {fileID: 1271249522807243135}
-  diamondPriceText: {fileID: 0}
+  diamondPriceText: {fileID: 2865289882492739610}
   shopUI: {fileID: 1271249523968289070}
 --- !u!1 &1271249523514138105
 GameObject:
@@ -3833,7 +3845,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1271249523574484849}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1271249523968289057}
+        m_TargetAssemblyTypeName: ShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3785606747928484561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3848,7 +3872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 1
   coinsPriceText: {fileID: 1271249523664635636}
-  diamondPriceText: {fileID: 0}
+  diamondPriceText: {fileID: 2865289882492739610}
   shopUI: {fileID: 1271249523968289070}
 --- !u!1 &1271249523621757662
 GameObject:
@@ -5126,6 +5150,10 @@ MonoBehaviour:
   coinsText: {fileID: 9147499856548886090}
   diamondsText: {fileID: 203985150761132008}
   playerInv: {fileID: 0}
+  item1button: {fileID: 1271249523574484850}
+  item2button: {fileID: 1271249524258876299}
+  item3button: {fileID: 1271249523981370363}
+  item4button: {fileID: 1271249523471446705}
 --- !u!1 &1271249523981370245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,7 +5279,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1271249523981370362}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1271249523968289057}
+        m_TargetAssemblyTypeName: ShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5946912632259379089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6096,7 +6136,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1271249524258876298}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1271249523968289057}
+        m_TargetAssemblyTypeName: ShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3792607901543957313
 MonoBehaviour:
   m_ObjectHideFlags: 0

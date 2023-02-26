@@ -14,6 +14,10 @@ public class GameOver : MonoBehaviour
     public TMP_Text diamondsText;
     PlayerInventory playerInv;
     [SerializeField] GameObject shopUI;
+    [SerializeField] GameObject menuUI;
+
+
+
 
 
     
@@ -56,8 +60,10 @@ public class GameOver : MonoBehaviour
         // Update the values for the shop
         PlayerPrefs.SetInt("coins", (PlayerPrefs.GetInt("coins") + playerInv.Coins));
         PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") + playerInv.Diamonds));
-        // Change scene
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        // Go to menu
+        menuUI.SetActive(true);
+        //GameOverPanel.SetActive(false);
+        //SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
     public void ShopButton(){
@@ -66,5 +72,11 @@ public class GameOver : MonoBehaviour
         PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") + playerInv.Diamonds));
         // Open the shop
         shopUI.SetActive(true);
+    }
+
+    public void PlayAgainButton(){
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        menuUI.SetActive(false);
+        ResumeGame();
     }
 }

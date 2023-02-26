@@ -35,7 +35,7 @@ public class ShopUI : MonoBehaviour
         diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
 
         // Open and close the shop
-        AddShopEvents();
+        //AddShopEvents();
         // Update the coins and diamond text
         coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString();
         diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
@@ -103,21 +103,21 @@ public class ShopUI : MonoBehaviour
     }
 
 
-    void AddShopEvents(){
+    //void AddShopEvents(){
         // Open the shop
-        openShopButton.onClick.RemoveAllListeners();
-        openShopButton.onClick.AddListener(OpenShop);
-        // Close the shop UI
-        closeShopButton.onClick.RemoveAllListeners();
-        closeShopButton.onClick.AddListener(CloseShop);
-    }
+        //openShopButton.onClick.RemoveAllListeners();
+        //openShopButton.onClick.AddListener(OpenShop);
+        //// Close the shop UI
+        //closeShopButton.onClick.RemoveAllListeners();
+        //closeShopButton.onClick.AddListener(CloseShop);
+    //}
 
-    void OpenShop(){
-        menuUI.SetActive(false);
-        shopUI.SetActive(true);
-    }
+    //void OpenShop(){
+    //    menuUI.SetActive(false);
+    //    shopUI.SetActive(true);
+    //}
 
-    void CloseShop(){
+    public void CloseShop(){
         shopUI.SetActive(false);
         menuUI.SetActive(true);
     }
