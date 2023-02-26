@@ -26,8 +26,8 @@ public class WorldGenerator : MonoBehaviour
     private Vector3 distanceMarker;
 
     // Constants -----------------------------------------------
-    private const float DISTANCE_TO_SPAWN_SECTION = 20f;
-    private const float DISTANCE_TO_DELETE_SECTION = 40f;
+    private const float DISTANCE_TO_SPAWN_SECTION = 40f;
+    private const float DISTANCE_TO_DELETE_SECTION = 120f;
 
     // Marker Positions---------------
     private Vector3 worldEndRight;
