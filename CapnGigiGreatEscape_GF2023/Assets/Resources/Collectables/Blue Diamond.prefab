@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7180997325498111116}
   - component: {fileID: 4714853667027927109}
   - component: {fileID: 2951778570589432687}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blue Diamond
   m_TagString: Collectables
   m_Icon: {fileID: 0}

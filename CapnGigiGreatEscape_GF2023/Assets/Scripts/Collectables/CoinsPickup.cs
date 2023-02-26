@@ -6,13 +6,12 @@ public class CoinsPickup : MonoBehaviour
 {
     public int coinsAmount = 20;
     private Animator animatorCoin;
+    public CoinAudio coinAudio;
 
 
         void Start()
     {
-
                 animatorCoin = gameObject.GetComponent<Animator>();
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -21,7 +20,9 @@ public class CoinsPickup : MonoBehaviour
         if(player){
             // Add health to the character 
             player.Coins += coinsAmount;
-             animatorCoin.SetTrigger("Collect");
+            // animation and audio
+            animatorCoin.SetTrigger("Collect");
+            coinAudio.PlayCoinAudio();
             // Destroy the collectable
             Destroy(gameObject, 0.5f);
         }
