@@ -16,6 +16,7 @@ public class CloneController : MonoBehaviour
     {
         enemyGenerator = GetComponent<EnemyGenerator>();
         ai = GetComponent<ProceduralAI>();
+        player = GameObject.Find("CapnGigi");
 
         if (gameObject.activeSelf == false)
         {
@@ -23,26 +24,45 @@ public class CloneController : MonoBehaviour
             try
             {
                 enemySpawnMarkerList = ai.GenerateEnemySpawnMarkerList();
+                foreach (GameObject marker in enemySpawnMarkerList)
+                {
+                    enemyGenerator.SpawnEnemies();
 
+                }
+                player = GameObject.Find("CapnGigi");
+                StartCoroutine(DeactivateClone());
             }
             catch (NullReferenceException nre)
             {
                 Debug.LogError(nre.Message);
             }
 
-            // HERE IDIOT
-            foreach (GameObject marker in enemySpawnMarkerList)
+            
+        }
+        else
+        {
+            try
             {
-                enemyGenerator.SpawnEnemies();
+                foreach (GameObject marker in enemySpawnMarkerList)
+                {
+                    enemyGenerator.SpawnEnemies();
+
+                }
 
             }
-            player = GameObject.Find("CapnGigi");
+            catch (NullReferenceException nre)
+            {
+                Debug.Log(nre.Message);
+            }
+
+            
+
             StartCoroutine(DeactivateClone());
         }
 
-        enemyGenerator.SpawnEnemies();
-        player = GameObject.Find("CapnGigi");
-        StartCoroutine(DeactivateClone());
+
+        //enemyGenerator.SpawnEnemies();
+        //StartCoroutine(DeactivateClone());
     }
 
     private IEnumerator DeactivateClone()

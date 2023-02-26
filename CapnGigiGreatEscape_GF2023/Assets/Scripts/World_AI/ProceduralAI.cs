@@ -258,11 +258,19 @@ public class ProceduralAI : MonoBehaviour
 
     public List<GameObject> GenerateEnemySpawnMarkerList()
     {
+        if (initArrayOfEnemySpawnMarkers != null)
+        {
+            for (int i = 0; i < initArrayOfEnemySpawnMarkers.Length; i++)
+            {
+                initArrayOfEnemySpawnMarkers[i] = null;
+            }
+
+        }
         // Create Object Array from Resources folder
         initArrayOfEnemySpawnMarkers = GameObject.FindGameObjectsWithTag("EnemySpawn");
 
         // Optional Debug:
-        //DebugGeneratedObjectArray(initArrayOfEnemyPrefabs);
+        //DebugGeneratedObjectArray(initArrayOfEnemySpawnMarkers);
 
         // Fill list with Array objects
         foreach (GameObject value in initArrayOfEnemySpawnMarkers)
@@ -270,7 +278,7 @@ public class ProceduralAI : MonoBehaviour
             enemySpawnMarkers.Add(value);
         }
         // Optional List Debug:
-        //DebugGeneratedList(enemyPrefabs);
+        //DebugGeneratedList(enemySpawnMarkers);
 
         // Return new Enemy List
         return new List<GameObject>(enemySpawnMarkers);
