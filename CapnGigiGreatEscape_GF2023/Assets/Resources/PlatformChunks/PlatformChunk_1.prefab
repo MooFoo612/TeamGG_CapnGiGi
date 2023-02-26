@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8952461840969081520}
   - component: {fileID: -3266519529521426456}
   - component: {fileID: -6104343516165143228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformChunk_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

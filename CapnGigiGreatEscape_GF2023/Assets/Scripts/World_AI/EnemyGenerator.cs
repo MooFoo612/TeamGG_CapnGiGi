@@ -8,8 +8,8 @@ using static WorldObject_Classes;
 public class EnemyGenerator : MonoBehaviour
 {
     // Grab Enemy Prefabs
-    private static List<GameObject> enemyList = new List<GameObject>();
-    private static List<Vector3> enemySpawnPositions = new List<Vector3>();
+    private List<GameObject> enemyList = new List<GameObject>();
+    private List<Vector3> enemySpawnPositions = new List<Vector3>();
 
     // Grab Spawn Positions 
     private UnityEngine.Object[] initArrayOfEnemySpawnMarkers;
@@ -65,11 +65,14 @@ public class EnemyGenerator : MonoBehaviour
     {
         // Get random Enemy from List
         enemyToSpawn = RandomEnemyGenerator(0, enemyList.Count);
-        //Vector3 spawnPoint = RandomSpawnGenerator(0, enemySpawnPositions.Count);
+
+        // Get the Transform to Spawn Instance and log to controller + console
         Transform spawnEnemy = Instantiate(enemyToSpawn, enemySpawnPosition, Quaternion.identity);
         ProceduralAI.enemySpawned += 1;
-        // Return the transform for sister method
-        return spawnEnemy;
+        Debug.Log("Enemy Spawned: " + spawnEnemy.name + ". Total Enemies spawned: " + ProceduralAI.enemySpawned);
+
+        // Return enemy transform
+        return spawnEnemy;    
     }
 #endregion
 
@@ -79,15 +82,38 @@ public class EnemyGenerator : MonoBehaviour
         // Variable to hold the index of random list element
         int randomEnemy = 0;
 
-        // Get random index for list
-        randomEnemy = UnityEngine.Random.Range(0, enemyList.Count);
+        try
+        {
+            // Get random index for list
+            randomEnemy = UnityEngine.Random.Range(floor, ceiling);
 
-        // Call GameObject from list and get its transform
-        enemyObj = enemyList[randomEnemy];
-        enemyToSpawn = enemyObj.transform;
+            // Call GameObject from list and get its transform
+            enemyObj = enemyList[randomEnemy];
+            enemyToSpawn = enemyObj.transform;
 
-        // Return the randomly-chosen enemy to spawn
-        return enemyToSpawn;
+            // Return the randomly-chosen enemy to spawn
+            return enemyToSpawn;
+        }
+        catch (ArgumentException ae)
+        {
+            Debug.Log(ae.Message);
+
+            if (enemyList.Count == 0 )
+            {
+                // Generate new Marker list
+                enemyList = ai.GenerateEnemyList();
+            }
+
+            // Get random index for list
+            randomEnemy = UnityEngine.Random.Range(floor, ceiling);
+
+            // Call GameObject from list and get its transform
+            enemyObj = enemyList[randomEnemy];
+            enemyToSpawn = enemyObj.transform;
+
+            // Return the randomly-chosen enemy to spawn
+            return enemyToSpawn;
+        }
     }
 
     private Vector3 RandomSpawnGenerator(int floor, int ceiling)
@@ -96,7 +122,7 @@ public class EnemyGenerator : MonoBehaviour
         int randomSpawnPoint = 0;
 
         // Get random index for list
-        randomSpawnPoint = UnityEngine.Random.Range(0, enemySpawnPositions.Count);
+        randomSpawnPoint = UnityEngine.Random.Range(floor, ceiling);
 
         // Call Vector from list and get its transform
         Vector3 spawnPoint = enemySpawnPositions[randomSpawnPoint];
@@ -108,7 +134,7 @@ public class EnemyGenerator : MonoBehaviour
 
     public List<Vector3> GenerateEnemySpawnMarkerPositions()
     {
-        if (enemySpawnPositions != null)
+        if (enemySpawnPositions.Count > 0)
         {
             enemySpawnPositions.Clear();
 

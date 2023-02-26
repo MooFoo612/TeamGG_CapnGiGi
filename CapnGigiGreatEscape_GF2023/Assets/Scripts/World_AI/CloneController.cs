@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CloneController : MonoBehaviour
@@ -8,18 +9,18 @@ public class CloneController : MonoBehaviour
     private GameObject player;
     private Vector3 playerPosition;
     private Vector3 deleteMarker;
-    private float distanceFromPlayer;
+    private static float distanceFromPlayer;
     private float deactivationDistance;
     private EnemyGenerator enemyGenerator;
-    private ProceduralAI ai;
-    private List<GameObject> enemySpawnMarkerList;
+    //private ProceduralAI ai;
+    //public static List<GameObject> enemySpawnMarkerList;
     private static List<Vector3> enemySpawnPositions = new List<Vector3>();
 
     void Awake()
     {
         enemyGenerator = GetComponent<EnemyGenerator>();
-        ai = GetComponent<ProceduralAI>();
         player = GameObject.Find("CapnGigi");
+        deactivationDistance = 35f;
 
         // If this has been deactivated
         if (gameObject.activeSelf == false)
@@ -32,12 +33,14 @@ public class CloneController : MonoBehaviour
                 // Grab list of spawn positions
                 enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
 
-                // For each spawn position, spawn an enemy
+                // For each spawn position, spawn an enemy and remove the spawn position from the list of available positions
                 foreach (Vector3 spawnPosition in enemySpawnPositions)
                 {
                     enemyGenerator.SpawnEnemies();
-
+                    //enemySpawnPositions.Remove(spawnPosition);
                 }
+                enemySpawnPositions.Clear();
+
                 // Initialise Deactivation Sequence, Cap'n!
                 StartCoroutine(DeactivateClone());
             }
@@ -45,7 +48,7 @@ public class CloneController : MonoBehaviour
             catch (NullReferenceException nre)
             {
                 // Make computer say more.
-                Debug.LogError(nre.Message);
+                Debug.Log(nre.Message);
             }     
             // Make sure this runs lol
             StartCoroutine(DeactivateClone());
@@ -57,9 +60,11 @@ public class CloneController : MonoBehaviour
                 enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
 
                 foreach (Vector3 spawnPosition in enemySpawnPositions)
-                {
-                    enemyGenerator.SpawnEnemies();
+                {                  
+                    enemyGenerator.SpawnEnemies();    
                 }
+
+                enemySpawnPositions.Clear();
                 StartCoroutine(DeactivateClone());
 
             }
@@ -71,16 +76,34 @@ public class CloneController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        StartCoroutine(DeactivateClone());
+    }
+
     private IEnumerator DeactivateClone()
     {
-        yield return new WaitForSeconds(45f);
-        //playerPosition = player.transform.position;
-        //distanceFromPlayer = Vector3.Distance(gameObject.transform.position, playerPosition);
-        //Debug.Log("Distance " + distanceFromPlayer);
+        // After X seconds
+        yield return new WaitForSeconds(1f);
 
-        ProceduralAI.chunksDeactivated += 1;
-        Debug.Log("Chunks Deactivated: " + ProceduralAI.chunksDeactivated);
-        gameObject.SetActive(false);
-          
+        // Finds the players position
+        playerPosition = player.transform.position;
+
+        // Finds the distance between the player and the Game Object
+        distanceFromPlayer = Vector3.Distance(gameObject.transform.position, playerPosition);
+
+        // Logs distance to the console
+        Debug.Log("Distance from player: " + distanceFromPlayer);
+
+        // If the distance from the player is greater than the distance requirement to be deactivated
+        if (distanceFromPlayer > deactivationDistance) 
+        {
+            // Log deactivation to controller + console
+            ProceduralAI.chunksDeactivated += 1;
+            Debug.Log("Chunks Deactivated: " + ProceduralAI.chunksDeactivated);
+
+            // Deactivate the Game Object
+            gameObject.SetActive(false);
+        }
     }
 }

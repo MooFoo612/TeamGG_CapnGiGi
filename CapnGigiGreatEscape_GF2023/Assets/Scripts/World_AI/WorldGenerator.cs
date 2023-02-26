@@ -2,13 +2,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WorldGenerator : MonoBehaviour
 {
     #region Variables
+    // ------------------------------------------------
     [SerializeField] private Transform groundStart;
     [SerializeField] private Transform platformStart;
     [SerializeField] private GameObject player;
+
+    // Generators -------------------------------------
     private GroundGenerator groundGenerator;
     private PlatformGenerator platformGenerator;
     private EnemyGenerator enemyGenerator;
@@ -16,13 +20,14 @@ public class WorldGenerator : MonoBehaviour
     private TrapGenerator trapGenerator;
     private bool reversedWorld;
 
-    // Distance management
+    // Distance management ---------------
     private float totalDistance;
     private GameObject distanceMarkerObj;
     private Vector3 distanceMarker;
 
-    private const float DISTANCE_TO_SPAWN_SECTION_RIGHT = 20f;
-    private const float DISTANCE_TO_SPAWN_SECTION_LEFT = 20f;
+    // Constants -----------------------------------------------
+    private const float DISTANCE_TO_SPAWN_SECTION = 40f;
+    private const float DISTANCE_TO_DELETE_SECTION = 120f;
 
     // Marker Positions---------------
     private Vector3 worldEndRight;
@@ -33,6 +38,7 @@ public class WorldGenerator : MonoBehaviour
     //--------------------------------
     private Vector3 platformEndRight;
     private Vector3 platformEndLeft;
+    //--------------------------------
 
     #endregion
 
@@ -113,7 +119,7 @@ public class WorldGenerator : MonoBehaviour
             groundEndRight = groundGenerator.groundEnd_Right;
 
             // If the player is close enough
-            if (Vector3.Distance(player.transform.position, groundEndRight) < DISTANCE_TO_SPAWN_SECTION_RIGHT)
+            if (Vector3.Distance(player.transform.position, groundEndRight) < DISTANCE_TO_SPAWN_SECTION)
             {
                 // Spawn another section
                 SpawnGameWorld_Right();
@@ -124,8 +130,17 @@ public class WorldGenerator : MonoBehaviour
                 break;
             }
         }
- 
     }
+    /*
+    private IEnumerator DeleteWorld_Right()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (Vector3.Distance(player.transform.position, deleteMarker) > DISTANCE_TO_DELETE_SECTION)
+        {
+            //DEACTIVATE GAMEOBJECT
+        }
+    }*/
 }
 
 

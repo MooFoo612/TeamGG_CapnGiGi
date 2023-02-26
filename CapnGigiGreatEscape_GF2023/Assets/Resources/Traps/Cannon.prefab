@@ -254,7 +254,7 @@ MonoBehaviour:
   target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
   enemy: {fileID: 1253520983312449132}
   spawn: {fileID: 5058607978272346995}
-  projectile: {fileID: 3286326179606499219, guid: 4d0f90ff67168b04ba3769538be34c7e, type: 3}
+  projectile: {fileID: 3286326179606499219, guid: 21eb96ed0e1c00747ad5a76399d71c08, type: 3}
 --- !u!1 &2274729897991913738
 GameObject:
   m_ObjectHideFlags: 0
