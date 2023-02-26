@@ -8,8 +8,8 @@ using static WorldObject_Classes;
 public class CollectableGenerator : MonoBehaviour
 {
     // Grab Enemy Prefabs
-    private static List<GameObject> collectableList = new List<GameObject>();
-    private static List<Vector3> collectableSpawnPositions = new List<Vector3>();
+    private List<GameObject> collectableList = new List<GameObject>();
+    private List<Vector3> collectableSpawnPositions = new List<Vector3>();
 
     // Grab Spawn Positions 
     private UnityEngine.Object[] initArrayOfEnemySpawnMarkers;
@@ -108,7 +108,7 @@ public class CollectableGenerator : MonoBehaviour
 
     public List<Vector3> GenerateCollectableSpawnMarkerPositions()
     {
-        if (collectableSpawnPositions != null)
+        if (collectableSpawnPositions.Count > 0)
         {
             collectableSpawnPositions.Clear();
 

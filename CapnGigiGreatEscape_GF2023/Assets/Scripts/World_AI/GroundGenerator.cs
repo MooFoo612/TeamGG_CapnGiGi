@@ -92,7 +92,7 @@ public class GroundGenerator : MonoBehaviour
         int randomChunk = 0;
 
         // Get random index for list
-        randomChunk = UnityEngine.Random.Range(0, groundList.Count);
+        randomChunk = UnityEngine.Random.Range(floor, ceiling);
 
         // Call GameObject from list and get its transform
         groundObj = groundList[randomChunk];

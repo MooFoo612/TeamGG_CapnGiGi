@@ -8,8 +8,8 @@ using static WorldObject_Classes;
 public class TrapGenerator : MonoBehaviour
 {
     // Grab Enemy Prefabs
-    private static List<GameObject> trapList = new List<GameObject>();
-    private static List<Vector3> trapSpawnPositions = new List<Vector3>();
+    private List<GameObject> trapList = new List<GameObject>();
+    private List<Vector3> trapSpawnPositions = new List<Vector3>();
 
     // Grab Spawn Positions 
     private UnityEngine.Object[] initArrayOfEnemySpawnMarkers;
@@ -108,7 +108,7 @@ public class TrapGenerator : MonoBehaviour
 
     public List<Vector3> GenerateTrapSpawnMarkerPositions()
     {
-        if (trapSpawnPositions != null)
+        if (trapSpawnPositions.Count > 0)
         {
             trapSpawnPositions.Clear();
 

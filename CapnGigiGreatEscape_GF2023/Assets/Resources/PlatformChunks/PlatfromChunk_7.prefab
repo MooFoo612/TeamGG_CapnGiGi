@@ -152,6 +152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectableSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: a2992e259a807074a9c6c365ac619550, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: a2992e259a807074a9c6c365ac619550, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -213,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
       propertyPath: m_Name
       value: TrapSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
       propertyPath: m_RootOrder
@@ -320,6 +328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform_Section 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6928397224036907841, guid: d867743c22ae89d42af8358a3535e0db, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d867743c22ae89d42af8358a3535e0db, type: 3}
 --- !u!4 &1464968283568995274 stripped
@@ -403,6 +415,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformEnd_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: 577a70f1771767f44878fe4414fe0c4d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577a70f1771767f44878fe4414fe0c4d, type: 3}
 --- !u!4 &4472535011975906479 stripped
@@ -464,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 6556402946728977151, guid: 3c48e570658f21b47a64f8b1899b4b56, type: 3}
       propertyPath: m_Name
       value: PlatformEnd_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: 3c48e570658f21b47a64f8b1899b4b56, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c48e570658f21b47a64f8b1899b4b56, type: 3}
