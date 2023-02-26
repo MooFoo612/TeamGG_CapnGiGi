@@ -2050,17 +2050,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
-  m_sharedMaterial: {fileID: -2165193683611157583, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+  m_sharedMaterial: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282200627
+  m_fontColor: {r: 0.20000002, g: 0.19607845, b: 0.2392157, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
