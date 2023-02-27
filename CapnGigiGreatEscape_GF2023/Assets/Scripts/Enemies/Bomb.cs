@@ -6,7 +6,7 @@ public class Bomb : MonoBehaviour
 {
         Collider2D Col;
         private Animator animatorB;
-
+        public SoundEffect Bombaudio;
         public Vector2 knockback = new Vector2(0, 0);
         public int damage = 20;
 
@@ -31,6 +31,7 @@ public class Bomb : MonoBehaviour
         Damageable damageable = collision.GetComponent<Damageable>();
         // Check if can be hit 
         if(damageable != null){
+            Bombaudio.PlaySoundEffect();
             animatorB.SetTrigger("Boom");
             // Reverse the knockback vector direction depending on localScale 
             Vector2 deliveredKnockback = transform.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
