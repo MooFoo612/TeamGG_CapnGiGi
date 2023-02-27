@@ -50,7 +50,8 @@ public class Bomb : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             // Col.Radius = 0.5;
 
-
+            Bombaudio.PlaySoundEffect();
+            
             animatorB.SetTrigger("Boom");
 
             Destroy(gameObject, 0.5f);

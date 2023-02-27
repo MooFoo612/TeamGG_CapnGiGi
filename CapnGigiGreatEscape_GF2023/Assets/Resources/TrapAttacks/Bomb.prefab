@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0219278b5294874aac69777877c0c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bombaudio: {fileID: 519994368442998121}
   knockback: {x: -6, y: 0}
   damage: 20
 --- !u!1 &9143426933146104681
