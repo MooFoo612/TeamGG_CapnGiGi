@@ -7,6 +7,49 @@ using static WorldObject_Classes;
 
 public class EnemyGenerator : MonoBehaviour
 {
+    private ListFactory lf;
+    private List<GameObject> enemyList;
+    private Vector3 spawnLocation;
+
+    private void Awake()
+    {
+        spawnLocation = gameObject.transform.position;
+        lf = new ListFactory();
+        enemyList = lf.GenerateEnemyList();
+    }
+    private void Start()
+    {
+        GenerateRandomEnemy(enemyList, spawnLocation);
+    }
+    private void GenerateRandomEnemy(List<GameObject> enemyList, Vector3 spawnLocation)
+    {
+        int randomEnemy = UnityEngine.Random.Range(0, enemyList.Count - 1);
+        Instantiate(enemyList[randomEnemy], spawnLocation, Quaternion.identity);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     // Grab Enemy Prefabs
     private List<GameObject> enemyList = new List<GameObject>();
     private List<Vector3> enemySpawnPositions = new List<Vector3>();
@@ -89,6 +132,12 @@ public class EnemyGenerator : MonoBehaviour
 
         try
         {
+            if (enemyList.Count == 0)
+            {
+                // Generate new Marker list
+                enemyList = ai.GenerateEnemyList();
+            }
+
             // Get random index for list
             randomEnemy = UnityEngine.Random.Range(floor, ceiling);
 
@@ -103,11 +152,7 @@ public class EnemyGenerator : MonoBehaviour
         {
             Debug.Log(ae.Message);
 
-            if (enemyList.Count == 0 )
-            {
-                // Generate new Marker list
-                enemyList = ai.GenerateEnemyList();
-            }
+            
 
             // Get random index for list
             randomEnemy = UnityEngine.Random.Range(floor, ceiling);
@@ -175,6 +220,7 @@ public class EnemyGenerator : MonoBehaviour
                         enemySpawnPositions.Add(childObj.position);
                     }
                 }
+                return new List<Vector3>(enemySpawnPositions);
             }
             catch (NullReferenceException nre)
             {
@@ -185,70 +231,43 @@ public class EnemyGenerator : MonoBehaviour
             return new List<Vector3>(enemySpawnPositions);
         }
     }
-    /*
+    
     public List<GameObject> GenerateEnemySpawnMarkerList()
     {
-        if (enemySpawnMarkers.Count > 0)
+        try
         {
-            enemySpawnMarkers.Clear();
+            parentObj = gameObject.transform;
 
-            try
+            foreach (GameObject childObj in parentObj)
             {
-                parentObj = gameObject.transform;
-
-                foreach (GameObject childObj in parentObj)
+                if (childObj.CompareTag("EnemySpawn"))
                 {
-                    if (childObj.CompareTag("EnemySpawn"))
-                    {
-                        enemySpawnMarkers.Add(childObj);
-                    }
+                    enemySpawnMarkers.Add(childObj);
                 }
             }
-            catch (NullReferenceException nre)
-            {
-                Debug.Log("Null Reference Exception! : " + nre);
-                parentObj = gameObject.transform;
-
-                foreach (GameObject childObj in parentObj)
-                {
-                    if (childObj.CompareTag("EnemySpawn"))
-                    {
-                        enemySpawnMarkers.Add(childObj);
-                    }
-                }
-            }
-
-            return new List<GameObject>(enemySpawnMarkers);
         }
-        else
+        catch (NullReferenceException nre)
         {
-            try
-            {
-                parentObj = gameObject.transform;
+            Debug.Log("Null Reference Exception! : " + nre);
+            parentObj = gameObject.transform;
 
-                foreach (GameObject childObj in parentObj)
+            foreach (GameObject childObj in parentObj)
+            {
+                if (childObj.CompareTag("EnemySpawn"))
                 {
-                    if (childObj.CompareTag("EnemySpawn"))
-                    {
-                        enemySpawnMarkers.Add(childObj);
-                    }
+                    enemySpawnMarkers.Add(childObj);
                 }
             }
-            catch (NullReferenceException nre)
-            {
-                Debug.Log("Null Reference Exception! : " + nre);
-            }
-
-            // Return new Enemy List
-            return new List<GameObject>(enemySpawnMarkers);
         }
-    }*/
+
+        return new List<GameObject>(enemySpawnMarkers);
+    }
 
     private void OnDisable()
     {
         // Code here
     }
-
-
-
 }
+    */
+
+

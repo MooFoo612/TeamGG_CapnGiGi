@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 7843998077406815205}
   - component: {fileID: 7192395674556116925}
   - component: {fileID: 1539507158883199638}
-  - component: {fileID: -5002623504643525976}
-  - component: {fileID: 1549753422104961012}
-  - component: {fileID: 1195697119659189668}
   - component: {fileID: 6334466691624415718}
   m_Layer: 6
   m_Name: GroundChunk_7
@@ -108,42 +105,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5002623504643525976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8516677607178164458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133a14d2a10877c4199afb35268d5515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1549753422104961012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8516677607178164458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2991a9715661ee44aa7272cd11584a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1195697119659189668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8516677607178164458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6123af5dcd8fa948946d4cf6eebe969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6334466691624415718
 MonoBehaviour:
   m_ObjectHideFlags: 0

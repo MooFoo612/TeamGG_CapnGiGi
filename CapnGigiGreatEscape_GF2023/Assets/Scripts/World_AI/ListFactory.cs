@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ProceduralAI : MonoBehaviour
+public class ListFactory : MonoBehaviour
 {
     #region Script Access
 
@@ -32,31 +32,25 @@ public class ProceduralAI : MonoBehaviour
 
     #region List & Array Declarations
 
-    // List for Ground Section prefabs
-    public static List<GameObject> groundPrefabs = new List<GameObject>();
-
-    // List for Platform Section prefabs
-    public static List<GameObject> platformPrefabs = new List<GameObject>();
-
-    // List for Enemy prefabs
-    public static List<GameObject> enemyPrefabs = new List<GameObject>();
-    
-    // List for Enemy Spawn Markers
-    public static List<GameObject> enemySpawnMarkers = new List<GameObject>();
-
-    // List for Collectable prefabs
-    public static List<GameObject> collectablePrefabs = new List<GameObject>();
+    // Ground Chunk Prefabs
+    public static List<GameObject> groundPrefabs;
+    // Platform Chunk Prefabs
+    public static List<GameObject> platformPrefabs;
+    // Enemy Prefabs
+    public static List<GameObject> enemyPrefabs;
+    // Collectable Prefabs
+    public static List<GameObject> collectablePrefabs;
+    // Trap Prefabs
+    public static List<GameObject> trapPrefabs;
 
     // List for Enemy Spawn Markers
-    public static List<GameObject> collectableSpawnMarkers = new List<GameObject>();
-
-    // List for Trap prefabs
-    public static List<GameObject> trapPrefabs = new List<GameObject>();
-
+    public static List<GameObject> collectableSpawnMarkers;
     // List for Enemy Spawn Markers
-    public static List<GameObject> trapSpawnMarkers = new List<GameObject>();
+    public static List<GameObject> trapSpawnMarkers;
+    // List for Enemy Spawn Markers
+    public static List<GameObject> enemySpawnMarkers;
 
-    // List for World Generation
+    /*/ List for World Generation
     public static List<GameObject> worldList = new List<GameObject>();
 
     // Create Ground Object array for Ground List dependency 
@@ -82,10 +76,7 @@ public class ProceduralAI : MonoBehaviour
 
     // Create Enemy Object Array for Enemy List dependency
     private UnityEngine.Object[] initArrayOfTrapSpawnMarkers;
-
-    // Create Object array to store generated World objects
-    public UnityEngine.Object[] worldArray;
-
+    */
     #endregion
 
     #region Counters
@@ -122,7 +113,7 @@ public class ProceduralAI : MonoBehaviour
         player = GameObject.Find("CapnGigi");
 
         // Load all GroundSection prefabs into list, display list in console
-        groundPrefabs = GenerateGroundList();
+        groundPrefabs = GenerateGroundChunkList();
 
         // Load all PlatformSection prefabs into list, display list in console
         platformPrefabs = GeneratePlatformList();
@@ -137,7 +128,7 @@ public class ProceduralAI : MonoBehaviour
         trapPrefabs = GenerateTrapList();
        
         // Create World array
-        worldArray = new UnityEngine.Object[5];
+        //worldArray = new UnityEngine.Object[5];
 
     }
     
@@ -180,7 +171,7 @@ public class ProceduralAI : MonoBehaviour
 
     #region List & Array Generation
 
-    // Array for holding generated live Game World | Places player in middle Array block 
+    /*/ Array for holding generated live Game World | Places player in middle Array block 
     public UnityEngine.Object[] GenerateGameWorld()
     {
         UnityEngine.Object[] liveGameWorld = new UnityEngine.Object[5];
@@ -191,11 +182,12 @@ public class ProceduralAI : MonoBehaviour
     {
         UnityEngine.Object[] initGameWorld = new UnityEngine.Object[5];
         return initGameWorld;
-    }
+    }*/
 
     // List for holding Ground Section Prefabs
-    public List<GameObject> GenerateGroundList()
+    public List<GameObject> GenerateGroundChunkList()
     {
+        /*
         // Create Object Array from Resources folder
         initArrayOfGroundPrefabs = Resources.LoadAll("GroundChunks", typeof(GameObject));
 
@@ -209,15 +201,16 @@ public class ProceduralAI : MonoBehaviour
         }
         // Optional List Debug:
         //DebugGeneratedList(groundPrefabs);
-
+        */
         // Return new Ground List
+        groundPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("GroundChunks"));
         return new List<GameObject>(groundPrefabs);
     }
 
     // List for holding Platform Section Prefabs
     public List<GameObject> GeneratePlatformList()
     {
-        // Create Object Array from Resources folder
+        /*/ Create Object Array from Resources folder
         initArrayOfPlatformPrefabs = Resources.LoadAll("PlatformChunks", typeof(GameObject));
         // Optional Array Debug:
         //DebugGeneratedObjectArray(initArrayOfPlatformPrefabs);
@@ -229,16 +222,17 @@ public class ProceduralAI : MonoBehaviour
         }
         // Optional List Debug:
         //DebugGeneratedList(platformPrefabs);
+        */
 
         // Return new Platform List
-        return new List<GameObject>(platformPrefabs);
-    
+        platformPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("PlatformChunks"));
+        return new List<GameObject>(platformPrefabs);    
     }
 
     // List for holding Enemy Prefabs
     public List<GameObject> GenerateEnemyList()
     {
-        // Create Object Array from Resources folder
+        /*/ Create Object Array from Resources folder
         initArrayOfEnemyPrefabs = Resources.LoadAll("Enemies", typeof(GameObject));
 
         // Optional Debug:
@@ -251,11 +245,53 @@ public class ProceduralAI : MonoBehaviour
         }
         // Optional List Debug:
         //DebugGeneratedList(enemyPrefabs);
-
+        */
         // Return new Enemy List
+        enemyPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Enemies"));
         return new List<GameObject>(enemyPrefabs);
     }
+    public List<GameObject> GenerateCollectableList()
+    {
+        /*/ Create Object Array from Resources folder
+        initArrayOfCollectablePrefabs = Resources.LoadAll("Collectables", typeof(GameObject));
 
+        // Optional Debug:
+        //DebugGeneratedObjectArray(initArrayOfCollectablePrefabs);
+
+        // Fill list with Array objects
+        foreach (GameObject value in initArrayOfCollectablePrefabs)
+        {
+            collectablePrefabs.Add(value);
+        }
+        // Optional List Debug:
+        //DebugGeneratedList(collectablePrefabs);
+        */
+        // Return new Collectable List
+        collectablePrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Collectables"));
+
+        return new List<GameObject>(collectablePrefabs);
+    }
+    public List<GameObject> GenerateTrapList()
+    {
+        /*/ Create Object Array from Resources folder
+        initArrayOfTrapPrefabs = Resources.LoadAll("Traps", typeof(GameObject));
+
+        // Optional Debug:
+        //DebugGeneratedObjectArray(initArrayOfTrapPrefabs);
+
+        // Fill list with Array objects
+        foreach (GameObject value in initArrayOfTrapPrefabs)
+        {
+            trapPrefabs.Add(value);
+        }
+        // Optional List Debug:
+        //DebugGeneratedList(trapPrefabs);
+        */
+        // Return new Enemy List
+        trapPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Traps"));
+        return new List<GameObject>(trapPrefabs);
+    }
+    /*
     public List<GameObject> GenerateEnemySpawnMarkerList()
     {
         if (initArrayOfEnemySpawnMarkers != null)
@@ -283,27 +319,8 @@ public class ProceduralAI : MonoBehaviour
         // Return new Enemy List
         return new List<GameObject>(enemySpawnMarkers);
     }
-
-    public List<GameObject> GenerateCollectableList()
-    {
-        // Create Object Array from Resources folder
-        initArrayOfCollectablePrefabs = Resources.LoadAll("Collectables", typeof(GameObject));
-
-        // Optional Debug:
-        //DebugGeneratedObjectArray(initArrayOfCollectablePrefabs);
-
-        // Fill list with Array objects
-        foreach (GameObject value in initArrayOfCollectablePrefabs)
-        {
-            collectablePrefabs.Add(value);
-        }
-        // Optional List Debug:
-        //DebugGeneratedList(collectablePrefabs);
-
-        // Return new Enemy List
-        return new List<GameObject>(collectablePrefabs);
-    }
-
+    */
+    /*
     public List<GameObject> GenerateCollectableSpawnMarkerList()
     {
         // Create Object Array from Resources folder
@@ -323,29 +340,10 @@ public class ProceduralAI : MonoBehaviour
         // Return new Enemy List
         return new List<GameObject>(collectableSpawnMarkers);
     }
+    */
 
-
-    public List<GameObject> GenerateTrapList()
-    {
-        // Create Object Array from Resources folder
-        initArrayOfTrapPrefabs = Resources.LoadAll("Traps", typeof(GameObject));
-
-        // Optional Debug:
-        //DebugGeneratedObjectArray(initArrayOfTrapPrefabs);
-
-        // Fill list with Array objects
-        foreach (GameObject value in initArrayOfTrapPrefabs)
-        {
-            trapPrefabs.Add(value);
-        }
-        // Optional List Debug:
-        //DebugGeneratedList(trapPrefabs);
-
-        // Return new Enemy List
-        return new List<GameObject>(trapPrefabs);
-    }
     #endregion
-
+    /*
     public List<GameObject> GenerateTrapSpawnMarkerList()
     {
         // Create Object Array from Resources folder
@@ -365,7 +363,7 @@ public class ProceduralAI : MonoBehaviour
         // Return new Enemy List
         return new List<GameObject>(trapSpawnMarkers);
     }
-
+    
     private float TotalDistanceCalculation(Vector3 distanceMarker, Vector3 playerPosition)
     {
         if (!reversedWorld)
@@ -381,7 +379,6 @@ public class ProceduralAI : MonoBehaviour
         }
     }
 
-    #region Debug Functions
 
     // For Debugging any generated Object Array | Length + Names
     private void DebugGeneratedObjectArray(UnityEngine.Object[] prefabArray)
@@ -395,6 +392,9 @@ public class ProceduralAI : MonoBehaviour
             Debug.Log("Prefab in Array: " + value.name);
         }
     }
+    */
+    #region Debug Functions
+
     // For Debugging any generated List | Length + Names
     private void DebugGeneratedList(List<GameObject> prefabList)
     {

@@ -14,12 +14,12 @@ public class Damageable : MonoBehaviour
     public float invincibilityTime = 0.25f;
     private float timeSinceHit = 0;
     [SerializeField] private int _maxHealth = 100;
-
+    /*
     private void Start()
     {
         StartCoroutine(myCheck());
     }
-
+    */
     public int MaxHealth{
         get{
             return _maxHealth;
@@ -36,7 +36,7 @@ public class Damageable : MonoBehaviour
             // Update unity event for the health bar
             healthChanged?.Invoke(_health, MaxHealth);
             // If health is less than 0 
-            if(_health <= 0){
+            if(_health <= 0 || player.transform.position.y < -9){
                 // Kill the character 
                 IsAlive = false;
                 /*
@@ -122,7 +122,7 @@ public class Damageable : MonoBehaviour
             CharacterEvents.characterHealed(gameObject, actualHeal);
         }
     }
-
+    /*
     private IEnumerator myCheck()
     {
         while (true)
@@ -135,4 +135,5 @@ public class Damageable : MonoBehaviour
             }
         }
     }
+    */
 }

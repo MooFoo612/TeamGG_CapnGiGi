@@ -7,6 +7,57 @@ using static WorldObject_Classes;
 
 public class TrapGenerator : MonoBehaviour
 {
+    private ListFactory lf;
+    private List<GameObject> trapList;
+    private Vector3 spawnLocation;
+
+    private void Awake()
+    {
+        spawnLocation = gameObject.transform.position;
+        lf = new ListFactory();
+        trapList = lf.GenerateTrapList();
+    }
+    private void Start()
+    {
+        GenerateRandomTrap(trapList, spawnLocation);
+    }
+    private void GenerateRandomTrap(List<GameObject> trapList, Vector3 spawnLocation)
+    {
+        int randomTrap = UnityEngine.Random.Range(0, trapList.Count - 1);
+        Instantiate(trapList[randomTrap], spawnLocation, Quaternion.identity);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     // Grab Enemy Prefabs
     private List<GameObject> trapList = new List<GameObject>();
     private List<Vector3> trapSpawnPositions = new List<Vector3>();
@@ -149,7 +200,7 @@ public class TrapGenerator : MonoBehaviour
 
                 foreach (Transform childObj in parentObj)
                 {
-                    if (childObj.CompareTag("EnemySpawn"))
+                    if (childObj.CompareTag("TrapSpawn"))
                     {
                         trapSpawnPositions.Add(childObj.position);
                     }
@@ -170,7 +221,7 @@ public class TrapGenerator : MonoBehaviour
 
                 foreach (Transform childObj in parentObj)
                 {
-                    if (childObj.CompareTag("EnemySpawn"))
+                    if (childObj.CompareTag("TrapSpawn"))
                     {
                         trapSpawnPositions.Add(childObj.position);
                     }
@@ -185,70 +236,45 @@ public class TrapGenerator : MonoBehaviour
             return new List<Vector3>(trapSpawnPositions);
         }
     }
-    /*
-    public List<GameObject> GenerateEnemySpawnMarkerList()
+
+    public List<GameObject> GenerateTrapSpawnMarkerList()
     {
-        if (enemySpawnMarkers.Count > 0)
+        try
         {
-            enemySpawnMarkers.Clear();
+            parentObj = gameObject.transform;
 
-            try
+            foreach (GameObject childObj in parentObj)
             {
-                parentObj = gameObject.transform;
-
-                foreach (GameObject childObj in parentObj)
+                if (childObj.CompareTag("EnemySpawn"))
                 {
-                    if (childObj.CompareTag("EnemySpawn"))
-                    {
-                        enemySpawnMarkers.Add(childObj);
-                    }
+                    trapSpawnMarkers.Add(childObj);
                 }
             }
-            catch (NullReferenceException nre)
-            {
-                Debug.Log("Null Reference Exception! : " + nre);
-                parentObj = gameObject.transform;
-
-                foreach (GameObject childObj in parentObj)
-                {
-                    if (childObj.CompareTag("EnemySpawn"))
-                    {
-                        enemySpawnMarkers.Add(childObj);
-                    }
-                }
-            }
-
-            return new List<GameObject>(enemySpawnMarkers);
         }
-        else
+        catch (NullReferenceException nre)
         {
-            try
-            {
-                parentObj = gameObject.transform;
+            Debug.Log("Null Reference Exception! : " + nre);
+            parentObj = gameObject.transform;
 
-                foreach (GameObject childObj in parentObj)
+            foreach (GameObject childObj in parentObj)
+            {
+                if (childObj.CompareTag("EnemySpawn"))
                 {
-                    if (childObj.CompareTag("EnemySpawn"))
-                    {
-                        enemySpawnMarkers.Add(childObj);
-                    }
+                    trapSpawnMarkers.Add(childObj);
                 }
             }
-            catch (NullReferenceException nre)
-            {
-                Debug.Log("Null Reference Exception! : " + nre);
-            }
-
-            // Return new Enemy List
-            return new List<GameObject>(enemySpawnMarkers);
         }
-    }*/
+
+        return new List<GameObject>(trapSpawnMarkers);
+    }
 
     private void OnDisable()
     {
         // Code here
     }
 
-
-
 }
+    */
+
+
+
