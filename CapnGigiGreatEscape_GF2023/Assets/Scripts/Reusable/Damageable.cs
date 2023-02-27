@@ -17,6 +17,7 @@ public class Damageable : MonoBehaviour
     
     private void Start()
     {
+        player = GameObject.Find("CapnGigi");
         StartCoroutine(myCheck());
     }
     

@@ -131,16 +131,6 @@ public class WorldGenerator : MonoBehaviour
             }
         }
     }
-    /*
-    private IEnumerator DeleteWorld_Right()
-    {
-        yield return new WaitForSeconds(1f);
-
-        if (Vector3.Distance(player.transform.position, deleteMarker) > DISTANCE_TO_DELETE_SECTION)
-        {
-            //DEACTIVATE GAMEOBJECT
-        }
-    }*/
 }
 
 

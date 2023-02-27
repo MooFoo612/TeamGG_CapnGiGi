@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundEnd_Right
       objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: c83a434ee137de7408b0452f220761ca, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83a434ee137de7408b0452f220761ca, type: 3}
 --- !u!4 &3275103239487431808 stripped

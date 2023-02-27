@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 512207791324316302}
   - component: {fileID: 7940867697363975218}
   - component: {fileID: 3994416776670299095}
+  - component: {fileID: 5304528685307691570}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -81,3 +82,15 @@ MonoBehaviour:
   player: {fileID: 0}
   platformEnd_Right: {x: 0, y: 0, z: 0}
   platformEnd_Left: {x: 0, y: 0, z: 0}
+--- !u!114 &5304528685307691570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148277902660785928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0a0e0c69230054b90929cbe2deb83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

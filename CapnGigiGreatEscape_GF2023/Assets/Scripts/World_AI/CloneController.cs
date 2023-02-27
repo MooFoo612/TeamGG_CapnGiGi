@@ -6,12 +6,13 @@ public class CloneController : MonoBehaviour
     private Vector3 playerPosition;
     private Vector3 cloneSpawnPosition;
     private float distanceToPlayer;
-    private const float DISTANCE_TO_DESTROY = 40f;
+    private float distanceToDestroy;
 
     private void Awake()
     {
         player = GameObject.Find("CapnGigi");
         cloneSpawnPosition = transform.position;
+        distanceToDestroy = 60f;
     }
 
     private void Update()
@@ -19,7 +20,7 @@ public class CloneController : MonoBehaviour
         playerPosition = player.transform.position;
         distanceToPlayer = Vector3.Distance(cloneSpawnPosition, playerPosition);
 
-        if (distanceToPlayer > DISTANCE_TO_DESTROY)
+        if (distanceToPlayer > distanceToDestroy)
         {
             Destroy(gameObject);
         }
