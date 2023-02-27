@@ -27,11 +27,9 @@ public class PlayerController : MonoBehaviour{
     //public bool collectedDash = false;
     //public bool collectedAirDash = false;
 
+    public PlayerAudio audio;
 
     [SerializeField] private TrailRenderer tr;
-
-    public AudioSource runningAudio;
-    
     // CurrentSpeed function 
     public float CurrentSpeed{
         get{
@@ -55,19 +53,20 @@ public class PlayerController : MonoBehaviour{
                 // Movement locked 
                 return 0;
             }
-        }  
+        }
     }
     [SerializeField]private bool _isMoving = false;
     // IsMoving function 
     public bool IsMoving { 
         get{
-            // Return the value inside the isMoving variable just created
             return _isMoving;
+            // Return the value inside the isMoving variable just created
         } private set {
             // Set isMoving to the value is gonna be passed into the set
             _isMoving = value;
             // Set the boolean in the animator with the same value static strings
             anim.SetBool(AnimationStrings.isMoving, value);
+            audio.PlayrunningAudio(_isMoving);
         }
     }
     [SerializeField]private bool _isFacingRight = true;
@@ -113,14 +112,15 @@ public class PlayerController : MonoBehaviour{
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
     // Check if the player is in contact with the ground and is moving
-    if(touchingDirections.IsGrounded && moveInput != Vector2.zero){
+
+    //if(touchingDirections.IsGrounded && moveInput != Vector2.zero){
         // Play the running audio clip
-        runningAudio.Play();
-    }
-        else{
+        //runningAudio.Play();
+    //}
+        //else{
             // Stop the running audio clip if the player is not in contact with the ground or not moving
-            runningAudio.Stop();
-        }
+            //runningAudio.Stop();
+        //}
 
     // prevent the player to do things while dashing
         if(isDashing){
@@ -177,12 +177,16 @@ public class PlayerController : MonoBehaviour{
     public void OnJump(InputAction.CallbackContext context){
         // If can't double jump yet 
         if(PlayerPrefs.GetInt("purchasedDoubleJump") == 0){
-            // Check if the key is pressed  and if player can move and   if player is on the ground or can doubleJump
-            if(context.started && CanMove  && touchingDirections.IsGrounded){ // 
+            // Check if the key is pressed  and if player can move and if player is on the ground or can doubleJump
+            if(context.started && CanMove  && touchingDirections.IsGrounded)
+            {
+                //player jump audio 
+                audio.PlayjumpAudio();
                 // Update animator paramether using static strings  
                 anim.SetTrigger(AnimationStrings.jump);
                 // Add jump inpulse on the y axis 
                 rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+
             }   
         } 
         // If purchased double jump or colleted
@@ -192,6 +196,9 @@ public class PlayerController : MonoBehaviour{
                 if(touchingDirections.IsGrounded || doubleJump){
                     // Setting this for the check in the update
                     jumpPressed = true;
+                     //player jump audio 
+                    audio.PlayjumpAudio();
+ 
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
@@ -211,6 +218,8 @@ public class PlayerController : MonoBehaviour{
         if(context.started){
             // Attack updating animator paramether
             anim.SetTrigger(AnimationStrings.attack);
+             //player attack Audio
+            audio.PlayattackAndHitAudio();
         }
     }
 
@@ -227,6 +236,8 @@ public class PlayerController : MonoBehaviour{
     public void OnHit(int damage, Vector2 knockback){
         // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        //player damage Audio
+        audio.PlaytakeDamageAudio();
     }
 
     public void OnDash(InputAction.CallbackContext context){
