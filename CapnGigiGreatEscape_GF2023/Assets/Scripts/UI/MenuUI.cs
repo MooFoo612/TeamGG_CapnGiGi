@@ -45,9 +45,12 @@ public class MenuUI : MonoBehaviour
 
         // Reset Playerprefs (decomment all run and recomment)
         //PlayerPrefs.SetInt("swords", 10);
+        //PlayerPrefs.SetInt("coins", 500);
+        //PlayerPrefs.SetInt("diamonds", 250);
         //PlayerPrefs.SetInt("purchasedDoubleJump", 0);
         //PlayerPrefs.SetInt("purchasedDash", 0);
         //PlayerPrefs.SetInt("purchasedAirDash", 0);
+
     }
     
     

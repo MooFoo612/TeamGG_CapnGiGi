@@ -10,7 +10,7 @@ public class GUIManager : MonoBehaviour
     public Canvas gameCanvas;
 
     private void Awake(){
-        gameCanvas = FindObjectOfType<Canvas>();
+        //  gameCanvas = FindObjectOfType<Canvas>();
         
     }
 

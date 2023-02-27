@@ -212,13 +212,19 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnDash(InputAction.CallbackContext context){
-        if(PlayerPrefs.GetInt("purchasedDash") == 1){
+        
+        if(PlayerPrefs.GetInt("purchasedDash") == 1 && touchingDirections.IsGrounded){
             if(context.started && canDash){
                 StartCoroutine(Dash());
             }
         }
-        
+        if (PlayerPrefs.GetInt("purchasedAirDash") == 1){
+            if(context.started && canDash){
+                StartCoroutine(Dash());
+            }
+        }
     }
+    
     private IEnumerator Dash(){
         canDash = false;
         isDashing = true;
@@ -228,8 +234,8 @@ public class PlayerController : MonoBehaviour{
         rb.gravityScale = 0f;
         // Create the dash inpulse 
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-        // Displat the trail
-        tr.emitting = true;
+        // Display the trail
+        tr.emitting = true; 
         // Stop dashing after a certain amount of time 
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
@@ -238,6 +244,5 @@ public class PlayerController : MonoBehaviour{
         // Give the player a cooldown to not let him abuse of the dash power
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
-
     }
 }

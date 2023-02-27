@@ -67,7 +67,18 @@ public class ShopUI : MonoBehaviour
         shopItems[4, 4] = 1; 
         shopItems[4, 5] = 0;
         shopItems[4, 6] = 0;
+    }
 
+    public void Update(){
+        if(PlayerPrefs.GetInt("purchasedDoubleJump") == 1){
+            item1button.interactable = false;
+        }
+        if(PlayerPrefs.GetInt("purchasedDash") == 1){
+            item2button.interactable = false;
+        }  
+        if(PlayerPrefs.GetInt("purchasedAirDash") == 1){
+            item3button.interactable = false;
+        }           
     }
     public void Buy(){
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
@@ -85,7 +96,6 @@ public class ShopUI : MonoBehaviour
             if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 1){
                 // Make the player double jump for ever
                 PlayerPrefs.SetInt("purchasedDoubleJump", 1);
-                item1button.interactable = false;
             }
             if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 2){
                 PlayerPrefs.SetInt("purchasedDash", 1);
