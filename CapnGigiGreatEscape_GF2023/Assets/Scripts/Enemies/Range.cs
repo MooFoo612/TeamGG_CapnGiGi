@@ -11,6 +11,8 @@ public class Range : MonoBehaviour
     public  GameObject projectile;
     private Animator animatorEN;
     private SpriteRenderer enemySR;
+
+    public CoinAudio Shootaudio;
     
 
     
@@ -106,7 +108,7 @@ public class Range : MonoBehaviour
     private IEnumerator ShotTimer() {
         yield return new WaitForSeconds(1.5f);
                 
-
+            Shootaudio.PlayCoinAudio();
             animatorEN.SetTrigger("Shoot");
             // Spawns pearls
             Vector2 velocity= new Vector2(-5,0);
