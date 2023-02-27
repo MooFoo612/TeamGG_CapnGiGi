@@ -11289,22 +11289,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 458830835040954398, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 843875530390014417, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: _maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3266131370187467969, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3266131370187467969, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: airWalkSpeed
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 3266131370187467971, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -11352,10 +11336,6 @@ PrefabInstance:
     - target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_Name
       value: CapnGigi
-      objectReference: {fileID: 0}
-    - target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
@@ -11559,9 +11539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8363bb28ce6eb64459119c9506231af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSection: {fileID: 388359710230453864, guid: b443c724f375aa84cb4fb6e3572b03e1, type: 3}
   platformStart: {fileID: 7332965090813510759, guid: 0d98151f2eb26bd4a88c6f26c52277d7, type: 3}
   player: {fileID: 170353147}
+  platformEnd_Right: {x: 0, y: 0, z: 0}
+  platformEnd_Left: {x: 0, y: 0, z: 0}
 --- !u!1 &1797673682
 GameObject:
   m_ObjectHideFlags: 0
