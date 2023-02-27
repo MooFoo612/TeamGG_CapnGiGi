@@ -15,14 +15,8 @@ public class GameOver : MonoBehaviour
     PlayerInventory playerInv;
     [SerializeField] GameObject shopUI;
     [SerializeField] GameObject menuUI;
-
-
-
-
-
     
     Animator anim ;
-
 
     public bool isAlive{
         get{
