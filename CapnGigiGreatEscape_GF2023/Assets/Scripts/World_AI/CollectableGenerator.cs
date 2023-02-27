@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static WorldObject_Classes;
 
-public class CollectableGenerator : MonoBehaviour
+public class CollectableGenerator : ListFactory
 {
     private ListFactory lf;
     private List<GameObject> collectableList;
@@ -13,8 +13,8 @@ public class CollectableGenerator : MonoBehaviour
 
     private void Awake()
     {
-        spawnLocation = gameObject.transform.position;
-        lf = new ListFactory();
+        spawnLocation = transform.position;
+        lf = new ListFactory(); 
         collectableList = lf.GenerateCollectableList();
     }
     private void Start()
