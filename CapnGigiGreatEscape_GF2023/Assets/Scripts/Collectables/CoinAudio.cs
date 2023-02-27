@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinAudio : MonoBehaviour
 {
- public AudioSource coinAudio;
+public AudioSource coinAudio;
 
       public void  PlayCoinAudio(){
         coinAudio.Play();

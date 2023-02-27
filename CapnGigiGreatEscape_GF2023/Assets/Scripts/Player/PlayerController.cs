@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour{
     private float dashingPower = 24;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
+    //public bool collectedDoubleJump = false;
+    //public bool collectedDash = false;
+    //public bool collectedAirDash = false;
+
+
     [SerializeField] private TrailRenderer tr;
 
     public AudioSource runningAudio;
@@ -178,9 +183,10 @@ public class PlayerController : MonoBehaviour{
                 anim.SetTrigger(AnimationStrings.jump);
                 // Add jump inpulse on the y axis 
                 rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-            }
-        // If purchased double jump
-        } else if (PlayerPrefs.GetInt("purchasedDoubleJump") == 1){
+            }   
+        } 
+        // If purchased double jump or colleted
+        if (PlayerPrefs.GetInt("purchasedDoubleJump") == 1 || playerInv.TemporaryDoubleJump){
             // If jump key and can move
             if(context.started && CanMove ){ 
                 if(touchingDirections.IsGrounded || doubleJump){
@@ -225,12 +231,14 @@ public class PlayerController : MonoBehaviour{
 
     public void OnDash(InputAction.CallbackContext context){
         
-        if(PlayerPrefs.GetInt("purchasedDash") == 1 && touchingDirections.IsGrounded){
-            if(context.started && canDash){
-                StartCoroutine(Dash());
+        if(PlayerPrefs.GetInt("purchasedDash") == 1 || playerInv.TemporaryDash){
+            if(touchingDirections.IsGrounded){
+                if(context.started && canDash){
+                    StartCoroutine(Dash());
+                }
             }
         }
-        if (PlayerPrefs.GetInt("purchasedAirDash") == 1){
+        if (PlayerPrefs.GetInt("purchasedAirDash") == 1 || playerInv.TemporaryAirDash){
             if(context.started && canDash){
                 StartCoroutine(Dash());
             }

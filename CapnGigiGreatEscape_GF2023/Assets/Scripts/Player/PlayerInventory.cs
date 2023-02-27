@@ -46,6 +46,33 @@ public class PlayerInventory : MonoBehaviour
             //diamondsAmountChanged?.Invoke(_diamonds);
         }
     }
+    [SerializeField] private bool _temporaryDoubleJump = false;
+    public bool TemporaryDoubleJump{
+        get {
+            return _temporaryDoubleJump;
+        } set {
+            _temporaryDoubleJump = value;
+        }
+    }
+
+    [SerializeField] private bool _temporaryDash = false;
+    public bool TemporaryDash{
+        get {
+            return _temporaryDash;
+        } set {
+            _temporaryDash = value;
+        }
+    }
+
+    [SerializeField] private bool _temporaryAirDash = false;
+    public bool TemporaryAirDash{
+        get {
+            return _temporaryAirDash;
+        } set {
+            _temporaryAirDash = value;
+        }
+    }
+    
     /*
     public float playerCoins;
 

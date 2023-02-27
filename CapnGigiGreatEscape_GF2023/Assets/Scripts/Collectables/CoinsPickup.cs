@@ -9,9 +9,8 @@ public class CoinsPickup : MonoBehaviour
     public CoinAudio coinAudio;
 
 
-        void Start()
-    {
-                animatorCoin = gameObject.GetComponent<Animator>();
+    void Start(){
+        animatorCoin = gameObject.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
