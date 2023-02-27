@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
     public GameObject enemyDrop;
+    public GameObject player;
     public UnityEvent<int, Vector2> damageableHit;
     public UnityEvent<int, int> healthChanged;
     Animator anim;
@@ -13,6 +14,12 @@ public class Damageable : MonoBehaviour
     public float invincibilityTime = 0.25f;
     private float timeSinceHit = 0;
     [SerializeField] private int _maxHealth = 100;
+
+    private void Start()
+    {
+        StartCoroutine(myCheck());
+    }
+
     public int MaxHealth{
         get{
             return _maxHealth;
@@ -113,6 +120,19 @@ public class Damageable : MonoBehaviour
             Health += actualHeal;
             // Invoke the unity action and pass the paramethers
             CharacterEvents.characterHealed(gameObject, actualHeal);
+        }
+    }
+
+    private IEnumerator myCheck()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+
+            if (player.transform.position.y <= -5)
+            {
+                IsAlive = false;
+            }
         }
     }
 }

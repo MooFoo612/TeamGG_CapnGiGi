@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDrop: {fileID: 0}
+  thisTarget: {fileID: 3266131370187467982}
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -1553,7 +1554,6 @@ GameObject:
   - component: {fileID: 9015033751825266039}
   - component: {fileID: 882393720973042832}
   - component: {fileID: 3927866024091172241}
-  - component: {fileID: 1634619594}
   m_Layer: 14
   m_Name: PlayerFeet
   m_TagString: Untagged
@@ -1614,19 +1614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1212ec722529e40ba4f532d7e3e302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1634619594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7132917501004230063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 919e0ad9d324f974392c17396913e52e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3266131370187467982}
 --- !u!1001 &6917225235388046227
 PrefabInstance:
   m_ObjectHideFlags: 0
