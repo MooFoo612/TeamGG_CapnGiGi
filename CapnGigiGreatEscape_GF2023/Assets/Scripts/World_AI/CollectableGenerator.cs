@@ -10,9 +10,10 @@ public class CollectableGenerator : MonoBehaviour
     // Grab Enemy Prefabs
     private List<GameObject> collectableList = new List<GameObject>();
     private List<Vector3> collectableSpawnPositions = new List<Vector3>();
+    private List<GameObject> collectableSpawnMarkers = new List<GameObject>();
 
     // Grab Spawn Positions 
-    private UnityEngine.Object[] initArrayOfEnemySpawnMarkers;
+    private UnityEngine.Object[] initArrayOfCollectableSpawnMarkers;
     private Transform parentObj;
     private GameObject collectableObj;
     private Transform collectableToSpawn;
@@ -26,6 +27,7 @@ public class CollectableGenerator : MonoBehaviour
         collectableList = ProceduralAI.collectablePrefabs;
         try
         {
+            //enemySpawnMarkers = GenerateEnemySpawnMarkerList();
             collectableSpawnPositions = GenerateCollectableSpawnMarkerPositions();
 
         }
@@ -41,53 +43,82 @@ public class CollectableGenerator : MonoBehaviour
 
     }
     #region Spawner
-    public void SpawnCollectables()
+    public void SpawnEnemies()
     {
         parentObj = gameObject.transform;
 
         foreach (Transform childObj in parentObj)
         {
-            if (childObj.CompareTag("CollectableSpawn"))
+            if (childObj.CompareTag("EnemySpawn"))
             {
                 collectableSpawnPositions.Add(childObj.position);
             }
         }
         //Get the transform to refrence the Spawn Positions
         //Transform spawnedEnemy = SpawnEnemies(enemySpawnPositions);
-        foreach (Vector3 enemySpawnPosition in collectableSpawnPositions)
+        foreach (GameObject enemySpawnMarker in collectableSpawnMarkers)
         {
-            SpawnCollectables(enemySpawnPosition);
+            foreach (Vector3 enemySpawnPosition in collectableSpawnPositions)
+            {
+                SpawnEnemies(enemySpawnPosition);
+            }
         }
     }
 
     // SpawnEnemies(AtPosition)
-    public Transform SpawnCollectables(Vector3 enemySpawnPosition)
+    public Transform SpawnEnemies(Vector3 enemySpawnPosition)
     {
         // Get random Enemy from List
-        collectableToSpawn = RandomCollectableGenerator(0, collectableList.Count);
-        //Vector3 spawnPoint = RandomSpawnGenerator(0, enemySpawnPositions.Count);
+        collectableToSpawn = RandomEnemyGenerator(0, collectableList.Count);
+
+        // Get the Transform to Spawn Instance and log to controller + console
         Transform spawnEnemy = Instantiate(collectableToSpawn, enemySpawnPosition, Quaternion.identity);
         ProceduralAI.enemySpawned += 1;
-        // Return the transform for sister method
+        Debug.Log("Enemy Spawned: " + spawnEnemy.name + ". Total Enemies spawned: " + ProceduralAI.enemySpawned);
+
+        // Return enemy transform
         return spawnEnemy;
     }
     #endregion
 
     // REGGIE
-    private Transform RandomCollectableGenerator(int floor, int ceiling)
+    private Transform RandomEnemyGenerator(int floor, int ceiling)
     {
         // Variable to hold the index of random list element
-        int randomCollectable = 0;
+        int randomEnemy = 0;
 
-        // Get random index for list
-        randomCollectable = UnityEngine.Random.Range(0, collectableList.Count);
+        try
+        {
+            // Get random index for list
+            randomEnemy = UnityEngine.Random.Range(floor, ceiling);
 
-        // Call GameObject from list and get its transform
-        collectableObj = collectableList[randomCollectable];
-        collectableToSpawn = collectableObj.transform;
+            // Call GameObject from list and get its transform
+            collectableObj = collectableList[randomEnemy];
+            collectableToSpawn = collectableObj.transform;
 
-        // Return the randomly-chosen enemy to spawn
-        return collectableToSpawn;
+            // Return the randomly-chosen enemy to spawn
+            return collectableToSpawn;
+        }
+        catch (ArgumentException ae)
+        {
+            Debug.Log(ae.Message);
+
+            if (collectableList.Count == 0)
+            {
+                // Generate new Marker list
+                collectableList = ai.GenerateEnemyList();
+            }
+
+            // Get random index for list
+            randomEnemy = UnityEngine.Random.Range(floor, ceiling);
+
+            // Call GameObject from list and get its transform
+            collectableObj = collectableList[randomEnemy];
+            collectableToSpawn = collectableObj.transform;
+
+            // Return the randomly-chosen enemy to spawn
+            return collectableToSpawn;
+        }
     }
 
     private Vector3 RandomSpawnGenerator(int floor, int ceiling)
@@ -96,7 +127,7 @@ public class CollectableGenerator : MonoBehaviour
         int randomSpawnPoint = 0;
 
         // Get random index for list
-        randomSpawnPoint = UnityEngine.Random.Range(0, collectableSpawnPositions.Count);
+        randomSpawnPoint = UnityEngine.Random.Range(floor, ceiling);
 
         // Call Vector from list and get its transform
         Vector3 spawnPoint = collectableSpawnPositions[randomSpawnPoint];
@@ -154,6 +185,64 @@ public class CollectableGenerator : MonoBehaviour
             return new List<Vector3>(collectableSpawnPositions);
         }
     }
+    /*
+    public List<GameObject> GenerateEnemySpawnMarkerList()
+    {
+        if (enemySpawnMarkers.Count > 0)
+        {
+            enemySpawnMarkers.Clear();
+
+            try
+            {
+                parentObj = gameObject.transform;
+
+                foreach (GameObject childObj in parentObj)
+                {
+                    if (childObj.CompareTag("EnemySpawn"))
+                    {
+                        enemySpawnMarkers.Add(childObj);
+                    }
+                }
+            }
+            catch (NullReferenceException nre)
+            {
+                Debug.Log("Null Reference Exception! : " + nre);
+                parentObj = gameObject.transform;
+
+                foreach (GameObject childObj in parentObj)
+                {
+                    if (childObj.CompareTag("EnemySpawn"))
+                    {
+                        enemySpawnMarkers.Add(childObj);
+                    }
+                }
+            }
+
+            return new List<GameObject>(enemySpawnMarkers);
+        }
+        else
+        {
+            try
+            {
+                parentObj = gameObject.transform;
+
+                foreach (GameObject childObj in parentObj)
+                {
+                    if (childObj.CompareTag("EnemySpawn"))
+                    {
+                        enemySpawnMarkers.Add(childObj);
+                    }
+                }
+            }
+            catch (NullReferenceException nre)
+            {
+                Debug.Log("Null Reference Exception! : " + nre);
+            }
+
+            // Return new Enemy List
+            return new List<GameObject>(enemySpawnMarkers);
+        }
+    }*/
 
     private void OnDisable()
     {

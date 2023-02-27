@@ -96,6 +96,7 @@ public class GroundGenerator : MonoBehaviour
 
         // Call GameObject from list and get its transform
         groundObj = groundList[randomChunk];
+        groundObj.SetActive(true);
         groundChunk = groundObj.transform;
 
         // Return the randomly-chosen Platform Chunk

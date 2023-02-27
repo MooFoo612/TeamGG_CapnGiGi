@@ -34,7 +34,7 @@ public class Range : MonoBehaviour
         }
     }
     */
-
+    /*
     public float ShootTimer{
         get{
             return animatorEN.GetFloat(AnimationStrings.shootTimer);
@@ -43,7 +43,7 @@ public class Range : MonoBehaviour
             animatorEN.SetFloat(AnimationStrings.shootTimer, Mathf.Max(value, 0));
         }
     }
-    
+    */
     #endregion
     #region initalisation
     // Start is called before the first frame update
@@ -83,9 +83,11 @@ public class Range : MonoBehaviour
     }
 
     private void Update(){
+        /*
         if(ShootTimer > 0){
             ShootTimer -= Time.deltaTime;
         }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

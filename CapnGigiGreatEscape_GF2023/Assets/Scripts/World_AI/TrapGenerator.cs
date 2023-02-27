@@ -10,9 +10,10 @@ public class TrapGenerator : MonoBehaviour
     // Grab Enemy Prefabs
     private List<GameObject> trapList = new List<GameObject>();
     private List<Vector3> trapSpawnPositions = new List<Vector3>();
+    private List<GameObject> trapSpawnMarkers = new List<GameObject>();
 
     // Grab Spawn Positions 
-    private UnityEngine.Object[] initArrayOfEnemySpawnMarkers;
+    private UnityEngine.Object[] initArrayOfTrapSpawnMarkers;
     private Transform parentObj;
     private GameObject trapObj;
     private Transform trapToSpawn;
@@ -26,6 +27,7 @@ public class TrapGenerator : MonoBehaviour
         trapList = ProceduralAI.trapPrefabs;
         try
         {
+            //enemySpawnMarkers = GenerateEnemySpawnMarkerList();
             trapSpawnPositions = GenerateTrapSpawnMarkerPositions();
 
         }
@@ -54,9 +56,12 @@ public class TrapGenerator : MonoBehaviour
         }
         //Get the transform to refrence the Spawn Positions
         //Transform spawnedEnemy = SpawnEnemies(enemySpawnPositions);
-        foreach (Vector3 trapSpawnPosition in trapSpawnPositions)
+        foreach (GameObject trapSpawnMarker in trapSpawnMarkers)
         {
-            SpawnTraps(trapSpawnPosition);
+            foreach (Vector3 trapSpawnPosition in trapSpawnPositions)
+            {
+                SpawnTraps(trapSpawnPosition);
+            }
         }
     }
 
@@ -65,10 +70,13 @@ public class TrapGenerator : MonoBehaviour
     {
         // Get random Enemy from List
         trapToSpawn = RandomTrapGenerator(0, trapList.Count);
-        //Vector3 spawnPoint = RandomSpawnGenerator(0, enemySpawnPositions.Count);
+
+        // Get the Transform to Spawn Instance and log to controller + console
         Transform spawnTrap = Instantiate(trapToSpawn, trapSpawnPosition, Quaternion.identity);
         ProceduralAI.trapSpawned += 1;
-        // Return the transform for sister method
+        Debug.Log("Enemy Spawned: " + spawnTrap.name + ". Total Enemies spawned: " + ProceduralAI.trapSpawned);
+
+        // Return enemy transform
         return spawnTrap;
     }
     #endregion
@@ -79,24 +87,47 @@ public class TrapGenerator : MonoBehaviour
         // Variable to hold the index of random list element
         int randomTrap = 0;
 
-        // Get random index for list
-        randomTrap = UnityEngine.Random.Range(0, trapList.Count);
+        try
+        {
+            // Get random index for list
+            randomTrap = UnityEngine.Random.Range(floor, ceiling);
 
-        // Call GameObject from list and get its transform
-        trapObj = trapList[randomTrap];
-        trapToSpawn = trapObj.transform;
+            // Call GameObject from list and get its transform
+            trapObj = trapList[randomTrap];
+            trapToSpawn = trapObj.transform;
 
-        // Return the randomly-chosen enemy to spawn
-        return trapToSpawn;
+            // Return the randomly-chosen enemy to spawn
+            return trapToSpawn;
+        }
+        catch (ArgumentException ae)
+        {
+            Debug.Log(ae.Message);
+
+            if (trapList.Count == 0)
+            {
+                // Generate new Marker list
+                trapList = ai.GenerateEnemyList();
+            }
+
+            // Get random index for list
+            randomTrap = UnityEngine.Random.Range(floor, ceiling);
+
+            // Call GameObject from list and get its transform
+            trapObj = trapList[randomTrap];
+            trapToSpawn = trapObj.transform;
+
+            // Return the randomly-chosen enemy to spawn
+            return trapToSpawn;
+        }
     }
 
-    private Vector3 RandomSpawnGenerator(int floor, int ceiling)
+    private Vector3 RandomTrapSpawnPosition(int floor, int ceiling)
     {
         // Variable to hold the index of random list element
         int randomSpawnPoint = 0;
 
         // Get random index for list
-        randomSpawnPoint = UnityEngine.Random.Range(0, trapSpawnPositions.Count);
+        randomSpawnPoint = UnityEngine.Random.Range(floor, ceiling);
 
         // Call Vector from list and get its transform
         Vector3 spawnPoint = trapSpawnPositions[randomSpawnPoint];
@@ -154,6 +185,64 @@ public class TrapGenerator : MonoBehaviour
             return new List<Vector3>(trapSpawnPositions);
         }
     }
+    /*
+    public List<GameObject> GenerateEnemySpawnMarkerList()
+    {
+        if (enemySpawnMarkers.Count > 0)
+        {
+            enemySpawnMarkers.Clear();
+
+            try
+            {
+                parentObj = gameObject.transform;
+
+                foreach (GameObject childObj in parentObj)
+                {
+                    if (childObj.CompareTag("EnemySpawn"))
+                    {
+                        enemySpawnMarkers.Add(childObj);
+                    }
+                }
+            }
+            catch (NullReferenceException nre)
+            {
+                Debug.Log("Null Reference Exception! : " + nre);
+                parentObj = gameObject.transform;
+
+                foreach (GameObject childObj in parentObj)
+                {
+                    if (childObj.CompareTag("EnemySpawn"))
+                    {
+                        enemySpawnMarkers.Add(childObj);
+                    }
+                }
+            }
+
+            return new List<GameObject>(enemySpawnMarkers);
+        }
+        else
+        {
+            try
+            {
+                parentObj = gameObject.transform;
+
+                foreach (GameObject childObj in parentObj)
+                {
+                    if (childObj.CompareTag("EnemySpawn"))
+                    {
+                        enemySpawnMarkers.Add(childObj);
+                    }
+                }
+            }
+            catch (NullReferenceException nre)
+            {
+                Debug.Log("Null Reference Exception! : " + nre);
+            }
+
+            // Return new Enemy List
+            return new List<GameObject>(enemySpawnMarkers);
+        }
+    }*/
 
     private void OnDisable()
     {

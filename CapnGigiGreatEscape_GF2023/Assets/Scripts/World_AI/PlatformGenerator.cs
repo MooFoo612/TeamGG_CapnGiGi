@@ -52,9 +52,10 @@ public class PlatformGenerator : MonoBehaviour
     {
         // Get random Platform Chunk from List
         platformChunk = RandomChunkerizer(0, platformList.Count);
-
+        
         // Spawn the Platform Chunk and log to AI count
         Transform nextPlatformChunk_Right = Instantiate(platformChunk, nextChunk, Quaternion.identity);
+
         ProceduralAI.platformChunkActivated += 1;
 
         // Return the transform for sister method
@@ -96,6 +97,7 @@ public class PlatformGenerator : MonoBehaviour
 
         // Call GameObject from list and get its transform
         platformObj = platformList[randomChunk];
+        platformObj.SetActive(true);
         platformChunk = platformObj.transform;
 
         // Return the randomly-chosen Platform Chunk

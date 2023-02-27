@@ -30,6 +30,8 @@ public class CloneController : MonoBehaviour
 
             try
             {
+                //enemySpawnPositions.Clear();
+
                 // Grab list of spawn positions
                 enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
 
@@ -39,32 +41,32 @@ public class CloneController : MonoBehaviour
                     enemyGenerator.SpawnEnemies();
                     //enemySpawnPositions.Remove(spawnPosition);
                 }
-                enemySpawnPositions.Clear();
 
                 // Initialise Deactivation Sequence, Cap'n!
                 StartCoroutine(DeactivateClone());
             }
-            // Computer says no?
             catch (NullReferenceException nre)
             {
                 // Make computer say more.
                 Debug.Log(nre.Message);
-            }     
-            // Make sure this runs lol
-            StartCoroutine(DeactivateClone());
+
+                // Make sure this runs lol
+                StartCoroutine(DeactivateClone());
+            }
         }
         else
         {
             try
             {
+                //enemySpawnPositions.Clear();
+
                 enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
 
                 foreach (Vector3 spawnPosition in enemySpawnPositions)
-                {                  
-                    enemyGenerator.SpawnEnemies();    
+                {
+                    enemyGenerator.SpawnEnemies();
                 }
 
-                enemySpawnPositions.Clear();
                 StartCoroutine(DeactivateClone());
 
             }
@@ -72,6 +74,45 @@ public class CloneController : MonoBehaviour
             {
                 Debug.Log(nre.Message);
             }
+            StartCoroutine(DeactivateClone());
+        }
+    }
+
+    private void OnEnable()
+    {
+        try
+        {
+            // Grab list of spawn positions
+            enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
+
+            // For each spawn position, spawn an enemy and remove the spawn position from the list of available positions
+            foreach (Vector3 spawnPosition in enemySpawnPositions)
+            {
+                enemyGenerator.SpawnEnemies();
+                //enemySpawnPositions.Remove(spawnPosition);
+            }
+            //enemySpawnPositions.Clear();
+
+            // Initialise Deactivation Sequence, Cap'n!
+            StartCoroutine(DeactivateClone());
+        }
+        catch (NullReferenceException nre)
+        {
+            // Make computer say more.
+            Debug.Log(nre.Message);
+
+            // Grab list of spawn positions
+            enemySpawnPositions = enemyGenerator.GenerateEnemySpawnMarkerPositions();
+
+            // For each spawn position, spawn an enemy and remove the spawn position from the list of available positions
+            foreach (Vector3 spawnPosition in enemySpawnPositions)
+            {
+                enemyGenerator.SpawnEnemies();
+                //enemySpawnPositions.Remove(spawnPosition);
+            }
+            //enemySpawnPositions.Clear();
+
+            // Make sure this runs lol
             StartCoroutine(DeactivateClone());
         }
     }
@@ -86,6 +127,8 @@ public class CloneController : MonoBehaviour
         // After X seconds
         yield return new WaitForSeconds(1f);
 
+        gameObject.SetActive(true);
+
         // Finds the players position
         playerPosition = player.transform.position;
 
@@ -93,7 +136,7 @@ public class CloneController : MonoBehaviour
         distanceFromPlayer = Vector3.Distance(gameObject.transform.position, playerPosition);
 
         // Logs distance to the console
-        Debug.Log("Distance from player: " + distanceFromPlayer);
+        //Debug.Log("Distance from player: " + distanceFromPlayer);
 
         // If the distance from the player is greater than the distance requirement to be deactivated
         if (distanceFromPlayer > deactivationDistance) 
@@ -103,7 +146,8 @@ public class CloneController : MonoBehaviour
             Debug.Log("Chunks Deactivated: " + ProceduralAI.chunksDeactivated);
 
             // Deactivate the Game Object
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 }
