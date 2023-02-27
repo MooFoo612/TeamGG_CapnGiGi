@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour{
                     jumpPressed = true;
                      //player jump audio 
                     audio.PlayjumpAudio();
- 
+
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
