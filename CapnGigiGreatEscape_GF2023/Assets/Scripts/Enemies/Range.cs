@@ -12,7 +12,7 @@ public class Range : MonoBehaviour
     private Animator animatorEN;
     private SpriteRenderer enemySR;
 
-    public CoinAudio Shootaudio;
+    public SoundEffect Shootaudio;
     
 
     
@@ -110,7 +110,7 @@ public class Range : MonoBehaviour
     private IEnumerator ShotTimer() {
         yield return new WaitForSeconds(1.5f);
                 
-            Shootaudio.PlayCoinAudio();
+            Shootaudio.PlaySoundEffect();
             animatorEN.SetTrigger("Shoot");
             // Spawns pearls
             Vector2 velocity= new Vector2(-5,0);

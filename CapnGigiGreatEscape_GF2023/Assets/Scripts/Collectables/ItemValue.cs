@@ -6,7 +6,8 @@ public class ItemValue : MonoBehaviour
 {
     private Animator animatorD;
     public float itemValue = 0f;
-
+    public SoundEffect diamondAudio;
+    
     void Start()
     {
                 animatorD = gameObject.GetComponent<Animator>();
@@ -17,6 +18,7 @@ public class ItemValue : MonoBehaviour
         if(player){
            //diamond value is collected
             animatorD.SetTrigger("Collect");
+            diamondAudio.PlaySoundEffect();
             // Destroy the collectable
             Destroy(gameObject, 0.5f);
         }

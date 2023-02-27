@@ -6,7 +6,7 @@ public class CoinsPickup : MonoBehaviour
 {
     public int coinsAmount = 20;
     private Animator animatorCoin;
-    public CoinAudio coinAudio;
+    public SoundEffect coinAudio;
 
 
     void Start(){
@@ -21,7 +21,7 @@ public class CoinsPickup : MonoBehaviour
             player.Coins += coinsAmount;
             // animation and audio
             animatorCoin.SetTrigger("Collect");
-            coinAudio.PlayCoinAudio();
+            coinAudio.PlaySoundEffect();
             // Destroy the collectable
             Destroy(gameObject, 0.5f);
         }

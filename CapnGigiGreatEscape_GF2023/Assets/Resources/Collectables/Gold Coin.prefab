@@ -301,4 +301,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae24d1ce2b1a0c4f83846eeec21b2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinAudio: {fileID: 5363592065253187350}
+  soundEffect: {fileID: 5363592065253187350}

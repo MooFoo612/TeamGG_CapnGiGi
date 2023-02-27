@@ -206,6 +206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae24d1ce2b1a0c4f83846eeec21b2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &211719217 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5363592065253187350, guid: c6838e264cd62924ba1f517bb7e3e26a, type: 3}
+  m_PrefabInstance: {fileID: 1249557802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &232433202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -287,6 +292,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8653681860971007968, guid: fcaf5e81421549348a70afdcb08f2432, type: 3}
   m_PrefabInstance: {fileID: 8653681861258404551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &345545468 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3316811190004434288, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+  m_PrefabInstance: {fileID: 1371217754}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &352904906
 PrefabInstance:
@@ -15966,6 +15976,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1634619594, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 458830835040954398, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -16005,6 +16019,10 @@ PrefabInstance:
     - target: {fileID: 843875530390014417, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: healthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794696905480887845, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1906538449256570946, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: VerKnockback.x
@@ -16199,6 +16217,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6715348705753348308, guid: c6838e264cd62924ba1f517bb7e3e26a, type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 211719217}
     m_RemovedComponents:
     - {fileID: 5010040815704135588, guid: c6838e264cd62924ba1f517bb7e3e26a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c6838e264cd62924ba1f517bb7e3e26a, type: 3}
@@ -16279,12 +16301,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2329303
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.91
+      value: -0.936
       objectReference: {fileID: 0}
     - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.79
+      value: 0.734
       objectReference: {fileID: 0}
     - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16326,6 +16352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Diamond
       objectReference: {fileID: 0}
+    - target: {fileID: 5462449527353999771, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 345545468}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb76e8422044dc440b88713beda0d290, type: 3}
 --- !u!4 &1371217755 stripped
