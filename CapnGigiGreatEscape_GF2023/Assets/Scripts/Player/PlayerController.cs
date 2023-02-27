@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour{
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
+
+    public AudioSource runningAudio;
     
     // CurrentSpeed function 
     public float CurrentSpeed{
@@ -105,7 +107,17 @@ public class PlayerController : MonoBehaviour{
 
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
-        // prevent the player to do things while dashing
+    // Check if the player is in contact with the ground and is moving
+    if(touchingDirections.IsGrounded && moveInput != Vector2.zero){
+        // Play the running audio clip
+        runningAudio.Play();
+    }
+        else{
+            // Stop the running audio clip if the player is not in contact with the ground or not moving
+            runningAudio.Stop();
+        }
+
+    // prevent the player to do things while dashing
         if(isDashing){
             return;
         }
@@ -113,9 +125,9 @@ public class PlayerController : MonoBehaviour{
         if(!damageable.LockVelocity){
             // Move the player
             rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
-        }
-        // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
-        anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+            }
+            // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
+            anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
         // Check if is on the ground and is not jymping to reset the double jump bool and be able to double jump again
         if(touchingDirections.IsGrounded && !jumpPressed){
