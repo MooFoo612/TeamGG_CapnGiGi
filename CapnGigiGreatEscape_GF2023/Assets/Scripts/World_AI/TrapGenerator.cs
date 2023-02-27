@@ -14,7 +14,7 @@ public class TrapGenerator : ListFactory
     private void Awake()
     {
         spawnLocation = transform.position;
-        lf = new ListFactory();
+        lf = gameObject.AddComponent<ListFactory>();
         trapList = lf.GenerateTrapList();
     }
     private void Start()

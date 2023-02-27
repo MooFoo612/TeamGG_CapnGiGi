@@ -14,7 +14,7 @@ public class CollectableGenerator : ListFactory
     private void Awake()
     {
         spawnLocation = transform.position;
-        lf = new ListFactory(); 
+        lf = gameObject.AddComponent<ListFactory>(); 
         collectableList = lf.GenerateCollectableList();
     }
     private void Start()

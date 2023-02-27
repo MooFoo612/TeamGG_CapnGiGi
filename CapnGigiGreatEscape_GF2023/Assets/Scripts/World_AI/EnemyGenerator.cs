@@ -14,7 +14,7 @@ public class EnemyGenerator : ListFactory
     private void Awake()
     {
         spawnLocation = transform.position;
-        lf = new ListFactory();
+        lf = gameObject.AddComponent<ListFactory>();
         enemyList = lf.GenerateEnemyList();
     }
     private void Start()
