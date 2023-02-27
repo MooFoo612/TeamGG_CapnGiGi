@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static WorldObject_Classes;
 
-public class EnemyGenerator : MonoBehaviour
+public class EnemyGenerator : ListFactory
 {
     private ListFactory lf;
     private List<GameObject> enemyList;
@@ -13,7 +13,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private void Awake()
     {
-        spawnLocation = gameObject.transform.position;
+        spawnLocation = transform.position;
         lf = new ListFactory();
         enemyList = lf.GenerateEnemyList();
     }
