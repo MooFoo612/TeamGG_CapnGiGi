@@ -9,9 +9,12 @@ public class PlayerAudio : MonoBehaviour
     public AudioSource takeDamageAudio;
     public AudioSource attackAndMissAudio;
     public AudioSource attackAndHitAudio;
-    public AudioSource runningAudio;
+    //public AudioSource runningAudio;
+    //public PlayerController player;
     
-
+    public void Awake(){
+      //  player = GetComponent<PlayerController>();
+    }
       public void PlayjumpAudio(){
         jumpAudio.Play();
     }
@@ -27,16 +30,16 @@ public class PlayerAudio : MonoBehaviour
       public void PlayattackAndMissAudio(){
         attackAndMissAudio.Play();
     }
-    public void PlayrunningAudio(bool running)
-    {
-        if (running && !runningAudio.isPlaying)
-        {
-            runningAudio.Play();
-        }
-        else
-        {
-            runningAudio.Stop();
-        }
-    }
+    //public void PlayrunningAudio()
+    //{
+    //    if (player.IsMoving)
+    //    {
+    //        runningAudio.Play();
+    //    }
+    //    else
+    //    {
+    //        runningAudio.Stop();
+    //    }
+    //}
 
 }

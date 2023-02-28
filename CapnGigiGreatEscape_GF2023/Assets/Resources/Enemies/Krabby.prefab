@@ -359,8 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDrop: {fileID: 0}
-  player: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
   damageableHit:
     m_PersistentCalls:
       m_Calls:

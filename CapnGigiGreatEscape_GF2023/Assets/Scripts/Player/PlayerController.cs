@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour{
     private float dashingPower = 24;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
+    public AudioSource runningAudio;
     //public bool collectedDoubleJump = false;
     //public bool collectedDash = false;
     //public bool collectedAirDash = false;
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour{
             _isMoving = value;
             // Set the boolean in the animator with the same value static strings
             anim.SetBool(AnimationStrings.isMoving, value);
-            audio.PlayrunningAudio(_isMoving);
+
             dustParticles.Play();
         }
     }
@@ -114,22 +115,12 @@ public class PlayerController : MonoBehaviour{
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
+        runningAudio = GetComponent<AudioSource>();
     }
 
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
-    // Check if the player is in contact with the ground and is moving
-
-    //if(touchingDirections.IsGrounded && moveInput != Vector2.zero){
-        // Play the running audio clip
-        //runningAudio.Play();
-    //}
-        //else{
-            // Stop the running audio clip if the player is not in contact with the ground or not moving
-            //runningAudio.Stop();
-        //}
-
-    // prevent the player to do things while dashing
+    // Prevent the player to do things while dashing
         if(isDashing){
             return;
         }
@@ -145,6 +136,12 @@ public class PlayerController : MonoBehaviour{
         if(touchingDirections.IsGrounded && !jumpPressed){
             doubleJump = false;  
         } 
+
+        if (IsMoving){
+            runningAudio.Play();
+        } else {
+            runningAudio.Stop();
+        }
     }    
 
     // It's called while the player is moving(takes the parametheres setted on the Input System controller)
@@ -245,15 +242,12 @@ public class PlayerController : MonoBehaviour{
             playerInv.ThrowingSwords --;
         }
     }
-
     public void OnHit(int damage, Vector2 knockback){
         // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         //player damage Audio
-        CinemachineCameraShake.Instance.ShakeCamera(1.5f, .1f);
         audio.PlaytakeDamageAudio();
         dustParticles.Play();
-
     }
 
     public void OnDash(InputAction.CallbackContext context){
