@@ -9,11 +9,11 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public GameObject GUIPanel;
-    public GameObject GameOverPanel;
     public TMP_Text coinsText;
     public TMP_Text diamondsText;
     PlayerInventory playerInv;
     [SerializeField] GameObject shopUI;
+    public GameObject gameOverUI;
     [SerializeField] GameObject menuUI;
     
     Animator anim ;
@@ -43,7 +43,7 @@ public class GameOver : MonoBehaviour
         if(!isAlive){
             PauseGame();
             GUIPanel.SetActive(false);
-            GameOverPanel.SetActive(true);
+            gameOverUI.SetActive(true);
             // Update the coins and the diamonds text
             coinsText.text = "X " + playerInv.Coins;
             diamondsText.text = "X " + playerInv.Diamonds;
@@ -55,7 +55,9 @@ public class GameOver : MonoBehaviour
         PlayerPrefs.SetInt("coins", (PlayerPrefs.GetInt("coins") + playerInv.Coins));
         PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") + playerInv.Diamonds));
         // Go to menu
-        menuUI.SetActive(true);
+        //menuUI.SetActive(true);
+        // Reload the scene
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         //GameOverPanel.SetActive(false);
         //SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
@@ -69,8 +71,13 @@ public class GameOver : MonoBehaviour
     }
 
     public void PlayAgainButton(){
+        // Set this to not opoen the menu screen and rerun the game directly
+        PlayerPrefs.SetInt("alreadyRunned", 1);
+        // Close the game over screen 
+        gameOverUI.SetActive(false);
+        // Reload the scene
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-        menuUI.SetActive(false);
-        ResumeGame();
+        //menuUI.SetActive(false);
+        //ResumeGame();
     }
 }

@@ -15,10 +15,18 @@ public class MenuUI : MonoBehaviour
         GUI.SetActive(false);
     }
     public void PlayButton(){
+        
         menuUI.SetActive(false);
         shopUI.SetActive(false);
-        ResumeGame();
         GUI.SetActive(true);
+        //ResumeGame();
+            
+        if(PlayerPrefs.GetInt("fromShop") == 1){
+            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            PlayerPrefs.SetInt("fromShop", 0);
+        } else {
+            ResumeGame();
+        }
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -37,20 +45,43 @@ public class MenuUI : MonoBehaviour
     }
     
     void Start(){
-        // Pause game and interact with the menu 
-        PauseGame();
-        menuUI.SetActive(true);
-        GUI.SetActive(false);
-        shopUI.SetActive(false);
 
         // Reset Playerprefs (decomment all run and recomment)
-        PlayerPrefs.SetInt("swords", 10);
-        PlayerPrefs.SetInt("coins", 500);
-        PlayerPrefs.SetInt("diamonds", 250);
-        PlayerPrefs.SetInt("purchasedDoubleJump", 0);
-        PlayerPrefs.SetInt("purchasedDash", 0);
-        PlayerPrefs.SetInt("purchasedAirDash", 0);
+        
+        if(PlayerPrefs.GetInt("alreadyRunned") == 0){   
+            // Pause game and interact with the menu 
+            PauseGame();
+            menuUI.SetActive(true);
+            GUI.SetActive(false);
+            shopUI.SetActive(false);
+        }
+        
+        if(PlayerPrefs.GetInt("alreadyRunned") == 1 ){
+            // Run the game directly from the gameover screen 
+            menuUI.SetActive(false);
+            ResumeGame();
+            PlayerPrefs.SetInt("alreadyRunned", 0);
+            PlayerPrefs.SetInt("fromShop", 0);
+        }
+
+        //PlayerPrefs.SetInt("swords", 10);
+        //PlayerPrefs.SetInt("coins", 500);
+        //PlayerPrefs.SetInt("diamonds", 250);
+        //PlayerPrefs.SetInt("purchasedDoubleJump", 0);
+        //PlayerPrefs.SetInt("purchasedDash", 0);
+        //PlayerPrefs.SetInt("purchasedAirDash", 0);
+        //PlayerPrefs.SetInt("alreadyRunned", 0);
+
+        
+
     }
+    //void Update(){
+    //    if(PlayerPrefs.GetInt("alreadyRunned") == 1){
+    //        menuUI.SetActive(false);
+    //        ResumeGame();
+    //        PlayerPrefs.SetInt("alreadyRunned", 0);
+    //    }
+    //}
     
     
     

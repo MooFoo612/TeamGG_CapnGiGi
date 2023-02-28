@@ -1066,12 +1066,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   airWalkSpeed: 7
-  jumpImpulse: 11.75
+  jumpImpulse: 10
   rb: {fileID: 3266131370187467983}
   doubleJump: 0
   runningAudio: {fileID: 3506201281490977808}
   audio: {fileID: 8035462075548610256}
-  dustParticles: {fileID: 0}
+  dustParticles: {fileID: 1743894952286334926, guid: 7602742b08a59884996f3fdb5dfd8186, type: 3}
   tr: {fileID: 4083210630039065996}
   _isMoving: 0
   _isFacingRight: 1

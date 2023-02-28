@@ -139,7 +139,7 @@ public class ListFactory : MonoBehaviour
         return new List<GameObject>(traps);
     }
 
-     public List<GameObject> GenerateBackgroundList()
+    public List<GameObject> GenerateBackgroundList()
     {
         // Return new Enemy List
         backgrounds = new List<GameObject>(Resources.LoadAll<GameObject>("Backgrounds"));

@@ -17,7 +17,7 @@ public class ItemValue : MonoBehaviour
         PlayerInventory player = collision.GetComponent<PlayerInventory>();
         if(player){
            //diamond value is collected
-           player.Diamonds += diamondValue;
+            player.Diamonds += diamondValue;
             animatorD.SetTrigger("Collect");
             diamondAudio.PlaySoundEffect();
             // Destroy the collectable
