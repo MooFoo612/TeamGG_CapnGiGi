@@ -13,7 +13,7 @@ public class TreasureFactory : ListFactory
     }
     private void Start()
     {
-        GenerateRandomTreasure(treasureList, spawnLocation, treasureParent);
+        GenerateRandomTreasure(treasures, spawnLocation, treasureParent);
     }
     private void GenerateRandomTreasure(List<GameObject> treasureList, Vector3 spawnLocation, Transform treasureParent)
     {

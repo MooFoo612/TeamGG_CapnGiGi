@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class WorldGenerator : ListFactory
 {
@@ -15,9 +16,7 @@ public class WorldGenerator : ListFactory
     // Generators -------------------------------------
     private GroundFactory groundGenerator;
     private PlatformFactory platformGenerator;
-    private EnemyFactory enemyGenerator;
-    private CollectableFactory collectableGenerator;
-    private TrapFactory trapGenerator;
+    private BackgroundFactory backgroundGenerator;
     private bool reversedWorld;
 
     // Distance management ---------------
@@ -26,23 +25,24 @@ public class WorldGenerator : ListFactory
     private float distanceMarker;
 
     // Constants -----------------------------------------------
-    private const float DISTANCE_TO_SPAWN_SECTION = 40f;
+    private const float DISTANCE_TO_SPAWN_SECTION_GROUND = 40f;
+    private const float DISTANCE_TO_SPAWN_SECTION_BG = 80f;
     private const float DISTANCE_TO_DELETE_SECTION = 180f;
 
-    // Marker Positions---------------
-    private Vector3 worldEndRight;
-    private Vector3 worldEndLeft;
+    // Marker Positions---------------    
+    private Vector3 groundEnd_Right;
+    private Vector3 groundEnd_Left;
     //--------------------------------
-    private Vector3 groundEndRight;
-    private Vector3 groundEndLeft;
+    private Vector3 platformEnd_Right;
+    private Vector3 platformEnd_Left;
     //--------------------------------
-    private Vector3 platformEndRight;
-    private Vector3 platformEndLeft;
+    private Vector3 bgEnd_Right;
+    private Vector3 bgEnd_Left;
     //--------------------------------
 
     #endregion
-
-    void Awake()
+     
+void Awake()
     {
         // Access the player
         player = GameObject.Find("CapnGigi");
@@ -60,14 +60,8 @@ public class WorldGenerator : ListFactory
         // Access Platform Generator Script
         platformGenerator = GameObject.FindObjectOfType(typeof(PlatformFactory)) as PlatformFactory;
 
-        // Acess Enemy Generator Script
-        enemyGenerator = GameObject.FindObjectOfType(typeof(EnemyFactory)) as EnemyFactory;
-
-        // Access Collectable Generator Script
-        collectableGenerator = GameObject.FindObjectOfType(typeof(CollectableFactory)) as CollectableFactory;
-
-        // Access Trap Generator Script
-        trapGenerator = GameObject.FindObjectOfType(typeof(TrapFactory)) as TrapFactory;
+        // Access Background Generator Script
+        backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundFactory)) as BackgroundFactory;
 
         StartCoroutine(GenerateWorld_Right());
 
@@ -81,6 +75,16 @@ public class WorldGenerator : ListFactory
     }
 
     #endregion
+
+    #region Background Spawner
+
+    public void SpawnBackground_Right()
+    {
+        backgroundGenerator.GenerateBackground();
+    }
+
+    #endregion
+
 
     #region Ground Spawner
     public void SpawnGroundChunk_Right()
@@ -120,13 +124,19 @@ public class WorldGenerator : ListFactory
             yield return new WaitForSeconds(1f);
 
             // Set groundEndRight to last spawned section for check
-            groundEndRight = groundGenerator.groundEnd_Right;
+            groundEnd_Right = groundGenerator.groundEnd_Right;
+
 
             // If the player is close enough
-            if (Vector3.Distance(player.transform.position, groundEndRight) < DISTANCE_TO_SPAWN_SECTION)
+            if (Vector3.Distance(player.transform.position, groundEnd_Right) < DISTANCE_TO_SPAWN_SECTION_GROUND)
             {
                 // Spawn another section
                 SpawnGameWorld_Right();
+            }
+
+            if (Vector3.Distance(player.transform.position, bgEnd_Right) < DISTANCE_TO_SPAWN_SECTION_BG)
+            {
+                SpawnBackground_Right();
             }
 
             if (reversedWorld == true)

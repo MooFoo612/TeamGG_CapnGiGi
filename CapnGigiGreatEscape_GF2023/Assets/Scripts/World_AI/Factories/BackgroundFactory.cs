@@ -3,20 +3,53 @@ using UnityEngine;
 
 public class BackgroundFactory : ListFactory
 {
-    private Vector3 spawnLocation;
+    [SerializeField] private Transform bgStart;
+    private Transform bgParent;
+    public Vector3 bgEnd_Right;
+    public Vector3 bgEnd_Left;
+    private float distanceToSpawnBackground;
+    private GameObject player;
+    private Transform initBg;
 
     private void Awake()
     {
-        spawnLocation = GameObject.Find("BackgroundEnd_Right").transform.position;
+        // Hierarchy Parent
+        bgParent = GameObject.Find("Backgrounds_Active").transform;
+
+        // Access the player
+        player = GameObject.Find("CapnGigi");
+
+        // First spawn point
+        bgEnd_Right = bgStart.transform.position;
+
+        initBg = backgrounds[0].transform;
+
     }
+
     private void Start()
-    {
-        GenerateBackground(backgrounds, spawnLocation);
+    {      
+        GenerateBackground(initBg, bgEnd_Right, bgParent);
     }
-    private void GenerateBackground(List<GameObject> backgrounds, Vector3 spawnLocation)
+
+    public void GenerateBackground()
     {
-        int randomBackground = UnityEngine.Random.Range(0, backgrounds.Count - 1);
-        Instantiate(backgrounds[randomBackground], spawnLocation, Quaternion.identity);
+        //int randomPick = UnityEngine.Random.Range(0, backgrounds.Count - 1);
+        int randomPick = 0;
+        Transform randomBg = backgrounds[randomPick].transform;
+
+        // Spawn the Transform at the last end of section location
+        Transform lastBgEnd_Right = GenerateBackground(randomBg, bgEnd_Right, bgParent);
+
+        // Find the next end of section in the new Transform
+        bgEnd_Right = lastBgEnd_Right.Find("BgEnd_Right").position;
+    }
+
+    public Transform GenerateBackground(Transform background, Vector3 spawnLocation, Transform backgroundParent)
+    {
+        //int randomBackground = UnityEngine.Random.Range(0, backgrounds.Count - 1);
+        Transform bg = Instantiate(background, spawnLocation, Quaternion.identity, backgroundParent);
+        Debug.Log("background generated");
+        return bg;
     }
 }
 

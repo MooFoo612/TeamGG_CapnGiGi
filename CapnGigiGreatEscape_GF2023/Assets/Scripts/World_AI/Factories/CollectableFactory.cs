@@ -13,7 +13,7 @@ public class CollectableFactory : ListFactory
     }
     private void Start()
     {
-        GenerateRandomCollectable(collectablePrefabs, spawnLocation, collectableParent);
+        GenerateRandomCollectable(collectables, spawnLocation, collectableParent);
     }
     private void GenerateRandomCollectable(List<GameObject> collectablePrefabs, Vector3 spawnLocation, Transform collectableParent)
     {

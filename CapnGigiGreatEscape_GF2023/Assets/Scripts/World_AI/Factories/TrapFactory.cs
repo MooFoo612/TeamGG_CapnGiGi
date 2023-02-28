@@ -13,7 +13,7 @@ public class TrapFactory : ListFactory
     }
     private void Start()
     {
-        GenerateRandomTrap(trapPrefabs, spawnLocation, trapParent);
+        GenerateRandomTrap(traps, spawnLocation, trapParent);
     }
     private void GenerateRandomTrap(List<GameObject> trapPrefabs, Vector3 spawnLocation, Transform trapParent)
     {

@@ -13,7 +13,7 @@ public class PowerupFactory : ListFactory
     }
     private void Start()
     {
-        GenerateRandomPowerup(powerupList, spawnLocation, powerupParent);
+        GenerateRandomPowerup(powerups, spawnLocation, powerupParent);
     }
     private void GenerateRandomPowerup(List<GameObject> powerupList, Vector3 spawnLocation, Transform powerupParent)
     {

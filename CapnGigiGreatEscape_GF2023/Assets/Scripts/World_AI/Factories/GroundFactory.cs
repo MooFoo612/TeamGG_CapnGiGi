@@ -30,19 +30,19 @@ public class GroundFactory : ListFactory
         player = GameObject.Find("CapnGigi");
 
         // Find the child EndPosition object in the GameStart parent
-        groundEnd_Right = groundStart.Find("GroundEnd_Right").position;
+        groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
     }
     #endregion
 
     #region Spawn Platforms to the Right
     public void SpawnGroundChunk_Right()
     {
-        int randomPick = UnityEngine.Random.Range(0, groundPrefabs.Count - 1);
-        GameObject randomChunk = groundPrefabs[randomPick];
-        Transform groundChunk = randomChunk.transform;
+        int randomPick = UnityEngine.Random.Range(0, groundChunks.Count - 1);
+        Transform randomChunk = groundChunks[randomPick].transform;
+        //Transform groundChunk = randomChunk.transform;
 
         // Spawn the Transform at the last end of section location
-        Transform lastGroundEnd_Right = SpawnGroundChunk_Right(groundChunk, groundEnd_Right, groundParent);
+        Transform lastGroundEnd_Right = SpawnGroundChunk_Right(randomChunk, groundEnd_Right, groundParent);
 
         // Find the next end of section in the new Transform
         groundEnd_Right = lastGroundEnd_Right.Find("GroundEnd_Right").position;
@@ -52,7 +52,7 @@ public class GroundFactory : ListFactory
     {
         // Spawn the Platform Chunk
         Transform nextGroundChunk_Right = Instantiate(groundChunk, nextPosition, Quaternion.identity, groundParent);
-        ListFactory.groundChunkActivated += 1;
+        groundChunkActivated += 1;
 
         // Return the transform for sister method
         return nextGroundChunk_Right;
@@ -69,7 +69,7 @@ public class GroundFactory : ListFactory
     public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
     {
         // Set Transform to random Platform Chunk from List
-        groundChunk = RandomChunkerizer(0, groundPrefabs.Count-1);
+        groundChunk = RandomChunkerizer(0, groundChunks.Count-1);
 
         // Spawn the Platform chunk and log to AI count
         Transform nextGroundChunk_Left = Instantiate(groundChunk, nextChunk, Quaternion.identity);
@@ -90,7 +90,7 @@ public class GroundFactory : ListFactory
         int randomPick = UnityEngine.Random.Range(floor, ceiling-1);
 
         // Call GameObject from list and get its transform
-        groundObj = groundPrefabs[randomChunk];
+        groundObj = groundChunks[randomChunk];
         //groundObj.SetActive(true);
         groundChunk = groundObj.transform;
 

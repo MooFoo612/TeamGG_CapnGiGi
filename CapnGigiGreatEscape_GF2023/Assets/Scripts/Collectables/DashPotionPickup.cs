@@ -9,7 +9,7 @@ public class DashPotionPickup : ListFactory
     private void Awake()
     {
         // Populate active list from ListFactory
-        activeList = powerupList;
+        activeList = powerups;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,13 +24,13 @@ public class DashPotionPickup : ListFactory
             player.TemporaryDash = true;
 
             // Check the Powerup List
-            for (int powerup = 0; powerup < activeList.Count; powerup++)
+            for (int powerup = 0; powerup < activeList.Count - 1; powerup++)
             {
                 // If there is a powerup in the active list named DashPotion
                 if (activeList[powerup].name == "DashPotion")
                 {
                     // Remove the item from the global list in ListFactory
-                    powerupList.RemoveAt(powerup);
+                    powerups.RemoveAt(powerup);
                 }
 
             }

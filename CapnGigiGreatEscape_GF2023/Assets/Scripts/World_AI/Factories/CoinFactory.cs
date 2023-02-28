@@ -13,7 +13,7 @@ public class CoinFactory : ListFactory
     }
     private void Start()
     {
-        GenerateRandomCoin(coinPrefabs, spawnLocation, coinParent);
+        GenerateRandomCoin(coins, spawnLocation, coinParent);
     }
     private void GenerateRandomCoin(List<GameObject> coinList, Vector3 spawnLocation, Transform coinParent)
     {

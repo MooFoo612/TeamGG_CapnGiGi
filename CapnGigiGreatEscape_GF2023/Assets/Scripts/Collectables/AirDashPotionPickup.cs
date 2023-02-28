@@ -8,7 +8,7 @@ public class AirDashPotionPickup : ListFactory
 
     private void Awake()
     {
-        activeList = powerupList;
+        activeList = powerups;
     }
     private void OnTriggerEnter2D(Collider2D collision){
         // Get the script from the collision object 
@@ -16,11 +16,11 @@ public class AirDashPotionPickup : ListFactory
         if(player){
             player.TemporaryAirDash = true;
             
-            for (int powerup = 0; powerup < activeList.Count; powerup++)
+            for (int powerup = 0; powerup < activeList.Count - 1; powerup++)
             {
                 if (activeList[powerup].name == "AirDashPotion") 
                 { 
-                    powerupList.RemoveAt(powerup);
+                    powerups.RemoveAt(powerup);
                 }
 
             }

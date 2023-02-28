@@ -8,34 +8,31 @@ public class ListFactory : MonoBehaviour
     #region List Declarations
 
     // Ground Chunk Prefabs
-    public static List<GameObject> groundPrefabs; 
+    public static List<GameObject> groundChunks; 
 
     // Platform Chunk Prefabs
-    public static List<GameObject> platformPrefabs;
+    public static List<GameObject> platformChunks;
 
     // Enemy Prefabs
-    public static List<GameObject> enemyPrefabs;
+    public static List<GameObject> enemies;
 
     // Collectable Prefabs
-    public static List<GameObject> collectablePrefabs;
+    public static List<GameObject> collectables;
 
     // Coin Prefabs
-    public static List<GameObject> coinPrefabs;
+    public static List<GameObject> coins;
 
     // Trap Prefabs
-    public static List<GameObject> trapPrefabs;
+    public static List<GameObject> traps;
 
     // Background Images
     public static List<GameObject> backgrounds;
     
     // Treasure Prefabs
-    public static List<GameObject> treasureList;
+    public static List<GameObject> treasures;
     
     // Treasure Prefabs
-    public static List<GameObject> powerupList;
-
-    // Singleton
-    public static ListFactory Instance { get; private set; }
+    public static List<GameObject> powerups;
 
 
     #endregion
@@ -66,103 +63,101 @@ public class ListFactory : MonoBehaviour
     // Most of the High-Priority Setup occurs in Awake()
     private void Awake()
     {
-        Instance = this;
-
         // Ground Chunks
-        groundPrefabs = GenerateGroundChunkList();
+        groundChunks = GenerateGroundChunkList();
 
         // Platform Chunks
-        platformPrefabs = GeneratePlatformList();
+        platformChunks = GeneratePlatformList();
 
         // Enemies
-        trapPrefabs = GenerateEnemyList();
-
-        // Collectables
-        collectablePrefabs = GenerateCollectableList();
+        enemies = GenerateEnemyList();
 
         // Coins
-        coinPrefabs = GenerateCoinList();
+        coins = GenerateCoinList();
+
+        // Treasures
+        treasures = GenerateTreasureList();
+
+        // Collectables
+        collectables = GenerateCollectableList();
+        
+        // Powerups
+        powerups = GeneratePowerupList();
+
 
         // Traps
-        trapPrefabs = GenerateTrapList();
+        traps = GenerateTrapList();
 
         // Backgrounds
         backgrounds = GenerateBackgroundList();
-
-        // Treasures
-        treasureList = GenerateTreasureList();
-        
-        // Powerups
-        powerupList = GeneratePowerupList();
-
     }
     #region List & Array Generation
 
     // GroundChunks
     public List<GameObject> GenerateGroundChunkList()
     {
-        groundPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("GroundChunks"));
-        return new List<GameObject>(groundPrefabs);
+        groundChunks = new List<GameObject>(Resources.LoadAll<GameObject>("GroundChunks"));
+        return new List<GameObject>(groundChunks);
     }
 
     // PlatformChunks
     public List<GameObject> GeneratePlatformList()
     {
         // Return new Platform List
-        platformPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("PlatformChunks"));
-        return new List<GameObject>(platformPrefabs);
+        platformChunks = new List<GameObject>(Resources.LoadAll<GameObject>("PlatformChunks"));
+        return new List<GameObject>(platformChunks);
     }
 
     // Enemies
     public List<GameObject> GenerateEnemyList()
     {
         // Return new Enemy List
-        enemyPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Enemies"));
-        return new List<GameObject>(enemyPrefabs);
+        enemies = new List<GameObject>(Resources.LoadAll<GameObject>("Enemies"));
+        return new List<GameObject>(enemies);
     }
 
     // Collectables
     public List<GameObject> GenerateCollectableList()
     {
         // Return new Collectable List
-        collectablePrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Collectables"));
-        return new List<GameObject>(collectablePrefabs);
+        collectables = new List<GameObject>(Resources.LoadAll<GameObject>("Collectables"));
+        return new List<GameObject>(collectables);
     }
 
     public List<GameObject> GenerateCoinList()
     {
         // Return new Collectable List
-        coinPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Coins"));
-        return new List<GameObject>(coinPrefabs);
+        coins = new List<GameObject>(Resources.LoadAll<GameObject>("Coins"));
+        return new List<GameObject>(coins);
     }
 
     // Traps
     public List<GameObject> GenerateTrapList()
     {
         // Return new Enemy List
-        trapPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Traps"));
-        return new List<GameObject>(trapPrefabs);
+        traps = new List<GameObject>(Resources.LoadAll<GameObject>("Traps"));
+        return new List<GameObject>(traps);
     }
 
      public List<GameObject> GenerateBackgroundList()
     {
         // Return new Enemy List
-        backgrounds = new List<GameObject>(Resources.LoadAll<GameObject>("Background"));
+        backgrounds = new List<GameObject>(Resources.LoadAll<GameObject>("Backgrounds"));
         return new List<GameObject>(backgrounds);
     }
 
     public List<GameObject> GenerateTreasureList()
     {
         // Return new Enemy List
-        treasureList = new List<GameObject>(Resources.LoadAll<GameObject>("Treasures"));
-        return new List<GameObject>(treasureList);
+        treasures = new List<GameObject>(Resources.LoadAll<GameObject>("Treasures"));
+        return new List<GameObject>(treasures);
     }
     
     public List<GameObject> GeneratePowerupList()
     {
         // Return new Enemy List
-        powerupList = new List<GameObject>(Resources.LoadAll<GameObject>("Powerups"));
-        return new List<GameObject>(powerupList);
+        powerups = new List<GameObject>(Resources.LoadAll<GameObject>("Powerups"));
+        return new List<GameObject>(powerups);
     }
 
 

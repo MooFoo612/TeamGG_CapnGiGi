@@ -7,7 +7,7 @@ public class DoubleJumpPotionPickup : ListFactory
 
     private void Awake()
     {
-        activeList = powerupList;
+        activeList = powerups;
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -16,11 +16,11 @@ public class DoubleJumpPotionPickup : ListFactory
         if(player){
             player.TemporaryDoubleJump = true;
 
-            for (int powerup = 0; powerup < activeList.Count; powerup++)
+            for (int powerup = 0; powerup < activeList.Count - 1; powerup++)
             {
                 if (activeList[powerup].name == "DoubleJumpPotion")
                 {
-                    powerupList.RemoveAt(powerup);
+                    powerups.RemoveAt(powerup);
                 }
 
             }

@@ -14,7 +14,7 @@ public class EnemyFactory : ListFactory
     }
     private void Start()
     {
-        GenerateRandomEnemy(enemyPrefabs, spawnLocation, enemyParent);
+        GenerateRandomEnemy(enemies, spawnLocation, enemyParent);
     }
     private void GenerateRandomEnemy(List<GameObject> enemyPrefabs, Vector3 spawnLocation, Transform enemyParent)
     {
