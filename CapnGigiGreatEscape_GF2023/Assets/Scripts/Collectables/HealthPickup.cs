@@ -1,25 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class HealthPickup : ListFactory
 {
+    // Animator
     private Animator animatorHeart;
+
+    // Heal Value
     public int healthRestore = 50;
 
     void Start()
     {
-                animatorHeart = gameObject.GetComponent<Animator>();
+        // Get component animator
+        animatorHeart = gameObject.GetComponent<Animator>();
     }
-    private void OnTriggerEnter2D(Collider2D collision){
-        // Get the script from the collision object 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check for script in the collision object 
         Damageable damageable = collision.GetComponent<Damageable>();
-        if(damageable){
-            // Add health to the character 
+
+        // If damageable script is present on the collision
+        if (damageable)
+        {
+            // Add health to the player 
             damageable.Heal(healthRestore);
+
+            // Animation and Audio 
             animatorHeart.SetTrigger("Collect");
-            // Destroy the collectable
-            Destroy(gameObject, 0.5f);
+
+            // "Collect" the health
+            Destroy(gameObject, 0.25f);
         }
     }
 

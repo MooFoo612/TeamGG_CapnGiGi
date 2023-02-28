@@ -3,25 +3,21 @@ using UnityEngine;
 
 public class CollectableFactory : ListFactory
 {
-    //public static EnemyFactory Instance { get; private set; }
-
-    //private ListFactory lf;
-    //private List<GameObject> collectableList;
     private Vector3 spawnLocation;
+    private Transform collectableParent;
 
     private void Awake()
     {
+        collectableParent = GameObject.Find("Collectables_Active").transform;
         spawnLocation = transform.position;
-        //lf = gameObject.AddComponent<ListFactory>(); 
-        //collectableList = lf.GenerateCollectableList();
     }
     private void Start()
     {
-        GenerateRandomCollectable(collectablePrefabs, spawnLocation);
+        GenerateRandomCollectable(collectablePrefabs, spawnLocation, collectableParent);
     }
-    private void GenerateRandomCollectable(List<GameObject> collectablePrefabs, Vector3 spawnLocation)
+    private void GenerateRandomCollectable(List<GameObject> collectablePrefabs, Vector3 spawnLocation, Transform collectableParent)
     {
         int randomCollectable = UnityEngine.Random.Range(0, collectablePrefabs.Count - 1);
-        Instantiate(collectablePrefabs[randomCollectable], spawnLocation, Quaternion.identity);
+        Instantiate(collectablePrefabs[randomCollectable], spawnLocation, Quaternion.identity, collectableParent);
     }
 }

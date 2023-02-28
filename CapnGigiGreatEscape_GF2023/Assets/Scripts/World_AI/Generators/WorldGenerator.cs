@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WorldGenerator : MonoBehaviour
+public class WorldGenerator : ListFactory
 {
     #region Variables
     // ------------------------------------------------
@@ -23,7 +23,7 @@ public class WorldGenerator : MonoBehaviour
     // Distance management ---------------
     private float totalDistance;
     private GameObject distanceMarkerObj;
-    private Vector3 distanceMarker;
+    private float distanceMarker;
 
     // Constants -----------------------------------------------
     private const float DISTANCE_TO_SPAWN_SECTION = 40f;
@@ -49,7 +49,7 @@ public class WorldGenerator : MonoBehaviour
 
         // Distance Marker
         distanceMarkerObj = GameObject.Find("DistanceMarker");
-        distanceMarker = distanceMarkerObj.transform.position;
+        distanceMarker = distanceMarkerObj.transform.position.x;
 
         // Ensure world isn't reversed
         reversedWorld = false;
@@ -92,8 +92,12 @@ public class WorldGenerator : MonoBehaviour
     {
         groundGenerator.SpawnGroundChunk_Left();
     }
-
     #endregion
+
+    private void Update()
+    {
+       
+    }
 
     #region Platform Spawner
     public void SpawnPlatformChunk_Right()

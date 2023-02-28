@@ -3,27 +3,23 @@ using UnityEngine;
 
 public class EnemyFactory : ListFactory
 {
-    //public static EnemyFactory Instance { get; private set; }
-
-    //private ListFactory lf;
-    //private List<GameObject> enemyList;
     private Vector3 spawnLocation;
+
+    private Transform enemyParent;
 
     private void Awake()
     {
-        // Where to 
+        enemyParent = GameObject.Find("Enemies_Active").transform;
         spawnLocation = gameObject.transform.position;
-        //lf = gameObject.AddComponent<ListFactory>();
-        //enemyList = enemyPrefabs;
     }
     private void Start()
     {
-        GenerateRandomEnemy(enemyPrefabs, spawnLocation);
+        GenerateRandomEnemy(enemyPrefabs, spawnLocation, enemyParent);
     }
-    private void GenerateRandomEnemy(List<GameObject> enemyPrefabs, Vector3 spawnLocation)
+    private void GenerateRandomEnemy(List<GameObject> enemyPrefabs, Vector3 spawnLocation, Transform enemyParent)
     {
         int randomEnemy = UnityEngine.Random.Range(0, enemyPrefabs.Count - 1);
-        Instantiate(enemyPrefabs[randomEnemy], spawnLocation, Quaternion.identity);
+        Instantiate(enemyPrefabs[randomEnemy], spawnLocation, Quaternion.identity, enemyParent);
     }
 
 }
