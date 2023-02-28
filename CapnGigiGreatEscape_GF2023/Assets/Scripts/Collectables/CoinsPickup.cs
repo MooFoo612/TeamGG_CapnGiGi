@@ -1,29 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinsPickup : MonoBehaviour
+public class CoinsPickup : ListFactory
 {
+    // Coin Value
     public int coinsAmount = 20;
+
+    // Animator
     private Animator animatorCoin;
+
+    // Inspector Audio access
     public SoundEffect coinAudio;
 
-
-    void Start(){
+    void Start()
+    {
+        // Get component Animator
         animatorCoin = gameObject.GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision){
-        // Get the script from the collision object 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check for script in the collision object 
         PlayerInventory player = collision.GetComponent<PlayerInventory>();
-        if(player){
-            // Add health to the character 
+
+        // If collision is with the player
+        if (player)
+        {
+            // Add coins to the player 
             player.Coins += coinsAmount;
-            // animation and audio
+
+            // Animation and Audio
             animatorCoin.SetTrigger("Collect");
             coinAudio.PlaySoundEffect();
-            // Destroy the collectable
-            Destroy(gameObject, 0.5f);
+
+            // "Collect" the coin
+            Destroy(gameObject, 0.25f);
         }
     }
 }

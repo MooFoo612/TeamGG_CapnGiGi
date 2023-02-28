@@ -3,23 +3,21 @@ using UnityEngine;
 
 public class CoinFactory : ListFactory
 {
-    //private ListFactory lf;
-    //private List<GameObject> coinList;
     private Vector3 spawnLocation;
+    private Transform coinParent;
 
     private void Awake()
     {
+        coinParent = GameObject.Find("Coins_Active").transform;
         spawnLocation = gameObject.transform.position;
-        //lf = gameObject.AddComponent<ListFactory>();
-        //coinList = lf.GenerateEnemyList();
     }
     private void Start()
     {
-        GenerateRandomCoin(coinPrefabs, spawnLocation);
+        GenerateRandomCoin(coinPrefabs, spawnLocation, coinParent);
     }
-    private void GenerateRandomCoin(List<GameObject> coinList, Vector3 spawnLocation)
+    private void GenerateRandomCoin(List<GameObject> coinList, Vector3 spawnLocation, Transform coinParent)
     {
         int randomCoin = UnityEngine.Random.Range(0, coinList.Count - 1);
-        Instantiate(coinList[randomCoin], spawnLocation, Quaternion.identity);
+        Instantiate(coinList[randomCoin], spawnLocation, Quaternion.identity, coinParent);
     }
 }

@@ -1,24 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapFactory : ListFactory
+public class BackgroundFactory : ListFactory
 {
     private Vector3 spawnLocation;
-    private Transform trapParent;
 
     private void Awake()
     {
-        trapParent = GameObject.Find("Traps_Active").transform;
-        spawnLocation = gameObject.transform.position;
+        spawnLocation = GameObject.Find("BackgroundEnd_Right").transform.position;
     }
     private void Start()
     {
-        GenerateRandomTrap(trapPrefabs, spawnLocation, trapParent);
+        GenerateBackground(backgrounds, spawnLocation);
     }
-    private void GenerateRandomTrap(List<GameObject> trapPrefabs, Vector3 spawnLocation, Transform trapParent)
+    private void GenerateBackground(List<GameObject> backgrounds, Vector3 spawnLocation)
     {
-        int randomTrap = UnityEngine.Random.Range(0, trapPrefabs.Count - 1);
-        Instantiate(trapPrefabs[randomTrap], spawnLocation, Quaternion.identity, trapParent);
+        int randomBackground = UnityEngine.Random.Range(0, backgrounds.Count - 1);
+        Instantiate(backgrounds[randomBackground], spawnLocation, Quaternion.identity);
     }
 }
 

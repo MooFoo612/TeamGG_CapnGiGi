@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class diamondPickup : MonoBehaviour
+public class diamondPickup : ListFactory
 {
     private Animator animatorD;
     public int diamondValue = 20;
@@ -10,18 +8,26 @@ public class diamondPickup : MonoBehaviour
     
     void Start()
     {
-                animatorD = gameObject.GetComponent<Animator>();
+        // Get component Animator
+        animatorD = gameObject.GetComponent<Animator>();
     }
-    private void OnTriggerEnter2D(Collider2D collision){
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         // Get the script from the collision object 
         PlayerInventory player = collision.GetComponent<PlayerInventory>();
-        if(player){
-           //diamond value is collected
-           player.Diamonds += diamondValue;
+
+        // If collision is with the player
+        if (player)
+        {
+           // Add diamond value to player
+            player.Diamonds += diamondValue;
+
+            // Animation and Audio
             animatorD.SetTrigger("Collect");
             diamondAudio.PlaySoundEffect();
-            // Destroy the collectable
-            Destroy(gameObject, 0.5f);
+
+            // "Collect" the diamond
+            Destroy(gameObject, 0.25f);
         }
     }
 }

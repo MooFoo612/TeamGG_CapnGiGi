@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ListFactory : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class ListFactory : MonoBehaviour
     #region List Declarations
 
     // Ground Chunk Prefabs
-    public static List<GameObject> groundPrefabs;
+    public static List<GameObject> groundPrefabs; 
 
     // Platform Chunk Prefabs
     public static List<GameObject> platformPrefabs;
@@ -27,6 +24,19 @@ public class ListFactory : MonoBehaviour
 
     // Trap Prefabs
     public static List<GameObject> trapPrefabs;
+
+    // Background Images
+    public static List<GameObject> backgrounds;
+    
+    // Treasure Prefabs
+    public static List<GameObject> treasureList;
+    
+    // Treasure Prefabs
+    public static List<GameObject> powerupList;
+
+    // Singleton
+    public static ListFactory Instance { get; private set; }
+
 
     #endregion
 
@@ -56,6 +66,8 @@ public class ListFactory : MonoBehaviour
     // Most of the High-Priority Setup occurs in Awake()
     private void Awake()
     {
+        Instance = this;
+
         // Ground Chunks
         groundPrefabs = GenerateGroundChunkList();
 
@@ -74,23 +86,16 @@ public class ListFactory : MonoBehaviour
         // Traps
         trapPrefabs = GenerateTrapList();
 
-    }
+        // Backgrounds
+        backgrounds = GenerateBackgroundList();
 
-    #region Functions to retrieve co-ordinates
-    private Transform GetNextEnemySpawnLocation()
-    {
-        return transform;
-    }
-    private Transform GetNextPlatformSpawnLocation()
-    {
-        return transform;
-    }
-    private Transform GetNextGroundSpawnLocation()
-    {
-        return transform;
-    }
-    #endregion
+        // Treasures
+        treasureList = GenerateTreasureList();
+        
+        // Powerups
+        powerupList = GeneratePowerupList();
 
+    }
     #region List & Array Generation
 
     // GroundChunks
@@ -138,6 +143,28 @@ public class ListFactory : MonoBehaviour
         trapPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Traps"));
         return new List<GameObject>(trapPrefabs);
     }
+
+     public List<GameObject> GenerateBackgroundList()
+    {
+        // Return new Enemy List
+        backgrounds = new List<GameObject>(Resources.LoadAll<GameObject>("Background"));
+        return new List<GameObject>(backgrounds);
+    }
+
+    public List<GameObject> GenerateTreasureList()
+    {
+        // Return new Enemy List
+        treasureList = new List<GameObject>(Resources.LoadAll<GameObject>("Treasures"));
+        return new List<GameObject>(treasureList);
+    }
+    
+    public List<GameObject> GeneratePowerupList()
+    {
+        // Return new Enemy List
+        powerupList = new List<GameObject>(Resources.LoadAll<GameObject>("Powerups"));
+        return new List<GameObject>(powerupList);
+    }
+
 
     #endregion
 }

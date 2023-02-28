@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   airWalkSpeed: 7
-  jumpImpulse: 10
+  jumpImpulse: 11.75
   rb: {fileID: 3266131370187467983}
   doubleJump: 0
   runningAudio: {fileID: 3506201281490977808}
