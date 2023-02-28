@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinGenerator : ListFactory
+public class CoinFactory : ListFactory
 {
     private ListFactory lf;
     private List<GameObject> coinList;
