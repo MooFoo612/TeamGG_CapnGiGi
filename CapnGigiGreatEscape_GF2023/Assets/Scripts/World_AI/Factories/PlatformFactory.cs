@@ -8,6 +8,7 @@ public class PlatformFactory : ListFactory
     [SerializeField] private GameObject player;
 
     private Transform platformChunk;
+    private Transform platformParent;
 
     // Positions for Spawning Chunks
     [HideInInspector] public Vector3 platformEnd_Right;
@@ -21,6 +22,9 @@ public class PlatformFactory : ListFactory
         // Access the player
         player = GameObject.Find("CapnGigi");
 
+        // Nest in hierarchy
+        platformParent = GameObject.Find("PlatformChunks_Active").transform;
+
         // Find the child EndPosition object in the GameStart parent
         platformEnd_Right = platformStart.Find("PlatformEnd_Right").position;
     }
@@ -32,18 +36,18 @@ public class PlatformFactory : ListFactory
         platformChunk = RandomChunkerizer();
 
         //Get the transform to refrence the next End Position
-        Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformChunk, platformEnd_Right);
+        Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformChunk, platformEnd_Right, platformParent);
         platformEnd_Right = lastPlatformEnd_Right.Find("PlatformEnd_Right").position;
 
-        Debug.Log("Platform Spawned: " + ListFactory.platformChunkActivated);
+        //Debug.Log("Platform Spawned: " + platformChunkActivated);
 
     }
-    public Transform SpawnPlatformChunk_Right(Transform platformChunk, Vector3 nextChunk)
+    public Transform SpawnPlatformChunk_Right(Transform platformChunk, Vector3 nextChunk, Transform platformParent)
     {
         // Spawn the Platform Chunk and log to AI count
-        Transform nextPlatformChunk_Right = Instantiate(platformChunk, nextChunk, Quaternion.identity);
+        Transform nextPlatformChunk_Right = Instantiate(platformChunk, nextChunk, Quaternion.identity, platformParent);
 
-        ListFactory.platformChunkActivated += 1;
+        platformChunkActivated += 1;
 
         // Return the transform for sister method
         return nextPlatformChunk_Right;
