@@ -13,7 +13,7 @@ public class TrapGenerator : ListFactory
 
     private void Awake()
     {
-        spawnLocation = transform.position;
+        spawnLocation = gameObject.transform.position;
         lf = gameObject.AddComponent<ListFactory>();
         trapList = lf.GenerateTrapList();
     }

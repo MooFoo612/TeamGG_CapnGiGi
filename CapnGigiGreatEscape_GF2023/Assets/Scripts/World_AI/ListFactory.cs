@@ -22,6 +22,9 @@ public class ListFactory : MonoBehaviour
     // Collectable Prefabs
     public static List<GameObject> collectablePrefabs;
 
+    // Coin Prefabs
+    public static List<GameObject> coinPrefabs;
+
     // Trap Prefabs
     public static List<GameObject> trapPrefabs;
 
@@ -53,19 +56,22 @@ public class ListFactory : MonoBehaviour
     // Most of the High-Priority Setup occurs in Awake()
     private void Awake()
     {
-        // Load all GroundSection prefabs into list, display list in console
+        // Ground Chunks
         groundPrefabs = GenerateGroundChunkList();
 
-        // Load all PlatformSection prefabs into list, display list in console
+        // Platform Chunks
         platformPrefabs = GeneratePlatformList();
 
-        // Load all Enemy prefabs into the list, display list in console
+        // Enemies
         trapPrefabs = GenerateEnemyList();
 
-        // Load all Collectable prefabs into the list, display list in console
+        // Collectables
         collectablePrefabs = GenerateCollectableList();
 
-        // Load all Collectable prefabs into the list, display list in console
+        // Coins
+        coinPrefabs = GenerateCoinList();
+
+        // Traps
         trapPrefabs = GenerateTrapList();
 
     }
@@ -116,6 +122,13 @@ public class ListFactory : MonoBehaviour
         // Return new Collectable List
         collectablePrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Collectables"));
         return new List<GameObject>(collectablePrefabs);
+    }
+
+    public List<GameObject> GenerateCoinList()
+    {
+        // Return new Collectable List
+        coinPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Coins"));
+        return new List<GameObject>(coinPrefabs);
     }
 
     // Traps

@@ -143,9 +143,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014474273, y: 0}
+  m_Offset: {x: 0.021395892, y: 0}
   serializedVersion: 2
-  m_Radius: 0.16355294
+  m_Radius: 0.16215706
 --- !u!114 &4553128027650410191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 712037364837759569}
   - component: {fileID: 5363592065253187350}
   - component: {fileID: 6715348705753348308}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CoinAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}

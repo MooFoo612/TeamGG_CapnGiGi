@@ -10,7 +10,7 @@ public class EnemyGenerator : ListFactory
     private void Awake()
     {
         // Where to 
-        spawnLocation = transform.position;
+        spawnLocation = gameObject.transform.position;
         lf = gameObject.AddComponent<ListFactory>();
         enemyList = lf.GenerateEnemyList();
     }
@@ -23,4 +23,5 @@ public class EnemyGenerator : ListFactory
         int randomEnemy = UnityEngine.Random.Range(0, enemyList.Count - 1);
         Instantiate(enemyList[randomEnemy], spawnLocation, Quaternion.identity);
     }
+
 }
