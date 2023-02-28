@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour{
     //public bool collectedAirDash = false;
 
     public PlayerAudio audio;
+    public ParticleSystem dustParticles;
 
     [SerializeField] private TrailRenderer tr;
     // CurrentSpeed function 
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour{
             // Set the boolean in the animator with the same value static strings
             anim.SetBool(AnimationStrings.isMoving, value);
             audio.PlayrunningAudio(_isMoving);
+            dustParticles.Play();
         }
     }
     [SerializeField]private bool _isFacingRight = true;
@@ -97,6 +99,11 @@ public class PlayerController : MonoBehaviour{
         get{
             return anim.GetBool(AnimationStrings.isAlive);
         }
+    }
+
+    void CreateDust()
+    {
+        dustParticles.Play();
     }
 
 
@@ -165,11 +172,13 @@ public class PlayerController : MonoBehaviour{
         // If the player is moving right and is not facing right
         if(moveInput.x > 0 && !IsFacingRight){
             // Face the right
+            dustParticles.Play();
             IsFacingRight = true;
 
         // If the player is moving left and is facing right    
         } else if(moveInput.x < 0 && IsFacingRight){
             // Face the left
+            dustParticles.Play();
             IsFacingRight = false;
         }
     }
@@ -182,6 +191,8 @@ public class PlayerController : MonoBehaviour{
             {
                 //player jump audio 
                 audio.PlayjumpAudio();
+                // Dust Particles
+                dustParticles.Play();
                 // Update animator paramether using static strings  
                 anim.SetTrigger(AnimationStrings.jump);
                 // Add jump inpulse on the y axis 
@@ -198,6 +209,8 @@ public class PlayerController : MonoBehaviour{
                     jumpPressed = true;
                      //player jump audio 
                     audio.PlayjumpAudio();
+                    // Dust Particles
+                    dustParticles.Play();
 
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
@@ -238,6 +251,8 @@ public class PlayerController : MonoBehaviour{
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         //player damage Audio
         audio.PlaytakeDamageAudio();
+        dustParticles.Play();
+
     }
 
     public void OnDash(InputAction.CallbackContext context){

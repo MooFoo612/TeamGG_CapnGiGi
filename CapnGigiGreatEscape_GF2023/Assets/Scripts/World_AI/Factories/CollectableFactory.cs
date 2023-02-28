@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableGenerator : ListFactory
+public class CollectableFactory : ListFactory
 {
     private ListFactory lf;
     private List<GameObject> collectableList;

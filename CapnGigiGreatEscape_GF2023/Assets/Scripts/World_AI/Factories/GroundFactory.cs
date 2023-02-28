@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class GroundGenerator : MonoBehaviour
+public class GroundFactory : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Transform groundStart;

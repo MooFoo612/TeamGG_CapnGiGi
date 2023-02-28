@@ -1,8 +1,7 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
-public class PlatformGenerator : MonoBehaviour
+public class PlatformFactory : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Transform platformStart;
