@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7946163111112267488}
   - component: {fileID: 5306711692548657021}
+  - component: {fileID: 2036960242}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5306711692548657021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247384533365457211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0a0e0c69230054b90929cbe2deb83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2036960242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -769,6 +782,7 @@ GameObject:
   - component: {fileID: 4880828066994162344}
   - component: {fileID: 8858859916391010064}
   - component: {fileID: 4879116488156750840}
+  - component: {fileID: 5948639253210361404}
   - component: {fileID: 4083210630039065996}
   - component: {fileID: 140606828841188658}
   m_Layer: 7
@@ -990,7 +1004,19 @@ MonoBehaviour:
     m_ActionId: 2adb1d32-8049-4e66-930a-0dcfe5b078b9
     m_ActionName: Player/Jump[/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3266131370187467969}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRangedAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ec2c238d-382b-4f30-8b57-6ea0f88d374f
     m_ActionName: Player/RangedAttack[/Keyboard/space]
   - m_PersistentCalls:
@@ -1065,10 +1091,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   airWalkSpeed: 7
-  jumpImpulse: 10
+  jumpImpulse: 11.5
   rb: {fileID: 3266131370187467983}
   doubleJump: 0
   audio: {fileID: 8035462075548610256}
+  dustParticles: {fileID: 0}
   tr: {fileID: 4083210630039065996}
   _isMoving: 0
   _isFacingRight: 1
@@ -1116,8 +1143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDrop: {fileID: 0}
-  player: {fileID: 0}
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -1197,6 +1222,19 @@ MonoBehaviour:
   diamondsText: {fileID: 0}
   shopUI: {fileID: 0}
   menuUI: {fileID: 0}
+--- !u!114 &5948639253210361404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266131370187467982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ecaa74e9e5bac48b873540b63919d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theGameObject: {fileID: 0}
 --- !u!96 &4083210630039065996
 TrailRenderer:
   serializedVersion: 2
