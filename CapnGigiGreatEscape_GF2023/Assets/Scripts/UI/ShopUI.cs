@@ -31,14 +31,14 @@ public class ShopUI : MonoBehaviour
     
     private void OnEnable() {
         // Update the coins and diamond text
-        coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString();
-        diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
+        coinsText.text = "x " + PlayerPrefs.GetInt("coins").ToString();
+        diamondsText.text = "x " + PlayerPrefs.GetInt("diamonds").ToString();
 
         // Open and close the shop
         //AddShopEvents();
         // Update the coins and diamond text
-        coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString();
-        diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
+        coinsText.text = "x " + PlayerPrefs.GetInt("coins").ToString();
+        diamondsText.text = "x " + PlayerPrefs.GetInt("diamonds").ToString();
         // ID's of the item
         shopItems[1, 1] = 1;
         shopItems[1, 2] = 2;
@@ -105,8 +105,8 @@ public class ShopUI : MonoBehaviour
             }
             
             // Update coins and diamond text 
-            coinsText.text = "X " + PlayerPrefs.GetInt("coins").ToString(); //coinsText.text = "X " + coins.ToString();
-            diamondsText.text = "X " + PlayerPrefs.GetInt("diamonds").ToString();
+            coinsText.text = "x " + PlayerPrefs.GetInt("coins").ToString(); //coinsText.text = "X " + coins.ToString();
+            diamondsText.text = "x " + PlayerPrefs.GetInt("diamonds").ToString();
             // Update quantity text 
             //ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
         }
