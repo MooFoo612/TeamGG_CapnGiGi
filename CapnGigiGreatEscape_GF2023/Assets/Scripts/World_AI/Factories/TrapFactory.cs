@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class TrapFactory : ListFactory
 {
-    private ListFactory lf;
-    private List<GameObject> trapList;
+    //private ListFactory lf;
+    //private List<GameObject> trapList;
     private Vector3 spawnLocation;
 
     private void Awake()
     {
         spawnLocation = gameObject.transform.position;
-        lf = gameObject.AddComponent<ListFactory>();
-        trapList = lf.GenerateTrapList();
+        //lf = gameObject.AddComponent<ListFactory>();
+        //trapList = lf.GenerateTrapList();
     }
     private void Start()
     {
-        GenerateRandomTrap(trapList, spawnLocation);
+        GenerateRandomTrap(trapPrefabs, spawnLocation);
     }
-    private void GenerateRandomTrap(List<GameObject> trapList, Vector3 spawnLocation)
+    private void GenerateRandomTrap(List<GameObject> trapPrefabs, Vector3 spawnLocation)
     {
-        int randomTrap = UnityEngine.Random.Range(0, trapList.Count - 1);
-        Instantiate(trapList[randomTrap], spawnLocation, Quaternion.identity);
+        int randomTrap = UnityEngine.Random.Range(0, trapPrefabs.Count - 1);
+        Instantiate(trapPrefabs[randomTrap], spawnLocation, Quaternion.identity);
     }
 }
 

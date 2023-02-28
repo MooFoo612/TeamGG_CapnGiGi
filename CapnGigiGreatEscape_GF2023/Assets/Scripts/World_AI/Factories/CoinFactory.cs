@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class CoinFactory : ListFactory
 {
-    private ListFactory lf;
-    private List<GameObject> coinList;
+    //private ListFactory lf;
+    //private List<GameObject> coinList;
     private Vector3 spawnLocation;
 
     private void Awake()
     {
         spawnLocation = gameObject.transform.position;
-        lf = gameObject.AddComponent<ListFactory>();
-        coinList = lf.GenerateEnemyList();
+        //lf = gameObject.AddComponent<ListFactory>();
+        //coinList = lf.GenerateEnemyList();
     }
     private void Start()
     {
-        GenerateRandomCoin(coinList, spawnLocation);
+        GenerateRandomCoin(coinPrefabs, spawnLocation);
     }
     private void GenerateRandomCoin(List<GameObject> coinList, Vector3 spawnLocation)
     {
