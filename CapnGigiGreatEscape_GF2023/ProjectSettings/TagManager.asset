@@ -12,6 +12,8 @@ TagManager:
   - EnemySpawn
   - CollectableSpawn
   - TrapSpawn
+  - Ground
+  - isOnGround_Particles
   layers:
   - Default
   - TransparentFX

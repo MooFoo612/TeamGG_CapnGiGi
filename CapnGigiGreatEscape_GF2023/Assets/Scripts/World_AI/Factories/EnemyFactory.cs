@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGenerator : ListFactory
+public class EnemyFactory : ListFactory
 {
     private ListFactory lf;
     private List<GameObject> enemyList;

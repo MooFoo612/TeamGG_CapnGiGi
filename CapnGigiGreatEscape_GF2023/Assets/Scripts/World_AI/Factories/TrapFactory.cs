@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static WorldObject_Classes;
 
-public class TrapGenerator : ListFactory
+public class TrapFactory : ListFactory
 {
     private ListFactory lf;
     private List<GameObject> trapList;

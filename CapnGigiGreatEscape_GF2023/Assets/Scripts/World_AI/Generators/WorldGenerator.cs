@@ -13,11 +13,11 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] private GameObject player;
 
     // Generators -------------------------------------
-    private GroundGenerator groundGenerator;
-    private PlatformGenerator platformGenerator;
-    private EnemyGenerator enemyGenerator;
-    private CollectableGenerator collectableGenerator;
-    private TrapGenerator trapGenerator;
+    private GroundFactory groundGenerator;
+    private PlatformFactory platformGenerator;
+    private EnemyFactory enemyGenerator;
+    private CollectableFactory collectableGenerator;
+    private TrapFactory trapGenerator;
     private bool reversedWorld;
 
     // Distance management ---------------
@@ -55,19 +55,19 @@ public class WorldGenerator : MonoBehaviour
         reversedWorld = false;
 
         // Access Ground Generator Script
-        groundGenerator = GameObject.FindObjectOfType(typeof(GroundGenerator)) as GroundGenerator;
+        groundGenerator = GameObject.FindObjectOfType(typeof(GroundFactory)) as GroundFactory;
 
         // Access Platform Generator Script
-        platformGenerator = GameObject.FindObjectOfType(typeof(PlatformGenerator)) as PlatformGenerator;
+        platformGenerator = GameObject.FindObjectOfType(typeof(PlatformFactory)) as PlatformFactory;
 
         // Acess Enemy Generator Script
-        enemyGenerator = GameObject.FindObjectOfType(typeof(EnemyGenerator)) as EnemyGenerator;
+        enemyGenerator = GameObject.FindObjectOfType(typeof(EnemyFactory)) as EnemyFactory;
 
         // Access Collectable Generator Script
-        collectableGenerator = GameObject.FindObjectOfType(typeof(CollectableGenerator)) as CollectableGenerator;
+        collectableGenerator = GameObject.FindObjectOfType(typeof(CollectableFactory)) as CollectableFactory;
 
         // Access Trap Generator Script
-        trapGenerator = GameObject.FindObjectOfType(typeof(TrapGenerator)) as TrapGenerator;
+        trapGenerator = GameObject.FindObjectOfType(typeof(TrapFactory)) as TrapFactory;
 
         StartCoroutine(GenerateWorld_Right());
 
