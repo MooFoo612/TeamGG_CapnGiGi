@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203985150761132008, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_text
+      value: x 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 203985150761132008, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 203985150761132008, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
     - target: {fileID: 1271249522409961018, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_text
       value: air-dash
@@ -182,6 +194,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1271249523664635636, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_text
+      value: 'x 99
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271249523664635636, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 1271249523664635636, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
     - target: {fileID: 1271249523675388428, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_text
       value: double jump
@@ -314,6 +340,22 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+    - target: {fileID: 1271249524148789384, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_text
+      value: mac_os
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271249524148789384, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+    - target: {fileID: 1271249524148789384, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+    - target: {fileID: 1271249524258876309, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1271249524281401034, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_text
       value: swords
@@ -326,6 +368,18 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+    - target: {fileID: 9147499856548886090, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_text
+      value: 'x 99 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147499856548886090, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 9147499856548886090, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
 --- !u!1001 &85952689
@@ -22561,8 +22615,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3c6abd14d15610e4182aa28cfa4addbb, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23329,9 +23383,17 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4003539071157403803, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 4003539071157403803, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
       propertyPath: m_fontSizeBase
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 4003539071157403803, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
 --- !u!1001 &4148277903000781970
@@ -23767,6 +23829,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1560795303}
     m_Modifications:
+    - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_text
+      value: x 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
     - target: {fileID: 8182298978835225432, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -23855,6 +23929,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectablesGUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_text
+      value: x 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
 --- !u!4 &8319676237531673935 stripped

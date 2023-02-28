@@ -11,6 +11,7 @@ public class CinemachineCameraShake : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        instance = this;
         cam = GetComponent<CinemachineVirtualCamera>();
     }
 
