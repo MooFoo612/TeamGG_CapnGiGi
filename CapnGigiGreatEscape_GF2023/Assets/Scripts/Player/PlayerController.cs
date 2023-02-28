@@ -137,8 +137,10 @@ public class PlayerController : MonoBehaviour{
             doubleJump = false;  
         } 
 
-        if (IsMoving){
-            runningAudio.Play();
+        if (IsMoving ){
+            if(!runningAudio.isPlaying){
+                runningAudio.Play();
+            }            
         } else {
             runningAudio.Stop();
         }
