@@ -707,7 +707,7 @@ MonoBehaviour:
   enemy: {fileID: 1253520983312449132}
   spawn: {fileID: 5058607978272346995}
   projectile: {fileID: 3286326179606499219, guid: 21eb96ed0e1c00747ad5a76399d71c08, type: 3}
-  Shootaudio: {fileID: 0}
+  Shootaudio: {fileID: 3956516246803405191}
 --- !u!1 &6592085326761393085
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemValue : MonoBehaviour
+public class diamondPickup : MonoBehaviour
 {
     private Animator animatorD;
     public int diamondValue = 20;
@@ -24,5 +24,4 @@ public class ItemValue : MonoBehaviour
             Destroy(gameObject, 0.5f);
         }
     }
-
 }
