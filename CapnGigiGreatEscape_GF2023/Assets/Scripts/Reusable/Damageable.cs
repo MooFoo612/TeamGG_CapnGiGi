@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    public GameObject enemyDrop;
-    public GameObject player;
+    //public GameObject enemyDrop;
     public UnityEvent<int, Vector2> damageableHit;
     public UnityEvent<int, int> healthChanged;
     Animator anim;
@@ -17,8 +16,7 @@ public class Damageable : MonoBehaviour
     
     private void Start()
     {
-        player = GameObject.Find("CapnGigi");
-        StartCoroutine(myCheck());
+
     }
     
     public int MaxHealth{
@@ -123,17 +121,10 @@ public class Damageable : MonoBehaviour
             CharacterEvents.characterHealed(gameObject, actualHeal);
         }
     }
-    private IEnumerator myCheck()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-
-            if (player.transform.position.y <= -5)
-            {
-                IsAlive = false;
-            }
-        }
-    }
     
+    public void changeIsAlive()
+    {
+        // kill the player
+        IsAlive = false;
+    }
 }

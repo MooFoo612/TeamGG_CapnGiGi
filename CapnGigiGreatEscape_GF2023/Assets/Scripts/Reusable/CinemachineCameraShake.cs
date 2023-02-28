@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CinemachineCameraShake : MonoBehaviour
 {
-    public static CinemachineCameraShake instance { get; private set; }
+    public static CinemachineCameraShake Instance { get; private set; }
 
     private CinemachineVirtualCamera cam;
     private float shakeTimer;
@@ -11,7 +11,7 @@ public class CinemachineCameraShake : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        instance = this;
+        Instance = this;
         cam = GetComponent<CinemachineVirtualCamera>();
     }
 
@@ -20,6 +20,7 @@ public class CinemachineCameraShake : MonoBehaviour
         if (shakeTimer > 0)
         {
             shakeTimer -= Time.deltaTime;
+
             if (shakeTimer <= 0f)
             {
                 CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

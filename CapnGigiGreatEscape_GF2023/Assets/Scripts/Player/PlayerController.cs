@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour{
         // Apply knockback inpulse 
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         //player damage Audio
+        CinemachineCameraShake.Instance.ShakeCamera(1.5f, .1f);
         audio.PlaytakeDamageAudio();
         dustParticles.Play();
 
