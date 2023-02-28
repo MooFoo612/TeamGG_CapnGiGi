@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 2857307434061884229}
   - component: {fileID: 7180997325498111116}
   - component: {fileID: 4714853667027927109}
-  - component: {fileID: 2951778570589432687}
+  - component: {fileID: -1789249374744017903}
   m_Layer: 12
   m_Name: Blue Diamond
   m_TagString: Collectables
@@ -260,7 +260,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4800723691797325913}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -296,7 +296,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4800723691797325913}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -315,7 +315,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.06665523, y: 0.03715825}
   m_EdgeRadius: 0
---- !u!114 &2951778570589432687
+--- !u!114 &-1789249374744017903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,8 +324,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4800723691797325913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc9e55d20b342d741b84c96bf7259071, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c895b683026aef45a8cae6bb5259c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemValue: 0
+  diamondValue: 1
   diamondAudio: {fileID: 5462449527353999771}

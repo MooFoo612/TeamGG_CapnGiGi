@@ -16652,6 +16652,22 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4282200627
       objectReference: {fileID: 0}
+    - target: {fileID: 1684132948617871562, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684132948617871562, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684132948617871562, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1684132948617871562, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1684132948717533063, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
       propertyPath: m_text
       value: controls
