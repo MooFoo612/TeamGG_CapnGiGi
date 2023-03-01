@@ -6,8 +6,10 @@ public class AirDashPotionPickup : ListFactory
 {
     private static List<GameObject> activeList;
 
+    Animator anim;
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         activeList = powerups;
     }
     private void OnTriggerEnter2D(Collider2D collision){
@@ -22,9 +24,10 @@ public class AirDashPotionPickup : ListFactory
                 { 
                     powerups.RemoveAt(powerup);
                 }
-
             }
-            Destroy(gameObject);
+            // Play animation
+            anim.SetTrigger("collected");
+            Destroy(gameObject, 0.25f);
         }
     }
 }

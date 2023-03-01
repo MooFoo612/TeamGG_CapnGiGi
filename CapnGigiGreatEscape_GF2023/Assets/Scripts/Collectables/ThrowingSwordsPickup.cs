@@ -3,7 +3,11 @@ using UnityEngine;
 public class ThrowingSwordsPickup : ListFactory
 {
     // Ammunition Store
-    public int swordsAmount = 50;
+    public int swordsAmount = 20;
+    Animator anim;
+    private void Start(){
+        anim = GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,7 +19,8 @@ public class ThrowingSwordsPickup : ListFactory
         {
             // Add ammunition to the player 
             player.ThrowingSwords += swordsAmount;
-
+            // Play animation
+            anim.SetTrigger("collected");
             // "Collect" the ammunition
             Destroy(gameObject, 0.25f);
         }

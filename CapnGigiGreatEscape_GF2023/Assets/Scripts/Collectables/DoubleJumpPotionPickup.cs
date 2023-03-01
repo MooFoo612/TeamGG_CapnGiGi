@@ -4,9 +4,10 @@ using UnityEngine;
 public class DoubleJumpPotionPickup : ListFactory
 {
     private static List<GameObject> activeList;
-
+    Animator anim;
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         activeList = powerups;
     }
 
@@ -22,8 +23,9 @@ public class DoubleJumpPotionPickup : ListFactory
                 {
                     powerups.RemoveAt(powerup);
                 }
-
             }
+            // Play animation
+            anim.SetTrigger("collected");
             Destroy(gameObject, 0.25f);
         }
     }

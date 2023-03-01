@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4483584917386041381}
   - component: {fileID: 4483584917386041562}
   - component: {fileID: 3582925015896612949}
+  - component: {fileID: 8240770710682921290}
   m_Layer: 12
   m_Name: 'DashPotion '
   m_TagString: Collectables
@@ -136,3 +137,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cabe7dda87d474caabee6bafbae0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8240770710682921290
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483584917386041566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59f6fbec7bb90a6408fed64fda93f38a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3084888938820793355}
   - component: {fileID: 3084888938820793588}
   - component: {fileID: 5051802848616360898}
+  - component: {fileID: 8715380154383577526}
   m_Layer: 12
   m_Name: 'DoubleJumpPotion '
   m_TagString: Collectables
@@ -136,3 +137,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1e89e9ab0e76042b86364d839854ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8715380154383577526
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084888938820793584}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1184574e2e81bf4dae8fb0f4232c184, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

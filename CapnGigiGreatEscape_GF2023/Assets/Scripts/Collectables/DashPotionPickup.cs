@@ -5,9 +5,10 @@ public class DashPotionPickup : ListFactory
 {
     // List for removal check
     private static List<GameObject> activeList;
-
+    Animator anim;
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         // Populate active list from ListFactory
         activeList = powerups;
     }
@@ -32,9 +33,9 @@ public class DashPotionPickup : ListFactory
                     // Remove the item from the global list in ListFactory
                     powerups.RemoveAt(powerup);
                 }
-
             }
-
+            // Play animation
+            anim.SetTrigger("collected");
             // "Collect" the Powerup
             Destroy(gameObject, 0.25f);
         }

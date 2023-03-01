@@ -692,11 +692,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 636512610959343410, guid: 034f7761d11ae744e934ab963f5c69c3, type: 3}
   m_PrefabInstance: {fileID: 89875245}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &97588035 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3084888938820793584, guid: 983407e07a4e5414f8ccec7600fbc221, type: 3}
-  m_PrefabInstance: {fileID: 5931584286880958861}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &139167846
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +889,7 @@ Transform:
   - {fileID: 2001524604}
   - {fileID: 5294936763583896998}
   - {fileID: 8691527672706497914}
+  - {fileID: 1877678790}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5069,11 +5065,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1004008578404858860, guid: ea4f5402fb54d1f4c9c41c0ecf080861, type: 3}
   m_PrefabInstance: {fileID: 1614778379}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1659605512 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4483584917386041566, guid: 4ba622af00237434b801d724fd0eae10, type: 3}
-  m_PrefabInstance: {fileID: 8593853616321398143}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1662239450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,6 +5418,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d98151f2eb26bd4a88c6f26c52277d7, type: 3}
+--- !u!4 &1877678790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+  m_PrefabInstance: {fileID: 2115870085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909646829
 GameObject:
   m_ObjectHideFlags: 0
@@ -5883,6 +5879,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2115870085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 415207573}
+    m_Modifications:
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912834884338353113, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800723691797325913, guid: cb76e8422044dc440b88713beda0d290, type: 3}
+      propertyPath: m_Name
+      value: BlueDiamond
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb76e8422044dc440b88713beda0d290, type: 3}
 --- !u!1001 &2122682304712381313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6421,26 +6474,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4483584917386041561, guid: 4ba622af00237434b801d724fd0eae10, type: 3}
   m_PrefabInstance: {fileID: 8593853616321398143}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &5294936763583897003
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659605512}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59f6fbec7bb90a6408fed64fda93f38a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5931584286880958861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6742,23 +6775,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3084888938820793591, guid: 983407e07a4e5414f8ccec7600fbc221, type: 3}
   m_PrefabInstance: {fileID: 5931584286880958861}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &8691527672706497919
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97588035}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1184574e2e81bf4dae8fb0f4232c184, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
