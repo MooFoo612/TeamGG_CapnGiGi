@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleJumpPotionPickup : ListFactory
+public class DoubleJumpPotionPickup : Factory
 {
     private static List<GameObject> activeList;
     Animator anim;
@@ -22,6 +22,7 @@ public class DoubleJumpPotionPickup : ListFactory
                 if (activeList[powerup].name == "DoubleJumpPotion")
                 {
                     powerups.RemoveAt(powerup);
+                    break;
                 }
             }
             // Play animation

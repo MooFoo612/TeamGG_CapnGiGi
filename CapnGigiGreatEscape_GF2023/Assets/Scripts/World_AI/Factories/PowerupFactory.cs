@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ListFactory))]
-public class PowerupFactory : ListFactory
+[RequireComponent(typeof(Factory))]
+public class PowerupFactory : Factory
 {
     private Vector3 spawnLocation;
     private Transform powerupParent; 

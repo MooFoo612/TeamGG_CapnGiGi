@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundFactory : ListFactory
+public class BackgroundFactory : Factory
 {
     [SerializeField] private Transform bgStart;
     private Transform bgParent;

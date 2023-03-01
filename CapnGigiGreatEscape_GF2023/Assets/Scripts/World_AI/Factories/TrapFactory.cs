@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapFactory : ListFactory
+public class TrapFactory : Factory
 {
     private Vector3 spawnLocation;
     private Transform trapParent;

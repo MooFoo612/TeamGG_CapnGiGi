@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableFactory : ListFactory
+public class CollectableFactory : Factory
 {
     private Vector3 spawnLocation;
     private Transform collectableParent;

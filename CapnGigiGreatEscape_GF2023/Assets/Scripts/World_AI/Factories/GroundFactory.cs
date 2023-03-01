@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class GroundFactory : ListFactory
+public class GroundFactory : Factory
 {
     #region Variables
     [SerializeField] private Transform groundStart;
@@ -73,7 +73,7 @@ public class GroundFactory : ListFactory
 
         // Spawn the Platform chunk and log to AI count
         Transform nextGroundChunk_Left = Instantiate(groundChunk, nextChunk, Quaternion.identity);
-        ListFactory.groundChunkActivated += 1;
+        Factory.groundChunkActivated += 1;
 
         // Return the transform for sister method
         return nextGroundChunk_Left;

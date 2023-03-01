@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthPickup : ListFactory
+public class HealthPickup : Factory
 {
     // Animator
     private Animator animatorHeart;

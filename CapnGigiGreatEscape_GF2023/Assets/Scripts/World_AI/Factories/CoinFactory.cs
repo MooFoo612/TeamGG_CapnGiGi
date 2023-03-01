@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ListFactory))]
-public class CoinFactory : ListFactory
+[RequireComponent(typeof(Factory))]
+public class CoinFactory : Factory
 {
     // Spawn Location
     private Vector3 spawnLocation;

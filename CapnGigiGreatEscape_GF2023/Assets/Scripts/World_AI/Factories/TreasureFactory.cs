@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureFactory : ListFactory
+public class TreasureFactory : Factory
 {
     private Vector3 spawnLocation;
     private Transform treasureParent;

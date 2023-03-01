@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
-public class WorldGenerator : ListFactory
+public class WorldGenerator : Factory
 {
     #region Variables
     // ------------------------------------------------

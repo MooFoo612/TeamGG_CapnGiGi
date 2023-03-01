@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CoinsPickup : ListFactory
+public class CoinsPickup : Factory
 {
     // Coin Value
     public int coinsAmount = 20;

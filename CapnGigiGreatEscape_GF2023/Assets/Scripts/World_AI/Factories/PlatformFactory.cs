@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(ListFactory))]
-public class PlatformFactory : ListFactory
+[RequireComponent(typeof(Factory))]
+public class PlatformFactory : Factory
 {
     #region Variables
     [SerializeField] private Transform platformStart;
@@ -61,7 +61,7 @@ public class PlatformFactory : ListFactory
         //Get the transform to refrence the end of previous chunk
         Transform lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformEnd_Left);
         platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
-        Debug.Log("Platform Spawned: " + ListFactory.platformChunkActivated);
+        Debug.Log("Platform Spawned: " + Factory.platformChunkActivated);
 
     }
     public Transform SpawnPlatformChunk_Left(Vector3 nextChunk)
@@ -71,7 +71,7 @@ public class PlatformFactory : ListFactory
 
         // Spawn the Platform chunk and log to AI count
         Transform nextPlatformChunk_Left = Instantiate(platformChunk, nextChunk, Quaternion.identity);
-        ListFactory.platformChunkActivated += 1;
+        Factory.platformChunkActivated += 1;
 
         // Return the transform for sister method
         return nextPlatformChunk_Left;

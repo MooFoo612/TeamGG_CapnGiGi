@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class diamondPickup : ListFactory
+public class diamondPickup : Factory
 {
     private Animator animatorD;
     public int diamondValue = 20;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirDashPotionPickup : ListFactory
+public class AirDashPotionPickup : Factory
 {
     private static List<GameObject> activeList;
 
@@ -23,6 +23,7 @@ public class AirDashPotionPickup : ListFactory
                 if (activeList[powerup].name == "AirDashPotion") 
                 { 
                     powerups.RemoveAt(powerup);
+                    break;
                 }
             }
             // Play animation

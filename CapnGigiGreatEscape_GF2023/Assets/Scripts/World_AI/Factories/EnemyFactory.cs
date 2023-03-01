@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFactory : ListFactory
+public class EnemyFactory : Factory
 {
     private Vector3 spawnLocation;
 

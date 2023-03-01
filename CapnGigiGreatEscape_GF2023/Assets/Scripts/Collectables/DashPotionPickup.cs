@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashPotionPickup : ListFactory
+public class DashPotionPickup : Factory
 {
     // List for removal check
     private static List<GameObject> activeList;
@@ -32,6 +32,7 @@ public class DashPotionPickup : ListFactory
                 {
                     // Remove the item from the global list in ListFactory
                     powerups.RemoveAt(powerup);
+                    break;
                 }
             }
             // Play animation

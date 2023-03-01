@@ -32,6 +32,7 @@ public class RunnerAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
     Animator animator;
+    SpriteRenderer sr;
 
     public void Start(){
         seeker = GetComponent<Seeker>();
@@ -46,6 +47,18 @@ public class RunnerAI : MonoBehaviour
         // If find the target and can follow, follow it through the path
         if (TargetInDistance() && followEnabled){
             PathFollow();
+        }
+
+        if (rb.velocity.x > 0f && isGrounded)
+        {
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isGrounded", true);
+        } 
+        else if (rb.velocity.x < 0f && isGrounded)
+        {
+            sr.flipX = true;
+            animator.SetBool("isMoving", true);
+            animator.SetBool("isGrounded", true);
         }
     }
 

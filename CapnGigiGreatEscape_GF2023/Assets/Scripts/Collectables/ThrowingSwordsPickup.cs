@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ThrowingSwordsPickup : ListFactory
+public class ThrowingSwordsPickup : Factory
 {
     // Ammunition Store
     public int swordsAmount = 20;
