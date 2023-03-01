@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleAnimations : PlayerController
+public class ParticleAnimations : MonoBehaviour
 {
     Animator animator;
     TouchingDirections td;

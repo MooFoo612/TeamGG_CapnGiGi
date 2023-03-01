@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour{
     Damageable damageable;
     public Rigidbody2D rb;
     Animator anim;
-    ParticleAnimations particleAnim;
+    //ParticleAnimations particleAnim;
     PlayerInventory playerInv;
     public bool doubleJump;
     private bool jumpPressed;
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour{
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
         runningAudio = GetComponent<AudioSource>();
-        particleAnim = GetComponentInChildren<ParticleAnimations>();
+        //particleAnim = GetComponentInChildren<ParticleAnimations>();
     }
 
     // It's called every fixed frame-rate frame.
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour{
 
         if (IsMoving && touchingDirections.IsGrounded)
         {
-            particleAnim.anim.SetBool("isMoving", true);
+            //particleAnim.anim.SetBool("isMoving", true);
 
             if (!runningAudio.isPlaying)
             {
@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour{
                 //player jump audio 
                 audio.PlayjumpAudio();
                 // Dust Particles
-                particleAnim.anim.SetBool("isJumping", true);
+                //particleAnim.anim.SetBool("isJumping", true);
                 // Update animator paramether using static strings  
                 anim.SetTrigger(AnimationStrings.jump);
                 // Add jump inpulse on the y axis 
@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour{
                      //player jump audio 
                     audio.PlayjumpAudio();
                     // Dust Particles
-                    particleAnim.anim.SetBool("isJumping", true);
+                    //particleAnim.anim.SetBool("isJumping", true);
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
