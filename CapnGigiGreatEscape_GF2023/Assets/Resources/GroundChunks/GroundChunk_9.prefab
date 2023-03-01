@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2295765099706634053}
   - component: {fileID: 3658959466080480880}
   - component: {fileID: 7672189755800143183}
+  - component: {fileID: 1619582673904950789}
   m_Layer: 6
   m_Name: GroundChunk_9
   m_TagString: Untagged
@@ -129,6 +130,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1619582673904950789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334467716178931826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &211100237830628863
 PrefabInstance:
   m_ObjectHideFlags: 0
