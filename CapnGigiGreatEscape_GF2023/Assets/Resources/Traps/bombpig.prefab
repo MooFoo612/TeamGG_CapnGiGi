@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 8653681860971007982}
   - component: {fileID: 8653681860971007983}
   - component: {fileID: 8653681860971007979}
+  - component: {fileID: -5620035801937671714}
   m_Layer: 8
   m_Name: bombpig
   m_TagString: Enemy
@@ -446,6 +447,29 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0512695, y: -0.11535624}
-  m_Size: {x: 0.64111406, y: 0.7692875}
+  m_Offset: {x: -0.0512695, y: -0.17944297}
+  m_Size: {x: 0.64111406, y: 0.64111406}
   m_Direction: 0
+--- !u!114 &-5620035801937671714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653681860971007968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  isInvincible: 0
+  invincibilityTime: 0.25
+  _maxHealth: 100
+  _health: 100
+  _isAlive: 1

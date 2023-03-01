@@ -11,13 +11,10 @@ GameObject:
   - component: {fileID: 5509589932432269613}
   - component: {fileID: 220211896948990127}
   - component: {fileID: 6903535113038008943}
-  - component: {fileID: 4463024515583884547}
+  - component: {fileID: 6302311599714284289}
   - component: {fileID: 6647057104732811757}
-  - component: {fileID: 2129538591020265730}
   - component: {fileID: 6832593913790029752}
-  - component: {fileID: 7314431675936570979}
-  - component: {fileID: 3659528583929369066}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Cannon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -117,7 +114,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &4463024515583884547
+--- !u!50 &6302311599714284289
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -151,27 +148,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014037906, y: -0.22432119}
-  m_Size: {x: 0.8037266, y: 0.5500618}
+  m_Offset: {x: 0.0006492688, y: -0.03926221}
+  m_Size: {x: 0.9143069, y: 0.7321856}
   m_Direction: 1
---- !u!114 &2129538591020265730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253520983312449132}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a12a62cd79d344d948096d6665931c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 3
-  walkAcceleration: 3
-  attackZone: {fileID: 8981888707342052509}
-  cliffDetectionZone: {fileID: 753754117939821933}
-  walkStopRate: 0.05
-  _hasTarget: 0
 --- !u!114 &6832593913790029752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,60 +183,6 @@ MonoBehaviour:
   _isOnWall: 0
   ceilingDistance: 0.05
   _isOnCeiling: 0
---- !u!114 &7314431675936570979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253520983312449132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyDrop: {fileID: 0}
-  player: {fileID: 0}
-  damageableHit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2129538591020265730}
-        m_TargetAssemblyTypeName: Krabby, Assembly-CSharp
-        m_MethodName: OnHit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  healthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  isInvincible: 0
-  invincibilityTime: 0.25
-  _maxHealth: 100
-  _health: 100
-  _isAlive: 1
---- !u!114 &3659528583929369066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253520983312449132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b611bebcc3bce2d4b895c6f34766e846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-  enemy: {fileID: 1253520983312449132}
-  spawn: {fileID: 5058607978272346995}
-  projectile: {fileID: 3286326179606499219, guid: 21eb96ed0e1c00747ad5a76399d71c08, type: 3}
-  Shootaudio: {fileID: 3956516246803405191}
 --- !u!1 &2274729897991913738
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +707,7 @@ MonoBehaviour:
   noCollidersLeft:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2129538591020265730}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Krabby, Assembly-CSharp
         m_MethodName: OnCliffDetected
         m_Mode: 1
