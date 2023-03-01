@@ -13,11 +13,12 @@ public class CoinFactory : ListFactory
     // To call coin from list
     private GameObject goldCoin;
 
+    public int coinCountdown = 10;
     // To call diamond from list
-    private GameObject blueDiamond;
+    //public GameObject blueDiamond;
 
-    private int coinCountdown = 60;
-
+    
+    
     private void Awake()
     {
         coinParent = GameObject.Find("Coins_Active").transform;
@@ -26,16 +27,17 @@ public class CoinFactory : ListFactory
         spawnLocation = gameObject.transform.position;
 
     }
-    private void Start()
+    public void Start()
     {
+        
         // When object is spawned generate a random coin from the list
         GenerateCoins(coins, spawnLocation, coinParent);
     }
     private void GenerateCoins(List<GameObject> coins, Vector3 spawnLocation, Transform coinParent)
     {
+        Debug.Log("coinCountdown: " + PlayerPrefs.GetInt("coinsCountdown"));
         // If the coin countdown has reached 0
-        if (coinCountdown != 0)
-        {
+        if (PlayerPrefs.GetInt("coinsCountdown") != 0) {
             // Check coins list for the Blue Diamond
             foreach (GameObject coin in coins)
             {
@@ -45,30 +47,29 @@ public class CoinFactory : ListFactory
                     break;
                 }
             }
-
-            // Spawn the blue diamond
+            //Spawn the blue diamond
             Instantiate(goldCoin, spawnLocation, Quaternion.identity, coinParent);
+            // Update the counter
+            PlayerPrefs.SetInt("coinsCountdown", PlayerPrefs.GetInt("coinsCountdown") -1);
+        // If timer is finished 
+        } else {//if(PlayerPrefs.GetInt("coinCountdown") == 0) {
 
-            // Reset the counter
-            coinCountdown--;
-        }
-        else 
-        {
-            // Check coins list for the Blue Diamond
-            foreach (GameObject coin in coins)
+            foreach (GameObject diamond in coins)
             {
-                if (coin.name == "BlueDiamond")
+                if (diamond.name == "BlueDiamond")
                 {
-                    blueDiamond = coin;
-                    break;
+                    blueDiamond = diamond;
                 }
             }
-
-            // Spawn a random coin at the spawn point
+            //Spawn a random coin at the spawn point
             Instantiate(blueDiamond, spawnLocation, Quaternion.identity, coinParent);
 
             // Reset the counter
-            coinCountdown = 60;
+            PlayerPrefs.SetInt("coinsCountdown",  10);
+            // Check coins list for the Blue Diamond
+            
+
+            
         }
     }
 }

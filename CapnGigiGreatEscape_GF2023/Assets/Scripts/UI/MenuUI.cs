@@ -71,6 +71,8 @@ public class MenuUI : MonoBehaviour
         //PlayerPrefs.SetInt("purchasedDash", 0);
         //PlayerPrefs.SetInt("purchasedAirDash", 0);
         //PlayerPrefs.SetInt("alreadyRunned", 0);
+        PlayerPrefs.SetInt("coinsCountdown", 10);
+
 
         
 

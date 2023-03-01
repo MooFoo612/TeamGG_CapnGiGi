@@ -5,6 +5,7 @@ using UnityEngine;
 public class ListFactory : MonoBehaviour
 {
     Debugging db;
+    public GameObject blueDiamond;
 
     #region List Declarations
 
