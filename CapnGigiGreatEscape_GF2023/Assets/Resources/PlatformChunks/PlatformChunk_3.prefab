@@ -502,6 +502,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8247958904191431, guid: 1062d7bc1b7423d41865bde033f464cc, type: 3}
+      propertyPath: m_TagString
+      value: isOnGround_Particles
+      objectReference: {fileID: 0}
     - target: {fileID: 693695381641950007, guid: 1062d7bc1b7423d41865bde033f464cc, type: 3}
       propertyPath: m_Layer
       value: 0

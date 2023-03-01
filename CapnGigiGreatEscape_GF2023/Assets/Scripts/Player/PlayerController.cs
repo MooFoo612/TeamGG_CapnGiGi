@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour{
     TouchingDirections touchingDirections; 
     Damageable damageable;
     public Rigidbody2D rb;
-    Animator anim; 
+    Animator anim;
+    ParticleAnimations particleAnim;
     PlayerInventory playerInv;
     public bool doubleJump;
     private bool jumpPressed;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour{
     //public bool collectedAirDash = false;
 
     public PlayerAudio audio;
-    public ParticleSystem dustParticles;
+    //public ParticleSystem dustParticles;
 
     [SerializeField] private TrailRenderer tr;
     // CurrentSpeed function 
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour{
             // Set the boolean in the animator with the same value static strings
             anim.SetBool(AnimationStrings.isMoving, value);
 
-            dustParticles.Play();
+            //dustParticles.Play();
         }
     }
     [SerializeField]private bool _isFacingRight = true;
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour{
 
     void CreateDust()
     {
-        dustParticles.Play();
+        //dustParticles.Play();
     }
 
 
@@ -116,6 +117,7 @@ public class PlayerController : MonoBehaviour{
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
         runningAudio = GetComponent<AudioSource>();
+        particleAnim = GetComponentInChildren<ParticleAnimations>();
     }
 
     // It's called every fixed frame-rate frame.
@@ -137,11 +139,17 @@ public class PlayerController : MonoBehaviour{
             doubleJump = false;  
         } 
 
-        if (IsMoving ){
-            if(!runningAudio.isPlaying){
+        if (IsMoving && touchingDirections.IsGrounded)
+        {
+            particleAnim.anim.SetBool("isMoving", true);
+
+            if (!runningAudio.isPlaying)
+            {
                 runningAudio.Play();
             }            
-        } else {
+        } 
+        else 
+        {
             runningAudio.Stop();
         }
     }    
@@ -171,13 +179,11 @@ public class PlayerController : MonoBehaviour{
         // If the player is moving right and is not facing right
         if(moveInput.x > 0 && !IsFacingRight){
             // Face the right
-            dustParticles.Play();
             IsFacingRight = true;
 
         // If the player is moving left and is facing right    
         } else if(moveInput.x < 0 && IsFacingRight){
             // Face the left
-            dustParticles.Play();
             IsFacingRight = false;
         }
     }
@@ -191,7 +197,7 @@ public class PlayerController : MonoBehaviour{
                 //player jump audio 
                 audio.PlayjumpAudio();
                 // Dust Particles
-                dustParticles.Play();
+                particleAnim.anim.SetBool("isJumping", true);
                 // Update animator paramether using static strings  
                 anim.SetTrigger(AnimationStrings.jump);
                 // Add jump inpulse on the y axis 
@@ -209,8 +215,7 @@ public class PlayerController : MonoBehaviour{
                      //player jump audio 
                     audio.PlayjumpAudio();
                     // Dust Particles
-                    dustParticles.Play();
-
+                    particleAnim.anim.SetBool("isJumping", true);
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
@@ -249,7 +254,6 @@ public class PlayerController : MonoBehaviour{
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         //player damage Audio
         audio.PlaytakeDamageAudio();
-        dustParticles.Play();
     }
 
     public void OnDash(InputAction.CallbackContext context){

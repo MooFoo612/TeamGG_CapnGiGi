@@ -1418,6 +1418,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1284006318878179249, guid: aac32c44625732d4a95c2bbdaa49fc58, type: 3}
+      propertyPath: m_TagString
+      value: isOnGround_Particles
+      objectReference: {fileID: 0}
     - target: {fileID: 7429965545607708461, guid: aac32c44625732d4a95c2bbdaa49fc58, type: 3}
       propertyPath: m_SortingOrder
       value: 0

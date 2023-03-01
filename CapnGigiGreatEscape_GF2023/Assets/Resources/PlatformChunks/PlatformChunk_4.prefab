@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9030287079633172215, guid: d896ed6d7a6a2b14cbdc730c187dc0b5, type: 3}
+      propertyPath: m_TagString
+      value: isOnGround_Particles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d896ed6d7a6a2b14cbdc730c187dc0b5, type: 3}
 --- !u!4 &4058564303059809888 stripped

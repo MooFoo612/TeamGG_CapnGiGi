@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7990943828178165989, guid: bb491f14cf149a5478bd0bbdd00eda29, type: 3}
+      propertyPath: m_TagString
+      value: isOnGround_Particles
+      objectReference: {fileID: 0}
     - target: {fileID: 7990943828178165995, guid: bb491f14cf149a5478bd0bbdd00eda29, type: 3}
       propertyPath: m_DetectChunkCullingBounds
       value: 0
