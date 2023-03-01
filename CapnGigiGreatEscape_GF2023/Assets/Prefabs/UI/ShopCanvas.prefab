@@ -3483,7 +3483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3d5e66bb15e640a69315498d57f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 4
+  itemID: 6
   coinsPriceText: {fileID: 1271249522807243135}
   diamondPriceText: {fileID: 2865289882492739610}
   shopUI: {fileID: 1271249523968289070}

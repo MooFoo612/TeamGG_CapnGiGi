@@ -24,6 +24,9 @@ public class ShopUI : MonoBehaviour
     public Button item2button;
     public Button item3button;
     public Button item4button;
+    public Button item5button;
+    public Button item6button;
+
 
 
     private void Awake(){
@@ -48,26 +51,26 @@ public class ShopUI : MonoBehaviour
         shopItems[1, 5] = 5;
         shopItems[1, 6] = 6;
         // Prices in coins of the items
-        shopItems[2, 1] = 10;
-        shopItems[2, 2] = 20;
-        shopItems[2, 3] = 30;
-        shopItems[2, 4] = 40;
-        shopItems[2, 5] = 50;
-        shopItems[2, 6] = 60;
+        shopItems[2, 1] = 100;
+        shopItems[2, 2] = 150;
+        shopItems[2, 3] = 200;
+        shopItems[2, 4] = 200;
+        shopItems[2, 5] = 150;
+        shopItems[2, 6] = 50;
         // Prices in diamonds of the items
         shopItems[3, 1] = 0;
-        shopItems[3, 2] = 10;
-        shopItems[3, 3] = 20;
-        shopItems[3, 4] = 0;
+        shopItems[3, 2] = 15;
+        shopItems[3, 3] = 30;
+        shopItems[3, 4] = 30;
         shopItems[3, 5] = 0;
         shopItems[3, 6] = 0;
         // Quantity of items
         shopItems[4, 1] = 0;
         shopItems[4, 2] = 0;
         shopItems[4, 3] = 0;
-        shopItems[4, 4] = 1; 
+        shopItems[4, 4] = 0; 
         shopItems[4, 5] = 0;
-        shopItems[4, 6] = 0;
+        shopItems[4, 6] = 1;
     }
 
     public void Update(){
@@ -79,7 +82,13 @@ public class ShopUI : MonoBehaviour
         }  
         if(PlayerPrefs.GetInt("purchasedAirDash") == 1){
             item3button.interactable = false;
-        }           
+        }     
+        if(PlayerPrefs.GetInt("swordAttackPowerUp") == 1){
+            item4button.interactable = false;
+        }
+        if(PlayerPrefs.GetInt("throwSwordAttackPowerUp") == 1){
+            item5button.interactable = false;
+        }   
     }
     public void Buy(){
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
@@ -103,6 +112,12 @@ public class ShopUI : MonoBehaviour
             }
             if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 3){
                 PlayerPrefs.SetInt("purchasedAirDash", 1);
+            }
+            if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 4){
+                PlayerPrefs.SetInt("swordAttackPowerUp", 1);
+            }
+            if (shopItems[1, ButtonRef.GetComponent<ButtonInfo>().itemID] == 5){
+                PlayerPrefs.SetInt("throwSwordAttackPowerUp", 1);
             }
             
             // Update coins and diamond text 
