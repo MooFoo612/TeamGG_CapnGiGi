@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 6
   m_Name: GroundChunk_3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1626774060037911480, guid: 1355ebf888d09ed4e9ea68a4ef003a27, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1626774060037911480, guid: 1355ebf888d09ed4e9ea68a4ef003a27, type: 3}
       propertyPath: m_Name
       value: Ground_Section5
