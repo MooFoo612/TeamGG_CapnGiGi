@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4714853667027927109}
   - component: {fileID: -1789249374744017903}
   m_Layer: 12
-  m_Name: Blue Diamond
+  m_Name: BlueDiamond
   m_TagString: Collectables
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

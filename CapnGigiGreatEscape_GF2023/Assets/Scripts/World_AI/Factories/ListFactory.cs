@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +34,6 @@ public class ListFactory : MonoBehaviour
     
     // Treasure Prefabs
     public static List<GameObject> powerups;
-
 
     #endregion
 
@@ -84,7 +84,6 @@ public class ListFactory : MonoBehaviour
         // Powerups
         powerups = GeneratePowerupList();
 
-
         // Traps
         traps = GenerateTrapList();
 
@@ -92,6 +91,7 @@ public class ListFactory : MonoBehaviour
         backgrounds = GenerateBackgroundList();
     }
     #region List & Array Generation
+
 
     // GroundChunks
     public List<GameObject> GenerateGroundChunkList()

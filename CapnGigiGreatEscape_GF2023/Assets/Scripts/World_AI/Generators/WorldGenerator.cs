@@ -26,7 +26,7 @@ public class WorldGenerator : ListFactory
 
     // Constants -----------------------------------------------
     private const float DISTANCE_TO_SPAWN_SECTION_GROUND = 40f;
-    private const float DISTANCE_TO_SPAWN_SECTION_BG = 80f;
+    private const float DISTANCE_TO_SPAWN_SECTION_BG = 10f;
     private const float DISTANCE_TO_DELETE_SECTION = 180f;
 
     // Marker Positions---------------    

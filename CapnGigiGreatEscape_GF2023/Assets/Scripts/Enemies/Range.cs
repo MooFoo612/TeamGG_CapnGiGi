@@ -117,8 +117,8 @@ public class Range : MonoBehaviour
             GameObject spawnedProjectile = Instantiate(projectile,
                                         spawn.transform.position,
                                         Quaternion.identity);
-
-             Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
+    
+            Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
             rb.position = spawn.transform.position;
             rb.velocity = velocity;                            
             

@@ -6,7 +6,7 @@ using Pathfinding;
 public class RunnerAI : MonoBehaviour
 {
     [Header("Pathfinding")]
-    public Transform target;
+    private Transform target;
     public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
 
@@ -24,15 +24,22 @@ public class RunnerAI : MonoBehaviour
 
     private Path path;
     private int currentWaypoint = 0;
-    bool isGrounded = false;
+    bool isGrounded;
+    bool isMovingX;
+    bool isJumping;
+    bool inTheAir;
+    bool isLanding;
     Seeker seeker;
     Rigidbody2D rb;
+    Animator animator;
 
     public void Start(){
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         // Keep on repeating the script to update the path
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
+        target = GameObject.Find("CapnGigi").transform;
     }
 
     private void FixedUpdate(){
