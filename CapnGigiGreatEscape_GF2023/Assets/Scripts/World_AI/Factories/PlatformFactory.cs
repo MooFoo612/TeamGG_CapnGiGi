@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(ListFactory))]
 public class PlatformFactory : ListFactory
 {
     #region Variables

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ListFactory))]
 public class CoinFactory : ListFactory
 {
     // Spawn Location
