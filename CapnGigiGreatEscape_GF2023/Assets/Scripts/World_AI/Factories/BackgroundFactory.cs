@@ -13,6 +13,12 @@ public class BackgroundFactory : Factory
 
     private void Awake()
     {
+
+    }
+
+    private void Start()
+    {
+
         // Hierarchy Parent
         bgParent = GameObject.Find("Backgrounds_Active").transform;
 
@@ -22,12 +28,9 @@ public class BackgroundFactory : Factory
         // First spawn point
         bgEnd_Right = bgStart.transform.position;
 
+        //Set bg
         initBg = backgrounds[0].transform;
 
-    }
-
-    private void Start()
-    {      
         GenerateBackground(initBg, bgEnd_Right, bgParent);
     }
 

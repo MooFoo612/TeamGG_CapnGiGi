@@ -104,7 +104,7 @@ public class PathfinderController : MonoBehaviour
     void Start()
     {
         // Set timer to prevent chaser immediately beginning his path
-        timer = 10f;
+        timer = 60f;
         timer = timer - Time.fixedDeltaTime;
     }
 
@@ -112,7 +112,7 @@ public class PathfinderController : MonoBehaviour
     {
         if (timer <= 0f)
         {
-            timer = 10f;
+            timer = 60f;
 
             // If find the target and can follow, follow it through the path
             if (TargetInRange() && followEnabled)
