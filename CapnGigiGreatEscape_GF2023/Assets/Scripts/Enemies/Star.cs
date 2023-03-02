@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class Star : MonoBehaviour{
+    public AudioSource audioSource;
     public float maxSpeed = 3f;
     public float walkAcceleration = 3f;
     public DetectionZone attackZone;
@@ -73,6 +74,7 @@ public class Star : MonoBehaviour{
         touchingDirections = GetComponent<TouchingDirections>();
         anim = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update(){
@@ -80,8 +82,12 @@ public class Star : MonoBehaviour{
         HasTarget = attackZone.detectedColliders.Count > 0;
         // Update the timer by reducing it if it is going on 
         if(AttackCooldown > 0){
-            AttackCooldown -= Time.deltaTime;
+            AttackCooldown -= Time.deltaTime;   
         }
+        if (audioSource != null)
+            {
+                audioSource.Play();
+            }
     }
         
 

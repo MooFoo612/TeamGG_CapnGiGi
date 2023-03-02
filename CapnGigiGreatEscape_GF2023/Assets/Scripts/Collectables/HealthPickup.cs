@@ -8,8 +8,14 @@ public class HealthPickup : Factory
     // Heal Value
     public int healthRestore = 50;
 
+    //Sound
+    public AudioSource audioSource;
+
+
     void Start()
     {
+        //Sound
+        audioSource = GetComponent<AudioSource>();
         // Get component animator
         animatorHeart = gameObject.GetComponent<Animator>();
     }
@@ -26,6 +32,12 @@ public class HealthPickup : Factory
 
             // Animation and Audio 
             animatorHeart.SetTrigger("Collect");
+
+            //Sound
+             if (audioSource != null)
+            {
+                audioSource.Play();
+            }
 
             // "Collect" the health
             Destroy(gameObject, 0.25f);

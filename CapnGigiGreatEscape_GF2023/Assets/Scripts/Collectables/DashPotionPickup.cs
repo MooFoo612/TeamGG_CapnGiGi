@@ -6,11 +6,13 @@ public class DashPotionPickup : Factory
     // List for removal check
     private static List<GameObject> activeList;
     Animator anim;
+    public AudioSource audioSource;
     private void Awake()
     {
         anim = GetComponent<Animator>();
         // Populate active list from ListFactory
         activeList = powerups;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +39,10 @@ public class DashPotionPickup : Factory
             }
             // Play animation
             anim.SetTrigger("collected");
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
             // "Collect" the Powerup
             Destroy(gameObject, 0.25f);
         }
