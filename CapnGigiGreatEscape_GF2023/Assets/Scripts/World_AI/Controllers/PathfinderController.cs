@@ -140,19 +140,17 @@ public class PathfinderController : MonoBehaviour
         isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.1f);
 
         // Calculate direction 
-        direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
 
         // Calculate the force
-        force = direction * speed * Time.deltaTime;
+        Vector2 force = direction * speed * Time.deltaTime;
 
         // If runner can jump
-        Jump();
-        /*
         if (jumpEnabled && isGrounded)
         {
             Jump();
         }
-        */
+        
         // Use the force(tm) to move the runner
         rb.AddForce(force);
 
@@ -198,35 +196,27 @@ public class PathfinderController : MonoBehaviour
 
     public void Jump()
     {
-        if (jumpEnabled && isGrounded)
+        if (rb.velocity.x > 0.01f)
         {
-            if (rb.velocity.x > 0.01f)
+            // Jump following the grid dimensions
+            if (direction.y > jumpNodeHeightRequirement)
             {
                 sr.flipX = false;
-
-                // Jump following the grid dimensions
-                if (direction.y > jumpNodeHeightRequirement)
-                {
-
-                    rb.AddForce(new Vector2(0.5f, 0.5f) * speed * jumpModifier);
-                    animator.SetBool("isJumping", true);
-                }
-
+                rb.AddForce(new Vector2(1f,1f) * speed * jumpModifier);
+                animator.SetBool("isJumping", true);
             }
-            else if (rb.velocity.x < -0.01f)
+
+        }
+        else if (rb.velocity.x < -0.01f)
+        {
+            // Jump following the grid dimensions
+            if (direction.y > jumpNodeHeightRequirement)
             {
                 // Flip sprite left if rb is moving left
                 sr.flipX = true;
-
-                // Jump following the grid dimensions
-                if (direction.y > jumpNodeHeightRequirement)
-                {
-                    rb.AddForce(new Vector2(-0.5f, -0.5f) * speed * jumpModifier);
-                    animator.SetBool("isJumping", true);
-                }
+                rb.AddForce(new Vector2(-1f,-1f) * speed * jumpModifier);
+                animator.SetBool("isJumping", true);
             }
         }
-
-            
     }
 }

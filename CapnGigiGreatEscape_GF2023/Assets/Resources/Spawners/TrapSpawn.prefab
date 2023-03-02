@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9020559349500842386}
   - component: {fileID: 4592333065614288875}
-  - component: {fileID: -6549086156080422607}
   m_Layer: 8
   m_Name: TrapSpawn
   m_TagString: TrapSpawn
@@ -45,15 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6123af5dcd8fa948946d4cf6eebe969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6549086156080422607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843372932993377566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0a0e0c69230054b90929cbe2deb83c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  blueDiamond: {fileID: 0}

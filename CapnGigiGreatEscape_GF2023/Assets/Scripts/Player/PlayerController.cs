@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.InputSystem.Interactions;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class PlayerController : MonoBehaviour{
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context){
+    public void OnJump(InputAction.CallbackContext context){        // Add interactions in OnJump?
         // If can't double jump yet 
         if(PlayerPrefs.GetInt("purchasedDoubleJump") == 0){
             // Check if the key is pressed  and if player can move and if player is on the ground or can doubleJump
@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour{
                 // Add jump inpulse on the y axis 
                 rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
 
-            }   
+            }  
         } 
         // If purchased double jump or colleted
         if (PlayerPrefs.GetInt("purchasedDoubleJump") == 1 || playerInv.TemporaryDoubleJump){
@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour{
                     doubleJump = !doubleJump;
                 }
             }
-            if(context.canceled){
+            if (context.canceled){
                 // Finish jump for the update 
                 jumpPressed = false;
             }

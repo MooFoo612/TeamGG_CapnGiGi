@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7332965090813510759}
   - component: {fileID: -7483971573538714470}
-  - component: {fileID: 4764958241360527216}
   m_Layer: 8
   m_Name: EnemySpawn
   m_TagString: EnemySpawn
@@ -45,15 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133a14d2a10877c4199afb35268d5515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4764958241360527216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957485981714486646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0a0e0c69230054b90929cbe2deb83c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  blueDiamond: {fileID: 0}

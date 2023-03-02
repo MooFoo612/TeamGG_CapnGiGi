@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9020559349500842386}
   - component: {fileID: 4802143422389811020}
-  - component: {fileID: 4586123069687488198}
   m_Layer: 12
   m_Name: TreasureSpawn
   m_TagString: CollectableSpawn
@@ -45,15 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d1af3cc2c4e6342b6ca8f86366805f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4586123069687488198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843372932993377566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0a0e0c69230054b90929cbe2deb83c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  blueDiamond: {fileID: 0}

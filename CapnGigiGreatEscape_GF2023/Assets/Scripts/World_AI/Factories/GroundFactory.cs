@@ -37,7 +37,8 @@ public class GroundFactory : Factory
     #region Spawn Platforms to the Right
     public void SpawnGroundChunk_Right()
     {
-        int randomPick = UnityEngine.Random.Range(0, groundChunks.Count - 1);
+
+        int randomPick = UnityEngine.Random.Range(0, groundChunks.Count);
         Transform randomChunk = groundChunks[randomPick].transform;
         //Transform groundChunk = randomChunk.transform;
 

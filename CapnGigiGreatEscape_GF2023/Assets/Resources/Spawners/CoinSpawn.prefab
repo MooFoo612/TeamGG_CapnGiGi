@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9020559349500842386}
   - component: {fileID: 5169525620721410152}
-  - component: {fileID: -8556345042222613186}
   m_Layer: 12
   m_Name: CoinSpawn
   m_TagString: Collectables
@@ -45,15 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a7a3a5fc5cfb2478afe8bb0e7c7f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8556345042222613186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843372932993377566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0a0e0c69230054b90929cbe2deb83c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  blueDiamond: {fileID: 0}
+  coinCountdown: 10
