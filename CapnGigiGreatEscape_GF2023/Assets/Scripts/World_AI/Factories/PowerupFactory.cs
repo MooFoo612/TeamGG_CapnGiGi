@@ -10,7 +10,7 @@ public class PowerupFactory : Factory
     private void Awake()
     {
         // Picks its place in the hierarchy 
-        powerupParent = GameObject.Find("Power-ups_Active").transform;
+        powerupParent = GameObject.Find("Powerups_Active").transform;
 
         // Gets the objects spawn location
         spawnLocation = transform.position;

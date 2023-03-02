@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1909832975810212214}
   - component: {fileID: 4412520191287853126}
   - component: {fileID: 6293605515793567298}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatfromChunk_9
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -229,6 +229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformEnd_Right
       objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: 3c48e570658f21b47a64f8b1899b4b56, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c48e570658f21b47a64f8b1899b4b56, type: 3}
 --- !u!4 &6616712879689270988 stripped
@@ -246,6 +250,10 @@ PrefabInstance:
     - target: {fileID: 957485981714486646, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
       propertyPath: m_Name
       value: EnemySpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 957485981714486646, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7332965090813510759, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
       propertyPath: m_RootOrder
@@ -308,6 +316,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
       propertyPath: m_Name
       value: TrapSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
       propertyPath: m_RootOrder
@@ -433,6 +445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -543,6 +559,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformSection9
       objectReference: {fileID: 0}
+    - target: {fileID: 6405369387021570797, guid: 79d0565d878bbd34f9208811c82c2395, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405369387707617720, guid: 79d0565d878bbd34f9208811c82c2395, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405369387929941426, guid: 79d0565d878bbd34f9208811c82c2395, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79d0565d878bbd34f9208811c82c2395, type: 3}
 --- !u!4 &8567706577992649963 stripped
@@ -560,6 +588,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_Name
       value: CoinSpawn (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
@@ -623,6 +655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -685,6 +721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -746,6 +786,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_Name
       value: CoinSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
@@ -871,6 +915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 957485981714486646, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7332965090813510759, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -932,6 +980,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_Name
       value: CoinSpawn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
@@ -1038,6 +1090,10 @@ PrefabInstance:
     - target: {fileID: 6556402946728977151, guid: 577a70f1771767f44878fe4414fe0c4d, type: 3}
       propertyPath: m_Name
       value: PlatformEnd_Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: 577a70f1771767f44878fe4414fe0c4d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577a70f1771767f44878fe4414fe0c4d, type: 3}

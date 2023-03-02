@@ -22,7 +22,7 @@ public class BackgroundFactory : Factory
         // First spawn point
         bgEnd_Right = bgStart.transform.position;
 
-        initBg = backgrounds[0].transform;
+        initBg = backgrounds[1].transform;
 
     }
 

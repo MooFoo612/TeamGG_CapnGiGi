@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6142801372274082622}
   - component: {fileID: 5470846737326904397}
   - component: {fileID: 542034127093212887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundChunk_16
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -229,6 +233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundEnd_Right
       objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: c83a434ee137de7408b0452f220761ca, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83a434ee137de7408b0452f220761ca, type: 3}
 --- !u!4 &6867326133818868721 stripped
@@ -246,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_Name
       value: CoinSpawn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
@@ -309,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -371,6 +387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -432,6 +452,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: 5bdf5a42bb05afa409d7882ad9786a8d, type: 3}
       propertyPath: m_Name
       value: PowerupSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: 5bdf5a42bb05afa409d7882ad9786a8d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: 5bdf5a42bb05afa409d7882ad9786a8d, type: 3}
       propertyPath: m_RootOrder
@@ -557,6 +581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrapSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: ef73b6a19c4a8cb45848baee48a39512, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -663,6 +691,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundEnd_Left
       objectReference: {fileID: 0}
+    - target: {fileID: 6556402946728977151, guid: b8a6b5177b6c15946a036ebafa101790, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a6b5177b6c15946a036ebafa101790, type: 3}
 --- !u!4 &610050477799969329 stripped
@@ -684,6 +716,10 @@ PrefabInstance:
     - target: {fileID: 1283041264885317142, guid: 2e7805d37b03a364786fe65fdc1687e1, type: 3}
       propertyPath: m_Name
       value: GroundSection20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283041264885317142, guid: 2e7805d37b03a364786fe65fdc1687e1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1283041264885317143, guid: 2e7805d37b03a364786fe65fdc1687e1, type: 3}
       propertyPath: m_RootOrder
@@ -729,6 +765,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1283041264975970511, guid: 2e7805d37b03a364786fe65fdc1687e1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283041265214649430, guid: 2e7805d37b03a364786fe65fdc1687e1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e7805d37b03a364786fe65fdc1687e1, type: 3}
 --- !u!4 &8459016866536586430 stripped
@@ -746,6 +790,10 @@ PrefabInstance:
     - target: {fileID: 957485981714486646, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
       propertyPath: m_Name
       value: EnemySpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 957485981714486646, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7332965090813510759, guid: d9f7e5da8de261b49af62f1bed6482c0, type: 3}
       propertyPath: m_RootOrder
@@ -809,6 +857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -870,6 +922,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_Name
       value: CoinSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
@@ -933,6 +989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinSpawn (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -994,6 +1054,10 @@ PrefabInstance:
     - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_Name
       value: CoinSpawn (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 843372932993377566, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_RootOrder

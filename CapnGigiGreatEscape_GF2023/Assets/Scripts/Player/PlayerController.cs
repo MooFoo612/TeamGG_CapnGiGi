@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour{
     //public bool collectedDash = false;
     //public bool collectedAirDash = false;
 
-    public PlayerAudio audio;
+    public new PlayerAudio audio;
     //public ParticleSystem dustParticles;
 
     [SerializeField] private TrailRenderer tr;
@@ -130,7 +130,26 @@ public class PlayerController : MonoBehaviour{
         if(!damageable.LockVelocity){
             // Move the player
             rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
-            }
+        }
+
+        /* I'm wrecked now, Fab, but here I'm trying to implement one of the things
+         * from the video I just put in code resources. I haven't the head to figure out what 
+         * the best checks to run here are, so far I've tried these if I remember correctly: 
+         * 
+         * It would also be nice to try and add coyote time. I don't mind working with you on that
+         *      
+                if (!touchingDirections.IsGrounded && rb.velocity.y > 0)
+                if (!touchingDirections.IsGrounded && jumpPressed == false)
+                if (!touchingDirections.IsGrounded && jumpImpulse > 0)
+        if (!touchingDirections.IsGrounded && rb.velocity.y > 0f && jumpPressed == false)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.8f);
+        }
+        
+        
+         */
+        
+        
             // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
             anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
@@ -192,7 +211,7 @@ public class PlayerController : MonoBehaviour{
         // If can't double jump yet 
         if(PlayerPrefs.GetInt("purchasedDoubleJump") == 0){
             // Check if the key is pressed  and if player can move and if player is on the ground or can doubleJump
-            if(context.started && CanMove  && touchingDirections.IsGrounded)
+            if(context.started && CanMove && touchingDirections.IsGrounded)
             {
                 //player jump audio 
                 audio.PlayjumpAudio();
@@ -214,8 +233,6 @@ public class PlayerController : MonoBehaviour{
                     jumpPressed = true;
                      //player jump audio 
                     audio.PlayjumpAudio();
-                    // Dust Particles
-                    //particleAnim.anim.SetBool("isJumping", true);
                     // Update animator paramether using static strings  
                     anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
