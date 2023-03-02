@@ -24,13 +24,13 @@ public class ScrollingBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bgRenderer.material.mainTextureOffset += new Vector2(speedX*Time.deltaTime,speedY*Time.deltaTime);
+        bgRenderer.material.mainTextureOffset += new Vector2(speedX*Time.deltaTime,0);
       
     }
 
     private void LateUpdate()
     {
-        bgRenderer.material.mainTextureOffset += new Vector2(speedX * Time.deltaTime, -speedY * Time.deltaTime);
+        bgRenderer.material.mainTextureOffset += new Vector2(-speedX * Time.deltaTime, 0);
         //lastPlayerX = currentPlayerX;
     }
 }

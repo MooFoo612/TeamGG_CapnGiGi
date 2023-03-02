@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 8653681860971007979}
   - component: {fileID: -5620035801937671714}
   m_Layer: 8
-  m_Name: bombpig
+  m_Name: BombuPiggu
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

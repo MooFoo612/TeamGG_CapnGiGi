@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - isOnGround_Particles
   - LiveParent
+  - Pathfinder_Jump
   layers:
   - Default
   - TransparentFX

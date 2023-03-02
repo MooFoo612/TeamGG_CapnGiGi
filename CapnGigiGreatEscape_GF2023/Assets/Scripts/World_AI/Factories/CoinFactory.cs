@@ -35,9 +35,10 @@ public class CoinFactory : Factory
     }
     private void GenerateCoins(List<GameObject> coins, Vector3 spawnLocation, Transform coinParent)
     {
-        Debug.Log("coinCountdown: " + PlayerPrefs.GetInt("coinsCountdown"));
+        //Debug.Log("coinCountdown: " + PlayerPrefs.GetInt("coinsCountdown"));
         // If the coin countdown has reached 0
-        if (PlayerPrefs.GetInt("coinsCountdown") != 0) {
+        if (PlayerPrefs.GetInt("coinsCountdown") != 0) 
+        {
             // Check coins list for the Blue Diamond
             foreach (GameObject coin in coins)
             {
@@ -49,8 +50,10 @@ public class CoinFactory : Factory
             }
             //Spawn the blue diamond
             Instantiate(goldCoin, spawnLocation, Quaternion.identity, coinParent);
+
             // Update the counter
             PlayerPrefs.SetInt("coinsCountdown", PlayerPrefs.GetInt("coinsCountdown") -1);
+
         // If timer is finished 
         } else {//if(PlayerPrefs.GetInt("coinCountdown") == 0) {
 

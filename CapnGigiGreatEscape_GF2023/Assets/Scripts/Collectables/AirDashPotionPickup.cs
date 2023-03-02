@@ -18,7 +18,7 @@ public class AirDashPotionPickup : Factory
         if(player){
             player.TemporaryAirDash = true;
             
-            for (int powerup = 0; powerup < activeList.Count - 1; powerup++)
+            for (int powerup = 0; powerup < activeList.Count; powerup++)
             {
                 if (activeList[powerup].name == "AirDashPotion") 
                 { 

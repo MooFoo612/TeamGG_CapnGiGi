@@ -25,7 +25,7 @@ public class DashPotionPickup : Factory
             player.TemporaryDash = true;
 
             // Check the Powerup List
-            for (int powerup = 0; powerup < activeList.Count - 1; powerup++)
+            for (int powerup = 0; powerup < activeList.Count; powerup++)
             {
                 // If there is a powerup in the active list named DashPotion
                 if (activeList[powerup].name == "DashPotion")
