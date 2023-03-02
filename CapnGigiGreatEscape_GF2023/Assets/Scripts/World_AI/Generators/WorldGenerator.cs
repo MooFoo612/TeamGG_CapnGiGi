@@ -22,12 +22,22 @@ public class WorldGenerator : Factory
     // Distance management ---------------
     private float totalDistance;
     private GameObject distanceMarkerObj;
-    private float distanceMarker;
+    private Vector3 distanceMarker;
+    
 
     // Constants -----------------------------------------------
     private const float DISTANCE_TO_SPAWN_SECTION_GROUND = 40f;
     private const float DISTANCE_TO_SPAWN_SECTION_BG = 10f;
     private const float DISTANCE_TO_DELETE_SECTION = 180f;
+
+    private const float DISTANCE_TO_SPAWN_SECTION_GROUND_LEFT = -40f;
+    private const float DISTANCE_TO_SPAWN_SECTION_BG_LEFT = -10f;
+    private const float DISTANCE_TO_DELETE_SECTION_LEFT = -180f;
+
+    private const float DISTANCE_TO_REVERSE = 50f;
+
+    // Normal variables 
+    bool toReverse;
 
     // Marker Positions---------------    
     private Vector3 groundEnd_Right;
@@ -41,15 +51,16 @@ public class WorldGenerator : Factory
     //--------------------------------
 
     #endregion
-     
+
 void Awake()
     {
         // Access the player
         player = GameObject.Find("CapnGigi");
 
-        // Distance Marker
+        // Distance Marker (maybe move in the update)
         distanceMarkerObj = GameObject.Find("DistanceMarker");
-        distanceMarker = distanceMarkerObj.transform.position.x;
+        distanceMarker = distanceMarkerObj.transform.position;
+        //Debug.Log("distance marker: " + distanceMarker);    
 
         // Ensure world isn't reversed
         reversedWorld = false;
@@ -64,6 +75,7 @@ void Awake()
         backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundFactory)) as BackgroundFactory;
 
         StartCoroutine(GenerateWorld_Right());
+        StartCoroutine(GenerateWorld_Left());
 
     }
 
@@ -74,11 +86,20 @@ void Awake()
         SpawnPlatformChunk_Right();
     }
 
+    private void SpawnGameWorld_Left()
+    {
+        SpawnGroundChunk_Left();
+        SpawnPlatformChunk_Left();
+    }
     #endregion
 
     #region Background Spawner
 
     public void SpawnBackground_Right()
+    {
+        backgroundGenerator.GenerateBackground();
+    }
+    public void SpawnBackground_Left()
     {
         backgroundGenerator.GenerateBackground();
     }
@@ -100,7 +121,17 @@ void Awake()
 
     private void Update()
     {
-       
+        if(Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
+
+            Debug.Log("Vaffanculo");
+            reversedWorld = true;
+            Debug.Log("reverseWord value: " + reversedWorld);
+        }else{
+            Debug.Log("Vaffanculo2");
+            reversedWorld = false;
+            Debug.Log("reverseWord value: " + reversedWorld);
+        }
+
     }
 
     #region Platform Spawner
@@ -140,6 +171,36 @@ void Awake()
             }
 
             if (reversedWorld == true)
+            {
+                break;
+            }
+        }
+    }
+    private IEnumerator GenerateWorld_Left()
+    {
+        
+        while (reversedWorld)
+        {
+            // Limit to 1sec
+            yield return new WaitForSeconds(1f);
+
+            // Set groundEndRight to last spawned section for check
+            groundEnd_Left = groundGenerator.groundEnd_Left;
+
+
+            // If the player is close enough
+            if (Vector3.Distance(player.transform.position, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION_GROUND_LEFT)
+            {
+                // Spawn another section
+                SpawnGameWorld_Left();
+            }
+
+            if (Vector3.Distance(player.transform.position, bgEnd_Left) < DISTANCE_TO_SPAWN_SECTION_BG_LEFT)
+            {
+                SpawnBackground_Left();
+            }
+
+            if (reversedWorld == false)
             {
                 break;
             }

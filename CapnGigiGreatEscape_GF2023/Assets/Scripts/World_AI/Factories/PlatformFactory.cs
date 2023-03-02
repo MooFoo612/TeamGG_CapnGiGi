@@ -28,6 +28,9 @@ public class PlatformFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         platformEnd_Right = platformStart.Find("PlatformEnd_Right").position;
+        platformEnd_Left = platformStart.Find("PlatformEnd_Left").position;
+
+
     }
     #endregion
 
@@ -49,13 +52,33 @@ public class PlatformFactory : Factory
         Transform nextPlatformChunk_Right = Instantiate(platformChunk, nextChunk, Quaternion.identity, platformParent);
 
         platformChunkActivated += 1;
-
         // Return the transform for sister method
         return nextPlatformChunk_Right;
     }
     #endregion
 
     #region Spawn Platforms to the Left
+    public void SpawnPlatformChunk_Left()
+    {
+        platformChunk = RandomChunkerizer();
+
+        //Get the transform to refrence the next End Position
+        Transform lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformChunk, platformEnd_Left, platformParent);
+        platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
+
+        //Debug.Log("Platform Spawned: " + platformChunkActivated);
+
+    }
+    public Transform SpawnPlatformChunk_Left(Transform platformChunk, Vector3 nextChunk, Transform platformParent)
+    {
+        // Spawn the Platform Chunk and log to AI count
+        Transform nextPlatformChunk_Left = Instantiate(platformChunk, nextChunk, Quaternion.identity, platformParent);
+
+        platformChunkActivated += 1;
+        // Return the transform for sister method
+        return nextPlatformChunk_Left;
+    }
+    /*
     public void SpawnPlatformChunk_Left()
     {
         //Get the transform to refrence the end of previous chunk
@@ -76,6 +99,7 @@ public class PlatformFactory : Factory
         // Return the transform for sister method
         return nextPlatformChunk_Left;
     }
+    */
     #endregion
 
     #region Random "Chunkerizer"

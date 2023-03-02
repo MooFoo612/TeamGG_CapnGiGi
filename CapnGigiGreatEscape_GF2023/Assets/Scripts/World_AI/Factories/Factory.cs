@@ -163,7 +163,7 @@ public class Factory : MonoBehaviour
 
 
     #endregion
-}
+} 
 /*
 public class CollectableWarehouse : Factory
 {
