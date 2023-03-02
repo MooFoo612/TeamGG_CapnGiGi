@@ -10,18 +10,22 @@ public class PathfinderController : MonoBehaviour
 
     [Header("Pathfinding")]
     public Transform target;
-    public float _aggroRange = 50f;
-    public float pathUpdateFrequency = 0.5f;
+    public float _aggroRange = 150f;
+    public float pathUpdateFrequency = 0.25f;
 
     [Header("Physics")]
-    public float speed = 200f;
-    public float nextWaypointDistance = 3f;
-    public float jumpNodeHeightRequirement = 0.8f;
-    public float jumpModifier = 0.3f;
+    public float speed = 0f;
+    public float maxSpeed = 150f;
+    public float acceleration = 50f;
+    public float jumpBuffer = 1f;
+    public float jumpTimer = 1f;
+    public float nextWaypointDistance = 5f;
+    public float jumpNodeHeightRequirement = 1f;
+    public float jumpModifier = 0.5f;
     public float jumpCheckOffset = 0.1f;
 
     [Header("Custom Behavior")]
-    public bool followEnabled =  true;
+    public bool followEnabled = true;
     public bool jumpEnabled = true;
     public bool directionLookEnabled = true;
 
@@ -41,10 +45,12 @@ public class PathfinderController : MonoBehaviour
     // ------ Accessable by Children ------- |
 
     private bool isGrounded;
-    protected bool isBelowPlatform;
-    protected Vector2 direction;
-    protected Vector2 jumpDirection;
-    protected Vector2 force;
+    private GameObject cam;
+    private bool offCamera;
+    private Vector2 direction;
+    private Vector2 jumpDirection;
+    private Vector2 force;
+    private float timer;
     protected Collider2D pfCollider;
 
     // ----- Components --------- |
@@ -59,55 +65,66 @@ public class PathfinderController : MonoBehaviour
     private Vector3 currentPos;
     private Vector3 targetPos;
 
-    protected Vector2 Direction
+    public Vector2 Direction
     {
         get { return this.direction; } set { this.direction = value; }
     }
 
-    protected Vector2 Force
+    public Vector2 Force
     {
         get { return this.force; } set { this.force = value; }
     }
 
-    protected Vector2 Position
+    public Vector3 Position
     {
         get { return this.currentPos; } set { this.currentPos = value; }
     }
 
     public bool Grounded
     {
-        get { return isGrounded; } set { isGrounded = value; }    
+        get { return this.isGrounded; } set { this.isGrounded = value; }
     }
+
 
     // ---------------------------------------------------------------------|
 
-
-    public void Start()
+    private void Awake()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         pfCollider = GetComponent<Collider2D>();
+        cam = GameObject.FindWithTag("CinemachineCam");
 
         // Keep on repeating the script to update the path
         InvokeRepeating("UpdatePath", 0f, pathUpdateFrequency);
     }
 
+    void Start()
+    {
+        // Set timer to prevent chaser immediately beginning his path
+        timer = 10f;
+        timer = timer - Time.fixedDeltaTime;
+    }
+
     private void FixedUpdate()
     {
-        // If find the target and can follow, follow it through the path
-        if (TargetInRange() && followEnabled)
+        if (timer <= 0f)
         {
-            Hunt();
+            timer = 10f;
+
+            // If find the target and can follow, follow it through the path
+            if (TargetInRange() && followEnabled)
+            {
+                Hunt();
+            }
         }
-        // else?
+        
     }
 
     private void UpdatePath()
     {
-        //currentPos = transform.position;
-
         // If object to seek found update path 
         if (followEnabled && TargetInRange() && seeker.IsDone())
         {
@@ -119,7 +136,10 @@ public class PathfinderController : MonoBehaviour
 
     private void Hunt()
     {
-        Vector3 startOffset;
+        Vector3 dir = new Vector3(rb.velocity.x, 0).normalized;
+        //Vector3 startOffset;
+
+        
 
         // If there is no path
         if (path == null)
@@ -133,8 +153,15 @@ public class PathfinderController : MonoBehaviour
             return;
         }
 
+        // While speed is less than the maximum
+        while (speed < maxSpeed)
+        {
+            // Increase speed by acceleration amount
+            speed += acceleration;
+        }
+
         // Check if colliding with anything
-        startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
+        Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
 
         // Check if pathfinder is on the ground
         isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.1f);
@@ -145,12 +172,26 @@ public class PathfinderController : MonoBehaviour
         // Calculate the force
         Vector2 force = direction * speed * Time.deltaTime;
 
-        // If runner can jump
-        if (jumpEnabled && isGrounded)
+
+        // Have we reached max speed?
+        if (speed >= maxSpeed)
         {
-            Jump();
+            // Make sure it doesn't go higher
+            speed = maxSpeed;
         }
-        
+
+        // If runner can jump
+
+        // Jump following the grid dimensions
+        if (direction.y > jumpNodeHeightRequirement)
+        {
+            if (jumpEnabled && isGrounded)
+            {
+                Jump();
+            }
+
+        }
+             
         // Use the force(tm) to move the runner
         rb.AddForce(force);
 
@@ -197,26 +238,23 @@ public class PathfinderController : MonoBehaviour
     public void Jump()
     {
         if (rb.velocity.x > 0.01f)
-        {
-            // Jump following the grid dimensions
-            if (direction.y > jumpNodeHeightRequirement)
-            {
-                sr.flipX = false;
-                rb.AddForce(new Vector2(1f,1f) * speed * jumpModifier);
-                animator.SetBool("isJumping", true);
-            }
+        {          
+            sr.flipX = false;
+            rb.AddForce(new Vector2(3,3) * speed * jumpModifier);
+            animator.SetBool("isJumping", true);
 
         }
         else if (rb.velocity.x < -0.01f)
-        {
-            // Jump following the grid dimensions
-            if (direction.y > jumpNodeHeightRequirement)
-            {
-                // Flip sprite left if rb is moving left
-                sr.flipX = true;
-                rb.AddForce(new Vector2(-1f,-1f) * speed * jumpModifier);
-                animator.SetBool("isJumping", true);
-            }
+        {            
+            // Flip sprite left if rb is moving left
+            sr.flipX = true;
+            rb.AddForce(new Vector2(3,3) * speed * jumpModifier);
+            animator.SetBool("isJumping", true);
         }
+    }
+
+    private void OffCameraCheck()
+    {
+        // camera.Find
     }
 }

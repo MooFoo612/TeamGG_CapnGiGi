@@ -16,6 +16,8 @@ TagManager:
   - isOnGround_Particles
   - LiveParent
   - Pathfinder_Jump
+  - RunnerLedge
+  - CinemachineCam
   layers:
   - Default
   - TransparentFX

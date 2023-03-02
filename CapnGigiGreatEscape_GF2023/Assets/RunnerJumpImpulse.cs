@@ -6,24 +6,18 @@ using UnityEngine;
 public class RunnerJumpImpulse : MonoBehaviour
 {
     PathfinderController controller;
-    bool isGrounded;
-    bool jumpEnabled;
-    private void Start()
-    {
-    }
-
-    private void FixedUpdate()
-    {
-        // Check if the pathfinder is on the ground
-        isGrounded = controller.Grounded;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Pathfinder_Jump")
+        // If the 
+        if (collision.tag == "Pathfinder_Jump" && controller.Direction.y > controller.jumpNodeHeightRequirement)
         {
-            // Make the pathfinder jump
-            controller.Jump();
+            if (controller.jumpEnabled && controller.Grounded == true)
+            {
+                // Make the pathfinder jump
+                controller.Jump();
+                Debug.Log("PathfinderJumpImpulse made the Pathfinder jump!");
+            }
         }
     }
 }
