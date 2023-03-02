@@ -109,7 +109,6 @@ public class PlatformFactory : Factory
         int randomPick = UnityEngine.Random.Range(0, platformChunks.Count - 1);
         GameObject randomChunk = platformChunks[randomPick];
         Transform platformChunk = randomChunk.transform;
-
         return platformChunk;
     }
     #endregion

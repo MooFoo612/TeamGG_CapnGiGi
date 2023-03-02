@@ -15,7 +15,7 @@ public class CloneController : MonoBehaviour
         distanceToDestroy = 60f;
     }
 
-    private void Update()
+    private void Update() 
     {
         playerPosition = player.transform.position;
         distanceToPlayer = Vector3.Distance(cloneSpawnPosition, playerPosition);

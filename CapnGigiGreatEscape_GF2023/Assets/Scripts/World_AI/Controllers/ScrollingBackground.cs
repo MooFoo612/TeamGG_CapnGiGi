@@ -24,7 +24,12 @@ public class ScrollingBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         bgRenderer.material.mainTextureOffset += new Vector2(speedX*Time.deltaTime,0);     
+=======
+        bgRenderer.material.mainTextureOffset += new Vector2(speedX*Time.deltaTime,0);
+
+>>>>>>> Stashed changes
     }
 
     private void LateUpdate()

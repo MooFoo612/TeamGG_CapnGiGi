@@ -17,7 +17,7 @@ public class WorldGenerator : Factory
     private GroundFactory groundGenerator;
     private PlatformFactory platformGenerator;
     private BackgroundFactory backgroundGenerator;
-    private bool reversedWorld;
+    public bool reversedWorld;
 
     // Distance management ---------------
     private float totalDistance;
@@ -49,6 +49,14 @@ public class WorldGenerator : Factory
     private Vector3 bgEnd_Right;
     private Vector3 bgEnd_Left;
     //--------------------------------
+
+    // Platforms and Grounds chunks in game management ----------------------
+    public string platforms = "PlatformChunk"; 
+    // Create a list to fill with the current platform chunks in the game
+    private List<GameObject> activePlatformChunks = new List<GameObject>();
+    public string grounds = "GroundChunk"; 
+    // Create a list to fill with the current ground chunks in the game
+    private List<GameObject> activeGroundChunks = new List<GameObject>();
 
     #endregion
 
@@ -121,13 +129,48 @@ void Awake()
 
     private void Update()
     {
+        // Find all game objects with the platform tag and add them to the list
+        GameObject[] activePlatforms = GameObject.FindGameObjectsWithTag(platforms);
+        foreach (GameObject obj in activePlatforms){
+            activePlatformChunks.Add(obj);
+        }
+        // Find all game objects with the ground tag and add them to the list
+        GameObject[] activeGrounds = GameObject.FindGameObjectsWithTag(grounds);
+        foreach (GameObject obj in activeGrounds){
+            activeGroundChunks.Add(obj);
+        }
+
+        // Remove any platforms that have been destroyed or removed from the scene from the list 
+        for (int i = activePlatformChunks.Count - 1; i >= 0; i--){
+            if (activePlatformChunks[i] == null){
+                activePlatformChunks.RemoveAt(i);
+            }
+        }
+        // Remove any grounds that have been destroyed or removed from the scene from the list 
+        for (int i = activeGroundChunks.Count - 1; i >= 0; i--){
+            if (activeGroundChunks[i] == null){
+                activeGroundChunks.RemoveAt(i);
+            }
+        }
+
+        // Check if player reached the distance to reverse the game and increase the difficulty 
         if(Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
 
-            Debug.Log("Vaffanculo");
+            // Update the bool
             reversedWorld = true;
             Debug.Log("reverseWord value: " + reversedWorld);
+
+            // Destroy all but the last platform added to the list
+            for (int i = 0; i < activePlatformChunks.Count +1 ; i++){
+                Destroy(activePlatformChunks[i]);
+            }
+            // Destroy all but the last ground added to the list
+            for (int i = 0; i < activeGroundChunks.Count   +1 ; i++){
+                Destroy(activeGroundChunks[i]);
+            }
+            // NEXT STEP create the new marker and make it a loop or recognize the directions
         }else{
-            Debug.Log("Vaffanculo2");
+            // Update the bool 
             reversedWorld = false;
             Debug.Log("reverseWord value: " + reversedWorld);
         }
@@ -206,6 +249,8 @@ void Awake()
             }
         }
     }
+
+
 }
 
 
