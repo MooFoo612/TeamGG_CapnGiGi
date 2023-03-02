@@ -6,13 +6,19 @@ public class BackgroundFactory : Factory
     [SerializeField] private Transform bgStart;
     private Transform bgParent;
     public Vector3 bgEnd_Right;
-    public Vector3 bgEnd_Left;
+    public Vector3 bgEnd_Left; 
     private float distanceToSpawnBackground;
     private GameObject player;
     private Transform initBg;
 
     private void Awake()
     {
+
+    }
+
+    private void Start()
+    {
+
         // Hierarchy Parent
         bgParent = GameObject.Find("Backgrounds_Active").transform;
 
@@ -22,12 +28,9 @@ public class BackgroundFactory : Factory
         // First spawn point
         bgEnd_Right = bgStart.transform.position;
 
+        //Set bg
         initBg = backgrounds[0].transform;
 
-    }
-
-    private void Start()
-    {      
         GenerateBackground(initBg, bgEnd_Right, bgParent);
     }
 

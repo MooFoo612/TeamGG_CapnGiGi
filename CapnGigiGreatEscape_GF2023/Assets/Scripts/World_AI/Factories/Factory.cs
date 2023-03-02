@@ -6,6 +6,8 @@ public class Factory : MonoBehaviour
 {
     Debugging db;
     public GameObject blueDiamond;
+    WorldGenerator worldGenerator;
+    public bool reversed;
 
     #region List Declarations
 
@@ -163,7 +165,11 @@ public class Factory : MonoBehaviour
 
 
     #endregion
-}
+
+    public void Update(){
+        //reversed = worldGenerator.reversedWorld;
+    }
+} 
 /*
 public class CollectableWarehouse : Factory
 {

@@ -31,6 +31,8 @@ public class GroundFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
+        //groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
+
     }
     #endregion
 
@@ -63,18 +65,32 @@ public class GroundFactory : Factory
     #region Spawn Platforms to the Left
     public void SpawnGroundChunk_Left()
     {
-        //Get the transform to refrence the end of previous chunk
-        Transform lastGroundEnd_Left = SpawnGroundChunk_Left(groundEnd_Left);
-        groundEnd_Right = lastGroundEnd_Left.Find("GroundEnd_Right").position;
-    }
-    public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
-    {
-        // Set Transform to random Platform Chunk from List
-        groundChunk = RandomChunkerizer(0, groundChunks.Count-1);
+        int randomPick = UnityEngine.Random.Range(0, groundChunks.Count -1);
+        Transform randomChunk = groundChunks[randomPick].transform;
 
-        // Spawn the Platform chunk and log to AI count
-        Transform nextGroundChunk_Left = Instantiate(groundChunk, nextChunk, Quaternion.identity);
-        Factory.groundChunkActivated += 1;
+        // Spawn the Transform at the last end of section location
+        Transform lastGroundEnd_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
+
+        // Find the next end of section in the new Transform
+        groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
+    }
+    //public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
+    //{
+    //    // Set Transform to random Platform Chunk from List
+    //    groundChunk = RandomChunkerizer(0, groundChunks.Count-1);
+//
+    //    // Spawn the Platform chunk and log to AI count
+    //    Transform nextGroundChunk_Left = Instantiate(groundChunk, nextChunk, Quaternion.identity);
+    //    Factory.groundChunkActivated += 1;
+//
+    //    // Return the transform for sister method
+    //    return nextGroundChunk_Left;
+    //}
+    public Transform SpawnGroundChunk_Left(Transform groundChunk, Vector3 nextPosition, Transform groundParent)
+    {
+        // Spawn the Platform Chunk
+        Transform nextGroundChunk_Left = Instantiate(groundChunk, nextPosition, Quaternion.identity, groundParent);
+        groundChunkActivated += 1;
 
         // Return the transform for sister method
         return nextGroundChunk_Left;

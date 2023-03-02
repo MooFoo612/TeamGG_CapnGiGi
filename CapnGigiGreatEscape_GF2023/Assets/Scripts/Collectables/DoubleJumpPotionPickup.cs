@@ -7,10 +7,12 @@ public class DoubleJumpPotionPickup : Factory
     private GameObject doubleJumpPotion;
 
     Animator anim;
+    public AudioSource audioSource;
     private void Awake()
     {
         doubleJumpPotion = GameObject.Find("DoubleJumpPotion");
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         activeList = powerups;
     }
 
@@ -31,6 +33,10 @@ public class DoubleJumpPotionPickup : Factory
             }
             // Play animation
             anim.SetTrigger("collected");
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
             Destroy(gameObject, 0.25f);
         }
     }

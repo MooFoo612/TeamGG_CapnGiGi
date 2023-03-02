@@ -7,10 +7,12 @@ public class AirDashPotionPickup : Factory
     private static List<GameObject> activeList;
 
     Animator anim;
+    public AudioSource audioSource;
     private void Awake()
     {
         anim = GetComponent<Animator>();
         activeList = powerups;
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision){
         // Get the script from the collision object 
@@ -28,6 +30,10 @@ public class AirDashPotionPickup : Factory
             }
             // Play animation
             anim.SetTrigger("collected");
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
             Destroy(gameObject, 0.25f);
         }
     }

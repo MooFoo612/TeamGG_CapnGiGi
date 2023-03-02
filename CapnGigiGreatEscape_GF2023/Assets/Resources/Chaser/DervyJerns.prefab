@@ -78,6 +78,10 @@ MonoBehaviour:
   _aggroRange: 50
   pathUpdateFrequency: 0.5
   speed: 550
+  maxSpeed: 150
+  acceleration: 50
+  jumpBuffer: 1
+  jumpTimer: 1
   nextWaypointDistance: 1.5
   jumpNodeHeightRequirement: 0.5
   jumpModifier: 0.4
@@ -85,6 +89,9 @@ MonoBehaviour:
   followEnabled: 1
   jumpEnabled: 1
   directionLookEnabled: 1
+  lastPos: {x: 0, y: 0}
+  lastX: 0
+  lastY: 0
 --- !u!114 &5151854983071631710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 19e478ebd0446e54d9a44bf4a6122927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -520,14 +527,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb670e287ae50a9458397bb7b681c23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  _aggroRange: 50
-  pathUpdateFrequency: 0.5
-  speed: 200
-  nextWaypointDistance: 3
-  jumpNodeHeightRequirement: 0.8
-  jumpModifier: 0.3
-  jumpCheckOffset: 0.1
-  followEnabled: 1
-  jumpEnabled: 1
-  directionLookEnabled: 1

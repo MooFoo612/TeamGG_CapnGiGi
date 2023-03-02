@@ -5,23 +5,26 @@ using Pathfinding;
 
 public class PathfinderController : MonoBehaviour
 {
-
     // ---------- Inspector Access -----------|
 
     [Header("Pathfinding")]
     public Transform target;
-    public float _aggroRange = 50f;
-    public float pathUpdateFrequency = 0.5f;
+    public float _aggroRange = 150f;
+    public float pathUpdateFrequency = 0.1f;
 
     [Header("Physics")]
-    public float speed = 200f;
-    public float nextWaypointDistance = 3f;
-    public float jumpNodeHeightRequirement = 0.8f;
-    public float jumpModifier = 0.3f;
+    public float speed = 0f;
+    public float maxSpeed = 150f;
+    public float acceleration = 50f;
+    public float jumpBuffer = 1f;
+    public float jumpTimer = 1f;
+    public float nextWaypointDistance = 5f;
+    public float jumpNodeHeightRequirement = 1f;
+    public float jumpModifier = 0.5f;
     public float jumpCheckOffset = 0.1f;
 
     [Header("Custom Behavior")]
-    public bool followEnabled =  true;
+    public bool followEnabled = true;
     public bool jumpEnabled = true;
     public bool directionLookEnabled = true;
 
@@ -29,6 +32,10 @@ public class PathfinderController : MonoBehaviour
 
     private Path path;
     private int currentWaypoint = 0;
+    public Vector2 lastVelocity;
+    public Vector2 lastPos;
+    public bool lastGrounded;
+
     private RaycastHit2D check_N;
     private RaycastHit2D check_NE;
     private RaycastHit2D check_E;
@@ -37,14 +44,14 @@ public class PathfinderController : MonoBehaviour
     private RaycastHit2D check_SW;
     private RaycastHit2D check_W;
     private RaycastHit2D check_NW;
-
-    // ------ Accessable by Children ------- |
-
+    private GameObject cam;
+    private bool offCamera;
+    private Vector2 direction;
+    private Vector2 jumpDirection;
+    private Vector2 force;
     private bool isGrounded;
-    protected bool isBelowPlatform;
-    protected Vector2 direction;
-    protected Vector2 jumpDirection;
-    protected Vector2 force;
+    private float timer;
+    private bool timerStatus;
     protected Collider2D pfCollider;
 
     // ----- Components --------- |
@@ -59,55 +66,109 @@ public class PathfinderController : MonoBehaviour
     private Vector3 currentPos;
     private Vector3 targetPos;
 
-    protected Vector2 Direction
+    public Vector2 Direction
     {
-        get { return this.direction; } set { this.direction = value; }
+        get { return this.direction; }
+        set { this.direction = value; }
     }
 
-    protected Vector2 Force
+    public Vector2 Force
     {
-        get { return this.force; } set { this.force = value; }
+        get { return this.force; }
+        set { this.force = value; }
     }
 
-    protected Vector2 Position
+    public Vector3 Position
     {
-        get { return this.currentPos; } set { this.currentPos = value; }
+        get { return this.currentPos; }
+        set { this.currentPos = value; }
     }
 
     public bool Grounded
     {
-        get { return isGrounded; } set { isGrounded = value; }    
+        get
+        {
+            return this.isGrounded;
+        }
+        private set
+        {
+            this.isGrounded = value;
+        }
     }
+
+
+    public Vector3 LastPosition => this.lastPos;
+
 
     // ---------------------------------------------------------------------|
 
-
-    public void Start()
+    private void Awake()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         pfCollider = GetComponent<Collider2D>();
+        cam = GameObject.FindWithTag("CinemachineCam");
 
         // Keep on repeating the script to update the path
         InvokeRepeating("UpdatePath", 0f, pathUpdateFrequency);
     }
 
+    void Start()
+    {
+        // Set timer to prevent chaser immediately beginning his path
+        timerStatus = true;
+    }
+
     private void FixedUpdate()
     {
-        // If find the target and can follow, follow it through the path
-        if (TargetInRange() && followEnabled)
+        if (timerStatus)
         {
-            Hunt();
+            timer = 30f;
+            timer -= Time.fixedDeltaTime;
+
+            animator.SetBool("isIdle", true);
+
+            // If find the target and can follow, follow it through the path
+            if (TargetInRange() && followEnabled && timer == 0)
+            {
+                Hunt();
+                timerStatus = false;
+            }
         }
-        // else?
+        else
+        {
+            // If find the target and can follow, follow it through the path
+            if (TargetInRange() && followEnabled)
+            {
+                Hunt();
+            }
+        }
+
+
+        // While speed is less than the maximum
+        if (Mathf.Abs(rb.velocity.x) > 0 && speed < maxSpeed)
+        {
+            // Increase speed by acceleration amount
+            speed += acceleration;
+        }
+        else
+        {
+            speed = maxSpeed;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        // For per-frame comparisons
+        lastPos = transform.position;
+        lastGrounded = isGrounded;
+        lastVelocity = new Vector2 (Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.y));
     }
 
     private void UpdatePath()
     {
-        //currentPos = transform.position;
-
         // If object to seek found update path 
         if (followEnabled && TargetInRange() && seeker.IsDone())
         {
@@ -115,11 +176,16 @@ public class PathfinderController : MonoBehaviour
 
             seeker.StartPath(rb.position, targetPos, OnPathComplete);
         }
+
+
     }
 
     private void Hunt()
     {
-        Vector3 startOffset;
+        Vector3 dir = new Vector3(rb.velocity.x, 0).normalized;
+        //Vector3 startOffset;
+
+
 
         // If there is no path
         if (path == null)
@@ -132,9 +198,9 @@ public class PathfinderController : MonoBehaviour
         {
             return;
         }
-
+        
         // Check if colliding with anything
-        startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
+        Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
 
         // Check if pathfinder is on the ground
         isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.1f);
@@ -145,12 +211,28 @@ public class PathfinderController : MonoBehaviour
         // Calculate the force
         Vector2 force = direction * speed * Time.deltaTime;
 
-        // If runner can jump
-        if (jumpEnabled && isGrounded)
+
+        /*/ Have we reached max speed?
+        if (speed >= maxSpeed)
         {
-            Jump();
+            // Make sure it doesn't go higher
+            speed = maxSpeed;
+        }*/
+
+        // If runner can jump
+
+        // Jump following the grid dimensions
+        if (direction.y > jumpNodeHeightRequirement && target.position.y > (Position.y + 1))
+        {
+            jumpEnabled = true;
+
+            if (jumpEnabled && isGrounded)
+            {
+                Jump();
+            }
+
         }
-        
+
         // Use the force(tm) to move the runner
         rb.AddForce(force);
 
@@ -158,19 +240,19 @@ public class PathfinderController : MonoBehaviour
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
         // If the distance lest than the 
-        if(distance < nextWaypointDistance)
+        if (distance < nextWaypointDistance)
         {
             // 
             currentWaypoint++;
         }
 
         // Flip the sprite depending on the direction 
-        if(directionLookEnabled)
+        if (directionLookEnabled)
         {
-            if(rb.velocity.x > 0.01f)
+            if (rb.velocity.x > 0.01f)
             {
                 sr.flipX = false;
-            } 
+            }
             else if (rb.velocity.x < -0.01f)
             {
                 sr.flipX = true;
@@ -198,25 +280,22 @@ public class PathfinderController : MonoBehaviour
     {
         if (rb.velocity.x > 0.01f)
         {
-            // Jump following the grid dimensions
-            if (direction.y > jumpNodeHeightRequirement)
-            {
-                sr.flipX = false;
-                rb.AddForce(new Vector2(1f,1f) * speed * jumpModifier);
-                animator.SetBool("isJumping", true);
-            }
+            sr.flipX = false;
+            rb.AddForce(new Vector2(3, 3) * speed * jumpModifier);
+            animator.SetBool("isJumping", true);
 
         }
         else if (rb.velocity.x < -0.01f)
         {
-            // Jump following the grid dimensions
-            if (direction.y > jumpNodeHeightRequirement)
-            {
-                // Flip sprite left if rb is moving left
-                sr.flipX = true;
-                rb.AddForce(new Vector2(-1f,-1f) * speed * jumpModifier);
-                animator.SetBool("isJumping", true);
-            }
+            // Flip sprite left if rb is moving left
+            sr.flipX = true;
+            rb.AddForce(new Vector2(3, 3) * speed * jumpModifier);
+            animator.SetBool("isJumping", true);
         }
+    }
+
+    private void OffCameraCheck()
+    {
+        // camera.Find
     }
 }

@@ -5,8 +5,11 @@ public class ThrowingSwordsPickup : Factory
     // Ammunition Store
     public int swordsAmount = 20;
     Animator anim;
+    public AudioSource audioSource;
+
     private void Start(){
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +24,11 @@ public class ThrowingSwordsPickup : Factory
             player.ThrowingSwords += swordsAmount;
             // Play animation
             anim.SetTrigger("collected");
+            // Play audio
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
             // "Collect" the ammunition
             Destroy(gameObject, 0.25f);
         }
