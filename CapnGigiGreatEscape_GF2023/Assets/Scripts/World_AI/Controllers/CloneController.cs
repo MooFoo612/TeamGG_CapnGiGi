@@ -38,8 +38,6 @@ public class CloneController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
-        
     }
 }
 

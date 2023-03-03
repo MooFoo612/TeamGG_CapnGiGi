@@ -28,7 +28,7 @@ public class PathfinderController : MonoBehaviour
     [SerializeField] float nextWaypointDistance = 1.5f;
 
     [Header("Jumping")]
-    [SerializeField] bool jumpEnabled = true;
+    [SerializeField] protected bool jumpEnabled = true;
     [SerializeField] bool jumpBuffer;
     [SerializeField] float jumpTimer = 1f;
     [SerializeField] protected float jumpNodeHeightRequirement = 1f;

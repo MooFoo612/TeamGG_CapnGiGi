@@ -60,6 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
 --- !u!212 &542034127093212887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -649,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6556402946728977148, guid: b8a6b5177b6c15946a036ebafa101790, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -19
       objectReference: {fileID: 0}
     - target: {fileID: 6556402946728977148, guid: b8a6b5177b6c15946a036ebafa101790, type: 3}
       propertyPath: m_LocalPosition.y
