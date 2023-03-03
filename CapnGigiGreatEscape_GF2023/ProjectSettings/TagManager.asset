@@ -18,6 +18,9 @@ TagManager:
   - Pathfinder_Jump
   - RunnerLedge
   - CinemachineCam
+  - GroundChunk
+  - PlatformChunk
+  - LevGen
   layers:
   - Default
   - TransparentFX

@@ -28,7 +28,7 @@ public class PlatformFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         platformEnd_Right = platformStart.Find("PlatformEnd_Right").position;
-        //platformEnd_Left = platformStart.Find("PlatformEnd_Left").position;
+        platformEnd_Left = platformStart.Find("PlatformEnd_Left").position;
 
 
     }

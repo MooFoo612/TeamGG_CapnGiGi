@@ -12,8 +12,19 @@ public class CoinFactory : Factory
 
     // To call coin from list
     private GameObject goldCoin;
+    private GameObject player;
+    private Vector3 playerPosition;
+    private float distanceToDestroy;
 
     public int coinCountdown = 10;
+
+    //private Vector3 cloneSpawnPosition;
+    //private float distanceToPlayer;
+    //public float distanceToDestroyForReverse = 100f; 
+    //public float checkDistance = 40f;
+    //private GameObject AIScripts;
+    //private WorldGenerator worldGenerator;
+
     // To call diamond from list
     //public GameObject blueDiamond;
 
@@ -22,9 +33,13 @@ public class CoinFactory : Factory
     private void Awake()
     {
         coinParent = GameObject.Find("Coins_Active").transform;
-
-        // Get position of spawn point
+        /*
         spawnLocation = gameObject.transform.position;
+        AIScripts = GameObject.FindGameObjectWithTag("LevGen");
+        worldGenerator = AIScripts.GetComponent<WorldGenerator>();
+        cloneSpawnPosition = transform.position;
+        player = GameObject.Find("CapnGigi");
+        */
 
     }
     public void Start()
@@ -32,6 +47,7 @@ public class CoinFactory : Factory
         
         // When object is spawned generate a random coin from the list
         GenerateCoins(coins, spawnLocation, coinParent);
+        
     }
     private void GenerateCoins(List<GameObject> coins, Vector3 spawnLocation, Transform coinParent)
     {
@@ -74,5 +90,24 @@ public class CoinFactory : Factory
 
             
         }
+    }
+
+    void Update(){
+        /*
+        playerPosition = player.transform.position;
+        distanceToPlayer = Vector3.Distance(cloneSpawnPosition, playerPosition);
+
+        if (distanceToPlayer > distanceToDestroy)
+        {
+            Destroy(gameObject);
+        }
+        
+        if(worldGenerator.JustReversed){
+            //Destroy the object if it is within the destroy distance and beyond the check distance
+            if (distanceToPlayer <= distanceToDestroyForReverse && distanceToPlayer >= checkDistance){
+                Destroy(gameObject);
+            }
+        }
+        */
     }
 }

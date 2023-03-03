@@ -8,11 +8,18 @@ public class CloneController : MonoBehaviour
     private float distanceToPlayer;
     private float distanceToDestroy;
 
+    public float distanceToDestroyForReverse = 100f; 
+    public float checkDistance = 40f;
+    private GameObject AIScripts;
+    private WorldGenerator worldGenerator;
+
     private void Awake()
     {
         player = GameObject.Find("CapnGigi");
         cloneSpawnPosition = transform.position;
         distanceToDestroy = 60f;
+        AIScripts = GameObject.FindGameObjectWithTag("LevGen");
+        worldGenerator = AIScripts.GetComponent<WorldGenerator>();
     }
 
     private void Update() 
@@ -24,6 +31,15 @@ public class CloneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        if(worldGenerator.JustReversed){
+            //Destroy the object if it is within the destroy distance and beyond the check distance
+            if (distanceToPlayer <= distanceToDestroyForReverse && distanceToPlayer >= checkDistance){
+                Destroy(gameObject);
+            }
+        }
+        
+        
     }
 }
 

@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 7180997325498111116}
   - component: {fileID: 4714853667027927109}
   - component: {fileID: -1789249374744017903}
+  - component: {fileID: 2518168272083690317}
   m_Layer: 12
   m_Name: BlueDiamond
   m_TagString: Collectables
@@ -328,5 +329,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueDiamond: {fileID: 0}
+  reversed: 0
   diamondValue: 1
   diamondAudio: {fileID: 5462449527353999771}
+--- !u!114 &2518168272083690317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800723691797325913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroyForReverse: 100
+  checkDistance: 40

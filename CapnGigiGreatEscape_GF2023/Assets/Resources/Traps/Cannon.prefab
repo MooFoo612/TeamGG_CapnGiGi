@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6302311599714284289}
   - component: {fileID: 6647057104732811757}
   - component: {fileID: 6832593913790029752}
+  - component: {fileID: 6956509390647501593}
   m_Layer: 6
   m_Name: Cannon
   m_TagString: Enemy
@@ -183,6 +184,20 @@ MonoBehaviour:
   _isOnWall: 0
   ceilingDistance: 0.05
   _isOnCeiling: 0
+--- !u!114 &6956509390647501593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253520983312449132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroyForReverse: 100
+  checkDistance: 40
 --- !u!1 &2274729897991913738
 GameObject:
   m_ObjectHideFlags: 0
