@@ -7,7 +7,7 @@ public class CloneController : MonoBehaviour
     private Vector3 cloneSpawnPosition;
     private float distanceToPlayer;
     public float distanceToDestroy = 60f;
-
+ 
     public float distanceToDestroyForReverse = 80f; 
     public float checkDistance = 40f;
     private GameObject AIScripts;

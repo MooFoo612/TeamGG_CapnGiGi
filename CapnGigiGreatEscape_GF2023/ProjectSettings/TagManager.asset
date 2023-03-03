@@ -21,6 +21,8 @@ TagManager:
   - GroundChunk
   - PlatformChunk
   - LevGen
+  - grndEndLeft
+  - pltfEndLeft
   layers:
   - Default
   - TransparentFX

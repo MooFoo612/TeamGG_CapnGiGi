@@ -6,7 +6,10 @@ public class PlatformFactory : Factory
 {
     #region Variables
     [SerializeField] private Transform platformStart;
+    //[SerializeField] private Transform platformStartLeft;
+    Transform lastPlatformEnd_Left;
     [SerializeField] private GameObject player;
+    WorldGenerator worldGenerator;
 
     private Transform platformChunk;
     private Transform platformParent;
@@ -25,14 +28,23 @@ public class PlatformFactory : Factory
 
         // Nest in hierarchy
         platformParent = GameObject.Find("PlatformChunks_Active").transform;
+        worldGenerator = gameObject.GetComponent<WorldGenerator>();
 
         // Find the child EndPosition object in the GameStart parent
         platformEnd_Right = platformStart.Find("PlatformEnd_Right").position;
         //platformEnd_Left = platformStart.Find("PlatformEnd_Left").position;
+        //if(platformEnd_Left != null){Debug.Log("platformEnd_Left found");}
+
 
 
     }
+
+    void Update(){
+        if(worldGenerator.reversedWorld){
+        platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
+    }}
     #endregion
+
 
     #region Spawn Platforms to the Right
     public void SpawnPlatformChunk_Right()
@@ -41,7 +53,8 @@ public class PlatformFactory : Factory
 
         //Get the transform to refrence the next End Position
         Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformChunk, platformEnd_Right, platformParent);
-        platformEnd_Right = lastPlatformEnd_Right.Find("PlatformEnd_Right").position;
+
+        platformEnd_Right = lastPlatformEnd_Right.FindGameObjectsWithTag("pltfEndLeft").position;
 
         //Debug.Log("Platform Spawned: " + platformChunkActivated);
 
@@ -63,8 +76,10 @@ public class PlatformFactory : Factory
         platformChunk = RandomChunkerizer();
 
         //Get the transform to refrence the next End Position
-        Transform lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformChunk, platformEnd_Left, platformParent);
+        lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformChunk, platformEnd_Left, platformParent);
+        
         platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
+        if (platformEnd_Left != null){Debug.Log("hey i got the ground end left" + platformEnd_Left);}
 
         //Debug.Log("Platform Spawned: " + platformChunkActivated);
 

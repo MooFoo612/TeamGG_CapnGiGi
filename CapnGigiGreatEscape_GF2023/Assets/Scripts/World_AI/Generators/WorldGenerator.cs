@@ -96,9 +96,6 @@ void Awake()
         //StartCoroutine(GenerateWorld_Right());
         //StartCoroutine(GenerateWorld_Left());
         StartCoroutine(GenerateWorld());
-
-        
-
     }
 
     #region World Spawner
@@ -109,13 +106,8 @@ void Awake()
         if(Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
             // Update the bool 
             
-            JustReversed = true;
-            
-            distanceMarker = player.transform.position;
-            
-            
-            
-            
+            JustReversed = true;           
+            distanceMarker = player.transform.position; 
         }else{
             // Update the bool 
             
