@@ -65,6 +65,7 @@ public class GroundFactory : Factory
     #region Spawn Platforms to the Left
     public void SpawnGroundChunk_Left()
     {
+        Debug.Log("i'm trying to spawn");
         int randomPick = UnityEngine.Random.Range(0, groundChunks.Count -1);
         Transform randomChunk = groundChunks[randomPick].transform;
 
@@ -73,6 +74,7 @@ public class GroundFactory : Factory
 
         // Find the next end of section in the new Transform
         groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
+        groundEnd_Left.x -=16f; 
     }
     //public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
     //{

@@ -60,13 +60,13 @@ public class PlayerController : MonoBehaviour{
     }
     [SerializeField]private bool _isMoving = false;
     // IsMoving function 
-    public bool IsMoving { 
-        get{
-            return _isMoving;
-            // Return the value inside the isMoving variable just created
-        } private set {
-            // Set isMoving to the value is gonna be passed into the set
-            _isMoving = value;
+            public bool IsMoving { 
+                get{
+                    return _isMoving;
+                    // Return the value inside the isMoving variable just created
+                } private set {
+                    // Set isMoving to the value is gonna be passed into the set
+                    _isMoving = value;
             // Set the boolean in the animator with the same value static strings
             anim.SetBool(AnimationStrings.isMoving, value);
 
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour{
         get{
             // Return the value inside the variable that is updated inside the code
             return _isFacingRight;
-        } private set {
+        } private set {     
             // If get false as a paramether
             if(_isFacingRight != value){
                 // Flip the local scale to make the player face the opposite direction
