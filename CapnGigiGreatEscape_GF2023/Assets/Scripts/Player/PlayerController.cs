@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour{
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
     public AudioSource runningAudio;
+    public Animator animPU;
     //public bool collectedDoubleJump = false;
     //public bool collectedDash = false;
     //public bool collectedAirDash = false;
@@ -113,6 +114,7 @@ public class PlayerController : MonoBehaviour{
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        animPU = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
@@ -252,6 +254,10 @@ public class PlayerController : MonoBehaviour{
         if(context.started){
             // Attack updating animator paramether
             anim.SetTrigger(AnimationStrings.attack);
+            if(PlayerPrefs.GetInt("swordAttackPowerUp") == 1){
+                Debug.Log("POwer up prefs setted to 1");
+                animPU.SetTrigger(AnimationStrings.attack);
+            }
              //player attack Audio
             audio.PlayattackAndHitAudio();
         }
