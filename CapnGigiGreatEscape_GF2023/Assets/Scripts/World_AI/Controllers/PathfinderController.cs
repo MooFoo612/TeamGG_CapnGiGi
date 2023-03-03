@@ -11,41 +11,51 @@ public class PathfinderController : MonoBehaviour
     // ---------- Inspector Access -----------|
 
     [Header("Pathfinding")]
-    [SerializeField] Transform target;
-    [SerializeField] bool followEnabled = true;
-    [SerializeField] private Vector3 targetPos;
-    [SerializeField] private Vector3 currentPos;
+    [SerializeField] Transform _target;
+    [SerializeField] bool _followEnabled = true;
+    [SerializeField] Vector3 _targetPos;
+    [SerializeField] Vector3 _currentPos;
+    [SerializeField] int _currentWaypoint = 0;
+    [SerializeField] float _nextWaypointDistance = 1.5f;
+    [SerializeField] protected float _jumpNodeHeightRequirement = 1f;
     [SerializeField] float _aggroRange = 150f;
-    [SerializeField] float pathUpdateFrequency = 0.1f;
+    [SerializeField] float _pathUpdateFrequency = 0.1f;
 
     [Header("Movement")]
-    [SerializeField] Vector2 movement;
-    [SerializeField] private Vector2 direction;
-    [SerializeField] Vector2 lastPosition;
-    [SerializeField] float groundSpeed = 5f;
-    [SerializeField] float maxSpeed = 25f;
-    [SerializeField] float acceleration = 5f;
-    [SerializeField] float nextWaypointDistance = 1.5f;
+    [SerializeField] Vector2 _movement;
+    [SerializeField] bool _isMovingX;
+    [SerializeField] float _isMovingY;
+    [SerializeField] bool _isGrounded;
+    [SerializeField] bool _lastGrounded;
+    [SerializeField] bool _isFacingRight;
+    [SerializeField] protected Vector2 _direction;
+    [SerializeField] Vector2 _lastPosition;
+    [SerializeField] Vector2 _lastVelocity;
+    [SerializeField] float _groundSpeed = 5f;
+    [SerializeField] float _maxSpeed = 25f;
+    [SerializeField] float _acceleration = 5f;
+    [SerializeField] Vector2 _force;
 
     [Header("Jumping")]
     [SerializeField] protected bool jumpEnabled = true;
     [SerializeField] bool jumpBuffer;
     [SerializeField] float jumpTimer = 1f;
-    [SerializeField] protected float jumpNodeHeightRequirement = 1f;
     [SerializeField] float jumpModifier = 0.5f;
     [SerializeField] float jumpCheckOffset = 0.1f;
 
+    [Header("Components")]
+    [SerializeField] Seeker seeker;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected Animator anim;
+    [SerializeField] protected SpriteRenderer sr;
+    [SerializeField] protected Collider2D pfCollider;
+
+
+    [Header("Scripts")]
     [Header("Custom Behavior")]    
     public bool directionLookEnabled = true;
 
-    // -------- Path & Collisions ---------- |
-    [SerializeField] private float _isMovingY;
-
     private Path path;
-    private int currentWaypoint = 0;
-    public Vector2 lastVelocity;
-    public Vector2 lastPos;
-    public bool lastGrounded;
 
     private RaycastHit2D check_N;
     private RaycastHit2D check_NE;
@@ -59,65 +69,37 @@ public class PathfinderController : MonoBehaviour
 
     private GameObject cam;
     private bool offCamera;
-    private Vector2 force;
-    private bool isGrounded;
-    protected Collider2D pfCollider;
-
-    // ----- Components --------- |
-
-    Seeker seeker;
-    protected Rigidbody2D rb;
-    protected Animator anim;
-    protected SpriteRenderer sr;
 
     // -------- Local Variables ---------- |
 
 
-    public Vector2 Direction
+    public Vector2 Direction 
     {
-        get { return this.direction; }
-        set { this.direction = value; }
+        get { return _direction; }
+        set { _direction = value; }
     }
 
     public Vector2 Force
     {
-        get { return this.force; }
-        set { this.force = value; }
+        get { return _force; }
+        set { _force = value; }
     }
 
     public Vector3 Position
     {
-        get { return this.currentPos; }
-        set { this.currentPos = value; }
+        get { return _currentPos; }
+        set { _currentPos = value; }
     }
 
-    
-
-
-    public Vector3 LastPosition => this.lastPos;
-
-    Predicate<bool> jumpLimited;
-
-
-
-
-// ---------------------------------------------------------------------|
-
-
-
-[SerializeField] private bool _isMovingX;
     // IsMoving function 
     public bool IsMovingX
     {
-        get
-        {
-            // Returns the value of _isMoving after check
-            return _isMovingX;
-        }
+        get { return _isMovingX; }
+
         private set
         {
             // Set the value
-            value = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
+            value = IsMoving(_movement.x);
 
             // Set the boolean in the animator 
             anim.SetBool(AnimationStrings.isMoving, value);
@@ -127,21 +109,17 @@ public class PathfinderController : MonoBehaviour
     // IsMoving function 
     public float IsMovingY
     {
-        get
-        {
-            // Returns the value of _isMoving after check
-            return _isMovingY;
-        }
+        get { return _isMovingY; }
+        
         private set
         {
-            value = rb.velocity.y;
+            value = _movement.y;
 
             // Set the boolean in the animator 
             anim.SetFloat(AnimationStrings.yVelocity, value);
         }
     }
 
-    [SerializeField] private bool _isGrounded;
     public bool IsGrounded
     {
         get
@@ -155,7 +133,6 @@ public class PathfinderController : MonoBehaviour
     }
 
 
-    [SerializeField] private bool _isFacingRight = true;
     // IsFacingRight function
     public bool IsFacingRight
     {
@@ -166,10 +143,10 @@ public class PathfinderController : MonoBehaviour
         }
         private set
         {
-            // If get false as a paramether
+            // If not facing right
             if (_isFacingRight != value)
             {
-                // Flip the local scale to make the player face the opposite direction
+                // Flip the local scale of the objecct to preserve collider positions
                 transform.localScale *= new Vector2(-1, 1);
             }
             // Set the variable with the value passet in the set 
@@ -179,8 +156,7 @@ public class PathfinderController : MonoBehaviour
 
 
 
-
-
+    #region Flow Control
 
     private void Awake()
     {
@@ -190,9 +166,18 @@ public class PathfinderController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         pfCollider = GetComponent<Collider2D>();
         cam = GameObject.FindWithTag("CinemachineCam");
+    }
 
+
+    private void Start()
+    {
         // Keep on repeating the script to update the path
-        InvokeRepeating("UpdatePath", 0f, pathUpdateFrequency);
+        InvokeRepeating("UpdatePath", 0f, _pathUpdateFrequency);
+    }
+
+    private void Update()
+    {
+        
     }
 
 
@@ -201,7 +186,7 @@ public class PathfinderController : MonoBehaviour
         
 
         // If find the target and can follow, follow it through the path
-        if (TargetInRange() && followEnabled)
+        if (TargetInRange() && _followEnabled)
         {
             Hunt();
         }
@@ -210,19 +195,23 @@ public class PathfinderController : MonoBehaviour
     private void LateUpdate()
     {
         // For per-frame comparisons
-        lastPos = transform.position;
-        lastGrounded = isGrounded;
-        lastVelocity = new Vector2 (Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.y));
+        _lastPosition = transform.position;
+        _lastGrounded = _isGrounded;
+        _lastVelocity = new Vector2 (Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.y));
     }
+
+    #endregion
+
+    #region Pathfinding AI
 
     private void UpdatePath()
     {
         // If object to seek found update path 
-        if (followEnabled && TargetInRange() && seeker.IsDone())
+        if (_followEnabled && TargetInRange() && seeker.IsDone())
         {
-            targetPos = target.position;
+            _targetPos = _target.position;
 
-            seeker.StartPath(rb.position, targetPos, OnPathComplete);
+            seeker.StartPath(rb.position, _targetPos, OnPathComplete);
         }
     }
 
@@ -235,7 +224,7 @@ public class PathfinderController : MonoBehaviour
         }
 
         // Return out of function when end of path is reached
-        if (currentWaypoint >= path.vectorPath.Count)
+        if (_currentWaypoint >= path.vectorPath.Count)
         {
             return;
         }
@@ -258,21 +247,21 @@ public class PathfinderController : MonoBehaviour
 
 
         // Check if pathfinder is on the ground
-        isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.1f);
+        _isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.1f);
 
         // Calculate direction 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 direction = ((Vector2)path.vectorPath[_currentWaypoint] - rb.position).normalized;
 
         // Calculate the force
-        Vector2 force = direction * groundSpeed * Time.deltaTime;
+        Vector2 force = direction * _groundSpeed * Time.deltaTime;
 
 
         // Jump following the grid dimensions
-        if (direction.y > jumpNodeHeightRequirement && target.position.y > (Position.y + 1))
+        if (direction.y > _jumpNodeHeightRequirement && _targetPos.y > (Position.y + 1))
         {
             jumpEnabled = true;
 
-            if (jumpEnabled && isGrounded)
+            if (jumpEnabled && _isGrounded)
             {
                 Jump();
             }
@@ -283,13 +272,13 @@ public class PathfinderController : MonoBehaviour
         rb.AddForce(force);
 
         // After moving, get the location of the next waypoint in the path
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        float distance = Vector2.Distance(rb.position, path.vectorPath[_currentWaypoint]);
 
         // If the distance lest than the 
-        if (distance < nextWaypointDistance)
+        if (distance < _nextWaypointDistance)
         {
             // 
-            currentWaypoint++;
+            _currentWaypoint++;
         }
 
         // Flip the sprite depending on the direction 
@@ -297,18 +286,18 @@ public class PathfinderController : MonoBehaviour
         {
             if (rb.velocity.x > 0.01f)
             {
-                transform.localScale = new Vector2();
+                transform.localScale = new Vector2(1,0);
             }
             else if (rb.velocity.x < -0.01f)
             {
-                sr.flipX = true;
+                transform.localScale = new Vector2(-1,0);
             }
         }
     }
     // Return true if target is in distance to be followed 
     private bool TargetInRange()
     {
-        return Vector2.Distance(transform.position, target.transform.position) < _aggroRange;
+        return Vector2.Distance(transform.position, _target.transform.position) < _aggroRange;
     }
 
     private void OnPathComplete(Path p)
@@ -317,43 +306,44 @@ public class PathfinderController : MonoBehaviour
         if (!p.error)
         {
             path = p;
-            currentWaypoint = 0;
+            _currentWaypoint = 0;
         }
 
     }
 
     public void Jump()
     {
-        if (rb.velocity.x > 0.01f)
+        if (_movement.x > 0.01f)
         {
             SetFacing();
-            rb.AddForce(new Vector2(3, 3) * groundSpeed * jumpModifier);
+            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier);
             anim.SetBool("isJumping", true);
 
         }
-        else if (rb.velocity.x < -0.01f)
+        else if (_movement.x < -0.01f)
         {
             // Flip sprite left if rb is moving left
             SetFacing();
-            rb.AddForce(new Vector2(3, 3) * groundSpeed * jumpModifier);
+            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier);
             anim.SetBool("isJumping", true);
         }
     }
 
+    #endregion
+
 
     private void SetFacing()
     {
-        // If the player is moving right and is not facing right
-        if (movement.x > 0 && !IsFacingRight)
+        // If the pathfinder is moving right but is not facing to the right
+        if (_movement.x > Mathf.Epsilon && !IsFacingRight)
         {
-            // Face the right
+            // Face Right
             IsFacingRight = true;
-
-            // If the player is moving left and is facing right    
         }
-        else if (movement.x < 0 && IsFacingRight)
+        // If the pathfinder is moving left but is not facing to the left 
+        else if (_movement.x < Mathf.Epsilon && IsFacingRight)
         {
-            // Face the left
+            // Face Left
             IsFacingRight = false;
         }
     }
@@ -370,11 +360,23 @@ public class PathfinderController : MonoBehaviour
         jumpBuffer = true;
     }
 
+    private bool IsMoving(float movement)
+    {
+
+        if (Mathf.Abs(movement) > Mathf.Epsilon )
+        {
+            _isMovingX = true;
+        }
+
+        return IsMovingX;
+    }
+
     private IEnumerator MovementValues()
     {
         yield return new WaitForSeconds(0.01f);
 
-        movement = rb.velocity;
+        _movement = rb.velocity;
+        IsMoving(_movement.x);
         SetFacing();
 
         
