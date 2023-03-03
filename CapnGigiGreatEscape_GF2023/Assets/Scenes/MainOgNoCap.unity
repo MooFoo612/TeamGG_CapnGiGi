@@ -1141,6 +1141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6635c4a6800c2d9448f3e95e1f33d65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  followTarget: {fileID: 0}
 --- !u!483693784 &142389170
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -1384,6 +1386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6635c4a6800c2d9448f3e95e1f33d65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  followTarget: {fileID: 0}
 --- !u!483693784 &261488637
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -5437,7 +5441,7 @@ GameObject:
   - component: {fileID: 1392522941}
   m_Layer: 0
   m_Name: miniMapCamera
-  m_TagString: Untagged
+  m_TagString: miniMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5858,6 +5862,10 @@ PrefabInstance:
       propertyPath: shopUI
       value: 
       objectReference: {fileID: 1965921028}
+    - target: {fileID: 1684132948734192234, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
+      propertyPath: miniMap
+      value: 
+      objectReference: {fileID: 1392522936}
     - target: {fileID: 1684132948734192237, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
       propertyPath: m_Name
       value: MenuCanvas

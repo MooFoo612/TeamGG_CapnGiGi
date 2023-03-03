@@ -9,16 +9,19 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject shopUI;
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject GUI;
+    [SerializeField] GameObject miniMap;
     public void ShopButton(){
         menuUI.SetActive(false);
         shopUI.SetActive(true);
         GUI.SetActive(false);
+        miniMap.SetActive(false);
     }
     public void PlayButton(){
         
         menuUI.SetActive(false);
         shopUI.SetActive(false);
         GUI.SetActive(true);
+        miniMap.SetActive(true);
         //ResumeGame();
             
         if(PlayerPrefs.GetInt("fromShop") == 1){
@@ -54,11 +57,13 @@ public class MenuUI : MonoBehaviour
             menuUI.SetActive(true);
             GUI.SetActive(false);
             shopUI.SetActive(false);
+            miniMap.SetActive(false);
         }
         
         if(PlayerPrefs.GetInt("alreadyRunned") == 1 ){
             // Run the game directly from the gameover screen 
             menuUI.SetActive(false);
+            miniMap.SetActive(true);
             ResumeGame();
             PlayerPrefs.SetInt("alreadyRunned", 0);
             PlayerPrefs.SetInt("fromShop", 0);

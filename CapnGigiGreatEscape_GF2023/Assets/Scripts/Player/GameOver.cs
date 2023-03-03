@@ -15,8 +15,15 @@ public class GameOver : MonoBehaviour
     [SerializeField] GameObject shopUI;
     public GameObject gameOverUI;
     [SerializeField] GameObject menuUI;
+    //public GameObject miniMap;
     
     Animator anim ;
+
+    private void Start()
+    {
+        //miniMap = GameObject.FindWithTag("miniMap");
+        //miniMap.SetActive(false);
+    }
 
     public bool isAlive{
         get{
@@ -31,11 +38,13 @@ public class GameOver : MonoBehaviour
     void PauseGame()
     {
         Time.timeScale = 0;
+        //miniMap.SetActive(false);
     }
     
     void ResumeGame()
     {
         Time.timeScale = 1;
+        //miniMap.SetActive(true);
     }
     
     public void Update(){
@@ -60,6 +69,7 @@ public class GameOver : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         //GameOverPanel.SetActive(false);
         //SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        //miniMap.SetActive(false);
     }
 
     public void ShopButton(){
@@ -68,6 +78,7 @@ public class GameOver : MonoBehaviour
         PlayerPrefs.SetInt("diamonds", (PlayerPrefs.GetInt("diamonds") + playerInv.Diamonds));
         // Open the shop
         shopUI.SetActive(true);
+        //miniMap.SetActive(false);
     }
 
     public void PlayAgainButton(){
@@ -79,5 +90,6 @@ public class GameOver : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         //menuUI.SetActive(false);
         //ResumeGame();
+        //miniMap.SetActive(true);
     }
 }
