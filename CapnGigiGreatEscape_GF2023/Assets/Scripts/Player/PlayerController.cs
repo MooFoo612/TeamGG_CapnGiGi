@@ -61,8 +61,9 @@ public class PlayerController : MonoBehaviour{
     }
     [SerializeField]private bool _isMoving = false;
     // IsMoving function 
-            public bool IsMoving { 
-                get{
+    public bool IsMoving
+    {
+        get{
                     return _isMoving;
                     // Return the value inside the isMoving variable just created
                 } private set {
@@ -104,11 +105,6 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
-    void CreateDust()
-    {
-        //dustParticles.Play();
-    }
-
 
     // It's called when the script is loaded (when the game start)
     private void Awake(){
@@ -134,24 +130,6 @@ public class PlayerController : MonoBehaviour{
             rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
         }
 
-        /* I'm wrecked now, Fab, but here I'm trying to implement one of the things
-         * from the video I just put in code resources. I haven't the head to figure out what 
-         * the best checks to run here are, so far I've tried these if I remember correctly: 
-         * 
-         * It would also be nice to try and add coyote time. I don't mind working with you on that
-         *      
-                if (!touchingDirections.IsGrounded && rb.velocity.y > 0)
-                if (!touchingDirections.IsGrounded && jumpPressed == false)
-                if (!touchingDirections.IsGrounded && jumpImpulse > 0)
-        if (!touchingDirections.IsGrounded && rb.velocity.y > 0f && jumpPressed == false)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.8f);
-        }
-        
-        
-         */
-        
-        
             // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
             anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
