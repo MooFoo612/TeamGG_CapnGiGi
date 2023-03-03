@@ -45,4 +45,22 @@ public class HealthBar : MonoBehaviour
         healthSlider.value = CalculateSliderPercentage(newHealth, maxHealth);
         healthBarText.text = newHealth + " / " + maxHealth;
     }
+    IEnumerator HealthIncrease(int currentHealth, int newHealth)
+    {
+        for (int x = playerDamageable.Health; x <= newHealth; x++)
+        {
+            healthSlider.value = x;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    
+    IEnumerator HealthDecrease(int currentHealth, int newHealth)
+    {
+        for (int x = playerDamageable.Health; x >= newHealth; x--)
+        {
+            healthSlider.value = x;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
 }

@@ -5,55 +5,72 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collisions), typeof(Damageable))]
 
-public class PlayerController : MonoBehaviour{
-    
-    [SerializeField] private float speed = 5;
-    public float airWalkSpeed = 5f;
-    public float jumpImpulse = 7f;  
-    private Vector2 moveInput;
-    Collisions touchingDirections; 
-    Damageable damageable;
-    public Rigidbody2D rb;
-    Animator anim;
-    //ParticleAnimations particleAnim;
-    PlayerInventory playerInv;
-    public bool doubleJump;
-    private bool jumpPressed;
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashingPower = 24;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
-    public AudioSource runningAudio;
-    public Animator animPU;
-    //public bool collectedDoubleJump = false;
-    //public bool collectedDash = false;
-    //public bool collectedAirDash = false;
+public class TestPlayerController : MonoBehaviour
+{
+    #region Inspector Access
 
-    public new PlayerAudio audio;
-    //public ParticleSystem dustParticles;
+    [Header("Movement")]
+    [SerializeField] Vector2 _moveInput;
+    [SerializeField] float _groundSpeed = 5;
+    [SerializeField] bool _canDash = true;
+    [SerializeField] bool _isDashing;
+    [SerializeField] float _dashingPower = 24;
+    [SerializeField] float _dashTime = 0.2f;
+    [SerializeField] float _dashCD = 1f;
 
-    [SerializeField] private TrailRenderer tr;
-    // CurrentSpeed function 
-    public float CurrentSpeed{
-        get{
+    [Header("Jumping")]
+    [SerializeField] float _airVelocity = 5f;
+    [SerializeField] float _jumpForce = 7f;
+    [SerializeField] bool _doubleJump;
+    [SerializeField] bool _jumpPressed;
+
+    [Header("Components")]
+    [SerializeField] TrailRenderer _trail;
+    [SerializeField] Rigidbody2D _player;
+    [SerializeField] Animator _anim;
+    [SerializeField] Animator _animPU;
+
+    [Header("Script Access")]
+    [SerializeField] PlayerInventory playerInv;
+    [SerializeField] AudioSource runningAudio;
+    [SerializeField] Collisions touchingDirections;
+    [SerializeField] Damageable damageable;
+    [SerializeField] new PlayerAudio audio;
+
+    #endregion
+
+    #region Properties
+
+    public float CurrentSpeed
+    {
+        get
+        {
             // If the player canMove(is not attacking)
-            if(CanMove){
+            if(CanMove)
+            {
                 // If is moving and is not colliding with a wall
-                if(IsMoving && !touchingDirections.IsOnWall ){
+                if(IsMoving && !touchingDirections.IsOnWall )
+                {
                     // If is on the ground
-                    if(touchingDirections.IsGrounded){       
+                    if(touchingDirections.IsGrounded)
+                    {       
                         // Get the player speed on ground         
-                        return speed;
-                    } else {
+                        return _groundSpeed;
+                    } 
+                    else 
+                    {
                         // If is not on the ground get the player speed on air that is a different var (we'll use it to manage the difficulty increment ofthe   game)
-                        return airWalkSpeed;
+                        return _airVelocity;
                     }
-                } else {
+                } 
+                else 
+                {
                     // Idle speed is 0
                     return 0;
                 }    
-            } else {
+            } 
+            else 
+            {
                 // Movement locked 
                 return 0;
             }
@@ -69,7 +86,7 @@ public class PlayerController : MonoBehaviour{
                     // Set isMoving to the value is gonna be passed into the set
                     _isMoving = value;
             // Set the boolean in the animator with the same value static strings
-            anim.SetBool(AnimationStrings.isMoving, value);
+            _anim.SetBool(AnimationStrings.isMoving, value);
 
             //dustParticles.Play();
         }
@@ -94,27 +111,24 @@ public class PlayerController : MonoBehaviour{
     public bool CanMove{
         // Still the same logic as above
         get{
-            return anim.GetBool(AnimationStrings.canMove);
+            return _anim.GetBool(AnimationStrings.canMove);
         }
     }
 
     public bool isAlive{
         get{
-            return anim.GetBool(AnimationStrings.isAlive);
+            return _anim.GetBool(AnimationStrings.isAlive);
         }
     }
 
-    void CreateDust()
-    {
-        //dustParticles.Play();
-    }
+    #endregion
 
 
     // It's called when the script is loaded (when the game start)
     private void Awake(){
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        animPU = GetComponent<Animator>();
+        _player = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        _animPU = GetComponent<Animator>();
         touchingDirections = GetComponent<Collisions>();
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
@@ -125,13 +139,13 @@ public class PlayerController : MonoBehaviour{
     // It's called every fixed frame-rate frame.
     private void FixedUpdate(){
     // Prevent the player to do things while dashing
-        if(isDashing){
+        if(_isDashing){
             return;
         }
         // If player is not being hit right now 
         if(!damageable.LockVelocity){
             // Move the player
-            rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
+            _player.velocity = new Vector2(_moveInput.x * CurrentSpeed, _player.velocity.y);
         }
 
         /* I'm wrecked now, Fab, but here I'm trying to implement one of the things
@@ -153,11 +167,11 @@ public class PlayerController : MonoBehaviour{
         
         
             // Update the animator paramether with the current vertical velocity to update the air state machine in the animator 
-            anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+            _anim.SetFloat(AnimationStrings.yVelocity, _player.velocity.y);
 
         // Check if is on the ground and is not jymping to reset the double jump bool and be able to double jump again
-        if(touchingDirections.IsGrounded && !jumpPressed){
-            doubleJump = false;  
+        if(touchingDirections.IsGrounded && !_jumpPressed){
+            _doubleJump = false;  
         } 
 
         if (IsMoving && touchingDirections.IsGrounded)
@@ -178,13 +192,13 @@ public class PlayerController : MonoBehaviour{
     // It's called while the player is moving(takes the parametheres setted on the Input System controller)
     public void OnMove(InputAction.CallbackContext context){
         // Get the player position
-        moveInput = context.ReadValue<Vector2>();
+        _moveInput = context.ReadValue<Vector2>();
         // If player is alive
         if(isAlive){
             // IsMoving setter = it pass true if the vector is actually moving and vice versa
-            IsMoving = moveInput != Vector2.zero;
+            IsMoving = _moveInput != Vector2.zero;
             // Change sprite direction
-            SetFacingDirection(moveInput);
+            SetFacingDirection(_moveInput);
             // Check to prevent the player from kepp walking into the wall and don't fall 
             if(context.started && touchingDirections.IsOnWall){
                 IsMoving = false;
@@ -220,9 +234,9 @@ public class PlayerController : MonoBehaviour{
                 // Dust Particles
                 //particleAnim.anim.SetBool("isJumping", true);
                 // Update animator paramether using static strings  
-                anim.SetTrigger(AnimationStrings.jump);
+                _anim.SetTrigger(AnimationStrings.jump);
                 // Add jump inpulse on the y axis 
-                rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+                _player.velocity = new Vector2(_player.velocity.x, _jumpForce);
 
             }  
         } 
@@ -230,22 +244,22 @@ public class PlayerController : MonoBehaviour{
         if (PlayerPrefs.GetInt("purchasedDoubleJump") == 1 || playerInv.TemporaryDoubleJump){
             // If jump key and can move
             if(context.started && CanMove ){ 
-                if(touchingDirections.IsGrounded || doubleJump){
+                if(touchingDirections.IsGrounded || _doubleJump){
                     // Setting this for the check in the update
-                    jumpPressed = true;
+                    _jumpPressed = true;
                      //player jump audio 
                     audio.PlayjumpAudio();
                     // Update animator paramether using static strings  
-                    anim.SetTrigger(AnimationStrings.jump);
+                    _anim.SetTrigger(AnimationStrings.jump);
                     // Add jump inpulse on the y axis 
-                    rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+                    _player.velocity = new Vector2(_player.velocity.x, _jumpForce);
                     // Update double jump bool
-                    doubleJump = !doubleJump;
+                    _doubleJump = !_doubleJump;
                 }
             }
             if (context.canceled){
                 // Finish jump for the update 
-                jumpPressed = false;
+                _jumpPressed = false;
             }
         }  
     }
@@ -253,10 +267,10 @@ public class PlayerController : MonoBehaviour{
     public void OnAttack(InputAction.CallbackContext context){
         if(context.started){
             // Attack updating animator paramether
-            anim.SetTrigger(AnimationStrings.attack);
+            _anim.SetTrigger(AnimationStrings.attack);
             if(PlayerPrefs.GetInt("swordAttackPowerUp") == 1){
                 Debug.Log("POwer up prefs setted to 1");
-                animPU.SetTrigger(AnimationStrings.attack);
+                _animPU.SetTrigger(AnimationStrings.attack);
             }
              //player attack Audio
             audio.PlayattackAndHitAudio();
@@ -267,14 +281,14 @@ public class PlayerController : MonoBehaviour{
         // If can shoot
         if(context.started && playerInv.ThrowingSwords > 0){
             // Shoot
-            anim.SetTrigger(AnimationStrings.rangedAttack);
+            _anim.SetTrigger(AnimationStrings.rangedAttack);
             // Update the remaining swords
             playerInv.ThrowingSwords --;
         }
     }
     public void OnHit(int damage, Vector2 knockback){
         // Apply knockback inpulse 
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        _player.velocity = new Vector2(knockback.x, _player.velocity.y + knockback.y);
         //player damage Audio
         audio.PlaytakeDamageAudio();
     }
@@ -283,36 +297,36 @@ public class PlayerController : MonoBehaviour{
         
         if(PlayerPrefs.GetInt("purchasedDash") == 1 || playerInv.TemporaryDash){
             if(touchingDirections.IsGrounded){
-                if(context.started && canDash){
+                if(context.started && _canDash){
                     StartCoroutine(Dash());
                 }
             }
         }
         if (PlayerPrefs.GetInt("purchasedAirDash") == 1 || playerInv.TemporaryAirDash){
-            if(context.started && canDash){
+            if(context.started && _canDash){
                 StartCoroutine(Dash());
             }
         }
     }
     
     private IEnumerator Dash(){
-        canDash = false;
-        isDashing = true;
+        _canDash = false;
+        _isDashing = true;
         // Store the current gravity value
-        float originalGravity = rb.gravityScale;
+        float originalGravity = _player.gravityScale;
         // Disable gravity during the dash 
-        rb.gravityScale = 0f;
+        _player.gravityScale = 0f;
         // Create the dash inpulse 
-        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        _player.velocity = new Vector2(transform.localScale.x * _dashingPower, 0f);
         // Display the trail
-        tr.emitting = true; 
+        _trail.emitting = true; 
         // Stop dashing after a certain amount of time 
-        yield return new WaitForSeconds(dashingTime);
-        tr.emitting = false;
-        rb.gravityScale = originalGravity;
-        isDashing = false;
+        yield return new WaitForSeconds(_dashTime);
+        _trail.emitting = false;
+        _player.gravityScale = originalGravity;
+        _isDashing = false;
         // Give the player a cooldown to not let him abuse of the dash power
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
+        yield return new WaitForSeconds(_dashCD);
+        _canDash = true;
     }
 }

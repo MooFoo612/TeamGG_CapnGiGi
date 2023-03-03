@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collisions), typeof(Damageable))]
 
 public class FierceTooth : MonoBehaviour{
     public float maxSpeed = 3f;
@@ -12,7 +12,7 @@ public class FierceTooth : MonoBehaviour{
     public float walkStopRate = 0.05f;
     Rigidbody2D rb;
     Animator anim;
-    TouchingDirections touchingDirections;
+    Collisions touchingDirections;
     Damageable damageable;
     public enum WalkableDirection {Right, Left}
     private WalkableDirection _walkDirection;
@@ -70,7 +70,7 @@ public class FierceTooth : MonoBehaviour{
 
     private void Awake(){
         rb =  GetComponent<Rigidbody2D>();
-        touchingDirections = GetComponent<TouchingDirections>();
+        touchingDirections = GetComponent<Collisions>();
         anim = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
     }

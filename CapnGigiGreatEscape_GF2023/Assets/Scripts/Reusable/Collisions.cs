@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchingDirections : MonoBehaviour{
+public class Collisions : MonoBehaviour{
 
     // Uses the collider to check directions to see if the object is currently on the ground, touching the wall, or touching the ceiling 
     public ContactFilter2D castFilter;

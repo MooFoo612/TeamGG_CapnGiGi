@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collisions), typeof(Damageable))]
 
 public class Krabby_Test : MonoBehaviour{
     public float walkSpeed1 = 3f;
@@ -10,7 +10,7 @@ public class Krabby_Test : MonoBehaviour{
     public float walkStopRate1 = 0.05f;
     Rigidbody2D rb1;
     Animator anim1;
-    TouchingDirections touchingDirections1;
+    Collisions touchingDirections1;
     Damageable damageable1;
     public enum WalkableDirection {Right, Left}
     private WalkableDirection _walkDirection1;
@@ -59,7 +59,7 @@ public class Krabby_Test : MonoBehaviour{
 
     private void Awake(){
         rb1 =  GetComponent<Rigidbody2D>();
-        touchingDirections1 = GetComponent<TouchingDirections>();
+        touchingDirections1 = GetComponent<Collisions>();
         anim1 = GetComponent<Animator>();
         damageable1 = GetComponent<Damageable>();
     }

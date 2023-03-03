@@ -26,6 +26,7 @@ public class Damageable : MonoBehaviour
             _maxHealth = value;
         }
     }
+
     [SerializeField] private int _health = 100;
     public int Health{
         get {
