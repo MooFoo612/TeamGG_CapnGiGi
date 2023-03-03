@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8516261128105523233}
   - component: {fileID: 2208532965892143346}
   - component: {fileID: 1846408812624750036}
+  - component: {fileID: 179527230533972139}
   m_Layer: 12
   m_Name: Big Heart
   m_TagString: Collectables
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueDiamond: {fileID: 0}
+  reversed: 0
   healthRestore: 50
   audioSource: {fileID: 1846408812624750036}
 --- !u!82 &1846408812624750036
@@ -257,3 +259,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &179527230533972139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576653609065983395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroyForReverse: 100
+  checkDistance: 40

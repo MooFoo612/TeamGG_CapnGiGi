@@ -31,7 +31,7 @@ public class GroundFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
-        //groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
+        groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
 
     }
     #endregion

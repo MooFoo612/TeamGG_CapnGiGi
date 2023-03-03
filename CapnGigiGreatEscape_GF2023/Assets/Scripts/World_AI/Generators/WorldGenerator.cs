@@ -51,13 +51,23 @@ public class WorldGenerator : Factory
     //--------------------------------
 
     // Platforms and Grounds chunks in game management ----------------------
-    public string platforms = "PlatformChunk"; 
-    // Create a list to fill with the current platform chunks in the game
-    private List<GameObject> activePlatformChunks = new List<GameObject>();
-    public string grounds = "GroundChunk"; 
-    // Create a list to fill with the current ground chunks in the game
-    private List<GameObject> activeGroundChunks = new List<GameObject>();
-
+    //public string platforms = "PlatformChunk"; 
+    //// Create a list to fill with the current platform chunks in the game
+    //private List<GameObject> activePlatformChunks = new List<GameObject>();
+    //public string grounds = "GroundChunk"; 
+    //// Create a list to fill with the current ground chunks in the game
+    //private List<GameObject> activeGroundChunks = new List<GameObject>();
+    private float timer = 0f; 
+    public bool _justReversed;
+    public bool JustReversed { 
+        get{
+            return _justReversed;
+            // Return the value inside the isMoving variable just created
+        } private set {
+            // Set isMoving to the value is gonna be passed into the set
+            _justReversed = value;
+        }
+    }
     #endregion
 
 void Awake()
@@ -129,6 +139,9 @@ void Awake()
 
     private void Update()
     {
+
+        
+        /*
         // Find all game objects with the platform tag and add them to the list
         GameObject[] activePlatforms = GameObject.FindGameObjectsWithTag(platforms);
         foreach (GameObject obj in activePlatforms){
@@ -138,37 +151,59 @@ void Awake()
         GameObject[] activeGrounds = GameObject.FindGameObjectsWithTag(grounds);
         foreach (GameObject obj in activeGrounds){
             activeGroundChunks.Add(obj);
+            // Delete duplicates 
+            //if(activePlatformChunks.Count !=  activePlatformChunks.Distinct.Count){
+            //    Destroy(obj);
+            //}
         }
+        
 
         // Remove any platforms that have been destroyed or removed from the scene from the list 
         for (int i = activePlatformChunks.Count - 1; i >= 0; i--){
             if (activePlatformChunks[i] == null){
+                Debug.Log("I'm removing something");
                 activePlatformChunks.RemoveAt(i);
             }
         }
         // Remove any grounds that have been destroyed or removed from the scene from the list 
         for (int i = activeGroundChunks.Count - 1; i >= 0; i--){
             if (activeGroundChunks[i] == null){
+                Debug.Log("I'm removing something");
                 activeGroundChunks.RemoveAt(i);
             }
         }
 
+        Debug.Log("Active platforms array elements: " + activePlatformChunks.Count);
+        Debug.Log("Active GROUNDS array elements: " + activeGroundChunks.Count);
+        */
         // Check if player reached the distance to reverse the game and increase the difficulty 
         if(Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
 
             // Update the bool
             reversedWorld = true;
             Debug.Log("reverseWord value: " + reversedWorld);
+            timer += Time.deltaTime;
+            if (timer >= 1f)
+            {
+                
+                JustReversed =true;
+                // Reset the timer
+                timer = 0f;
+            }else{
+                JustReversed =false;
+            }
 
+            /*
             // Destroy all but the last platform added to the list
-            for (int i = 0; i < activePlatformChunks.Count +1 ; i++){
+            for (int i = 0; i < activePlatformChunks.Count-1 ; i++){
                 Destroy(activePlatformChunks[i]);
             }
             // Destroy all but the last ground added to the list
-            for (int i = 0; i < activeGroundChunks.Count   +1 ; i++){
+            for (int i = 0; i < activeGroundChunks.Count-1; i++){
                 Destroy(activeGroundChunks[i]);
             }
             // NEXT STEP create the new marker and make it a loop or recognize the directions
+            */
         }else{
             // Update the bool 
             reversedWorld = false;

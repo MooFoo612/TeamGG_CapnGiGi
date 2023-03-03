@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 6446686311977991962}
   - component: {fileID: 1884933385485210016}
   - component: {fileID: 2411831260243423355}
+  - component: {fileID: 2207506939744576350}
   m_Layer: 8
   m_Name: Clam
   m_TagString: Enemy
@@ -604,7 +605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9776f309c739f4f4685353ce384abf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDrop: {fileID: 0}
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -628,6 +628,20 @@ MonoBehaviour:
   _maxHealth: 100
   _health: 100
   _isAlive: 1
+--- !u!114 &2207506939744576350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6169924526386425972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroyForReverse: 100
+  checkDistance: 40
 --- !u!1 &6587615967829380882
 GameObject:
   m_ObjectHideFlags: 0

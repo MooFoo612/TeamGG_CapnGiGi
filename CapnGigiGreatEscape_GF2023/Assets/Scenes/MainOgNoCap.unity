@@ -7936,6 +7936,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 4148277902660785928, guid: d1ecf51c927368142ab5858acab2c1a7, type: 3}
+      propertyPath: m_TagString
+      value: LevGen
+      objectReference: {fileID: 0}
     - target: {fileID: 4148277902660785934, guid: d1ecf51c927368142ab5858acab2c1a7, type: 3}
       propertyPath: m_RootOrder
       value: 5

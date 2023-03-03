@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6723936028333691298}
   - component: {fileID: 3239280763190175997}
   - component: {fileID: 4235432600316925388}
+  - component: {fileID: 1838193111220133571}
   m_Layer: 12
   m_Name: Sword
   m_TagString: Untagged
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueDiamond: {fileID: 0}
+  reversed: 0
   swordsAmount: 50
   audioSource: {fileID: 4235432600316925388}
 --- !u!82 &4235432600316925388
@@ -257,3 +259,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1838193111220133571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122682304030195706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroyForReverse: 100
+  checkDistance: 40

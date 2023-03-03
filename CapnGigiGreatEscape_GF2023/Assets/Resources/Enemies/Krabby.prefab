@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 1792985505767837512}
   - component: {fileID: 2572080938910772883}
   - component: {fileID: 7863528953530029074}
+  - component: {fileID: 5988664125236348527}
   m_Layer: 8
   m_Name: Krabby
   m_TagString: Untagged
@@ -478,6 +479,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5988664125236348527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293410592297463452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroyForReverse: 100
+  checkDistance: 40
 --- !u!1 &6458935843762524666
 GameObject:
   m_ObjectHideFlags: 0
