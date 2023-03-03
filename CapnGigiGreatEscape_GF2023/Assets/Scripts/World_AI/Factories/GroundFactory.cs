@@ -31,7 +31,7 @@ public class GroundFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
-        groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
+        //groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
 
     }
     #endregion
@@ -74,7 +74,7 @@ public class GroundFactory : Factory
 
         // Find the next end of section in the new Transform
         groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
-        groundEnd_Left.x -=16f; 
+        //groundEnd_Left.x -=16f; 
     }
     //public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
     //{

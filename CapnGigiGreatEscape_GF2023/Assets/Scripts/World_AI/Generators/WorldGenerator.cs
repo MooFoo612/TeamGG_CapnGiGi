@@ -93,9 +93,9 @@ void Awake()
         // Access Background Generator Script
         backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundFactory)) as BackgroundFactory;
 
-        StartCoroutine(GenerateWorld_Right());
-        StartCoroutine(GenerateWorld_Left());
-        //StartCoroutine(GenerateWorld());
+        //StartCoroutine(GenerateWorld_Right());
+        //StartCoroutine(GenerateWorld_Left());
+        StartCoroutine(GenerateWorld());
 
         
 
@@ -110,7 +110,12 @@ void Awake()
             // Update the bool 
             
             JustReversed = true;
+            
             distanceMarker = player.transform.position;
+            
+            
+            
+            
         }else{
             // Update the bool 
             
@@ -123,6 +128,8 @@ void Awake()
     {
         SpawnGroundChunk_Left();
         SpawnPlatformChunk_Left();
+        Debug.Log("changed marker position");
+        distanceMarker = firstDistanceMarkerPosition;
     }
     #endregion
 
@@ -249,6 +256,57 @@ void Awake()
     }
 
     #endregion
+
+
+    private IEnumerator GenerateWorld(){
+        while(!reversedWorld){
+            // Limit to 1sec
+            yield return new WaitForSeconds(1f);
+            // Set groundEndRight to last spawned section for check
+            groundEnd_Right = groundGenerator.groundEnd_Right;
+            // If the player is close enough
+            if (Vector3.Distance(player.transform.position, groundEnd_Right) < DISTANCE_TO_SPAWN_SECTION_GROUND){
+                // Spawn another section
+                SpawnGameWorld_Right();
+            }
+            if (Vector3.Distance(player.transform.position, bgEnd_Right) < DISTANCE_TO_SPAWN_SECTION_BG){
+                SpawnBackground_Right();
+            }
+            if (reversedWorld == true)
+            {
+                break;                                                                                                                                                                                                               
+            }
+        }
+        while (reversedWorld)
+        {
+            Debug.Log("Hey i'm in the left coroutine");
+            // Limit to 1sec
+            yield return new WaitForSeconds(1f);
+
+            // Set groundEndRight to last spawned section for check
+            groundEnd_Left = groundGenerator.groundEnd_Left;
+
+
+            // If the player is close enough
+            if (Vector3.Distance(player.transform.position, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION_GROUND_LEFT)
+            {
+                
+                // Spawn another section
+                SpawnGameWorld_Left();
+            }
+
+            if (Vector3.Distance(player.transform.position, bgEnd_Left) < DISTANCE_TO_SPAWN_SECTION_BG_LEFT)
+            {
+                SpawnBackground_Left();
+            }
+
+            if (reversedWorld == false)
+            {
+                break;
+            }
+        }
+    }
+    /*
     private IEnumerator GenerateWorld_Right(){
         while(!reversedWorld){
             // Limit to 1sec
@@ -301,6 +359,7 @@ void Awake()
             }
         }
     }
+    */
 
 
 }
