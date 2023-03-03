@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1766869737631487577}
   - component: {fileID: 1766869737631487576}
   - component: {fileID: 4553128027650410191}
-  - component: {fileID: 1012754369830631970}
+  - component: {fileID: 6941840377035684723}
   m_Layer: 12
   m_Name: GoldCoin
   m_TagString: Collectables
@@ -163,7 +163,7 @@ MonoBehaviour:
   reversed: 0
   coinsAmount: 20
   coinAudio: {fileID: 6715348705753348308}
---- !u!114 &1012754369830631970
+--- !u!114 &6941840377035684723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToDestroyForReverse: 100
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
   checkDistance: 40
 --- !u!1 &9032056670577390058
 GameObject:

@@ -6,10 +6,10 @@ public class CloneController : MonoBehaviour
     private Vector3 playerPosition;
     private Vector3 cloneSpawnPosition;
     private float distanceToPlayer;
-    private float distanceToDestroy;
+    public float distanceToDestroy = 60f;
 
-    public float distanceToDestroyForReverse = 100f; 
-    public float checkDistance = 40f;
+    public float distanceToDestroyForReverse = 80f; 
+    public float checkDistance = 30f;
     private GameObject AIScripts;
     private WorldGenerator worldGenerator;
 
@@ -17,7 +17,7 @@ public class CloneController : MonoBehaviour
     {
         player = GameObject.Find("CapnGigi");
         cloneSpawnPosition = transform.position;
-        distanceToDestroy = 60f;
+        
         AIScripts = GameObject.FindGameObjectWithTag("LevGen");
         worldGenerator = AIScripts.GetComponent<WorldGenerator>();
     }

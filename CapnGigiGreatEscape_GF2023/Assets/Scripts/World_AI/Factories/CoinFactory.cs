@@ -33,8 +33,9 @@ public class CoinFactory : Factory
     private void Awake()
     {
         coinParent = GameObject.Find("Coins_Active").transform;
-        /*
+        
         spawnLocation = gameObject.transform.position;
+        /*
         AIScripts = GameObject.FindGameObjectWithTag("LevGen");
         worldGenerator = AIScripts.GetComponent<WorldGenerator>();
         cloneSpawnPosition = transform.position;
@@ -92,22 +93,4 @@ public class CoinFactory : Factory
         }
     }
 
-    void Update(){
-        /*
-        playerPosition = player.transform.position;
-        distanceToPlayer = Vector3.Distance(cloneSpawnPosition, playerPosition);
-
-        if (distanceToPlayer > distanceToDestroy)
-        {
-            Destroy(gameObject);
-        }
-        
-        if(worldGenerator.JustReversed){
-            //Destroy the object if it is within the destroy distance and beyond the check distance
-            if (distanceToPlayer <= distanceToDestroyForReverse && distanceToPlayer >= checkDistance){
-                Destroy(gameObject);
-            }
-        }
-        */
-    }
 }

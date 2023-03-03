@@ -166,9 +166,7 @@ public class Factory : MonoBehaviour
 
     #endregion
 
-    public void Update(){
-        //reversed = worldGenerator.reversedWorld;
-    }
+    
 } 
 /*
 public class CollectableWarehouse : Factory
