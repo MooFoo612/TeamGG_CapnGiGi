@@ -2,19 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpen : MonoBehaviour
+public class DoorController : MonoBehaviour
 {
     public GameObject door;
-    public float distance = 10f;
-    private bool isOpen = false;
+    public float moveSpeed = 2f;
+    private Vector3 originalPos;
+    private Vector3 targetPos;
+    private GameObject player;
 
-    // Update is called once per frame
+    void Start()
+    {
+        originalPos = door.transform.position;
+        targetPos = new Vector3(originalPos.x, originalPos.y + 10f, originalPos.z);
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
-        if (Vector3.Distance(transform.position, door.transform.position) < distance && !isOpen)
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance <= 10f)
         {
-            door.transform.Translate(Vector3.up * 10);
-            isOpen = true;
+            StartCoroutine(OpenDoor());
+        }
+    }
+
+    IEnumerator OpenDoor()
+    {
+        while (door.transform.position != targetPos)
+        {
+            door.transform.position = Vector3.MoveTowards(door.transform.position, targetPos, moveSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 }
