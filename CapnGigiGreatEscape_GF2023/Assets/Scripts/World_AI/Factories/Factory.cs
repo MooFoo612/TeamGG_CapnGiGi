@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Factory : MonoBehaviour
-{ 
-    protected GameObject blueDiamond;
+{
+    Debugging db;
+    public GameObject blueDiamond;
+    WorldGenerator worldGenerator;
     public bool reversed;
 
     #region List Declarations
@@ -165,4 +167,95 @@ public class Factory : MonoBehaviour
     #endregion
 
     
+} 
+/*
+public class CollectableWarehouse : Factory
+{
+    protected List<GameObject> _collectables;
+    private int _listSize;
+    
+    protected List<GameObject> Collectables 
+    {        
+        get 
+        {
+            _collectables = collectables;
+            return _collectables; 
+        } 
+        set 
+        {
+            _collectables = value;
+        } 
+    }
+    
+    protected int NumberOfCollectables 
+    {        
+        get 
+        {
+            _listSize = collectables.Count;
+            return _listSize; 
+        } 
+    }
 }
+
+public class PowerupWarehouse : CollectableWarehouse
+{
+    protected List<GameObject> _powerups;
+    private int _listSize;
+
+    public List<GameObject> Powerups
+    {
+        get
+        {
+            _powerups = powerups;
+            return _collectables;
+        }
+        set
+        {
+            _powerups = value;
+        }
+    }
+
+    protected int NumberOfPowerups
+    {
+        get
+        {
+            _listSize = powerups.Count;
+            return _listSize;
+        }
+    }
+}
+
+public class CoinWarehouse : CollectableWarehouse
+{
+
+    public Dictionary<string, int> new coins();
+    public int _totalCoins;
+    public int _coinsThisRun;
+
+    protected int Coins
+    {
+        get
+        {
+            
+            return _coins;
+        }
+        set
+        {
+            _coins = value;
+        }
+    }
+
+    public int TotalCoins
+    {
+        get
+        {
+            _totalCoins = coins.Count;
+            return _totalCoins;
+        }
+    }
+
+    public int CoinsThisRun
+    {
+        get { return _coinsThisRun; }
+    }
+}*/
