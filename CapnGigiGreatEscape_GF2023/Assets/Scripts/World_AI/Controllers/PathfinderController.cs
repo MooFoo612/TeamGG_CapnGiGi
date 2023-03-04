@@ -11,6 +11,7 @@ public class PathfinderController : MonoBehaviour
     // ---------- Inspector Access -----------|
 
     [Header("Pathfinding")]
+    private Path path;
     [SerializeField] Transform _target;
     [SerializeField] bool _followEnabled = true;
     [SerializeField] Vector3 _targetPos;
@@ -43,29 +44,27 @@ public class PathfinderController : MonoBehaviour
     [SerializeField] float jumpModifier = 0.5f;
     [SerializeField] float jumpCheckOffset = 0.1f;
 
+    [Header("Collision Detection")]
+    [SerializeField] RaycastHit2D check_N;
+    [SerializeField] RaycastHit2D check_NE;
+    [SerializeField] RaycastHit2D check_E;
+    [SerializeField] RaycastHit2D check_SE;
+    [SerializeField] RaycastHit2D check_S;
+    [SerializeField] RaycastHit2D check_SW;
+    [SerializeField] RaycastHit2D check_W;
+    [SerializeField] RaycastHit2D check_NW;
+
     [Header("Components")]
-    [SerializeField] Seeker seeker;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Animator anim;
     [SerializeField] protected SpriteRenderer sr;
     [SerializeField] protected Collider2D pfCollider;
 
-
     [Header("Scripts")]
-    [Header("Custom Behavior")]    
+    [SerializeField] Seeker _navigator;
+
+    [Header("Custom Behavior")]
     public bool directionLookEnabled = true;
-
-    private Path path;
-
-    private RaycastHit2D check_N;
-    private RaycastHit2D check_NE;
-    private RaycastHit2D check_E;
-    private RaycastHit2D check_SE;
-    private RaycastHit2D check_S;
-    private RaycastHit2D check_SW;
-    private RaycastHit2D check_W;
-    private RaycastHit2D check_NW;
-
 
     private GameObject cam;
     private bool offCamera;
@@ -160,7 +159,7 @@ public class PathfinderController : MonoBehaviour
 
     private void Awake()
     {
-        seeker = GetComponent<Seeker>();
+        _navigator = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -207,11 +206,11 @@ public class PathfinderController : MonoBehaviour
     private void UpdatePath()
     {
         // If object to seek found update path 
-        if (_followEnabled && TargetInRange() && seeker.IsDone())
+        if (_followEnabled && TargetInRange() && _navigator.IsDone())
         {
             _targetPos = _target.position;
 
-            seeker.StartPath(rb.position, _targetPos, OnPathComplete);
+            _navigator.StartPath(rb.position, _targetPos, OnPathComplete);
         }
     }
 
