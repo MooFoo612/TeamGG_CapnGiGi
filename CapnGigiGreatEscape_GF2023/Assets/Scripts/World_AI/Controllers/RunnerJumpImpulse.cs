@@ -8,7 +8,7 @@ public class RunnerJumpImpulse : PathfinderController
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If the 
-        if (collision.tag == "Pathfinder_Jump" && Direction.y > jumpNodeHeightRequirement)
+        if (collision.tag == "Pathfinder_Jump")
         {
             if (jumpEnabled && IsGrounded == true)
             {

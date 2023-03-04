@@ -6,7 +6,10 @@ public class GroundFactory : Factory
 {
     #region Variables
     [SerializeField] private Transform groundStart;
+    //[SerializeField] private Transform groundStartLeft;
+
     [SerializeField] private GameObject player;
+    WorldGenerator worldGenerator;
 
     // Variables for the objects
     private GameObject groundObj;
@@ -15,6 +18,9 @@ public class GroundFactory : Factory
     // Positions for Spawning Chunks
     public Vector3 groundEnd_Right;
     public Vector3 groundEnd_Left;
+    
+    //public Transform lastGroundEnd_Left;
+    Transform lastGroundEnd_Left;
 
     // Hierarchy Parent
     private Transform groundParent;
@@ -25,6 +31,7 @@ public class GroundFactory : Factory
     {
         // Hierarchy Parent
         groundParent = GameObject.Find("GroundChunks_Active").transform;
+        worldGenerator = gameObject.GetComponent<WorldGenerator>();
 
         // Access the player
         player = GameObject.Find("CapnGigi");
@@ -32,9 +39,17 @@ public class GroundFactory : Factory
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
         //groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
+        //if(groundEnd_Left != null){Debug.Log("Groundleftend found");}
 
     }
     #endregion
+
+    void Update(){
+        if(worldGenerator.reversedWorld){
+            groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
+        }
+            
+    }
 
     #region Spawn Platforms to the Right
     public void SpawnGroundChunk_Right()
@@ -70,12 +85,15 @@ public class GroundFactory : Factory
         Transform randomChunk = groundChunks[randomPick].transform;
 
         // Spawn the Transform at the last end of section location
-        Transform lastGroundEnd_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
+        lastGroundEnd_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
+        if (groundEnd_Left != null){Debug.Log("hey i got the ground end left" + groundEnd_Left);}
 
         // Find the next end of section in the new Transform
-        groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
+        groundEnd_Left = lastGroundEnd_Left.FindGameObjectsWithTag("grndEndLeft").GetComponent<Tranform>.position;
+
+        //groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
         //groundEnd_Left.x -=16f; 
-    }
+    } 
     //public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
     //{
     //    // Set Transform to random Platform Chunk from List
