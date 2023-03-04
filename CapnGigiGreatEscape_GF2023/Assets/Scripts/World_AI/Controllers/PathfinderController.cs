@@ -75,31 +75,37 @@ public class PathfinderController : MonoBehaviour
 
     public Vector2 Direction 
     {
-        get { return _direction; }
+        get => _direction;
         set { _direction = value; }
     }
 
     public Vector2 Force
     {
-        get { return _force; }
+        get => _force;
         set { _force = value; }
     }
 
     public Vector3 Position
     {
-        get { return _currentPos; }
+        get => _currentPos;
         set { _currentPos = value; }
     }
 
     // IsMoving function 
     public bool IsMovingX
     {
-        get { return _isMovingX; }
+        get => _isMovingX;
 
         private set
         {
-            // Set the value
-            value = IsMoving(_movement.x);
+            if (Mathf.Abs(_movement.x) > Mathf.Epsilon)
+            {
+                value = true;
+            }
+            else
+            {
+                value = false;
+            }
 
             // Set the boolean in the animator 
             anim.SetBool(AnimationStrings.isMoving, value);
@@ -109,7 +115,7 @@ public class PathfinderController : MonoBehaviour
     // IsMoving function 
     public float IsMovingY
     {
-        get { return _isMovingY; }
+        get => _isMovingY;
         
         private set
         {
@@ -122,10 +128,8 @@ public class PathfinderController : MonoBehaviour
 
     public bool IsGrounded
     {
-        get
-        {
-            return _isGrounded;
-        }
+        get => _isGrounded;
+
         private set
         {
             _isGrounded = value;
@@ -228,23 +232,8 @@ public class PathfinderController : MonoBehaviour
         {
             return;
         }
-        
-
-
-
-
-
-
         // Check if colliding with anything
         Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
-
-
-
-
-
-
-
-
 
         // Check if pathfinder is on the ground
         _isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.1f);
@@ -257,7 +246,7 @@ public class PathfinderController : MonoBehaviour
 
 
         // Jump following the grid dimensions
-        if (direction.y > _jumpNodeHeightRequirement && _targetPos.y > (Position.y + 1))
+        if (direction.y > _jumpNodeHeightRequirement)
         {
             jumpEnabled = true;
 
@@ -284,11 +273,11 @@ public class PathfinderController : MonoBehaviour
         // Flip the sprite depending on the direction 
         if (directionLookEnabled)
         {
-            if (rb.velocity.x > 0.01f)
+            if (_movement.x > 0.01f)
             {
                 transform.localScale = new Vector2(1,0);
             }
-            else if (rb.velocity.x < -0.01f)
+            else if (_movement.x < -0.01f)
             {
                 transform.localScale = new Vector2(-1,0);
             }
@@ -297,7 +286,7 @@ public class PathfinderController : MonoBehaviour
     // Return true if target is in distance to be followed 
     private bool TargetInRange()
     {
-        return Vector2.Distance(transform.position, _target.transform.position) < _aggroRange;
+        return Vector2.Distance(transform.position, _targetPos) < _aggroRange;
     }
 
     private void OnPathComplete(Path p)
@@ -316,7 +305,7 @@ public class PathfinderController : MonoBehaviour
         if (_movement.x > 0.01f)
         {
             SetFacing();
-            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier);
+            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
 
         }
@@ -324,7 +313,7 @@ public class PathfinderController : MonoBehaviour
         {
             // Flip sprite left if rb is moving left
             SetFacing();
-            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier);
+            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }
     }
@@ -360,10 +349,11 @@ public class PathfinderController : MonoBehaviour
         jumpBuffer = true;
     }
 
-    private bool IsMoving(float movement)
+    private bool IsMoving()
     {
+       float mvmt = _movement.x;
 
-        if (Mathf.Abs(movement) > Mathf.Epsilon )
+        if (Mathf.Abs(mvmt) > Mathf.Epsilon )
         {
             _isMovingX = true;
         }
@@ -376,7 +366,7 @@ public class PathfinderController : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
 
         _movement = rb.velocity;
-        IsMoving(_movement.x);
+        IsMoving();
         SetFacing();
 
         
