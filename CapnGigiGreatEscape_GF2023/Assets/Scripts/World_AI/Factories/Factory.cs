@@ -3,15 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Factory : MonoBehaviour
-<<<<<<< HEAD
-{
-    Debugging db;
-    public GameObject blueDiamond;
-    WorldGenerator worldGenerator;
-=======
 { 
     protected GameObject blueDiamond;
->>>>>>> 1d764ea (Tidied up factory scripts)
     public bool reversed;
 
     #region List Declarations

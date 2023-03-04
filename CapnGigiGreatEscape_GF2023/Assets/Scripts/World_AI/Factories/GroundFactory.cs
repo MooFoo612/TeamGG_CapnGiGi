@@ -6,10 +6,6 @@ public class GroundFactory : Factory
 {
     #region Variables
     [SerializeField] private Transform groundStart;
-<<<<<<< HEAD
-=======
-
->>>>>>> 1d764ea (Tidied up factory scripts)
     [SerializeField] private GameObject player;
 
     // Variables for the objects
@@ -19,11 +15,7 @@ public class GroundFactory : Factory
     // Positions for Spawning Chunks
     public Vector3 groundEnd_Right;
     public Vector3 groundEnd_Left;
-<<<<<<< HEAD
-
-=======
     
->>>>>>> 1d764ea (Tidied up factory scripts)
     // Hierarchy Parent
     private Transform groundParent;
     #endregion
@@ -39,10 +31,6 @@ public class GroundFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
-<<<<<<< HEAD
-        //groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
-=======
->>>>>>> 1d764ea (Tidied up factory scripts)
 
     }
     #endregion
@@ -85,26 +73,6 @@ public class GroundFactory : Factory
         Transform randomChunk = groundChunks[randomPick].transform;
 
         // Spawn the Transform at the last end of section location
-<<<<<<< HEAD
-        Transform lastGroundEnd_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
-
-        // Find the next end of section in the new Transform
-        groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
-        //groundEnd_Left.x -=16f; 
-    }
-    //public Transform SpawnGroundChunk_Left(Vector3 nextChunk)
-    //{
-    //    // Set Transform to random Platform Chunk from List
-    //    groundChunk = RandomChunkerizer(0, groundChunks.Count-1);
-//
-    //    // Spawn the Platform chunk and log to AI count
-    //    Transform nextGroundChunk_Left = Instantiate(groundChunk, nextChunk, Quaternion.identity);
-    //    Factory.groundChunkActivated += 1;
-//
-    //    // Return the transform for sister method
-    //    return nextGroundChunk_Left;
-    //}
-=======
         Transform spawnedGround_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
 
         if (groundEnd_Left != null){Debug.Log("hey i got the ground end left" + groundEnd_Left);}
@@ -117,7 +85,6 @@ public class GroundFactory : Factory
         if (groundEnd_Right != null && groundEnd_Left != null) { Debug.Log("Left:" + groundEnd_Left + " |  Right: " + groundEnd_Right); }
     } 
 
->>>>>>> 1d764ea (Tidied up factory scripts)
     public Transform SpawnGroundChunk_Left(Transform groundChunk, Vector3 nextPosition, Transform groundParent)
     {
         // Spawn the Platform Chunk

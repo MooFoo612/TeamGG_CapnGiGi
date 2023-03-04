@@ -100,25 +100,6 @@ void Awake()
     {
         SpawnGroundChunk_Right();
         SpawnPlatformChunk_Right();
-<<<<<<< HEAD
-        if(Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
-            // Update the bool 
-            
-            JustReversed = true;
-            
-            distanceMarker = player.transform.position;
-            
-            
-            
-            
-        }else{
-            // Update the bool 
-            
-            Debug.Log("reverseWord value: " + reversedWorld);
-            JustReversed = false;
-        }
-=======
->>>>>>> 1d764ea (Tidied up factory scripts)
     }
 
     private void SpawnGameWorld_Left()

@@ -4,11 +4,7 @@ using System.Collections.Generic;
 public class PlatformFactory : Factory
 {
     #region Variables
-<<<<<<< HEAD
-    [SerializeField] private Transform platformStart;
-=======
     [SerializeField] Transform platformStart;
->>>>>>> 1d764ea (Tidied up factory scripts)
     [SerializeField] private GameObject player;
 
     private Transform platformChunk;
@@ -31,15 +27,8 @@ public class PlatformFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         platformEnd_Right = platformStart.Find("PlatformEnd_Right").position;
-<<<<<<< HEAD
-        //platformEnd_Left = platformStart.Find("PlatformEnd_Left").position;
-
-
-    }
-=======
     }
 
->>>>>>> 1d764ea (Tidied up factory scripts)
     #endregion
 
     #region Spawn Platforms to the Right
@@ -48,18 +37,12 @@ public class PlatformFactory : Factory
         // Select random chunk from list
         platformChunk = RandomChunkerizer();
 
-<<<<<<< HEAD
-        //Get the transform to refrence the next End Position
-        Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformChunk, platformEnd_Right, platformParent);
-        platformEnd_Right = lastPlatformEnd_Right.Find("PlatformEnd_Right").position;
-=======
         //Get the transform of instantiated object to refrence the next End Position
         Transform spawnedPlatform_Right = SpawnPlatformChunk_Right(platformChunk, platformEnd_Right, platformParent);
 
         // Get marker positions from spawned game object
         platformEnd_Right = spawnedPlatform_Right.Find("PlatformEnd_Right").position;
         platformEnd_Left = spawnedPlatform_Right.Find("PlatformEnd_Left").position;
->>>>>>> 1d764ea (Tidied up factory scripts)
 
         // Debug message
         if (platformEnd_Left != null) { Debug.Log("Left:" + platformEnd_Left + " |  Right: " + platformEnd_Right); }
@@ -84,16 +67,11 @@ public class PlatformFactory : Factory
         platformChunk = RandomChunkerizer();
 
         //Get the transform to refrence the next End Position
-<<<<<<< HEAD
-        Transform lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformChunk, platformEnd_Left, platformParent);
-        platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
-=======
         Transform spawnedPlatform_Left = SpawnPlatformChunk_Left(platformChunk, platformEnd_Left, platformParent);
         
         // Get marker positions for the spawned game objects
         platformEnd_Left = spawnedPlatform_Left.Find("PlatformEnd_Left").position;
         platformEnd_Right = spawnedPlatform_Left.Find("PlatformEnd_Right").position;
->>>>>>> 1d764ea (Tidied up factory scripts)
 
         // Debug message
         if (platformEnd_Left != null) { Debug.Log("Left:" + platformEnd_Left + " |  Right: " + platformEnd_Right); }
