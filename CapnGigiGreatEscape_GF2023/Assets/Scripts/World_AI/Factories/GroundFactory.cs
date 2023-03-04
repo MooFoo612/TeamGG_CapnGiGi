@@ -89,7 +89,7 @@ public class GroundFactory : Factory
         if (groundEnd_Left != null){Debug.Log("hey i got the ground end left" + groundEnd_Left);}
 
         // Find the next end of section in the new Transform
-        groundEnd_Left = lastGroundEnd_Left.FindGameObjectsWithTag("grndEndLeft").GetComponent<Tranform>.position;
+        groundEnd_Left = GameObject.FindGameObjectWithTag("grndEndLeft").GetComponent<Transform>().position;
 
         //groundEnd_Left = lastGroundEnd_Left.Find("GroundEnd_Left").position;
         //groundEnd_Left.x -=16f; 

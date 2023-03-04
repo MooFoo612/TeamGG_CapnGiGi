@@ -54,7 +54,7 @@ public class PlatformFactory : Factory
         //Get the transform to refrence the next End Position
         Transform lastPlatformEnd_Right = SpawnPlatformChunk_Right(platformChunk, platformEnd_Right, platformParent);
 
-        platformEnd_Right = lastPlatformEnd_Right.FindGameObjectsWithTag("pltfEndLeft").position;
+        platformEnd_Right = lastPlatformEnd_Right.Find("PlatformEnd_Right").position;
 
         //Debug.Log("Platform Spawned: " + platformChunkActivated);
 
@@ -77,8 +77,7 @@ public class PlatformFactory : Factory
 
         //Get the transform to refrence the next End Position
         lastPlatformEnd_Left = SpawnPlatformChunk_Left(platformChunk, platformEnd_Left, platformParent);
-        
-        platformEnd_Left = lastPlatformEnd_Left.Find("PlatformEnd_Left").position;
+        platformEnd_Left = GameObject.FindGameObjectWithTag("pltfEndLeft").GetComponent<Transform>().position;
         if (platformEnd_Left != null){Debug.Log("hey i got the ground end left" + platformEnd_Left);}
 
         //Debug.Log("Platform Spawned: " + platformChunkActivated);
