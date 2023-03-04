@@ -491,6 +491,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1792286783}
     - target: {fileID: 1271249523968289057, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 170353147}
+    - target: {fileID: 1271249523968289057, guid: e45c2b75104b42b45b2e996d752ed253, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -5513,6 +5517,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1560795299}
     - target: {fileID: 1684132948734192234, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 170353147}
+    - target: {fileID: 1684132948734192234, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
       propertyPath: shopUI
       value: 
       objectReference: {fileID: 1965921028}
@@ -6063,7 +6071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9857ced8c2d21ef4f9e4d4b9265b7502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueDiamond: {fileID: 0}
   reversed: 0
 --- !u!1 &1778198715 stripped
 GameObject:
