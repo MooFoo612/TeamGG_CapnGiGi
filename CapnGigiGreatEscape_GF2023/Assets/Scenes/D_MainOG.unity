@@ -6463,7 +6463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9857ced8c2d21ef4f9e4d4b9265b7502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueDiamond: {fileID: 0}
   reversed: 0
 --- !u!1 &1778198715 stripped
 GameObject:

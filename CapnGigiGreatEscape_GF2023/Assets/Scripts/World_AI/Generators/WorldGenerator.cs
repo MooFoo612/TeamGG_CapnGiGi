@@ -138,7 +138,7 @@ void Awake()
     {
         Debug.Log("reverseWord value: " + reversedWorld); 
         
-        if (distanceMarker != firstDistanceMarkerPosition)
+        if (distanceMarker.x >= firstDistanceMarkerPosition.x + 30f)
         {
             reversedWorld = true;
             Debug.Log("Hello");
