@@ -89,10 +89,8 @@ void Awake()
         // Access Background Generator Script
         backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundFactory)) as BackgroundFactory;
 
-        StartCoroutine(GenerateWorld());
-
-        
-
+        //StartCoroutine(GenerateWorldRight());
+        //StartCoroutine(GenerateWorldLeft());
     }
 
     #region World Spawner
@@ -139,6 +137,7 @@ void Awake()
 
     private void Update()       
     {
+        StartCoroutine(GenerateWorld());
         Debug.Log("reverseWord value: " + reversedWorld); 
         
         if (distanceMarker != firstDistanceMarkerPosition)
@@ -165,82 +164,114 @@ void Awake()
 
     #endregion
 
-
-    private IEnumerator GenerateWorld()
-    {
-        if (!reversedWorld)
-        {
+    /*
+    private IEnumerator GenerateWorldRight(){
+        while(!reversedWorld){
             // Limit to 1sec
             yield return new WaitForSeconds(0.1f);
-
             // Set groundEndRight to last spawned section for check
             groundEnd_Right = groundGenerator.groundEnd_Right;
-
             // Check distance to reverse world
-            if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE)
-            {
-                // Update the bool            
-                JustReversed = true;
-                distanceMarker = player.transform.position;
-            }
-            else
-            {
-                // Update the bool            
-                Debug.Log("reverseWord value: " + reversedWorld);
-                JustReversed = false;
-            }
-
+            //if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
+            //    // Update the bool            
+            //    JustReversed = true;
+            //    distanceMarker = player.transform.position;
+            //}else{
+            //    // Update the bool            
+            //    Debug.Log("reverseWord value: " + reversedWorld);
+            //    JustReversed = false;
+            //}
             // Check distance to spawn ground
-            if (Vector3.Distance(player.transform.position, groundEnd_Right) < DISTANCE_TO_SPAWN_SECTION_GROUND)
-            {
+            if (Vector3.Distance(player.transform.position, groundEnd_Right) < DISTANCE_TO_SPAWN_SECTION_GROUND){
                 // Spawn another section
                 SpawnGameWorld_Right();
             }
 
             // Check distance to spawn background
-            if (Vector3.Distance(player.transform.position, bgEnd_Right) < DISTANCE_TO_SPAWN_SECTION_BG)
-            {
+            if (Vector3.Distance(player.transform.position, bgEnd_Right) < DISTANCE_TO_SPAWN_SECTION_BG){
                 SpawnBackground_Right();
             }
         }
-        else
-        {
-            Debug.Log("Hey i'm in the left coroutine");
-
+    }
+    private IEnumerator GenerateWorldLeft(){
+        Debug.Log("Hey i'm in the left coroutine");
+        // Limit to 1sec
+        yield return new WaitForSeconds(0.1f);
+        // Set groundEndRight to last spawned section for check
+        groundEnd_Left = groundGenerator.groundEnd_Left;
+        // Check distance to reverse world
+        if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
+            // Update the bool            
+            JustReversed = true;
+            distanceMarker = player.transform.position;
+        }else{
+            // Update the bool            
+            Debug.Log("reverseWord value: " + reversedWorld);
+            JustReversed = false;
+        }
+        // If the player is close enough
+        if (Vector3.Distance(player.transform.position, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION_GROUND_LEFT){
+            // Spawn another section
+            SpawnGameWorld_Left();
+        }
+        if (Vector3.Distance(player.transform.position, bgEnd_Left) < DISTANCE_TO_SPAWN_SECTION_BG_LEFT){
+            SpawnBackground_Left();
+        }
+    }
+    */
+    private IEnumerator GenerateWorld(){
+        if(!reversedWorld){
             // Limit to 1sec
             yield return new WaitForSeconds(0.1f);
-
             // Set groundEndRight to last spawned section for check
-            groundEnd_Left = groundGenerator.groundEnd_Left;
-
+            groundEnd_Right = groundGenerator.groundEnd_Right;
             // Check distance to reverse world
-            if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE)
-            {
+            if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
                 // Update the bool            
                 JustReversed = true;
                 distanceMarker = player.transform.position;
-            }
-            else
-            {
+            }else{
                 // Update the bool            
                 Debug.Log("reverseWord value: " + reversedWorld);
                 JustReversed = false;
             }
+            // Check distance to spawn ground
+            if (Vector3.Distance(player.transform.position, groundEnd_Right) < DISTANCE_TO_SPAWN_SECTION_GROUND){
+                // Spawn another section
+                SpawnGameWorld_Right();
+            }
 
+            // Check distance to spawn background
+            if (Vector3.Distance(player.transform.position, bgEnd_Right) < DISTANCE_TO_SPAWN_SECTION_BG){
+                SpawnBackground_Right();
+            }
+        }else{
+            Debug.Log("Hey i'm in the left coroutine");
+            // Limit to 1sec
+            yield return new WaitForSeconds(0.1f);
+            // Set groundEndRight to last spawned section for check
+            groundEnd_Left = groundGenerator.groundEnd_Left;
+            // Check distance to reverse world
+            if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE){
+                // Update the bool            
+                JustReversed = true;
+                distanceMarker = player.transform.position;
+            }else{
+                // Update the bool            
+                Debug.Log("reverseWord value: " + reversedWorld);
+                JustReversed = false;
+            }
             // If the player is close enough
-            if (Vector3.Distance(player.transform.position, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION_GROUND_LEFT)
-            {
-                
+            if (Vector3.Distance(player.transform.position, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION_GROUND){
                 // Spawn another section
                 SpawnGameWorld_Left();
             }
-
-            if (Vector3.Distance(player.transform.position, bgEnd_Left) < DISTANCE_TO_SPAWN_SECTION_BG_LEFT)
-            {
+            if (Vector3.Distance(player.transform.position, bgEnd_Left) < DISTANCE_TO_SPAWN_SECTION_BG){
                 SpawnBackground_Left();
             }
         }
     }
 }
+
 
 
