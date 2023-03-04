@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour{
     public float airWalkSpeed = 5f;
     public float jumpImpulse = 7f;  
     private Vector2 moveInput;
-    Collisions touchingDirections; 
+    Collisions collisions; 
     Damageable damageable;
     public Rigidbody2D rb;
     Animator anim;
@@ -40,9 +40,9 @@ public class PlayerController : MonoBehaviour{
             // If the player canMove(is not attacking)
             if(CanMove){
                 // If is moving and is not colliding with a wall
-                if(IsMoving && !touchingDirections.IsOnWall ){
+                if(IsMoving && !collisions.IsOnWall ){
                     // If is on the ground
-                    if(touchingDirections.IsGrounded){       
+                    if(collisions.IsGrounded){       
                         // Get the player speed on ground         
                         return speed;
                     } else {
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         animPU = GetComponent<Animator>();
-        touchingDirections = GetComponent<Collisions>();
+        collisions = GetComponent<Collisions>();
         damageable = GetComponent<Damageable>();
         playerInv = GetComponent<PlayerInventory>();
         runningAudio = GetComponent<AudioSource>();
@@ -134,11 +134,11 @@ public class PlayerController : MonoBehaviour{
             anim.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
         // Check if is on the ground and is not jymping to reset the double jump bool and be able to double jump again
-        if(touchingDirections.IsGrounded && !jumpPressed){
+        if(collisions.IsGrounded && !jumpPressed){
             doubleJump = false;  
         } 
 
-        if (IsMoving && touchingDirections.IsGrounded)
+        if (IsMoving && collisions.IsGrounded)
         {
             //particleAnim.anim.SetBool("isMoving", true);
 
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour{
             // Change sprite direction
             SetFacingDirection(moveInput);
             // Check to prevent the player from kepp walking into the wall and don't fall 
-            if(context.started && touchingDirections.IsOnWall){
+            if(context.started && collisions.IsOnWall){
                 IsMoving = false;
             }
         // If is not alive
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour{
         // If can't double jump yet 
         if(PlayerPrefs.GetInt("purchasedDoubleJump") == 0){
             // Check if the key is pressed  and if player can move and if player is on the ground or can doubleJump
-            if(context.started && CanMove && touchingDirections.IsGrounded)
+            if(context.started && CanMove && collisions.IsGrounded)
             {
                 //player jump audio 
                 audio.PlayjumpAudio();
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour{
         if (PlayerPrefs.GetInt("purchasedDoubleJump") == 1 || playerInv.TemporaryDoubleJump){
             // If jump key and can move
             if(context.started && CanMove ){ 
-                if(touchingDirections.IsGrounded || doubleJump){
+                if(collisions.IsGrounded || doubleJump){
                     // Setting this for the check in the update
                     jumpPressed = true;
                      //player jump audio 
@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour{
     public void OnDash(InputAction.CallbackContext context){
         
         if(PlayerPrefs.GetInt("purchasedDash") == 1 || playerInv.TemporaryDash){
-            if(touchingDirections.IsGrounded){
+            if(collisions.IsGrounded){
                 if(context.started && canDash){
                     StartCoroutine(Dash());
                 }

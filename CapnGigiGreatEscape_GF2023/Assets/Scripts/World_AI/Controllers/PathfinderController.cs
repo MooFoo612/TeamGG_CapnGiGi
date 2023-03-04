@@ -37,9 +37,9 @@ public class PathfinderController : MonoBehaviour
     [SerializeField] Vector2 _force;
 
     [Header("Jumping")]
-    [SerializeField] protected bool jumpEnabled = true;
+    [SerializeField] protected bool _jumpEnabled = true;
     [SerializeField] bool jumpBuffer;
-    [SerializeField] float jumpTimer = 1f;
+    [SerializeField] float _jumpTimer = 1f;
     [SerializeField] float jumpModifier = 0.5f;
     [SerializeField] float jumpCheckOffset = 0.1f;
 
@@ -133,6 +133,16 @@ public class PathfinderController : MonoBehaviour
         private set
         {
             _isGrounded = value;
+        }
+    }
+
+public bool JumpEnabled
+    {
+        get => _jumpEnabled;
+
+        set
+        {
+            _jumpEnabled = value;
         }
     }
 
@@ -232,6 +242,9 @@ public class PathfinderController : MonoBehaviour
         {
             return;
         }
+
+        jumpCheckOffset = 1;
+
         // Check if colliding with anything
         Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
 
@@ -248,9 +261,9 @@ public class PathfinderController : MonoBehaviour
         // Jump following the grid dimensions
         if (direction.y > _jumpNodeHeightRequirement)
         {
-            jumpEnabled = true;
+            _jumpEnabled = true;
 
-            if (jumpEnabled && _isGrounded)
+            if (_jumpEnabled && _isGrounded)
             {
                 Jump();
             }

@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class RunnerJumpImpulse : PathfinderController
+public class RunnerJumpImpulse : MonoBehaviour
 {
+    // Access controller
+    PathfinderController controller;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If the 
-        if (collision.tag == "Pathfinder_Jump")
+        if (collision.tag == "Dervy")
         {
-            if (jumpEnabled && IsGrounded == true)
+            if (controller.JumpEnabled && controller.IsGrounded == true)
             {
                 // Make the pathfinder jump
-                Jump();
+                controller.Jump();
                 Debug.Log("PathfinderJumpImpulse made the Pathfinder jump!");
             }
         }

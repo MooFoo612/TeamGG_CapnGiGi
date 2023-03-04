@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Vector2 moveSpeed = new Vector2(3f, 0);
+    public Vector2 moveSpeed = new Vector2(4f, 0);
     public Vector2 knockback = new Vector2(0, 0);
     public int damage = 10;
     Rigidbody2D rb;
@@ -32,9 +33,17 @@ public class Projectile : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {
+    {       
         // Give horizontal speed to the projectile (to add gravity to the shot just make the rb dynamic)
-        rb.velocity = new Vector2 (moveSpeed.x * transform.localScale.x, moveSpeed.y);
+        rb.velocity = new Vector3 (moveSpeed.x * transform.localScale.x, moveSpeed.y);
+    }
+
+    private void FixedUpdate()
+    {
+        if (gameObject.tag == "ThrowingSword")
+        {
+            gameObject.transform.RotateAround(transform.position, Vector2.left, 450 * Time.fixedDeltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
