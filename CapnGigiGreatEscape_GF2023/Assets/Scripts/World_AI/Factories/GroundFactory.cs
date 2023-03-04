@@ -6,6 +6,10 @@ public class GroundFactory : Factory
 {
     #region Variables
     [SerializeField] private Transform groundStart;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1d764ea (Tidied up factory scripts)
     [SerializeField] private GameObject player;
 
     // Variables for the objects
@@ -15,7 +19,11 @@ public class GroundFactory : Factory
     // Positions for Spawning Chunks
     public Vector3 groundEnd_Right;
     public Vector3 groundEnd_Left;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 1d764ea (Tidied up factory scripts)
     // Hierarchy Parent
     private Transform groundParent;
     #endregion
@@ -31,7 +39,10 @@ public class GroundFactory : Factory
 
         // Find the child EndPosition object in the GameStart parent
         groundEnd_Right = groundStart.Find("GroundEnd_Right").transform.position;
+<<<<<<< HEAD
         //groundEnd_Left = groundStart.Find("GroundEnd_Left").transform.position;
+=======
+>>>>>>> 1d764ea (Tidied up factory scripts)
 
     }
     #endregion
@@ -42,13 +53,16 @@ public class GroundFactory : Factory
 
         int randomPick = UnityEngine.Random.Range(0, groundChunks.Count);
         Transform randomChunk = groundChunks[randomPick].transform;
-        //Transform groundChunk = randomChunk.transform;
 
         // Spawn the Transform at the last end of section location
-        Transform lastGroundEnd_Right = SpawnGroundChunk_Right(randomChunk, groundEnd_Right, groundParent);
+        Transform lastSpawn_Right = SpawnGroundChunk_Right(randomChunk, groundEnd_Right, groundParent);
 
         // Find the next end of section in the new Transform
-        groundEnd_Right = lastGroundEnd_Right.Find("GroundEnd_Right").position;
+        groundEnd_Right = lastSpawn_Right.Find("GroundEnd_Right").position;
+        groundEnd_Left = lastSpawn_Right.Find("GroundEnd_Left").position;
+
+        // Debug message
+        if (groundEnd_Right != null && groundEnd_Left != null) { Debug.Log("Left:" + groundEnd_Left + " |  Right: " + groundEnd_Right); }
 
     }
     public Transform SpawnGroundChunk_Right(Transform groundChunk, Vector3 nextPosition, Transform groundParent)
@@ -65,11 +79,13 @@ public class GroundFactory : Factory
     #region Spawn Platforms to the Left
     public void SpawnGroundChunk_Left()
     {
-        Debug.Log("i'm trying to spawn");
-        int randomPick = UnityEngine.Random.Range(0, groundChunks.Count -1);
+        Debug.Log("I'm trying to spawn Left");
+
+        int randomPick = UnityEngine.Random.Range(0, groundChunks.Count);
         Transform randomChunk = groundChunks[randomPick].transform;
 
         // Spawn the Transform at the last end of section location
+<<<<<<< HEAD
         Transform lastGroundEnd_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
 
         // Find the next end of section in the new Transform
@@ -88,6 +104,20 @@ public class GroundFactory : Factory
     //    // Return the transform for sister method
     //    return nextGroundChunk_Left;
     //}
+=======
+        Transform spawnedGround_Left = SpawnGroundChunk_Left(randomChunk, groundEnd_Left, groundParent);
+
+        if (groundEnd_Left != null){Debug.Log("hey i got the ground end left" + groundEnd_Left);}
+
+        // Find the next end of section in the new Transform
+        groundEnd_Left = spawnedGround_Left.Find("GroundEnd_Left").transform.position;
+        groundEnd_Right = spawnedGround_Left.Find("GroundEnd_Right").transform.position;
+
+        // Debug message
+        if (groundEnd_Right != null && groundEnd_Left != null) { Debug.Log("Left:" + groundEnd_Left + " |  Right: " + groundEnd_Right); }
+    } 
+
+>>>>>>> 1d764ea (Tidied up factory scripts)
     public Transform SpawnGroundChunk_Left(Transform groundChunk, Vector3 nextPosition, Transform groundParent)
     {
         // Spawn the Platform Chunk
