@@ -13,7 +13,6 @@ public class ShopUI : MonoBehaviour
     [SerializeField] GameObject menuUI;
     [SerializeField] Button openShopButton;
     [SerializeField] Button closeShopButton;
-    [SerializeField] GameObject player;
 
     public int[,] shopItems = new int[7, 7];
     public float coins;
@@ -32,11 +31,9 @@ public class ShopUI : MonoBehaviour
 
     private void Awake(){
         playerInv = GetComponent<PlayerInventory>();
-        player.SetActive(false);
     }
     
     private void OnEnable() {
-        player.SetActive(false);
         // Update the coins and diamond text
         coinsText.text = "x " + PlayerPrefs.GetInt("coins").ToString();
         diamondsText.text = "x " + PlayerPrefs.GetInt("diamonds").ToString();
