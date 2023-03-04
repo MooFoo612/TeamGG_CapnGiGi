@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5151854983071631708}
   - component: {fileID: 750948391926470179}
   - component: {fileID: 171727187373701266}
-  - component: {fileID: 1395532279}
+  - component: {fileID: 1241399423471167297}
   m_Layer: 15
   m_Name: DervyJerns
   m_TagString: Untagged
@@ -69,29 +69,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5151854983071631696}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68b7b88415482c4468782c0926529ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  _target: {fileID: 0}
+  _followEnabled: 1
+  _targetPos: {x: 0, y: 0, z: 0}
+  _currentPos: {x: 0, y: 0, z: 0}
+  _currentWaypoint: 0
+  _nextWaypointDistance: 1.5
+  _jumpNodeHeightRequirement: 1
   _aggroRange: 50
-  pathUpdateFrequency: 0.5
-  speed: 550
-  maxSpeed: 150
-  acceleration: 50
+  _pathUpdateFrequency: 0.1
+  _movement: {x: 0, y: 0}
+  _isMovingX: 0
+  _isMovingY: 0
+  _isGrounded: 0
+  _lastGrounded: 0
+  _isFacingRight: 0
+  _direction: {x: 0, y: 0}
+  _lastPosition: {x: 0, y: 0}
+  _lastVelocity: {x: 0, y: 0}
+  _groundSpeed: 5
+  _maxSpeed: 25
+  _acceleration: 5
+  _force: {x: 0, y: 0}
+  jumpEnabled: 1
   jumpBuffer: 1
   jumpTimer: 1
-  nextWaypointDistance: 1.5
-  jumpNodeHeightRequirement: 0.5
   jumpModifier: 0.4
   jumpCheckOffset: 0.4
-  followEnabled: 1
-  jumpEnabled: 1
+  seeker: {fileID: 0}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
+  sr: {fileID: 0}
+  pfCollider: {fileID: 0}
   directionLookEnabled: 1
-  lastPos: {x: 0, y: 0}
-  lastX: 0
-  lastY: 0
 --- !u!114 &5151854983071631710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,22 +249,35 @@ MonoBehaviour:
   updateDistance: 2
   target: {fileID: 5151854983071631709}
   graphIndex: 0
---- !u!114 &1395532279
+--- !u!114 &1241399423471167297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5151854983071631696}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a634230476dc478b88eceac73b1c8a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 847a14d4dc9cc43679ab34fc78e0182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
-  updateDistance: 2
-  target: {fileID: 5151854983071631709}
-  graphIndex: 1
+  version: 4
+  autoRepath:
+    mode: 2
+    interval: 0.5
+    sensitivity: 10
+    maximumInterval: 2
+    visualizeSensitivity: 0
+  canMove: 1
+  speed: 3
+  orientation: 1
+  enableRotation: 0
+  rotationSpeed: 0
+  interpolatePathSwitches: 1
+  switchPathInterpolationSpeed: 5
+  targetCompatibility: {fileID: 0}
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
 --- !u!1001 &1644974593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -527,3 +555,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb670e287ae50a9458397bb7b681c23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _followEnabled: 1
+  _targetPos: {x: 0, y: 0, z: 0}
+  _currentPos: {x: 0, y: 0, z: 0}
+  _currentWaypoint: 0
+  _nextWaypointDistance: 1.5
+  _jumpNodeHeightRequirement: 1
+  _aggroRange: 150
+  _pathUpdateFrequency: 0.1
+  _movement: {x: 0, y: 0}
+  _isMovingX: 0
+  _isMovingY: 0
+  _isGrounded: 0
+  _lastGrounded: 0
+  _isFacingRight: 0
+  _direction: {x: 0, y: 0}
+  _lastPosition: {x: 0, y: 0}
+  _lastVelocity: {x: 0, y: 0}
+  _groundSpeed: 5
+  _maxSpeed: 25
+  _acceleration: 5
+  _force: {x: 0, y: 0}
+  jumpEnabled: 1
+  jumpBuffer: 0
+  jumpTimer: 1
+  jumpModifier: 0.5
+  jumpCheckOffset: 0.1
+  seeker: {fileID: 0}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
+  sr: {fileID: 0}
+  pfCollider: {fileID: 0}
+  directionLookEnabled: 1

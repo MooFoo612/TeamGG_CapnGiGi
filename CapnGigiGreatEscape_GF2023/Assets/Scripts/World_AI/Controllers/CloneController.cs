@@ -19,7 +19,6 @@ public class CloneController : MonoBehaviour
         cloneSpawnPosition = transform.position;
         
         AIScripts = GameObject.FindGameObjectWithTag("LevGen");
-        worldGenerator = AIScripts.GetComponent<WorldGenerator>();
     }
 
     private void Update() 
@@ -30,13 +29,6 @@ public class CloneController : MonoBehaviour
         if (distanceToPlayer > distanceToDestroy)
         {
             Destroy(gameObject);
-        }
-        
-        if(worldGenerator.JustReversed){
-            //Destroy the object if it is within the destroy distance and beyond the check distance
-            if (distanceToPlayer <= distanceToDestroyForReverse && distanceToPlayer >= checkDistance){
-                Destroy(gameObject);
-            }
         }
     }
 }
