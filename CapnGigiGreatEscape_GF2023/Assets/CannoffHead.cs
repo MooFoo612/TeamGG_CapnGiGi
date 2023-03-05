@@ -10,13 +10,14 @@ public class CannoffHead : MonoBehaviour
     public GameObject spawn;
     public  GameObject projectile;
     private Animator animatorEN;
+
     // private SpriteRenderer enemySR;
     public GameObject pivotPoint;
     public SoundEffect Shootaudio;
     
     public float angle;
     public float power = 5f;
-    
+
     /*
     public float recoilInpulse = 0.5f;
     public Rigidbody2D shooterRb;
@@ -30,7 +31,7 @@ public class CannoffHead : MonoBehaviour
             // If the value does't correspond 
             if(_facingDirection != value){
                 // Flip sprite direction using localScale 
-                enemy.transform.localScale = new Vector2(enemy.transform.localScale.x * -1, enemy.transform.localScale.y);
+                enemy.transform.localScale = new Vector2enemy.transform.localScale.x * -1, enemy.transform.localScale.y);
             }
             // Update the value
             _facingDirection = value;
@@ -46,53 +47,68 @@ public class CannoffHead : MonoBehaviour
         //shooterRb = enemy.GetComponent<Rigidbody2D>();
         animatorEN = enemy.GetComponent<Animator>();
         // enemySR = enemy.GetComponent<SpriteRenderer>();
+
     }
     #endregion
 
-    
+void Awake(){
+        GameObject.Find("target");
+}
 
     #region shoot
     private void FixedUpdate(){
 
 
-    }
-
-    private void Update(){
-
-        //Debug.Log(target.transform.position);
-        Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - pivotPoint.transform.position;
+        Vector2 targetPos = GameObject.FindWithTag("Player").transform.position - gameObject.transform.position;
 
         angle = Mathf.Atan2(targetPos.x, targetPos.y) * Mathf.Rad2Deg;
-
-        if (angle <= 180 && angle >= 0)
-        {
-            pivotPoint.transform.rotation = Quaternion.Euler(0, 0, -angle);
-        }
-        Vector2 velocity = new Vector2(
+        
+                Vector2 velocity = new Vector2(
         power * Mathf.Sin(angle * Mathf.Deg2Rad),
         power * Mathf.Cos(angle * Mathf.Deg2Rad)
         );
+
+            pivotPoint.transform.rotation = Quaternion.Euler(0, 0, -angle -90);
+
+
+        // if (angle <= -90)
+        // {
+            
+        //     Debug.Log("This is where the cannon reverses");
+        //     enemy.transform.localScale = new Vector2(-1, enemy.transform.localScale.y);
+        //     // reverse position with transform
+        //     }
+        //     else{
+        //                 enemy.transform.localScale = new Vector2(1, enemy.transform.localScale.y);
+        //     }
+      }
+    
+    private void Update(){
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name.Equals(target.name)){
             //Detects player
+            Debug.Log("Bang");
             StartCoroutine("ShotTimer");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.name.Equals(target.name)){
+        if (collision.name.Equals(target.name) ){
             //Detects player left
         }
     }
 
     private IEnumerator ShotTimer() {
         yield return new WaitForSeconds(1.5f);
-                
-                     Vector2 velocity = new Vector2(
+
+
+         Vector2 velocity = new Vector2(
         power * Mathf.Sin(angle * Mathf.Deg2Rad),
         power * Mathf.Cos(angle * Mathf.Deg2Rad)
         );   
@@ -108,7 +124,9 @@ public class CannoffHead : MonoBehaviour
     
             Rigidbody2D rb = spawnedProjectile.GetComponent<Rigidbody2D>();
             rb.position = spawn.transform.position;
-            rb.velocity = velocity;                            
+            rb.velocity = new Vector2(
+        power * Mathf.Sin(angle * Mathf.Deg2Rad),
+        power * Mathf.Cos(angle * Mathf.Deg2Rad));                           
             
 
         }
