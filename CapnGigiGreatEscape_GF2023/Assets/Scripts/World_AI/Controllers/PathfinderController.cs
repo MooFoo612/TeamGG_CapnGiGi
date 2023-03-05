@@ -109,7 +109,7 @@ public class PathfinderController : MonoBehaviour
             }
 
             // Set the boolean in the animator 
-            anim.SetBool(AnimationStrings.isMoving, value);
+            //anim.SetBool(AnimationStrings.isMoving, value);
         }
     }
 
@@ -123,7 +123,7 @@ public class PathfinderController : MonoBehaviour
             value = _movement.y;
 
             // Set the boolean in the animator 
-            anim.SetFloat(AnimationStrings.yVelocity, value);
+            //anim.SetFloat(AnimationStrings.yVelocity, value);
         }
     }
 
@@ -238,7 +238,7 @@ public bool JumpEnabled
         }
 
         // Return out of function when end of path is reached
-        if (_currentWaypoint >= path.vectorPath.Count - 1)
+        if (_currentWaypoint >= path.vectorPath.Count)
         {
             return;
         }

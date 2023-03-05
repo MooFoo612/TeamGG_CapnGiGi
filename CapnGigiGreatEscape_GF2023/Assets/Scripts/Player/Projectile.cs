@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     RaycastHit2D[] wallHits = new RaycastHit2D[5];
     public float wallDistance = 0.2f;
     [SerializeField] private bool _isOnWall;
+
     // IsOnWall function
     public bool IsOnWall {
         get{

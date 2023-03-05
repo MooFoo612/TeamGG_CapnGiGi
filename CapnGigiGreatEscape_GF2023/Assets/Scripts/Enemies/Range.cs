@@ -8,7 +8,7 @@ public class Range : MonoBehaviour
     public GameObject target;
     public GameObject enemy;
     public GameObject spawn;
-    public  GameObject projectile;
+    public GameObject projectile;
     private Animator animatorEN;
     private SpriteRenderer enemySR;
 
@@ -28,8 +28,6 @@ public class Range : MonoBehaviour
         } set {
             // If the value does't correspond 
             if(_facingDirection != value){
-                // Flip sprite direction using localScale 
-                enemy.transform.localScale = new Vector2(enemy.transform.localScale.x * -1, enemy.transform.localScale.y);
             }
             // Update the value
             _facingDirection = value;
