@@ -23,6 +23,7 @@ TagManager:
   - LevGen
   - miniMap
   - ThrowingSword
+  - Dervy
   layers:
   - Default
   - TransparentFX

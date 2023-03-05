@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5151854983071631708}
   m_Layer: 0
   m_Name: DervyJerns
-  m_TagString: Untagged
+  m_TagString: Dervy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0.05
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 9
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -80,7 +80,7 @@ MonoBehaviour:
   _currentWaypoint: 0
   _nextWaypointDistance: 1.5
   _jumpNodeHeightRequirement: 1
-  _aggroRange: 50
+  _aggroRange: 150
   _pathUpdateFrequency: 0.1
   _movement: {x: 0, y: 0}
   _isMovingX: 0
@@ -95,16 +95,16 @@ MonoBehaviour:
   _maxSpeed: 25
   _acceleration: 5
   _force: {x: 0, y: 0}
-  jumpEnabled: 1
+  _jumpEnabled: 1
   jumpBuffer: 1
-  jumpTimer: 1
+  _jumpTimer: 1
   jumpModifier: 0.4
   jumpCheckOffset: 0.4
-  seeker: {fileID: 0}
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  sr: {fileID: 0}
-  pfCollider: {fileID: 0}
+  seeker: {fileID: 5151854983071631710}
+  rb: {fileID: 5151854983071631698}
+  anim: {fileID: 750948391926470179}
+  sr: {fileID: 5151854983071631708}
+  pfCollider: {fileID: 1954567600669669044}
   directionLookEnabled: 1
 --- !u!114 &13586323
 MonoBehaviour:
@@ -555,36 +555,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb670e287ae50a9458397bb7b681c23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
-  _followEnabled: 1
-  _targetPos: {x: 0, y: 0, z: 0}
-  _currentPos: {x: 0, y: 0, z: 0}
-  _currentWaypoint: 0
-  _nextWaypointDistance: 1.5
-  _jumpNodeHeightRequirement: 1
-  _aggroRange: 150
-  _pathUpdateFrequency: 0.1
-  _movement: {x: 0, y: 0}
-  _isMovingX: 0
-  _isMovingY: 0
-  _isGrounded: 0
-  _lastGrounded: 0
-  _isFacingRight: 0
-  _direction: {x: 0, y: 0}
-  _lastPosition: {x: 0, y: 0}
-  _lastVelocity: {x: 0, y: 0}
-  _groundSpeed: 5
-  _maxSpeed: 25
-  _acceleration: 5
-  _force: {x: 0, y: 0}
-  jumpEnabled: 1
-  jumpBuffer: 0
-  jumpTimer: 1
-  jumpModifier: 0.5
-  jumpCheckOffset: 0.1
-  seeker: {fileID: 0}
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  sr: {fileID: 0}
-  pfCollider: {fileID: 0}
-  directionLookEnabled: 1

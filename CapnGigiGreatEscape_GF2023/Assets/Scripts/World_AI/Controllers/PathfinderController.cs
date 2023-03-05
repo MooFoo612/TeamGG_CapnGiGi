@@ -5,6 +5,7 @@ using Pathfinding;
 //using System.IO;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem.XR;
 
 public class PathfinderController : MonoBehaviour
 {
@@ -191,7 +192,6 @@ public bool JumpEnabled
 
     private void Update()
     {
-        
     }
 
 
@@ -238,7 +238,7 @@ public bool JumpEnabled
         }
 
         // Return out of function when end of path is reached
-        if (_currentWaypoint >= path.vectorPath.Count)
+        if (_currentWaypoint >= path.vectorPath.Count - 1)
         {
             return;
         }
@@ -271,7 +271,7 @@ public bool JumpEnabled
         }
 
         // Use the force(tm) to move the runner
-        rb.AddForce(force);
+        rb.AddForce(force, ForceMode2D.Impulse);
 
         // After moving, get the location of the next waypoint in the path
         float distance = Vector2.Distance(rb.position, path.vectorPath[_currentWaypoint]);
@@ -318,7 +318,7 @@ public bool JumpEnabled
         if (_movement.x > 0.01f)
         {
             SetFacing();
-            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0,7) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
 
         }
@@ -326,7 +326,7 @@ public bool JumpEnabled
         {
             // Flip sprite left if rb is moving left
             SetFacing();
-            rb.AddForce(new Vector2(3, 3) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0,7) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }
     }
@@ -383,5 +383,18 @@ public bool JumpEnabled
         SetFacing();
 
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If the 
+        if (collision.tag == "Dervy")
+        {
+            if (JumpEnabled && IsGrounded == true)
+            {
+                // Make the pathfinder jump
+                Jump();
+                Debug.Log("PathfinderJumpImpulse made the Pathfinder jump!");
+            }
+        }
     }
 }

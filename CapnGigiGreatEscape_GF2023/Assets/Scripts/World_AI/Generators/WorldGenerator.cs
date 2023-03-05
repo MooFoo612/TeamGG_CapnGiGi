@@ -8,60 +8,67 @@ public class WorldGenerator : Factory
 {
     #region Variables
     // ------------------------------------------------
-    [SerializeField] private Transform groundStart;
-    [SerializeField] private Transform platformStart;
-    [SerializeField] private GameObject player;
-    // Generators -------------------------------------
-    private GroundFactory groundGenerator;
-    private PlatformFactory platformGenerator;
-    private BackgroundFactory backgroundGenerator;
+    [Header("Reverse Status")] 
     public bool reversedWorld;
-    // Distance management ---------------
-    private float totalDistance;
-    private GameObject distanceMarkerObj;
-    private Vector3 playerPosition;
+    //-------------------------------------------------
+    [Header("Setup")]
+    [SerializeField] Transform groundStart;
+    [SerializeField] Transform platformStart;
+    [SerializeField] Transform firstMarker;
+    [SerializeField] GameObject player;
+    // Generators -------------------------------------
+    [Header("Scripts")]
+    GroundWarehouse groundGenerator;
+    PlatformWarehouse platformGenerator;
+    BackgroundWarehouse backgroundGenerator;
+    // Distance management ----------------------------------  
+    [Header("Distance")]
+    float totalDistance;
+    Vector3 distanceMarker;
+    Vector3 playerPosition;
     // Constants -----------------------------------------------
-    private const float DISTANCE_TO_SPAWN_SECTION = 40f;
-    private const float DISTANCE_TO_SPAWN_BG = 10f;
-    private const float DISTANCE_TO_REVERSE = 50f;
-
-    // Normal variables
-    bool toReverse;
+    const float DISTANCE_TO_SPAWN_SECTION = 40f;
+    const float DISTANCE_TO_SPAWN_BG = 10f;
+    const float DISTANCE_TO_REVERSE = 20f;
     // Marker Positions---------------   
-    private Vector3 groundEnd_Right;
-    private Vector3 groundEnd_Left;
+    [Header("Markers")]
+    Vector3 groundEnd_Right;
+    Vector3 groundEnd_Left;
     //--------------------------------
-    private Vector3 platformEnd_Right;
-    private Vector3 platformEnd_Left;
+    Vector3 platformEnd_Right;
+    Vector3 platformEnd_Left;
     //--------------------------------
-    private Vector3 bgEnd_Right;
-    private Vector3 bgEnd_Left;
+    Vector3 bgEnd_Right;
+    Vector3 bgEnd_Left;
     //--------------------------------
     #endregion
+    
+
     void Awake()
     {
         // Access the player
         player = GameObject.Find("CapnGigi");
+
         // Distance Marker (maybe move in the update)
-        distanceMarkerObj = GameObject.Find("DistanceMarker");
+        distanceMarker = GameObject.Find("DistanceMarker").transform.position;
 
         // Ensure world isn't reversed
         reversedWorld = false;
 
         // Access Ground Generator Script
-        groundGenerator = GameObject.FindObjectOfType(typeof(GroundFactory)) as GroundFactory;
+        groundGenerator = GameObject.FindObjectOfType(typeof(GroundWarehouse)) as GroundWarehouse;
 
         // Access Platform Generator Script
-        platformGenerator = GameObject.FindObjectOfType(typeof(PlatformFactory)) as PlatformFactory;
+        platformGenerator = GameObject.FindObjectOfType(typeof(PlatformWarehouse)) as PlatformWarehouse;
 
         // Access Background Generator Script
-        backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundFactory)) as BackgroundFactory;
+        backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundWarehouse)) as BackgroundWarehouse;
 
-        StartCoroutine(GenerateWorld_Right());
+        StartCoroutine(GenerateWorld());
     }
     #region World Spawner
 
-    private IEnumerator GenerateWorld_Right()
+    private IEnumerator GenerateWorld()
     {
         while (reversedWorld)
         {
@@ -87,6 +94,7 @@ public class WorldGenerator : Factory
             {
                 break;
             }
+
             // Limit to 1sec
             yield return new WaitForSeconds(0.1f);
         }
@@ -109,6 +117,11 @@ public class WorldGenerator : Factory
             if (Vector3.Distance(playerPosition, bgEnd_Right) < DISTANCE_TO_SPAWN_BG)
             {
                 SpawnBackground_Right();
+            }
+
+            if (reversedWorld)
+            {
+                break;
             }
 
             // Limit to 1sec
@@ -179,5 +192,25 @@ public class WorldGenerator : Factory
         platformGenerator.SpawnPlatformChunk_Left();
     }
     #endregion
-    
+
+    #region Reversal
+    public void ReverseCheck(Vector3 playerPosition, Vector3 distanceMarker)
+    {
+        float currentDistance = Vector3.Distance(playerPosition, distanceMarker);
+
+        totalDistance += currentDistance;
+        currentDistance = 0;
+
+        if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE)
+        {
+            reversedWorld = false;
+        }
+        else
+        {
+            reversedWorld = true;
+        }
+    }
+
+    #endregion
+
 }

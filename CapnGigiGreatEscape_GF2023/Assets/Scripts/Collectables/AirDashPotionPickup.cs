@@ -2,22 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirDashPotionPickup : Factory
+public class AirDashPotionPickup : CollectableWarehouse
 {
-    private static List<GameObject> activeList;
-
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] GameObject airDashPotion;
+    List<GameObject> activeList;
     Animator anim;
-    public AudioSource audioSource;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        activeList = powerups;
         audioSource = GetComponent<AudioSource>();
+
+        for (int i = 0; i < powerups.Count; i++)
+        {
+            if (powerups[i].name == "AirDashPotion")
+            {
+                airDashPotion = powerups[i];
+                activeList.Add(airDashPotion);
+                break;
+            }
+        }
     }
-    private void OnTriggerEnter2D(Collider2D collision){
+
+
+    private void Start()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         // Get the script from the collision object 
         PlayerInventory player = collision.GetComponent<PlayerInventory>();
-        if(player){
+
+        if(player)
+        {
             player.TemporaryAirDash = true;
             
             for (int powerup = 0; powerup < activeList.Count; powerup++)
@@ -34,7 +54,7 @@ public class AirDashPotionPickup : Factory
             {
                 audioSource.Play();
             }
-            Destroy(gameObject, 0.25f);
+            Destroy(gameObject, 0.1f);
         }
     }
 }
