@@ -1,26 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleJumpPotionPickup : Factory
+public class DoubleJumpPotionPickup : CollectableWarehouse
 {
-    private static List<GameObject> activeList;
-    private GameObject doubleJumpPotion;
-
+    [SerializeField] GameObject doubleJumpPotion;
+    [SerializeField] AudioSource audioSource;
+    List<GameObject> activeList;
     Animator anim;
-    public AudioSource audioSource;
+
     private void Awake()
     {
-        doubleJumpPotion = GameObject.Find("DoubleJumpPotion");
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        activeList = powerups;
+
+        for (int i = 0; i < powerups.Count; i++)
+        {
+            if (powerups[i].name == "DoubleJumpPotion")
+            {
+                doubleJumpPotion = powerups[i];
+                activeList.Add(doubleJumpPotion);
+                break;
+            }
+        }
+    }
+
+    private void Start()
+    {
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Get the script from the collision object 
         PlayerInventory player = collision.GetComponent<PlayerInventory>();
-        if(player){
+
+        if(player)
+        {
             player.TemporaryDoubleJump = true;
 
             for (int powerup = 0; powerup < activeList.Count; powerup++)
@@ -37,7 +52,7 @@ public class DoubleJumpPotionPickup : Factory
             {
                 audioSource.Play();
             }
-            Destroy(gameObject, 0.25f);
+            Destroy(gameObject, 0.1f);
         }
     }
 }

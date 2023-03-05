@@ -127,22 +127,6 @@ public class ShopUI : MonoBehaviour
             //ButtonRef.GetComponent<ButtonInfo>().quantityText.text = shopItems[4, ButtonRef.GetComponent<ButtonInfo>().itemID].ToString();
         }
     }
-
-
-    //void AddShopEvents(){
-        // Open the shop
-        //openShopButton.onClick.RemoveAllListeners();
-        //openShopButton.onClick.AddListener(OpenShop);
-        //// Close the shop UI
-        //closeShopButton.onClick.RemoveAllListeners();
-        //closeShopButton.onClick.AddListener(CloseShop);
-    //}
-
-    //void OpenShop(){
-    //    menuUI.SetActive(false);
-    //    shopUI.SetActive(true);
-    //}
-
     public void CloseShop(){
         PlayerPrefs.SetInt("fromShop", 1);
         // Reload the scene

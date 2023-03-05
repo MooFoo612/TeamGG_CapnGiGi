@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ThrowingSwordsPickup : Factory
+public class ThrowingSwordsPickup : CollectableWarehouse
 {
     // Ammunition Store
     public int swordsAmount = 20;

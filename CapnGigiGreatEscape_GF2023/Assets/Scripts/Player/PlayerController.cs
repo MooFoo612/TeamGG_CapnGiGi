@@ -188,6 +188,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     public void OnJump(InputAction.CallbackContext context){        // Add interactions in OnJump?
+        var jumpAction = context.interaction;
         // If can't double jump yet 
         if(PlayerPrefs.GetInt("purchasedDoubleJump") == 0){
             // Check if the key is pressed  and if player can move and if player is on the ground or can doubleJump
