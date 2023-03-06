@@ -13,7 +13,7 @@ public class RunnerJumpImpulse : MonoBehaviour
         // If the 
         if (collision.tag == "Dervy")
         {
-            if (controller.JumpEnabled && controller.IsGrounded == true)
+            if (controller.JumpEnabled == true)
             {
                 // Make the pathfinder jump
                 controller.Jump();

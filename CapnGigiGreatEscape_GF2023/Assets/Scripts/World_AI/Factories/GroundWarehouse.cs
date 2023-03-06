@@ -5,7 +5,7 @@ public class GroundWarehouse : Factory
 {
     #region Variables
     [SerializeField] private Transform groundStart;
-    [SerializeField] private GameObject player;
+    GameObject player;
     WorldGenerator worldGenerator;
     // Variables for the objects
     private GameObject groundObj;
