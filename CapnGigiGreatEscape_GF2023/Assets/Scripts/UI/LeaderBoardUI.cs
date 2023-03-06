@@ -13,7 +13,6 @@ public class LeaderBoardUI : MonoBehaviour
     [SerializeField] Button openLeaderBoardButton;
     [SerializeField] Button closeLeaderBoardButton;
 
-    
 
     private void Start()
     {
