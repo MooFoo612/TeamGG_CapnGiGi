@@ -28,9 +28,9 @@ public class timerScript : MonoBehaviour
     {
         while (true)
         {
+            // I changed this so the score ticks up faster, activating those dopamine receptors, hope that's okay
 
-
-            yield return new WaitForSeconds(1); //wait 1 second
+            yield return new WaitForSeconds(0.005f); //wait 1 second
 
             myScore++;
 

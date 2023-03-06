@@ -145,10 +145,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME
+  m_text: game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
-  m_sharedMaterial: {fileID: -2165193683611157583, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+  m_sharedMaterial: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -463,7 +463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3069581445446860607
 RectTransform:
   m_ObjectHideFlags: 0
@@ -471,7 +471,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3069581445446860600}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0080248, y: 1.0080248, z: 1.0080248}
   m_ConstrainProportionsScale: 0
@@ -724,10 +724,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OVER
+  m_text: over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
-  m_sharedMaterial: {fileID: -2165193683611157583, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+  m_sharedMaterial: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -859,10 +859,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SCORE:'
+  m_text: 'score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
-  m_sharedMaterial: {fileID: -2165193683611157583, guid: 4153cf8eccb99bc4cbcb3c2677c0b4ff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
+  m_sharedMaterial: {fileID: 1832765445333465326, guid: 2f2630c27e351834d9a83c2de43340a3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1162,7 +1162,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3069581446147363721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: PlayAgainButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3069581446260235536
 GameObject:
   m_ObjectHideFlags: 0

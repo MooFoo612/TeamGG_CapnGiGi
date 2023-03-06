@@ -33,6 +33,7 @@ public class PathfinderController : MonoBehaviour
     [SerializeField] Vector2 _lastPosition;
     [SerializeField] Vector2 _lastVelocity;
     [SerializeField] Vector2 _force;
+    float blinkDistance;
 
     [Header("Jumping")]
     [SerializeField] protected bool _jumpEnabled = true;
@@ -88,8 +89,6 @@ public class PathfinderController : MonoBehaviour
                 _isMovingX = value;
             }
 
-            // Set the boolean in the animator 
-            //anim.SetBool(AnimationStrings.isMoving, value);
         }
     }
 
@@ -131,6 +130,7 @@ public bool JumpEnabled
 
     private void Awake()
     {
+        blinkDistance = 75f;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -148,12 +148,16 @@ public bool JumpEnabled
 
     private void FixedUpdate()
     {
-        
+
 
         // If find the target and can follow, follow it through the path
         if (TargetInRange() && _followEnabled)
         {
             Hunt();
+        }
+        else if (Vector3.Distance(_targetPos, transform.position) > blinkDistance)
+        {
+            FlyingDutchman(_targetPos, this.gameObject);
         }
     }
 
@@ -230,7 +234,7 @@ public bool JumpEnabled
         // If the distance lest than the 
         if (distance < _nextWaypointDistance)
         {
-            // 
+            
             _currentWaypoint++;
         }
 
@@ -250,7 +254,7 @@ public bool JumpEnabled
     // Return true if target is in distance to be followed 
     private bool TargetInRange()
     {
-        return Vector2.Distance(transform.position, _targetPos) < _aggroRange;
+        return Vector3.Distance(transform.position, _targetPos) < _aggroRange;
     }
 
     private void OnPathComplete(Path p)
@@ -301,18 +305,7 @@ public bool JumpEnabled
         }
     }
 
-    private void OffCameraCheck()
-    {
-        // camera.Find
-    }
-    /*
-    private IEnumerator JumpLimiter()
-    {
-        yield return new WaitForSeconds(0.2f);
-
-        jumpBuffer = true;
-    }
-    */
+    
     private bool IsMoving()
     {
        float mvmt = _movement.x;
@@ -335,18 +328,22 @@ public bool JumpEnabled
 
         
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    private void FlyingDutchman(Vector3 playerPosition, GameObject dervy)
     {
-        // If the 
-        if (collision.CompareTag("Dervy"))
+        // Disable sprite
+        sr.enabled = false;
+
+        // Move Dervy
+        transform.position = new Vector3(playerPosition.x - UnityEngine.Random.Range(0f,5f), playerPosition.y - UnityEngine.Random.Range(-5f,5f));
+
+        // Set sprite tmier
+        float timer = 2;
+        timer -= Time.fixedDeltaTime;
+        if (timer <= 0)
         {
-            if (JumpEnabled && IsGrounded == true)
-            {
-                // Make the pathfinder jump
-                Jump();
-                Debug.Log("PathfinderJumpImpulse made the Pathfinder jump!");
-            }
+            // When the timer hits 0, re-enable the sprite
+            sr.enabled = true;
         }
-    }*/
+    }
 }

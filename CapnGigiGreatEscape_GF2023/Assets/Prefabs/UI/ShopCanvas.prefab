@@ -3712,7 +3712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 4
   coinsPriceText: {fileID: 1271249522558820224}
-  diamondPriceText: {fileID: 0}
+  diamondPriceText: {fileID: 203985150761132008}
   shopUI: {fileID: 1271249523968289070}
 --- !u!114 &1180141282
 MonoBehaviour:

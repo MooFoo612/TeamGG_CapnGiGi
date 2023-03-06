@@ -2475,6 +2475,7 @@ MonoBehaviour:
   menuUI: {fileID: 1684132948734192237}
   GUI: {fileID: 0}
   miniMap: {fileID: 0}
+  scoreCanvas: {fileID: 0}
 --- !u!1 &1684132948775434517
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,12 @@ public class CoinsPickup : Factory
     {
         // Get component Animator
         animatorCoin = gameObject.GetComponent<Animator>();
+        transform.Translate(Vector3.left, Space.Self);
+    }
+
+    private void FixedUpdate()
+    {
+        transform.RotateAround(transform.position, Vector2.up, 300 * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

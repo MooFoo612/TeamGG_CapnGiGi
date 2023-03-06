@@ -23,12 +23,13 @@ public class WorldGenerator : Factory
     // Distance management ----------------------------------  
     [Header("Distance")]
     float totalDistance;
+    GameObject distanceMarkerObj;
     Vector3 distanceMarker;
     Vector3 playerPosition;
     // Constants -----------------------------------------------
     const float DISTANCE_TO_SPAWN_SECTION = 40f;
-    const float DISTANCE_TO_SPAWN_BG = 10f;
-    const float DISTANCE_TO_REVERSE = 20f;
+    const float DISTANCE_TO_SPAWN_BG = 60f;
+    const float DISTANCE_TO_REVERSE = 200f;
     // Marker Positions---------------   
     [Header("Markers")]
     Vector3 groundEnd_Right;
@@ -45,11 +46,13 @@ public class WorldGenerator : Factory
 
     void Awake()
     {
+
         // Access the player
         gigi = GameObject.Find("CapnGigi");
 
-        // Distance Marker (maybe move in the update)
-        distanceMarker = GameObject.Find("DistanceMarker").transform.position;
+        // Distance Marker
+        distanceMarkerObj = GameObject.Find("DistanceMarker");
+        distanceMarker = distanceMarkerObj.transform.position;
 
         // Ensure world isn't reversed
         reversedWorld = false;
@@ -65,6 +68,11 @@ public class WorldGenerator : Factory
 
         StartCoroutine(GenerateWorld());
     }
+    private void FixedUpdate()
+    {
+        ReverseCheck(playerPosition, distanceMarker);
+    }
+
     #region World Spawner
 
     private IEnumerator GenerateWorld()
@@ -127,28 +135,7 @@ public class WorldGenerator : Factory
             yield return new WaitForSeconds(0.1f);
         }
     }
-    private IEnumerator GenerateWorld_Left()
-    {
-        // Limit to 1sec
-        yield return new WaitForSeconds(0.1f);
-        // Set groundEndRight to last spawned section for check
-        groundEnd_Right = gw.groundEnd_Left;
-
-        // Check distance to spawn ground
-        if (Vector3.Distance(playerPosition, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION)
-        {
-            // Spawn another section
-            SpawnGameWorld_Left();
-        }
-        // Check distance to spawn background
-        if (Vector3.Distance(playerPosition, bgEnd_Left) < DISTANCE_TO_SPAWN_BG)
-        {
-            SpawnBackground_Left();
-        }
-
-        // Limit to 1sec
-        yield return new WaitForSeconds(0.1f);
-    }
+    
     private void SpawnGameWorld_Right()
     {
         SpawnGroundChunk_Right();
@@ -160,6 +147,7 @@ public class WorldGenerator : Factory
         SpawnPlatformChunk_Left();
     }
     #endregion
+
     #region Background Spawner
     public void SpawnBackground_Right()
     {
@@ -170,6 +158,7 @@ public class WorldGenerator : Factory
         bg.GenerateBackground();
     }
     #endregion
+
     #region Ground Spawner
     public void SpawnGroundChunk_Right()
     {
@@ -197,16 +186,21 @@ public class WorldGenerator : Factory
     {
         float currentDistance = Vector3.Distance(playerPosition, distanceMarker);
 
-        totalDistance += currentDistance;
-        currentDistance = 0;
-
-        if (Vector3.Distance(gigi.transform.position, distanceMarker) > DISTANCE_TO_REVERSE)
+        if (currentDistance > DISTANCE_TO_REVERSE)
         {
+            Destroy(distanceMarkerObj);
+            Instantiate(distanceMarkerObj, playerPosition, Quaternion.identity);
+            distanceMarker = distanceMarkerObj.transform.position;
+            totalDistance += currentDistance;
+            currentDistance = 0;
             reversedWorld = false;
+            return;
         }
         else
         {
-            reversedWorld = true;
+            totalDistance += currentDistance;
+            currentDistance = 0;
+            return;
         }
     }
 
