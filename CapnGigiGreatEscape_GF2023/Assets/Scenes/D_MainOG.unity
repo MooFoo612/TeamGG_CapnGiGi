@@ -496,6 +496,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3568661188814845483, guid: 983407e07a4e5414f8ccec7600fbc221, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 983407e07a4e5414f8ccec7600fbc221, type: 3}
 --- !u!114 &331412876 stripped
@@ -1447,10 +1451,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 3266131370187467982, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_Name
       value: CapnGigi
       objectReference: {fileID: 0}
@@ -1478,14 +1478,6 @@ PrefabInstance:
       propertyPath: diamondsText
       value: 
       objectReference: {fileID: 331412876}
-    - target: {fileID: 4880828066994162344, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: _coins
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880828066994162344, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: _diamonds
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
 --- !u!1001 &1299133273
@@ -1987,6 +1979,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5091745079697440736, guid: 7d3bc25725124d14585e5893d094a312, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8497663477106031266, guid: 7d3bc25725124d14585e5893d094a312, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2105,6 +2101,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 611359137204200174, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335684042730682048, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252121514890275554, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000658597651486433, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5075742207115565060, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -2153,10 +2165,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dervy
       objectReference: {fileID: 0}
+    - target: {fileID: 6013566201172668024, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854150122865150743, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8011685683212597114, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 170353155}
+    - target: {fileID: 8725165242361650012, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
 --- !u!1 &1560795299
@@ -2544,6 +2568,10 @@ PrefabInstance:
     - target: {fileID: 4483584917386041566, guid: 4ba622af00237434b801d724fd0eae10, type: 3}
       propertyPath: m_Name
       value: 'DashPotion '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663157262527086644, guid: 4ba622af00237434b801d724fd0eae10, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ba622af00237434b801d724fd0eae10, type: 3}

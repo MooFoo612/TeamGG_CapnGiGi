@@ -46,7 +46,7 @@ public class PlayerInventory : MonoBehaviour
             //diamondsAmountChanged?.Invoke(_diamonds);
         }
     }
-    [SerializeField] private bool _temporaryDoubleJump = false;
+    public bool _temporaryDoubleJump = false;
     public bool TemporaryDoubleJump{
         get {
             return _temporaryDoubleJump;
@@ -55,7 +55,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    [SerializeField] private bool _temporaryDash = false;
+    public bool _temporaryDash = false;
     public bool TemporaryDash{
         get {
             return _temporaryDash;
@@ -64,7 +64,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    [SerializeField] private bool _temporaryAirDash = false;
+    public bool _temporaryAirDash = false;
     public bool TemporaryAirDash{
         get {
             return _temporaryAirDash;

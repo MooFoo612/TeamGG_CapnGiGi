@@ -731,7 +731,7 @@ GameObject:
   m_Layer: 7
   m_Name: CapnGigi
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1130,9 +1130,9 @@ MonoBehaviour:
   _throwingSwords: 10
   _coins: 0
   _diamonds: 0
-  _temporaryDoubleJump: 0
-  _temporaryDash: 0
-  _temporaryAirDash: 0
+  _temporaryDoubleJump: 1
+  _temporaryDash: 1
+  _temporaryAirDash: 1
 --- !u!114 &8858859916391010064
 MonoBehaviour:
   m_ObjectHideFlags: 0

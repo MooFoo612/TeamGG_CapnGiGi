@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3994416776670299095}
   - component: {fileID: 40728885346753528}
   - component: {fileID: 1771146244}
-  - component: {fileID: 5103519548164972158}
+  - component: {fileID: 5286128928074570775}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: LevGen
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueDiamond: {fileID: 0}
   reversed: 0
---- !u!114 &5103519548164972158
+--- !u!114 &5286128928074570775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4148277902660785928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9857ced8c2d21ef4f9e4d4b9265b7502, type: 3}
+  m_Script: {fileID: 11500000, guid: a93085e809badd64f9e6f1cd0f630bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blueDiamond: {fileID: 0}
