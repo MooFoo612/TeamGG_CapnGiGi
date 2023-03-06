@@ -11,16 +11,15 @@ public class WorldGenerator : Factory
     [Header("Reverse Status")] 
     public bool reversedWorld;
     //-------------------------------------------------
-    [Header("Setup")]
-    [SerializeField] Transform groundStart;
-    [SerializeField] Transform platformStart;
-    [SerializeField] Transform firstMarker;
-    [SerializeField] GameObject player;
+    Transform groundStart;
+    Transform platformStart;
+    Transform firstMarker;
+    GameObject gigi;
     // Generators -------------------------------------
     [Header("Scripts")]
-    GroundWarehouse groundGenerator;
-    PlatformWarehouse platformGenerator;
-    BackgroundWarehouse backgroundGenerator;
+    GroundWarehouse gw;
+    PlatformWarehouse pg;
+    BackgroundWarehouse bg;
     // Distance management ----------------------------------  
     [Header("Distance")]
     float totalDistance;
@@ -47,7 +46,7 @@ public class WorldGenerator : Factory
     void Awake()
     {
         // Access the player
-        player = GameObject.Find("CapnGigi");
+        gigi = GameObject.Find("CapnGigi");
 
         // Distance Marker (maybe move in the update)
         distanceMarker = GameObject.Find("DistanceMarker").transform.position;
@@ -56,13 +55,13 @@ public class WorldGenerator : Factory
         reversedWorld = false;
 
         // Access Ground Generator Script
-        groundGenerator = GameObject.FindObjectOfType(typeof(GroundWarehouse)) as GroundWarehouse;
+        gw = GameObject.FindObjectOfType(typeof(GroundWarehouse)) as GroundWarehouse;
 
         // Access Platform Generator Script
-        platformGenerator = GameObject.FindObjectOfType(typeof(PlatformWarehouse)) as PlatformWarehouse;
+        pg = GameObject.FindObjectOfType(typeof(PlatformWarehouse)) as PlatformWarehouse;
 
         // Access Background Generator Script
-        backgroundGenerator = GameObject.FindObjectOfType(typeof(BackgroundWarehouse)) as BackgroundWarehouse;
+        bg = GameObject.FindObjectOfType(typeof(BackgroundWarehouse)) as BackgroundWarehouse;
 
         StartCoroutine(GenerateWorld());
     }
@@ -73,10 +72,10 @@ public class WorldGenerator : Factory
         while (reversedWorld)
         {
             // Set groundEndRight to last spawned section for check
-            groundEnd_Left = groundGenerator.groundEnd_Left;
+            groundEnd_Left = gw.groundEnd_Left;
 
             // Get player position
-            playerPosition = player.transform.position;
+            playerPosition = gigi.transform.position;
 
             // Check distance to spawn ground
             if (Vector3.Distance(playerPosition, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION)
@@ -102,10 +101,10 @@ public class WorldGenerator : Factory
         while (!reversedWorld)
         {
             // Set groundEndRight to last spawned section for check
-            groundEnd_Right = groundGenerator.groundEnd_Right;
+            groundEnd_Right = gw.groundEnd_Right;
 
             // Get player position
-            playerPosition = player.transform.position;
+            playerPosition = gigi.transform.position;
 
             // Check distance to spawn ground
             if (Vector3.Distance(playerPosition, groundEnd_Right) < DISTANCE_TO_SPAWN_SECTION)
@@ -133,7 +132,7 @@ public class WorldGenerator : Factory
         // Limit to 1sec
         yield return new WaitForSeconds(0.1f);
         // Set groundEndRight to last spawned section for check
-        groundEnd_Right = groundGenerator.groundEnd_Left;
+        groundEnd_Right = gw.groundEnd_Left;
 
         // Check distance to spawn ground
         if (Vector3.Distance(playerPosition, groundEnd_Left) < DISTANCE_TO_SPAWN_SECTION)
@@ -164,32 +163,32 @@ public class WorldGenerator : Factory
     #region Background Spawner
     public void SpawnBackground_Right()
     {
-        backgroundGenerator.GenerateBackground();
+        bg.GenerateBackground();
     }
     public void SpawnBackground_Left()
     {
-        backgroundGenerator.GenerateBackground();
+        bg.GenerateBackground();
     }
     #endregion
     #region Ground Spawner
     public void SpawnGroundChunk_Right()
     {
-        groundGenerator.SpawnGroundChunk_Right();
+        gw.SpawnGroundChunk_Right();
     }
     public void SpawnGroundChunk_Left()
     {
-        groundGenerator.SpawnGroundChunk_Left();
+        gw.SpawnGroundChunk_Left();
     }
     #endregion
 
     #region Platform Spawner
     public void SpawnPlatformChunk_Right()
     {
-        platformGenerator.SpawnPlatformChunk_Right();
+        pg.SpawnPlatformChunk_Right();
     }
     public void SpawnPlatformChunk_Left()
     {
-        platformGenerator.SpawnPlatformChunk_Left();
+        pg.SpawnPlatformChunk_Left();
     }
     #endregion
 
@@ -201,7 +200,7 @@ public class WorldGenerator : Factory
         totalDistance += currentDistance;
         currentDistance = 0;
 
-        if (Vector3.Distance(player.transform.position, distanceMarker) > DISTANCE_TO_REVERSE)
+        if (Vector3.Distance(gigi.transform.position, distanceMarker) > DISTANCE_TO_REVERSE)
         {
             reversedWorld = false;
         }

@@ -32,48 +32,28 @@ public class PathfinderController : MonoBehaviour
     [SerializeField] protected Vector2 _direction;
     [SerializeField] Vector2 _lastPosition;
     [SerializeField] Vector2 _lastVelocity;
-    [SerializeField] float _groundSpeed = 5f;
-    [SerializeField] float _maxSpeed = 25f;
-    [SerializeField] float _acceleration = 5f;
     [SerializeField] Vector2 _force;
 
     [Header("Jumping")]
     [SerializeField] protected bool _jumpEnabled = true;
-    [SerializeField] bool jumpBuffer;
-    [SerializeField] float _jumpTimer = 1f;
-    [SerializeField] float jumpModifier = 0.5f;
-    [SerializeField] float jumpCheckOffset = 0.1f;
+    //[SerializeField] bool jumpBuffer;
+    //[SerializeField] float _jumpTimer = 1f;
+    //[SerializeField] float jumpModifier = 0.5f;
+    //[SerializeField] float jumpCheckOffset = 0.1f;
 
-    [Header("Components")]
-    [SerializeField] Seeker seeker;
-    [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] protected Animator anim;
-    [SerializeField] protected SpriteRenderer sr;
-    [SerializeField] protected Collider2D pfCollider;
-
-
-    [Header("Scripts")]
     [Header("Custom Behavior")]    
     public bool directionLookEnabled = true;
 
     private Path path;
 
-    private RaycastHit2D check_N;
-    private RaycastHit2D check_NE;
-    private RaycastHit2D check_E;
-    private RaycastHit2D check_SE;
-    private RaycastHit2D check_S;
-    private RaycastHit2D check_SW;
-    private RaycastHit2D check_W;
-    private RaycastHit2D check_NW;
-
-
-    private GameObject cam;
-    private bool offCamera;
-
     // -------- Local Variables ---------- |
 
-
+    Seeker seeker;
+    Rigidbody2D rb;
+    Animator anim;
+    SpriteRenderer sr;
+    Collider2D pfCollider;
+    float _groundSpeed;
     public Vector2 Direction 
     {
         get => _direction;
@@ -101,39 +81,15 @@ public class PathfinderController : MonoBehaviour
         {
             if (Mathf.Abs(_movement.x) > Mathf.Epsilon)
             {
-                value = true;
+                _isMovingX = value;
             }
             else
             {
-                value = false;
+                _isMovingX = value;
             }
 
             // Set the boolean in the animator 
             //anim.SetBool(AnimationStrings.isMoving, value);
-        }
-    }
-
-    // IsMoving function 
-    public float IsMovingY
-    {
-        get => _isMovingY;
-        
-        private set
-        {
-            value = _movement.y;
-
-            // Set the boolean in the animator 
-            //anim.SetFloat(AnimationStrings.yVelocity, value);
-        }
-    }
-
-    public bool IsGrounded
-    {
-        get => _isGrounded;
-
-        private set
-        {
-            _isGrounded = value;
         }
     }
 
@@ -180,18 +136,13 @@ public bool JumpEnabled
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         pfCollider = GetComponent<Collider2D>();
-        cam = GameObject.FindWithTag("CinemachineCam");
     }
 
 
     private void Start()
     {
         // Keep on repeating the script to update the path
-        InvokeRepeating("UpdatePath", 0f, _pathUpdateFrequency);
-    }
-
-    private void Update()
-    {
+        InvokeRepeating(nameof(UpdatePath), 0f, _pathUpdateFrequency);
     }
 
 
@@ -243,7 +194,7 @@ public bool JumpEnabled
             return;
         }
 
-        jumpCheckOffset = 1;
+        float jumpCheckOffset = 1;
 
         // Check if colliding with anything
         Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
@@ -312,13 +263,13 @@ public bool JumpEnabled
         }
 
     }
-
+    
     public void Jump()
     {
         if (_movement.x > 0.01f)
         {
             SetFacing();
-            rb.AddForce(new Vector2(0,7) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0,7) * _groundSpeed * 5, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
 
         }
@@ -326,11 +277,11 @@ public bool JumpEnabled
         {
             // Flip sprite left if rb is moving left
             SetFacing();
-            rb.AddForce(new Vector2(0,7) * _groundSpeed * jumpModifier, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0,7) * _groundSpeed * 5, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }
     }
-
+    
     #endregion
 
 
@@ -354,14 +305,14 @@ public bool JumpEnabled
     {
         // camera.Find
     }
-
+    /*
     private IEnumerator JumpLimiter()
     {
         yield return new WaitForSeconds(0.2f);
 
         jumpBuffer = true;
     }
-
+    */
     private bool IsMoving()
     {
        float mvmt = _movement.x;
@@ -384,10 +335,11 @@ public bool JumpEnabled
 
         
     }
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If the 
-        if (collision.tag == "Dervy")
+        if (collision.CompareTag("Dervy"))
         {
             if (JumpEnabled && IsGrounded == true)
             {
@@ -396,5 +348,5 @@ public bool JumpEnabled
                 Debug.Log("PathfinderJumpImpulse made the Pathfinder jump!");
             }
         }
-    }
+    }*/
 }

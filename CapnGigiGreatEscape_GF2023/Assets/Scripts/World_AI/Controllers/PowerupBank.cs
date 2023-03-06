@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,65 +29,97 @@ public class PowerupBank : Factory
         {
             if (buff.TemporaryDash == true)
             {
-                // Check the Powerup List
-                for (int powerup = 0; powerup < activeList.Count; powerup++)
+                try
                 {
-                    // If there is a powerup in the active list named DashPotion
-                    if (activeList[powerup].name == "DashPotion")
+                    // Check the Powerup List
+                    for (int powerup = 0; powerup < activeList.Count; powerup++)
                     {
-                        if (activeList.Count <= 0) this.enabled = false;
+                        // If there is a powerup in the active list named DashPotion
+                        if (activeList[powerup].name == "DashPotion")
+                        {
+                            if (activeList.Count <= 0) this.enabled = false;
 
-                        // Remove the item from the global list in ListFactory
-                        powerups.RemoveAt(powerup);
-                        break;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }               
+                            // Remove the item from the global list in ListFactory
+                            powerups.RemoveAt(powerup);
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }               
+                }
+                catch (ArgumentOutOfRangeException aore)
+                {
+                    Debug.Log(aore.Message);
+                }
             }
             else if (buff.TemporaryAirDash == true)
             {
-                // Check the Powerup List
-                for (int powerup = 0; powerup < activeList.Count; powerup++)
+                try
                 {
+                    // Check the Powerup List
+                    for (int powerup = 0; powerup < activeList.Count; powerup++)
+                    {
 
-                    // If there is a powerup in the active list named DashPotion
-                    if (activeList[powerup].name == "AirDashPotion")
-                    {
-                        // Remove the item from the global list in ListFactory
-                        powerups.RemoveAt(powerup);
-                        break;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }              
+                        // If there is a powerup in the active list named DashPotion
+                        if (activeList[powerup].name == "AirDashPotion")
+                        {
+                            // Remove the item from the global list in ListFactory
+                            powerups.RemoveAt(powerup);
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }              
+                }
+                catch (ArgumentOutOfRangeException aore)
+                {
+                    Debug.Log(aore.Message);
+                }
 
             }
             else if (buff.TemporaryAirDash == true)
             {
-                // Check the Powerup List
-                for (int powerup = 0; powerup < activeList.Count; powerup++)
+                try
                 {
-                    // If there is a powerup in the active list named DashPotion
-                    if (activeList[powerup].name == "DoubleJumpPotion")
+                    // Check the Powerup List
+                    for (int powerup = 0; powerup < activeList.Count; powerup++)
                     {
-                        if (activeList.Count <= 0) this.enabled = false;
+                        // If there is a powerup in the active list named DashPotion
+                        if (activeList[powerup].name == "DoubleJumpPotion")
+                        {
+                            if (activeList.Count <= 0) this.enabled = false;
 
-                        // Remove the item from the global list in ListFactory
-                        powerups.RemoveAt(powerup);
-                        break;
+                            // Remove the item from the global list in ListFactory
+                            powerups.RemoveAt(powerup);
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
-                    else
-                    {
-                        continue;
-                    }
-                }               
+
+                }
+                catch (ArgumentOutOfRangeException aore)
+                {
+                    Debug.Log(aore.Message);
+                }
             }
-        }                    
+        } 
+        else
+        {
+            if (powerups.Count <= 0)
+            {
+                Debug.Log("Player has collected all available powerups, shutting down operations.");
+                PowerupWarehouse powerupWarehouse = new PowerupWarehouse();
+                powerupWarehouse.enabled = false;
+                this.enabled = false;
+            }
+        }
     }
        
 }
