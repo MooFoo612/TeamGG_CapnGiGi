@@ -27,7 +27,10 @@ public class ShopUI : MonoBehaviour
     public Button item5button;
     public Button item6button;
 
-
+    private void Start()
+    {
+        Time.timeScale = 0;
+    }
 
     private void Awake(){
         playerInv = GetComponent<PlayerInventory>();
