@@ -24,83 +24,67 @@ public class PowerupBank : Factory
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (activeList != null)
+        if (activeList != null && activeList.Count > 0)
         {
             if (buff.TemporaryDash == true)
             {
-                if (activeList != null)
+                // Check the Powerup List
+                for (int powerup = 0; powerup < activeList.Count; powerup++)
                 {
-                    // Check the Powerup List
-                    for (int powerup = 0; powerup < activeList.Count; powerup++)
+                    // If there is a powerup in the active list named DashPotion
+                    if (activeList[powerup].name == "DashPotion")
                     {
-                        // If there is a powerup in the active list named DashPotion
-                        if (activeList[powerup].name == "DashPotion")
-                        {
-                            // Remove the item from the global list in ListFactory
-                            powerups.RemoveAt(powerup);
-                            break;
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                        if (activeList.Count <= 0) this.enabled = false;
+
+                        // Remove the item from the global list in ListFactory
+                        powerups.RemoveAt(powerup);
+                        break;
                     }
-                }
-                else
-                {
-                    return;
-                }
+                    else
+                    {
+                        continue;
+                    }
+                }               
             }
             else if (buff.TemporaryAirDash == true)
             {
-                if (activeList != null)
+                // Check the Powerup List
+                for (int powerup = 0; powerup < activeList.Count; powerup++)
                 {
-                    // Check the Powerup List
-                    for (int powerup = 0; powerup < activeList.Count; powerup++)
+
+                    // If there is a powerup in the active list named DashPotion
+                    if (activeList[powerup].name == "AirDashPotion")
                     {
-                        // If there is a powerup in the active list named DashPotion
-                        if (activeList[powerup].name == "AirDashPotion")
-                        {
-                            // Remove the item from the global list in ListFactory
-                            powerups.RemoveAt(powerup);
-                            break;
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                        // Remove the item from the global list in ListFactory
+                        powerups.RemoveAt(powerup);
+                        break;
                     }
-                }
-                else
-                {
-                    return;
-                }
+                    else
+                    {
+                        continue;
+                    }
+                }              
 
             }
             else if (buff.TemporaryAirDash == true)
             {
-                if (activeList != null)
+                // Check the Powerup List
+                for (int powerup = 0; powerup < activeList.Count; powerup++)
                 {
-                    // Check the Powerup List
-                    for (int powerup = 0; powerup < activeList.Count; powerup++)
+                    // If there is a powerup in the active list named DashPotion
+                    if (activeList[powerup].name == "DoubleJumpPotion")
                     {
-                        // If there is a powerup in the active list named DashPotion
-                        if (activeList[powerup].name == "DoubleJumpPotion")
-                        {
-                            // Remove the item from the global list in ListFactory
-                            powerups.RemoveAt(powerup);
-                            break;
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                        if (activeList.Count <= 0) this.enabled = false;
+
+                        // Remove the item from the global list in ListFactory
+                        powerups.RemoveAt(powerup);
+                        break;
                     }
-                }
-                else
-                {
-                    return;
-                }
+                    else
+                    {
+                        continue;
+                    }
+                }               
             }
         }                    
     }

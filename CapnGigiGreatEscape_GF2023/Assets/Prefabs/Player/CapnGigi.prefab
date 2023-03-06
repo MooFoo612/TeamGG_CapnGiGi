@@ -1032,6 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  dervy: {fileID: 0}
   airWalkSpeed: 7
   jumpImpulse: 10
   rb: {fileID: 3266131370187467983}
@@ -1130,9 +1131,9 @@ MonoBehaviour:
   _throwingSwords: 10
   _coins: 0
   _diamonds: 0
-  _temporaryDoubleJump: 1
-  _temporaryDash: 1
-  _temporaryAirDash: 1
+  _temporaryDoubleJump: 0
+  _temporaryDash: 0
+  _temporaryAirDash: 0
 --- !u!114 &8858859916391010064
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,15 +10,19 @@ public class HealthBar : MonoBehaviour
     public Slider healthSlider;
     Damageable playerDamageable;
 
-    private void Awake(){
+    private void Awake()
+    {
         // Find the player and get the damagbeable script component
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerDamageable = player.GetComponent<Damageable>();
+
         // Testing
-        if(playerDamageable == null){
+        if(playerDamageable == null)
+        {
             Debug.Log("No PLayer found in the scene");
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,24 +31,29 @@ public class HealthBar : MonoBehaviour
         healthBarText.text = playerDamageable.Health + " / " + playerDamageable.MaxHealth;
     }
 
-    private void OnEnable(){
+    private void OnEnable()
+    {
         playerDamageable.healthChanged.AddListener(OnPlayerHealthChanged);
     }
 
-    private void OnDisable(){
+    private void OnDisable()
+    {
         playerDamageable.healthChanged.RemoveListener(OnPlayerHealthChanged);
     }
 
-    private float CalculateSliderPercentage(float currentHealth, float maxHealth){
+    private float CalculateSliderPercentage(float currentHealth, float maxHealth)
+    {
         // Return the percentage to update the health bar
         return currentHealth / maxHealth;
     }
 
-    private void OnPlayerHealthChanged(int newHealth, int maxHealth){
+    private void OnPlayerHealthChanged(int newHealth, int maxHealth)
+    {
         // Update the health slider and text 
         healthSlider.value = CalculateSliderPercentage(newHealth, maxHealth);
         healthBarText.text = newHealth + " / " + maxHealth;
     }
+
     IEnumerator HealthIncrease(int currentHealth, int newHealth)
     {
         for (int x = playerDamageable.Health; x <= newHealth; x++)

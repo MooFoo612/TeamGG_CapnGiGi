@@ -1406,6 +1406,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3266131370187467969, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
+      propertyPath: dervy
+      value: 
+      objectReference: {fileID: 1565401690}
     - target: {fileID: 3266131370187467971, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1478,18 +1482,6 @@ PrefabInstance:
       propertyPath: diamondsText
       value: 
       objectReference: {fileID: 331412876}
-    - target: {fileID: 4880828066994162344, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: _temporaryDash
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880828066994162344, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: _temporaryAirDash
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880828066994162344, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
-      propertyPath: _temporaryDoubleJump
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdca23df7417fe04a9ef33bacd8aa344, type: 3}
 --- !u!1001 &1299133273
@@ -2118,12 +2110,16 @@ PrefabInstance:
       value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 1547240363, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547240363, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
       propertyPath: m_LinearDrag
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1547240363, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
       propertyPath: m_GravityScale
-      value: 0
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5075742207115565060, guid: 03eeb0eecf44fe74caf97eac1d9f84dd, type: 3}
       propertyPath: m_RootOrder
@@ -2300,7 +2296,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
