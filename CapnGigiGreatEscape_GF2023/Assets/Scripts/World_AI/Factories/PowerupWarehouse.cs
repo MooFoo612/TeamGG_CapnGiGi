@@ -22,26 +22,29 @@ public class PowerupWarehouse : Factory
 
     private void GenerateRandomPowerup(List<GameObject> powerupList, Vector3 spawnLocation, Transform powerupParent)
     {
-        if (powerupList.Count == 0) 
+        if (powerupList != null)
+        {
+            int randomPowerup = UnityEngine.Random.Range(0, powerupList.Count);
+
+
+            int randomRoll = Random.Range(0, 100);
+
+
+            if (randomRoll <= 75)
+            {
+                Debug.Log("Better luck next time! Your Roll: " + randomRoll);
+                return;
+            }
+            else
+            {
+                Instantiate(powerupList[randomPowerup], spawnLocation, Quaternion.identity, powerupParent);
+            }
+        } 
+        else
         {
             Debug.Log("Stash is dry, Cap'n!");
             return; 
         }
 
-        int randomPowerup = UnityEngine.Random.Range(0, powerupList.Count - 1);
-
-        
-        int randomRoll = Random.Range(0, 100);
-
-
-        if (randomRoll <= 75)
-        {
-            Debug.Log("Better luck next time! Your Roll: " + randomRoll);
-            return;
-        }
-        else
-        {
-            Instantiate(powerupList[randomPowerup], spawnLocation, Quaternion.identity, powerupParent);
-        }
     }
 }

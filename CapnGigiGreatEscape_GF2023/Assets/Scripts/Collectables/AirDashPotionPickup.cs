@@ -14,15 +14,6 @@ public class AirDashPotionPickup : CollectableWarehouse
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        for (int i = 0; i < powerups.Count; i++)
-        {
-            if (powerups[i].name == "AirDashPotion")
-            {
-                airDashPotion = powerups[i];
-                activeList.Add(airDashPotion);
-                break;
-            }
-        }
     }
 
 
@@ -33,6 +24,17 @@ public class AirDashPotionPickup : CollectableWarehouse
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        for (int i = 0; i < powerups.Count; i++)
+        {
+            if (powerups[i].name == "AirDashPotion")
+            {
+                airDashPotion = powerups[i];
+                activeList.Add(airDashPotion);
+                break;
+            }
+        }
+
         // Get the script from the collision object 
         PlayerInventory player = collision.GetComponent<PlayerInventory>();
 
