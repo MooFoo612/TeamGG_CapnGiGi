@@ -11,12 +11,24 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject GUI;
     [SerializeField] GameObject miniMap;
     [SerializeField] GameObject scoreCanvas;
+    [SerializeField] GameObject leaderBoard;
     public void ShopButton(){
         menuUI.SetActive(false);
         shopUI.SetActive(true);
         GUI.SetActive(false);
         miniMap.SetActive(false);
         scoreCanvas.SetActive(false);
+        leaderBoard.SetActive(false);
+    }
+
+    public void LeaderBoardButton()
+    {
+        menuUI.SetActive(false);
+        shopUI.SetActive(false);
+        GUI.SetActive(false);
+        miniMap.SetActive(false);
+        scoreCanvas.SetActive(false);
+        leaderBoard.SetActive(true);
     }
     public void PlayButton(){
         
@@ -25,6 +37,8 @@ public class MenuUI : MonoBehaviour
         GUI.SetActive(true);
         miniMap.SetActive(true);
         scoreCanvas.SetActive(true);
+        leaderBoard.SetActive(false);
+        leaderBoard.SetActive(false);
         //ResumeGame();
 
         if (PlayerPrefs.GetInt("fromShop") == 1){
@@ -62,6 +76,7 @@ public class MenuUI : MonoBehaviour
             shopUI.SetActive(false);
             miniMap.SetActive(false);
             scoreCanvas.SetActive(false);
+            leaderBoard.SetActive(false);
         }
         
         if(PlayerPrefs.GetInt("alreadyRunned") == 1 ){
