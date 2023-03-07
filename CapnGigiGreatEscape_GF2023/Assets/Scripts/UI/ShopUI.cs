@@ -132,10 +132,10 @@ public class ShopUI : MonoBehaviour
     }
     public void CloseShop(){
         PlayerPrefs.SetInt("fromShop", 1);
-        // Reload the scene
-        //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-        shopUI.SetActive(false);
-        menuUI.SetActive(true);
+        //Reload the scene
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        //shopUI.SetActive(false);
+        //menuUI.SetActive(true);
 
     }
     
