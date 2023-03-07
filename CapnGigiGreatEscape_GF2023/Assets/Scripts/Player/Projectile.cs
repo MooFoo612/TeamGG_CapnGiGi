@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Vector2 moveSpeed = new Vector2(6f, 0);
+    public Vector2 moveSpeed = new Vector2(7f, 0);
     public Vector2 knockback = new Vector2(0, 0);
     public int damage = 10;
     Rigidbody2D rb;
@@ -48,8 +48,9 @@ public class Projectile : MonoBehaviour
 
         if (PlayerPrefs.GetInt("throwSwordAttackPowerUp") == 1){
             rb.bodyType = RigidbodyType2D.Kinematic;
-            damage += 20;
+            damage = 30;
             moveSpeed = new Vector2(10f, 0);
+            knockback = new Vector2(5f, 2f);
         }
     }
 
