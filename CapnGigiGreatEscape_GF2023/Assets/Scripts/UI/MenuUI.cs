@@ -12,12 +12,14 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject miniMap;
     [SerializeField] GameObject scoreCanvas;
     [SerializeField] GameObject leaderBoard;
+    [SerializeField] GameObject controlsCanvas;
     public void ShopButton(){
         menuUI.SetActive(false);
         shopUI.SetActive(true);
         GUI.SetActive(false);
         miniMap.SetActive(false);
         scoreCanvas.SetActive(false);
+        controlsCanvas.SetActive(false);
         leaderBoard.SetActive(false);
     }
 
@@ -30,6 +32,16 @@ public class MenuUI : MonoBehaviour
         scoreCanvas.SetActive(false);
         leaderBoard.SetActive(true);
     }
+
+    public void ControlsButton(){
+        menuUI.SetActive(false);
+        shopUI.SetActive(false);
+        GUI.SetActive(false);
+        miniMap.SetActive(false);
+        scoreCanvas.SetActive(false);
+        controlsCanvas.SetActive(true);
+    }
+
     public void PlayButton(){
         
         menuUI.SetActive(false);
@@ -39,6 +51,7 @@ public class MenuUI : MonoBehaviour
         scoreCanvas.SetActive(true);
         leaderBoard.SetActive(false);
         leaderBoard.SetActive(false);
+        controlsCanvas.SetActive(false);
         //ResumeGame();
 
         if (PlayerPrefs.GetInt("fromShop") == 1){
@@ -77,6 +90,7 @@ public class MenuUI : MonoBehaviour
             miniMap.SetActive(false);
             scoreCanvas.SetActive(false);
             leaderBoard.SetActive(false);
+            controlsCanvas.SetActive(false);
         }
         
         if(PlayerPrefs.GetInt("alreadyRunned") == 1 ){
@@ -108,13 +122,6 @@ public class MenuUI : MonoBehaviour
         
 
     }
-    //void Update(){
-    //    if(PlayerPrefs.GetInt("alreadyRunned") == 1){
-    //        menuUI.SetActive(false);
-    //        ResumeGame();
-    //        PlayerPrefs.SetInt("alreadyRunned", 0);
-    //    }
-    //}
     
     
     
