@@ -24,6 +24,7 @@ TagManager:
   - miniMap
   - ThrowingSword
   - Dervy
+  - DistanceMarker
   layers:
   - Default
   - TransparentFX

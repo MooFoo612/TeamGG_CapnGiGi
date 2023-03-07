@@ -130,7 +130,7 @@ public bool JumpEnabled
 
     private void Awake()
     {
-        blinkDistance = 75f;
+        blinkDistance = 50f;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -160,14 +160,7 @@ public bool JumpEnabled
             FlyingDutchman(_targetPos, this.gameObject);
         }
     }
-
-    private void LateUpdate()
-    {
-        // For per-frame comparisons
-        _lastPosition = transform.position;
-        _lastGrounded = _isGrounded;
-        _lastVelocity = new Vector2 (Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.y));
-    }
+ 
 
     #endregion
 
@@ -182,6 +175,37 @@ public bool JumpEnabled
 
             seeker.StartPath(rb.position, _targetPos, OnPathComplete);
         }
+    }
+
+
+    private void FlyingDutchman(Vector3 playerPosition, GameObject dervy)
+    {
+        // Disable sprite
+        sr.enabled = false;
+
+        Vector3 coastalDrift = TheWindsOfTime(playerPosition);
+
+        // Move Dervy
+        Instantiate(dervy, playerPosition, Quaternion.identity);
+
+        // Set sprite tmier
+        float timer = 2;
+        timer -= Time.fixedDeltaTime;
+        if (timer <= 0)
+        {
+            // When the timer hits 0, re-enable the sprite
+            sr.enabled = true;
+        }
+    }
+
+    private Vector3 TheWindsOfTime(Vector3 playerPosition)
+    {
+        float sailX = playerPosition.x;
+        float sailY = playerPosition.y;
+        sailX = UnityEngine.Random.Range(-5, 5);
+        sailY = UnityEngine.Random.Range(-5, 5);
+
+        return new Vector3(sailX, sailY);
     }
 
     private void Hunt()
@@ -328,22 +352,5 @@ public bool JumpEnabled
 
         
     }
-    
-    private void FlyingDutchman(Vector3 playerPosition, GameObject dervy)
-    {
-        // Disable sprite
-        sr.enabled = false;
-
-        // Move Dervy
-        transform.position = new Vector3(playerPosition.x - UnityEngine.Random.Range(0f,5f), playerPosition.y - UnityEngine.Random.Range(-5f,5f));
-
-        // Set sprite tmier
-        float timer = 2;
-        timer -= Time.fixedDeltaTime;
-        if (timer <= 0)
-        {
-            // When the timer hits 0, re-enable the sprite
-            sr.enabled = true;
-        }
-    }
+   
 }

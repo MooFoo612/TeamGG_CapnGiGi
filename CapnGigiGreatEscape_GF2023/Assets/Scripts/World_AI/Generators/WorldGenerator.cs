@@ -29,7 +29,7 @@ public class WorldGenerator : Factory
     // Constants -----------------------------------------------
     const float DISTANCE_TO_SPAWN_SECTION = 40f;
     const float DISTANCE_TO_SPAWN_BG = 60f;
-    const float DISTANCE_TO_REVERSE = 200f;
+    const float DISTANCE_TO_REVERSE = 160f;
     // Marker Positions---------------   
     [Header("Markers")]
     Vector3 groundEnd_Right;
@@ -68,8 +68,27 @@ public class WorldGenerator : Factory
 
         StartCoroutine(GenerateWorld());
     }
+    /// <summary>
+    /// HEY LISTEN HEY LISTEN HEY LISTEN HEY LISTEN HEY LISTEN HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!V
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// </summary>
     private void FixedUpdate()
     {
+        // HERE HERE HERE HERE HERE HERE HERE ========== DONT FORGET YOU'RE CHECKING IN THE PLAYER D
         ReverseCheck(playerPosition, distanceMarker);
     }
 
@@ -188,11 +207,9 @@ public class WorldGenerator : Factory
 
         if (currentDistance > DISTANCE_TO_REVERSE)
         {
-            Destroy(distanceMarkerObj);
-            Instantiate(distanceMarkerObj, playerPosition, Quaternion.identity);
-            distanceMarker = distanceMarkerObj.transform.position;
             totalDistance += currentDistance;
             currentDistance = 0;
+            ResetDistanceMarker();
             reversedWorld = false;
             return;
         }
@@ -206,4 +223,13 @@ public class WorldGenerator : Factory
 
     #endregion
 
+    void ResetDistanceMarker()
+    {
+        Debug.Log("Distance reached from: " + distanceMarker);
+        distanceMarkerObj.SetActive(false);
+        Instantiate(distanceMarkerObj, playerPosition, Quaternion.identity);
+        distanceMarker = distanceMarkerObj.transform.position;
+        Debug.Log("Distance set to: " + distanceMarker);
+        distanceMarkerObj.SetActive(true);
+    }
 }

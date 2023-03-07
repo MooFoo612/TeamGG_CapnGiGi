@@ -103,14 +103,14 @@ public class MenuUI : MonoBehaviour
             PlayerPrefs.SetInt("fromShop", 0);
         }
 
-        //PlayerPrefs.SetInt("swords", 10);
+        PlayerPrefs.SetInt("swords", 10);
         PlayerPrefs.SetInt("coins", 5000);
-        PlayerPrefs.SetInt("diamonds", 420);
-        //PlayerPrefs.SetInt("purchasedDoubleJump", 0);
-        //PlayerPrefs.SetInt("purchasedDash", 0);
-        //PlayerPrefs.SetInt("purchasedAirDash", 0);
-        //PlayerPrefs.SetInt("swordAttackPowerUp", 0);
-        //PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);
+        PlayerPrefs.SetInt("diamonds", 50);
+        PlayerPrefs.SetInt("purchasedDoubleJump", 0);
+        PlayerPrefs.SetInt("purchasedDash", 0);
+        PlayerPrefs.SetInt("purchasedAirDash", 0);
+        PlayerPrefs.SetInt("swordAttackPowerUp", 0);
+        PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);
         
         
         //PlayerPrefs.SetInt("alreadyRunned", 0);
