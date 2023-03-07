@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
-
     [SerializeField] GameObject shopUI;
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject GUI;
@@ -78,8 +77,6 @@ public class MenuUI : MonoBehaviour
     
     void Start(){
 
-        
-        
         if(PlayerPrefs.GetInt("alreadyRunned") == 0){   
             // Pause game and interact with the menu 
             PauseGame();

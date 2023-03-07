@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
         //    gameObject.transform.RotateAround(transform.position, Vector2.left, 450 * Time.fixedDeltaTime);
         //}
 
-        if (PlayerPrefs.GetInt("throwSwordAttackPowerUp") == 1){
+        if (PlayerPrefs.GetInt("throwSwordAttackPowerUp") == 1 && gameObject.tag == "ThrowingSword"){
             rb.bodyType = RigidbodyType2D.Kinematic;
             damage = 30;
             moveSpeed = new Vector2(10f, 0);

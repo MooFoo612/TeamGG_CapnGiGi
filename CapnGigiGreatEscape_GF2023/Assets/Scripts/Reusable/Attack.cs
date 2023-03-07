@@ -20,6 +20,10 @@ public class Attack : MonoBehaviour
                 Debug.Log(collision.name + " hit for " + attackDamage);
             }*/
         }
+        if(PlayerPrefs.GetInt("swordAttackPowerUp") == 1){
+            attackDamage += 15;
+            knockback = new Vector2(knockback.x + 5f, knockback.y + 2f);
+        }
     }
 
 }
