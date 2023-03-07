@@ -2523,6 +2523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeaderBoardCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 780354448500259804, guid: 801b0c6d2d340c84494bec385f846071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1811909661515925232, guid: 801b0c6d2d340c84494bec385f846071, type: 3}
       propertyPath: m_Pivot.x
       value: 0
