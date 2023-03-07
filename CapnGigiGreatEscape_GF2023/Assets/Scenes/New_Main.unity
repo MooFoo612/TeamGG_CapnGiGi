@@ -2232,7 +2232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1560795300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,11 +2910,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 806045922056976366, guid: 07a2ce7701f86c94ab6d7b9cb44ace7b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.661
       objectReference: {fileID: 0}
     - target: {fileID: 806045922056976366, guid: 07a2ce7701f86c94ab6d7b9cb44ace7b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1020488868412936074, guid: 07a2ce7701f86c94ab6d7b9cb44ace7b, type: 3}
       propertyPath: gameCanvas
@@ -2962,6 +2962,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2716687028423515077, guid: 07a2ce7701f86c94ab6d7b9cb44ace7b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065033808127359886, guid: 07a2ce7701f86c94ab6d7b9cb44ace7b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8475226066863556317, guid: 07a2ce7701f86c94ab6d7b9cb44ace7b, type: 3}
@@ -3282,11 +3286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4003539070455925629, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.661
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003539070455925629, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4003539070856081994, guid: 234bce2fc9748ca4cacfccc0cbd9a9db, type: 3}
       propertyPath: m_Pivot.x
@@ -3575,9 +3579,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1560795303}
     m_Modifications:
+    - target: {fileID: 8182298977756316073, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298977756316078, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -27
+      objectReference: {fileID: 0}
     - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_text
-      value: x 99
+      value: x 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_margin.x
+      value: 0.15977667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_margin.z
+      value: -9.427984
       objectReference: {fileID: 0}
     - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_fontAsset
@@ -3587,6 +3607,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 8182298977756316079, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8182298978835225432, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3617,7 +3641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8182298978835225432, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 234.3796
+      value: 279.4716
       objectReference: {fileID: 0}
     - target: {fileID: 8182298978835225432, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3653,7 +3677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8182298978835225432, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 313.5
+      value: 336.046
       objectReference: {fileID: 0}
     - target: {fileID: 8182298978835225432, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3675,9 +3699,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectablesGUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8182298978858931557, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 91.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298979368539404, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_text
-      value: x 99
+      value: x 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_margin.z
+      value: -10.226963
       objectReference: {fileID: 0}
     - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
       propertyPath: m_fontAsset
@@ -3687,5 +3723,13 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -2580135295053940126, guid: e63dedd9d536b294b95e0bbb4078aa4e, type: 2}
+    - target: {fileID: 8182298979382800536, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182298979382800539, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -112.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f42b32d22a10d054face69c0d07a76a8, type: 3}
