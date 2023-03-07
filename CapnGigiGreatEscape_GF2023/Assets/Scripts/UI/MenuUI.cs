@@ -55,12 +55,11 @@ public class MenuUI : MonoBehaviour
         //ResumeGame();
 
         if (PlayerPrefs.GetInt("fromShop") == 1){
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             PlayerPrefs.SetInt("fromShop", 0);
-        } else {
-            ResumeGame();
         }
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        ResumeGame();
     }
 
     public void QuitButton(){
@@ -79,7 +78,7 @@ public class MenuUI : MonoBehaviour
     
     void Start(){
 
-        // Reset Playerprefs (decomment all run and recomment)
+        
         
         if(PlayerPrefs.GetInt("alreadyRunned") == 0){   
             // Pause game and interact with the menu 
@@ -100,23 +99,22 @@ public class MenuUI : MonoBehaviour
             scoreCanvas.SetActive(true);
             ResumeGame();
             PlayerPrefs.SetInt("alreadyRunned", 0);
-            PlayerPrefs.SetInt("fromShop", 0);
+            //PlayerPrefs.SetInt("fromShop", 0);
         }
+
+        // Reset Playerprefs (decomment all run and recomment)
 
         PlayerPrefs.SetInt("swords", 10);
         PlayerPrefs.SetInt("coins", 5000);
-        PlayerPrefs.SetInt("diamonds", 50);
-        PlayerPrefs.SetInt("purchasedDoubleJump", 0);
-        PlayerPrefs.SetInt("purchasedDash", 0);
-        PlayerPrefs.SetInt("purchasedAirDash", 0);
-        PlayerPrefs.SetInt("swordAttackPowerUp", 0);
-        PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);
-        
-        
-        //PlayerPrefs.SetInt("alreadyRunned", 0);
-
-
+        PlayerPrefs.SetInt("diamonds", 500);
         PlayerPrefs.SetInt("coinsCountdown", 10);
+        //PlayerPrefs.SetInt("purchasedDoubleJump", 0);
+        //PlayerPrefs.SetInt("purchasedDash", 0);
+        //PlayerPrefs.SetInt("purchasedAirDash", 0);
+        //PlayerPrefs.SetInt("swordAttackPowerUp", 0);
+        //PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);    
+        //PlayerPrefs.SetInt("alreadyRunned", 0);
+        
 
 
         
