@@ -21,7 +21,7 @@ public class ControlsUI : MonoBehaviour
 
     public void CloseControls()
     {
-        PlayerPrefs.SetInt("fromShop", 1);
+        //PlayerPrefs.SetInt("fromShop", 1);
         // Reload the scene
         //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
         controlsUI.SetActive(false);

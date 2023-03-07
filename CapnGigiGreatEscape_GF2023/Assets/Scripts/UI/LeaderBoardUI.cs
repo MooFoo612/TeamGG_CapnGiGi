@@ -19,7 +19,6 @@ public class LeaderBoardUI : MonoBehaviour
         Time.timeScale = 0;
     }
 
-   
 
     public void Update()
     {
