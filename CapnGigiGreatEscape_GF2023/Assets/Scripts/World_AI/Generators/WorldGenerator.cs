@@ -32,7 +32,7 @@ public class WorldGenerator : Factory
     // Constants -----------------------------------------------
     const float DISTANCE_TO_SPAWN_SECTION = 40f;
     const float DISTANCE_TO_SPAWN_BG = 10f;
-    const float DISTANCE_TO_REVERSE = 160f;
+    const float DISTANCE_TO_REVERSE = 20f;
     // Marker Positions---------------  
     [Header("Markers")]
     Vector3 groundEnd_Right;
@@ -50,10 +50,10 @@ public class WorldGenerator : Factory
         // Access the player
         gigi = GameObject.Find("CapnGigi");
         // Distance Marker
-        leftMarkerObj = GameObject.Find("LeftMarker");
-        rightMarkerObj = GameObject.Find("RightMarker");
-        leftMarkerPos = leftMarkerObj.transform.position;
-        rightMarkerPos = rightMarkerObj.transform.position;
+        //leftMarkerObj = GameObject.Find("LeftMarker");
+        //rightMarkerObj = GameObject.Find("RightMarker");
+        //leftMarkerPos = leftMarkerObj.transform.position;
+        //rightMarkerPos = rightMarkerObj.transform.position;
         // Ensure world isn't reversed
         reversedWorld = false;
         // Access Ground Generator Script
@@ -66,7 +66,7 @@ public class WorldGenerator : Factory
     }
     private void Update()
     {
-        ReverseCheck(playerPosition, leftMarkerPos, rightMarkerPos);
+        //ReverseCheck(playerPosition, leftMarkerPos, rightMarkerPos);
     }
     #region World Spawner
     private IEnumerator GenerateWorld_Right()
@@ -88,12 +88,12 @@ public class WorldGenerator : Factory
             {
                 SpawnBackground_Right();
             }
-            // Check distance to RightMarker
+            /*/ Check distance to RightMarker
             if (Vector2.Distance(playerPosition, rightMarkerPos) < DISTANCE_TO_REVERSE)
             {
                 StartCoroutine(GenerateWorld_Left());
                 yield break;
-            }
+            }*/
             // Limit to 1sec
             yield return new WaitForSeconds(0.1f);
         }

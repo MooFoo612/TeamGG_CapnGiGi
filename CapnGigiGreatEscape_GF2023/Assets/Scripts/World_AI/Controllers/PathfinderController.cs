@@ -155,10 +155,10 @@ public bool JumpEnabled
         {
             Hunt();
         }
-        else if (Vector3.Distance(_targetPos, transform.position) > blinkDistance)
+        /*else if (Vector3.Distance(_targetPos, transform.position) > blinkDistance)
         {
             FlyingDutchman(_targetPos, this.gameObject);
-        }
+        }*/
     }
  
 
