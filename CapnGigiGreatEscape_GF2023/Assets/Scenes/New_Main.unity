@@ -1998,7 +1998,7 @@ PrefabInstance:
     - target: {fileID: 1684132948734192234, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
       propertyPath: leaderBoard
       value: 
-      objectReference: {fileID: 780354448500259804, guid: 801b0c6d2d340c84494bec385f846071, type: 3}
+      objectReference: {fileID: 1739965662}
     - target: {fileID: 1684132948734192234, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
       propertyPath: scoreCanvas
       value: 
@@ -2806,6 +2806,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7332965090813510759, guid: 6462f77af52d37143a7a2fae2b90b35c, type: 3}
   m_PrefabInstance: {fileID: 1513286653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1739965662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 780354448500259804, guid: 801b0c6d2d340c84494bec385f846071, type: 3}
+  m_PrefabInstance: {fileID: 1748415113}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1748415113
 PrefabInstance:
