@@ -9,7 +9,7 @@ public class DisplayHighScores : MonoBehaviour
     leaderBoards highscoreManager;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         for (int i = 0; i < highscoreText.Length; i++)
         {
