@@ -2118,7 +2118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1684132948734192237, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 356fcd27d9b4ebd46918a53ec2d29ad8, type: 3}
@@ -3557,6 +3557,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2815883795340746874, guid: 24bb9f18f4b58a745b367f2000029337, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815883795340746875, guid: 24bb9f18f4b58a745b367f2000029337, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2815883795613628418, guid: 24bb9f18f4b58a745b367f2000029337, type: 3}
       propertyPath: m_Name
       value: ScoreCanvas
