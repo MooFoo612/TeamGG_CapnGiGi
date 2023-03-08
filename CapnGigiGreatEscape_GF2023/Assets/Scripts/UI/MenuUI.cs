@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuUI : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject scoreCanvas;
     [SerializeField] GameObject leaderBoard;
     [SerializeField] GameObject controlsCanvas;
+    [SerializeField] TMP_InputField myName;
+
     public void ShopButton(){
         menuUI.SetActive(false);
         shopUI.SetActive(true);
@@ -113,9 +116,20 @@ public class MenuUI : MonoBehaviour
         //PlayerPrefs.SetInt("alreadyRunned", 0);
         
 
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            myName.text = PlayerPrefs.GetString("PlayerName");
+        }
 
-        
 
+    }
+
+    public void setPlayerName(string name)
+    {
+        PlayerPrefs.SetString("PlayerName", name);
+
+        //string test = PlayerPrefs.GetString("PlayerName");
+        //Debug.Log("Player name is: " + test);
     }
     
     
