@@ -15,6 +15,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject controlsCanvas;
     [SerializeField] TMP_InputField myName;
 
+    [SerializeField] GameObject infoCanvas;
     public void ShopButton(){
         menuUI.SetActive(false);
         shopUI.SetActive(true);
@@ -33,6 +34,17 @@ public class MenuUI : MonoBehaviour
         miniMap.SetActive(false);
         scoreCanvas.SetActive(false);
         leaderBoard.SetActive(true);
+    }
+
+    public void infoButton()
+    {
+        menuUI.SetActive(false);
+        shopUI.SetActive(false);
+        GUI.SetActive(false);
+        miniMap.SetActive(false);
+        scoreCanvas.SetActive(false);
+        leaderBoard.SetActive(false);
+        infoCanvas.SetActive(true);
     }
 
     public void ControlsButton(){
@@ -114,7 +126,7 @@ public class MenuUI : MonoBehaviour
         //PlayerPrefs.SetInt("swordAttackPowerUp", 0);
         //PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);    
         //PlayerPrefs.SetInt("alreadyRunned", 0);
-        
+
 
         if (PlayerPrefs.HasKey("PlayerName"))
         {

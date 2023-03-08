@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmPlatform_Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 1375325526826635893, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
 --- !u!4 &247144539509433748 stripped
