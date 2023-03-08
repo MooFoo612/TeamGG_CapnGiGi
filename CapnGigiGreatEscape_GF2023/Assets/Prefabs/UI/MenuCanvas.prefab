@@ -1890,7 +1890,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1684132947664689779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1684132948734192234}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: infoButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1684132947720595260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,7 +2312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1684132948165867954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1684132948734192234}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: ControlsButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1684132948237980106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,8 +3183,9 @@ MonoBehaviour:
   miniMap: {fileID: 0}
   scoreCanvas: {fileID: 0}
   leaderBoard: {fileID: 0}
-  controlsCanvas: {fileID: 6252748936339838256, guid: 8830541fc92185545bd8de11e8840aaf, type: 3}
+  controlsCanvas: {fileID: 0}
   myName: {fileID: 1246029027}
+  infoCanvas: {fileID: 0}
 --- !u!1 &1684132948775434517
 GameObject:
   m_ObjectHideFlags: 0
