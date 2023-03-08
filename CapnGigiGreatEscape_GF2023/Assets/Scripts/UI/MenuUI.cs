@@ -104,7 +104,7 @@ public class MenuUI : MonoBehaviour
 
         // Reset Playerprefs (decomment all run and recomment)
 
-        PlayerPrefs.SetInt("swords", 10);
+        //PlayerPrefs.SetInt("swords", 10);
         PlayerPrefs.SetInt("coins", 5000);
         PlayerPrefs.SetInt("diamonds", 500);
         PlayerPrefs.SetInt("coinsCountdown", 10);
