@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuUI : MonoBehaviour
 {
-
     [SerializeField] GameObject shopUI;
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject GUI;
@@ -13,6 +13,9 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject scoreCanvas;
     [SerializeField] GameObject leaderBoard;
     [SerializeField] GameObject controlsCanvas;
+    [SerializeField] TMP_InputField myName;
+
+    [SerializeField] GameObject infoCanvas;
     public void ShopButton(){
         menuUI.SetActive(false);
         shopUI.SetActive(true);
@@ -31,6 +34,17 @@ public class MenuUI : MonoBehaviour
         miniMap.SetActive(false);
         scoreCanvas.SetActive(false);
         leaderBoard.SetActive(true);
+    }
+
+    public void infoButton()
+    {
+        menuUI.SetActive(false);
+        shopUI.SetActive(false);
+        GUI.SetActive(false);
+        miniMap.SetActive(false);
+        scoreCanvas.SetActive(false);
+        leaderBoard.SetActive(false);
+        infoCanvas.SetActive(true);
     }
 
     public void ControlsButton(){
@@ -55,12 +69,11 @@ public class MenuUI : MonoBehaviour
         //ResumeGame();
 
         if (PlayerPrefs.GetInt("fromShop") == 1){
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+            //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             PlayerPrefs.SetInt("fromShop", 0);
-        } else {
-            ResumeGame();
         }
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        ResumeGame();
     }
 
     public void QuitButton(){
@@ -79,8 +92,6 @@ public class MenuUI : MonoBehaviour
     
     void Start(){
 
-        // Reset Playerprefs (decomment all run and recomment)
-        
         if(PlayerPrefs.GetInt("alreadyRunned") == 0){   
             // Pause game and interact with the menu 
             PauseGame();
@@ -100,27 +111,37 @@ public class MenuUI : MonoBehaviour
             scoreCanvas.SetActive(true);
             ResumeGame();
             PlayerPrefs.SetInt("alreadyRunned", 0);
-            PlayerPrefs.SetInt("fromShop", 0);
+            //PlayerPrefs.SetInt("fromShop", 0);
         }
 
-        PlayerPrefs.SetInt("swords", 10);
+        // Reset Playerprefs (decomment all run and recomment)
+
+        //PlayerPrefs.SetInt("swords", 10);
         PlayerPrefs.SetInt("coins", 5000);
-        PlayerPrefs.SetInt("diamonds", 50);
-        PlayerPrefs.SetInt("purchasedDoubleJump", 0);
-        PlayerPrefs.SetInt("purchasedDash", 0);
-        PlayerPrefs.SetInt("purchasedAirDash", 0);
-        PlayerPrefs.SetInt("swordAttackPowerUp", 0);
-        PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);
-        
-        
+        PlayerPrefs.SetInt("diamonds", 500);
+        PlayerPrefs.SetInt("coinsCountdown", 10);
+        //PlayerPrefs.SetInt("purchasedDoubleJump", 0);
+        //PlayerPrefs.SetInt("purchasedDash", 0);
+        //PlayerPrefs.SetInt("purchasedAirDash", 0);
+        //PlayerPrefs.SetInt("swordAttackPowerUp", 0);
+        //PlayerPrefs.SetInt("throwSwordAttackPowerUp", 0);    
         //PlayerPrefs.SetInt("alreadyRunned", 0);
 
 
-        PlayerPrefs.SetInt("coinsCountdown", 10);
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            myName.text = PlayerPrefs.GetString("PlayerName");
+        }
 
 
-        
+    }
 
+    public void setPlayerName(string name)
+    {
+        PlayerPrefs.SetString("PlayerName", name);
+
+        //string test = PlayerPrefs.GetString("PlayerName");
+        //Debug.Log("Player name is: " + test);
     }
     
     

@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.01
+      value: 6.2
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -498,6 +498,10 @@ PrefabInstance:
     - target: {fileID: 1375325526826635889, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
       propertyPath: m_Name
       value: PalmPlatform_Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375325526826635893, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
@@ -759,6 +763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmPlatform_Spawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1375325526826635893, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
 --- !u!4 &8743326095002796441 stripped
@@ -791,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.94
+      value: 7.58
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -923,7 +931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.94
+      value: 7.13
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.z

@@ -22,38 +22,58 @@ public class BackgroundWarehouse : Factory
         // Hierarchy Parent
         bgParent = GameObject.Find("Backgrounds_Active").transform;
 
-        // Access the player
-        player = GameObject.Find("CapnGigi");
-
         // First spawn point
         bgEnd_Right = bgStart.transform.position;
 
-        //Set bg
-        initBg = backgrounds[0].transform;
 
-        GenerateBackground(initBg, bgEnd_Right, bgParent);
     }
 
-    public void GenerateBackground()
+    public void GenerateBackground_Right()
     {
         //int randomPick = UnityEngine.Random.Range(0, backgrounds.Count - 1);
         int randomPick = 0;
         Transform randomBg = backgrounds[randomPick].transform;
 
         // Spawn the Transform at the last end of section location
-        Transform lastBgEnd_Right = GenerateBackground(randomBg, bgEnd_Right, bgParent);
+        Transform lastBgEnd_Right = GenerateBackground_Right(randomBg, bgEnd_Right, bgParent);
 
         // Find the next end of section in the new Transform
         bgEnd_Right = lastBgEnd_Right.Find("BgEnd_Right").position;
     }
 
-    public Transform GenerateBackground(Transform background, Vector3 spawnLocation, Transform backgroundParent)
+    public Transform GenerateBackground_Right(Transform background, Vector3 spawnLocation, Transform backgroundParent)
     {
         //int randomBackground = UnityEngine.Random.Range(0, backgrounds.Count - 1);
         Transform bg = Instantiate(background, spawnLocation, Quaternion.identity, backgroundParent);
         Debug.Log("background generated");
         return bg;
     }
+
+    
+    public void GenerateBackground_Left()
+    {
+        //int randomPick = UnityEngine.Random.Range(0, backgrounds.Count - 1);
+        int randomPick = 0;
+        Transform randomBg = backgrounds[randomPick].transform;
+
+        // Spawn the Transform at the last end of section location
+        Transform lastBgEnd_Left = GenerateBackground_Left(randomBg, bgEnd_Right, bgParent);
+
+        // Find the next end of section in the new Transform
+        bgEnd_Right = lastBgEnd_Left.Find("BgEnd_Right").position;
+    }
+
+    public Transform GenerateBackground_Left(Transform background, Vector3 spawnLocation, Transform backgroundParent)
+    {
+        //int randomBackground = UnityEngine.Random.Range(0, backgrounds.Count - 1);
+        Transform bg = Instantiate(background, spawnLocation, Quaternion.identity, backgroundParent);
+        Debug.Log("background generated");
+        return bg;
+    }
+
+
+
+
 }
 
 

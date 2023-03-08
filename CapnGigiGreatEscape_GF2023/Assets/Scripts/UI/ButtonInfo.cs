@@ -18,7 +18,7 @@ public class ButtonInfo : MonoBehaviour
         // Update the price on the item
         coinsPriceText.text = "x " + shopUI.GetComponent<ShopUI>().shopItems[2,itemID].ToString();
         diamondPriceText.text = "x " + shopUI.GetComponent<ShopUI>().shopItems[3,itemID].ToString();
-        // same as line above with coins but for quantity???
+        
         
     }
 }

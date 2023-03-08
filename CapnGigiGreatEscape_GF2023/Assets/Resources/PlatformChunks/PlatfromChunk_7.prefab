@@ -369,6 +369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmPlatform_Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 1375325526826635893, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
 --- !u!4 &4284831786239580052 stripped
@@ -467,7 +471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.03
+      value: 4.49
       objectReference: {fileID: 0}
     - target: {fileID: 9020559349500842386, guid: c8ca338fa5b2d2e4592aab679625beb0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -562,6 +566,10 @@ PrefabInstance:
     - target: {fileID: 1375325526826635889, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
       propertyPath: m_Name
       value: PalmPlatform_Spawn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375325526826635893, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81df152f9f1c55349bc1ccfd1ec7599d, type: 3}
@@ -673,7 +681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952635691208331476, guid: 74b99a7b9eedddf4bb90a480d024533c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952635691208331476, guid: 74b99a7b9eedddf4bb90a480d024533c, type: 3}
       propertyPath: m_LocalPosition.z

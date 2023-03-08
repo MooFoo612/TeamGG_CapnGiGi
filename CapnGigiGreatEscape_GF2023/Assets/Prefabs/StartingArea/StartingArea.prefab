@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1018090435968804057}
   - component: {fileID: 1018090435968803879}
   - component: {fileID: 1018090435968804056}
+  - component: {fileID: 283260642}
   m_Layer: 0
   m_Name: BackDecorations
   m_TagString: Untagged
@@ -246,6 +247,21 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &283260642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018090435968804058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
 --- !u!1 &1018090436162597195
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +274,7 @@ GameObject:
   - component: {fileID: 1018090436162597207}
   - component: {fileID: 1018090436162597192}
   - component: {fileID: 1018090436162597193}
+  - component: {fileID: 261605472}
   m_Layer: 0
   m_Name: BackgroundEffects
   m_TagString: Untagged
@@ -597,6 +614,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   followTarget: {fileID: 0}
+--- !u!114 &261605472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018090436162597195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
 --- !u!1 &1018090436230547064
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +640,7 @@ GameObject:
   - component: {fileID: 1018090436230547015}
   - component: {fileID: 1018090436230547012}
   - component: {fileID: 1018090436230547013}
+  - component: {fileID: 420967564}
   m_Layer: 0
   m_Name: WoodenBackground
   m_TagString: Untagged
@@ -5892,7 +5925,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -5901,6 +5934,21 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &420967564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018090436230547064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
 --- !u!1 &1018090437158064929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5912,6 +5960,7 @@ GameObject:
   - component: {fileID: 1018090437158064928}
   - component: {fileID: 1018090437158064942}
   - component: {fileID: 1018090437158064943}
+  - component: {fileID: 1431861708}
   m_Layer: 0
   m_Name: FrontDecorations
   m_TagString: Untagged
@@ -6053,6 +6102,21 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &1431861708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018090437158064929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
 --- !u!1 &1018090437189802926
 GameObject:
   m_ObjectHideFlags: 0
@@ -6204,6 +6268,7 @@ GameObject:
   - component: {fileID: 1018090437260747800}
   - component: {fileID: 1018090437260747801}
   - component: {fileID: 1018090437260747802}
+  - component: {fileID: 1427873003}
   m_Layer: 6
   m_Name: WallsAndCollisions
   m_TagString: Wall
@@ -13117,6 +13182,21 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &1427873003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018090437260747804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
 --- !u!1 &1018090438003037837
 GameObject:
   m_ObjectHideFlags: 0
@@ -13129,6 +13209,7 @@ GameObject:
   - component: {fileID: 1018090438003037833}
   - component: {fileID: 1018090438003037834}
   - component: {fileID: 1018090438003037835}
+  - component: {fileID: 1331955881}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Wall
@@ -14836,3 +14917,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &1331955881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018090438003037837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577d2768e0c7efa448da776d8cab2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDestroy: 60
+  distanceToDestroyForReverse: 80
+  checkDistance: 40
